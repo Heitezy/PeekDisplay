@@ -50,6 +50,7 @@
     <string name="pref_look_and_feel_colors_clock">Warna jam</string>
     <string name="pref_look_and_feel_colors_date">Warna tanggal</string>
     <string name="pref_look_and_feel_colors_battery">Warna baterai</string>
+    <string name="pref_look_and_feel_colors_battery_arc">Warna baterai (M-Style)</string>
     <string name="pref_look_and_feel_colors_music_controls">Warna Kontrol Musik</string>
     <string name="pref_look_and_feel_colors_calendar">Warna Acara Kalender</string>
     <string name="pref_look_and_feel_colors_message">Warna pesan</string>

@@ -82,6 +82,7 @@
     <string name="pref_look_and_feel_colors_clock">Clock color</string>
     <string name="pref_look_and_feel_colors_date">Date color</string>
     <string name="pref_look_and_feel_colors_battery">Battery color</string>
+    <string name="pref_look_and_feel_colors_battery_arc">Battery color (M-Style)</string>
     <string name="pref_look_and_feel_colors_music_controls">Music controls color</string>
     <string name="pref_look_and_feel_colors_calendar">Calendar event color</string>
     <string name="pref_look_and_feel_colors_message">Message color</string>

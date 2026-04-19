@@ -50,6 +50,7 @@
     <string name="pref_look_and_feel_colors_clock">時計色</string>
     <string name="pref_look_and_feel_colors_date">日付の色</string>
     <string name="pref_look_and_feel_colors_battery">バッテリーの色</string>
+    <string name="pref_look_and_feel_colors_battery_arc">バッテリーの色 (M-Style)</string>
     <string name="pref_look_and_feel_colors_music_controls">音楽は色を制御します</string>
     <string name="pref_look_and_feel_colors_calendar">カレンダーイベントの色</string>
     <string name="pref_look_and_feel_colors_message">メッセージカラー</string>

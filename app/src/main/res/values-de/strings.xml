@@ -50,6 +50,7 @@
     <string name="pref_look_and_feel_colors_clock">Uhrenfarbe</string>
     <string name="pref_look_and_feel_colors_date">Datumsfarbe</string>
     <string name="pref_look_and_feel_colors_battery">Akkufarbe</string>
+    <string name="pref_look_and_feel_colors_battery_arc">Akkufarbe (M-Style)</string>
     <string name="pref_look_and_feel_colors_music_controls">Musiksteuerungsfarbe</string>
     <string name="pref_look_and_feel_colors_calendar">Farbe der Kalendererveranstaltungen</string>
     <string name="pref_look_and_feel_colors_message">Nachrichtenfarbe</string>

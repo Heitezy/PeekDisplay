@@ -50,6 +50,7 @@
     <string name="pref_look_and_feel_colors_clock">घड़ी रंग</string>
     <string name="pref_look_and_feel_colors_date">दिनांक रंग</string>
     <string name="pref_look_and_feel_colors_battery">बैटरी रंग</string>
+    <string name="pref_look_and_feel_colors_battery_arc">बैटरी रंग (M-Style)</string>
     <string name="pref_look_and_feel_colors_music_controls">संगीत रंग को नियंत्रित करता है</string>
     <string name="pref_look_and_feel_colors_calendar">कैलेंडर इवेंट कलर</string>
     <string name="pref_look_and_feel_colors_message">संदेश रंग</string>

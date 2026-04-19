@@ -50,6 +50,7 @@
     <string name="pref_look_and_feel_colors_clock">لون الساعة</string>
     <string name="pref_look_and_feel_colors_date">لون التاريخ</string>
     <string name="pref_look_and_feel_colors_battery">لون البطارية</string>
+    <string name="pref_look_and_feel_colors_battery_arc">لون البطارية (M-Style)</string>
     <string name="pref_look_and_feel_colors_music_controls">يتحكم الموسيقى في اللون</string>
     <string name="pref_look_and_feel_colors_calendar">لون الحدث التقويم</string>
     <string name="pref_look_and_feel_colors_message">لون الرسالة</string>

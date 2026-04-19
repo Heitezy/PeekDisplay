@@ -50,6 +50,7 @@
     <string name="pref_look_and_feel_colors_clock">Ρολόι</string>
     <string name="pref_look_and_feel_colors_date">Ημερομηνία χρώματος</string>
     <string name="pref_look_and_feel_colors_battery">Χρώμα μπαταρίας</string>
+    <string name="pref_look_and_feel_colors_battery_arc">Χρώμα μπαταρίας (M-Style)</string>
     <string name="pref_look_and_feel_colors_music_controls">Η μουσική ελέγχει το χρώμα</string>
     <string name="pref_look_and_feel_colors_calendar">Χρώμα συμβάντος ημερολογίου</string>
     <string name="pref_look_and_feel_colors_message">Έγχρωμο μήνυμα</string>

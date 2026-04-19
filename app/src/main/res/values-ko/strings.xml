@@ -50,6 +50,7 @@
     <string name="pref_look_and_feel_colors_clock">시계 색상</string>
     <string name="pref_look_and_feel_colors_date">날짜 색상</string>
     <string name="pref_look_and_feel_colors_battery">배터리 색상</string>
+    <string name="pref_look_and_feel_colors_battery_arc">배터리 색상 (M-Style)</string>
     <string name="pref_look_and_feel_colors_music_controls">음악 제어 색상</string>
     <string name="pref_look_and_feel_colors_calendar">캘린더 이벤트 색상</string>
     <string name="pref_look_and_feel_colors_message">메시지 색상</string>

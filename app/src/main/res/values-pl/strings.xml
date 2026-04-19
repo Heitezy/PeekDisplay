@@ -50,6 +50,7 @@
     <string name="pref_look_and_feel_colors_clock">Kolor zegara</string>
     <string name="pref_look_and_feel_colors_date">Kolor daty</string>
     <string name="pref_look_and_feel_colors_battery">Kolor baterii</string>
+    <string name="pref_look_and_feel_colors_battery_arc">Kolor baterii (M-Style)</string>
     <string name="pref_look_and_feel_colors_music_controls">Muzyka kontroluje kolor</string>
     <string name="pref_look_and_feel_colors_calendar">Kolor zdarzenia kalendarza</string>
     <string name="pref_look_and_feel_colors_message">Kolor wiadomości</string>

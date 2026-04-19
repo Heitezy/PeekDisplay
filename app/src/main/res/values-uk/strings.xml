@@ -161,6 +161,7 @@
     <string name="pref_look_and_feel_colors_clock">Колір годинника</string>
     <string name="pref_look_and_feel_colors_date">Колір дати</string>
     <string name="pref_look_and_feel_colors_battery">Колір батареї</string>
+    <string name="pref_look_and_feel_colors_battery_arc">Колір батареї (M-Style)</string>
     <string name="pref_look_and_feel_colors_music_controls">Колір керування музикою</string>
     <string name="pref_look_and_feel_colors_calendar">Колір події календаря</string>
     <string name="pref_look_and_feel_colors_message">Колір повідомлення</string>

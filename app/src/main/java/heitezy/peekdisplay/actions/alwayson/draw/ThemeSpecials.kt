@@ -101,7 +101,7 @@ object ThemeSpecials {
                 // Draw progress arc
                 val arcPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
                     style = Paint.Style.STROKE
-                    color = 0xFF00E5FF.toInt()
+                    color = utils.prefs.get(P.DISPLAY_COLOR_BATTERY_ARC, P.DISPLAY_COLOR_BATTERY_ARC_DEFAULT)
                     this.strokeWidth = strokeWidth
                     strokeCap = Paint.Cap.ROUND
                 }

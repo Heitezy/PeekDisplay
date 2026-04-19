@@ -50,6 +50,7 @@
     <string name="pref_look_and_feel_colors_clock">Saat tûsû</string>
     <string name="pref_look_and_feel_colors_date">Tarihnıñ renki</string>
     <string name="pref_look_and_feel_colors_battery">Akkumulâtornıñ tûsû .</string>
+    <string name="pref_look_and_feel_colors_battery_arc">Akkumulâtornıñ tûsû . (M-Style)</string>
     <string name="pref_look_and_feel_colors_music_controls">Muzıka renkini idare éte .</string>
     <string name="pref_look_and_feel_colors_calendar">Taqvim vaqiası .</string>
     <string name="pref_look_and_feel_colors_message">Haber renki</string>

@@ -50,6 +50,7 @@
     <string name="pref_look_and_feel_colors_clock">時鐘顏色</string>
     <string name="pref_look_and_feel_colors_date">日期顏色</string>
     <string name="pref_look_and_feel_colors_battery">電池顏色</string>
+    <string name="pref_look_and_feel_colors_battery_arc">電池顏色 (M-Style)</string>
     <string name="pref_look_and_feel_colors_music_controls">音樂控制顏色</string>
     <string name="pref_look_and_feel_colors_calendar">日曆事件顏色</string>
     <string name="pref_look_and_feel_colors_message">消息顏色</string>

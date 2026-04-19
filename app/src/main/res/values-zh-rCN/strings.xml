@@ -50,6 +50,7 @@
     <string name="pref_look_and_feel_colors_clock">时钟颜色</string>
     <string name="pref_look_and_feel_colors_date">日期颜色</string>
     <string name="pref_look_and_feel_colors_battery">电池颜色</string>
+    <string name="pref_look_and_feel_colors_battery_arc">电池颜色 (M-Style)</string>
     <string name="pref_look_and_feel_colors_music_controls">音乐控制颜色</string>
     <string name="pref_look_and_feel_colors_calendar">日历事件颜色</string>
     <string name="pref_look_and_feel_colors_message">消息颜色</string>

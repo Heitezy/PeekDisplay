@@ -141,6 +141,7 @@ internal class P(private val prefs: SharedPreferences) {
         const val DISPLAY_COLOR_CLOCK = "display_color_clock"
         const val DISPLAY_COLOR_DATE = "display_color_date"
         const val DISPLAY_COLOR_BATTERY = "display_color_battery"
+        const val DISPLAY_COLOR_BATTERY_ARC = "display_color_battery_arc"
         const val DISPLAY_COLOR_MUSIC_CONTROLS = "display_color_music_controls"
         const val DISPLAY_COLOR_CALENDAR = "display_color_calendar"
         const val DISPLAY_COLOR_NOTIFICATION = "display_color_notification"
@@ -247,6 +248,7 @@ internal class P(private val prefs: SharedPreferences) {
         const val DISPLAY_COLOR_CLOCK_DEFAULT = -1
         const val DISPLAY_COLOR_DATE_DEFAULT = -1
         const val DISPLAY_COLOR_BATTERY_DEFAULT = -1
+        const val DISPLAY_COLOR_BATTERY_ARC_DEFAULT = -1
         const val DISPLAY_COLOR_MUSIC_CONTROLS_DEFAULT = -1
         const val DISPLAY_COLOR_CALENDAR_DEFAULT = -1
         const val DISPLAY_COLOR_NOTIFICATION_DEFAULT = -1

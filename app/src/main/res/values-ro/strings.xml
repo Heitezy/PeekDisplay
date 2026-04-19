@@ -50,6 +50,7 @@
     <string name="pref_look_and_feel_colors_clock">Culoarea ceasului</string>
     <string name="pref_look_and_feel_colors_date">Culoarea datei</string>
     <string name="pref_look_and_feel_colors_battery">Culoarea bateriei</string>
+    <string name="pref_look_and_feel_colors_battery_arc">Culoarea bateriei (M-Style)</string>
     <string name="pref_look_and_feel_colors_music_controls">Muzica controlează culoarea</string>
     <string name="pref_look_and_feel_colors_calendar">Culoarea evenimentului din calendar</string>
     <string name="pref_look_and_feel_colors_message">Culoarea mesajului</string>

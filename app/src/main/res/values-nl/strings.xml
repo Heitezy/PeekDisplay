@@ -50,6 +50,7 @@
     <string name="pref_look_and_feel_colors_clock">Klokkleur</string>
     <string name="pref_look_and_feel_colors_date">Datumkleur</string>
     <string name="pref_look_and_feel_colors_battery">Batterijkleur</string>
+    <string name="pref_look_and_feel_colors_battery_arc">Batterijkleur (M-Style)</string>
     <string name="pref_look_and_feel_colors_music_controls">Muziekbesturing kleur</string>
     <string name="pref_look_and_feel_colors_calendar">Kalenderevenementkleur</string>
     <string name="pref_look_and_feel_colors_message">Berichtkleur</string>

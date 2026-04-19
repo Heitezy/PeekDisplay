@@ -50,6 +50,7 @@
     <string name="pref_look_and_feel_colors_clock">Saat rengi</string>
     <string name="pref_look_and_feel_colors_date">Tarih rengi</string>
     <string name="pref_look_and_feel_colors_battery">Pil rengi</string>
+    <string name="pref_look_and_feel_colors_battery_arc">Pil rengi (M-Style)</string>
     <string name="pref_look_and_feel_colors_music_controls">Müzik kontrolleri rengi</string>
     <string name="pref_look_and_feel_colors_calendar">Takvim etkinliği rengi</string>
     <string name="pref_look_and_feel_colors_message">Mesaj rengi</string>
