@@ -71,7 +71,7 @@ class PermissionsActivity : BaseActivity() {
                                     component =
                                         ComponentName(
                                             "com.android.settings",
-                                            "com.android.settings.Settings\$DeviceAdminSettingsActivity",
+                                            $$"com.android.settings.Settings$DeviceAdminSettingsActivity",
                                         )
                                 },
                             )

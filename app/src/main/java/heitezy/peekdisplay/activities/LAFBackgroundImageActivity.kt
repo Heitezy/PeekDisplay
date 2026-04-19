@@ -117,7 +117,7 @@ class LAFBackgroundImageActivity :
         pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
             if (uri != null) {
                 Thread {
-                    val inputStream: InputStream? = contentResolver.openInputStream(uri) ?: return@Thread
+                    val inputStream: InputStream = contentResolver.openInputStream(uri) ?: return@Thread
 
                     var bitmap = BitmapFactory.decodeStream(inputStream) ?: return@Thread
                     val size = min(bitmap.width, bitmap.height)

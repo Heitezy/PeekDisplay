@@ -6,7 +6,6 @@ import androidx.core.content.res.ResourcesCompat
 import heitezy.peekdisplay.R
 import heitezy.peekdisplay.actions.alwayson.AlwaysOnCustomView
 import heitezy.peekdisplay.helpers.P
-import java.text.SimpleDateFormat
 
 object Battery {
     private const val PERCENT = "%"
@@ -82,7 +81,6 @@ object Battery {
         batteryIcon: Int,
         batteryIsCharging: Boolean,
         flags: BooleanArray,
-        width: Int,
     ) {
         utils.drawVector(
             canvas,

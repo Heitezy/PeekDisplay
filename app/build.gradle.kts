@@ -1,4 +1,5 @@
 import com.android.build.gradle.internal.tasks.factory.dependsOn
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 private val readAndUnderstoodLicense = false
 
@@ -6,6 +7,12 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("io.gitlab.arturbosch.detekt")
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.fromTarget("17")
+    }
 }
 
 android {
@@ -17,8 +24,8 @@ android {
         minSdk = 24
         //noinspection OldTargetApi
         targetSdk = 35
-        versionCode = 8
-        versionName = "1.0.1"
+        versionCode = 9
+        versionName = "1.0.2"
     }
 
     buildTypes {
@@ -47,9 +54,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = "17"
     }
     detekt {
         config.setFrom(file("detekt-config.yml"))
@@ -89,7 +93,7 @@ tasks.register("license") {
 
 dependencies {
     implementation("androidx.appcompat:appcompat:1.7.1")
-    implementation("com.google.android.material:material:1.12.0")
+    implementation("com.google.android.material:material:1.13.0")
     implementation("androidx.preference:preference-ktx:1.2.1")
     implementation("com.jaredrummler:colorpicker:1.1.0")
     implementation("com.android.volley:volley:1.2.1")

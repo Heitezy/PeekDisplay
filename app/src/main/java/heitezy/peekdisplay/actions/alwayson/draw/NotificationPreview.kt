@@ -22,9 +22,9 @@ import heitezy.peekdisplay.R
 import heitezy.peekdisplay.helpers.Global
 import heitezy.peekdisplay.helpers.P
 import heitezy.peekdisplay.services.NotificationService
-import java.text.SimpleDateFormat
-import java.util.Locale
 import kotlin.math.min
+import androidx.core.graphics.toColorInt
+import androidx.core.graphics.createBitmap
 
 object NotificationPreview {
     const val DISMISS_ACTION_INDEX = -2
@@ -57,7 +57,7 @@ object NotificationPreview {
     private var sendButtonRect = Rect()
 
     private val backgroundPaint = Paint().apply {
-        color = Color.parseColor("#BB000000") // Semi-transparent black
+        color = "#BB000000".toColorInt() // Semi-transparent black
         style = Paint.Style.FILL
         isAntiAlias = true
     }
@@ -70,13 +70,13 @@ object NotificationPreview {
     }
 
     private val appNamePaint = Paint().apply {
-        color = Color.parseColor("#E6FFFFFF") // Slightly transparent white (90%)
+        color = "#E6FFFFFF".toColorInt() // Slightly transparent white (90%)
         textSize = TITLE_TEXT_SIZE * 2.5f
         isAntiAlias = true
     }
 
     private val timestampPaint = Paint().apply {
-        color = Color.parseColor("#E6FFFFFF") // Slightly transparent white (90%)
+        color = "#E6FFFFFF".toColorInt() // Slightly transparent white (90%)
         textSize = TITLE_TEXT_SIZE * 2.5f
         isAntiAlias = true
     }
@@ -101,7 +101,7 @@ object NotificationPreview {
     }
 
     private val dismissButtonPaint = Paint().apply {
-        color = Color.parseColor("#F44336") // Red color for dismiss
+        color = "#F44336".toColorInt() // Red color for dismiss
         style = Paint.Style.FILL
         isAntiAlias = true
     }
@@ -118,11 +118,9 @@ object NotificationPreview {
         isFilterBitmap = true
     }
 
-    private val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-    
     // Reply UI elements
     private val replyFieldPaint = Paint().apply {
-        color = Color.parseColor("#FFFFFF")
+        color = Color.WHITE
         style = Paint.Style.FILL
         isAntiAlias = true
     }
@@ -134,16 +132,9 @@ object NotificationPreview {
     }
     
     private val sendButtonPaint = Paint().apply {
-        color = Color.parseColor("#4285F4")  // Google blue color
+        color = "#4285F4".toColorInt()  // Google blue color
         style = Paint.Style.FILL
         isAntiAlias = true
-    }
-    
-    private val sendButtonTextPaint = Paint().apply {
-        color = Color.WHITE
-        textSize = ACTION_TEXT_SIZE * 3
-        isAntiAlias = true
-        textAlign = Paint.Align.CENTER
     }
 
     // Set the current notification to preview
@@ -176,9 +167,7 @@ object NotificationPreview {
             replyText = replyText.substring(0, replyText.length - 1)
         }
     }
-    
-    fun getReplyText(): String = replyText
-    
+
     fun clearReplyMode() {
         isReplyActive = false
         replyAction = null
@@ -191,11 +180,6 @@ object NotificationPreview {
     
     fun isPointInSendButton(x: Float, y: Float): Boolean {
         return sendButtonRect.contains(x.toInt(), y.toInt())
-    }
-
-    fun isPointInDismissButton(x: Float, y: Float): Boolean {
-        val rect = dismissButtonRect ?: return false
-        return rect.contains(x.toInt(), y.toInt())
     }
 
     fun isPointInAction(x: Float, y: Float): Int {
@@ -219,7 +203,8 @@ object NotificationPreview {
         val rect = previewRect ?: return false
         val bodyAreaTop = rect.top + PADDING + titlePaint.textSize + PADDING
         val bodyAreaBottom = if (actionButtons.isNotEmpty() || dismissButtonRect != null) {
-            (actionButtons.firstOrNull()?.top ?: dismissButtonRect?.top)?.toFloat() ?: rect.bottom - PADDING
+            (actionButtons.firstOrNull()?.top ?: dismissButtonRect?.top)?.toFloat()
+                ?: (rect.bottom - PADDING)
         } else {
             rect.bottom - PADDING
         }
@@ -307,10 +292,10 @@ object NotificationPreview {
         }
 
         val timestamp = detailedNotification?.postTime ?: System.currentTimeMillis()
-        val formattedTime = getRelativeTimeSpanString(timestamp, utils.context)
+        val formattedTime = getRelativeTimeSpanString(timestamp)
 
         val appNameY = previewTop + PADDING + appNamePaint.textSize / 2
-        var titleY = appNameY + PADDING + titlePaint.textSize
+        val titleY = appNameY + PADDING + titlePaint.textSize
         var bodyY = titleY + PADDING + bodyPaint.textSize
 
         val iconSize = APP_ICON_SIZE * 3 // Scale up for high resolution
@@ -528,7 +513,7 @@ object NotificationPreview {
         }
     }
 
-    private fun getRelativeTimeSpanString(timestamp: Long, context: Context): String {
+    private fun getRelativeTimeSpanString(timestamp: Long): String {
         val now = System.currentTimeMillis()
         
         return DateUtils.getRelativeTimeSpanString(
@@ -585,11 +570,8 @@ object NotificationPreview {
 
     private fun Drawable.toBitmap(): Bitmap? {
         try {
-            val bitmap = Bitmap.createBitmap(
-                intrinsicWidth.coerceAtLeast(1),
-                intrinsicHeight.coerceAtLeast(1),
-                Bitmap.Config.ARGB_8888
-            )
+            val bitmap =
+                createBitmap(intrinsicWidth.coerceAtLeast(1), intrinsicHeight.coerceAtLeast(1))
             
             val canvas = Canvas(bitmap)
             setBounds(0, 0, canvas.width, canvas.height)

@@ -486,7 +486,7 @@ class AlwaysOnCustomView : View {
                     width,
                 )
             } else if (utils.prefs.get(P.SHOW_BATTERY_ICON, P.SHOW_BATTERY_ICON_DEFAULT)) {
-                Battery.drawIcon(canvas, utils, batteryIcon, batteryIsCharging, flags, width)
+                Battery.drawIcon(canvas, utils, batteryIcon, batteryIsCharging, flags)
             } else if (utils.prefs.get(P.SHOW_BATTERY_PERCENTAGE, P.SHOW_BATTERY_PERCENTAGE_DEFAULT)) {
                 Battery.drawPercentage(canvas, utils, batteryLevel, flags, width)
             }
@@ -794,7 +794,7 @@ class AlwaysOnCustomView : View {
                                             invalidate()
                                             return true
                                         } else {
-                                            // should check non semantic reply action by title
+                                            // should check non-semantic reply action by title
                                             if (action.title == context.getString(R.string.notification_action_reply)) {
                                                 val activity = alwaysOnActivity ?: AlwaysOn.getInstance()
                                                 activity?.let { KeyguardHelper.dismissKeyguard(it) }

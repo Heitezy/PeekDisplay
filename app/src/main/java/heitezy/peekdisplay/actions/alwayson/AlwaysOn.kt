@@ -10,7 +10,6 @@ import android.content.IntentFilter
 import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Point
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
 import android.graphics.drawable.TransitionDrawable
@@ -55,6 +54,9 @@ import heitezy.peekdisplay.services.NotificationService
 import android.graphics.drawable.BitmapDrawable
 import android.view.inputmethod.InputMethodManager
 import heitezy.peekdisplay.actions.alwayson.draw.NotificationPreview
+import androidx.core.view.isVisible
+import androidx.core.graphics.scale
+import androidx.core.graphics.drawable.toDrawable
 
 @Suppress("TooManyFunctions")
 class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListener {
@@ -485,7 +487,7 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
         (animationThread as? AlwaysOnAnimationThread)?.updateScreenSize()
 
         // Update fingerprint icon positioning on orientation change
-        if (viewHolder.fingerprintIcn.visibility == View.VISIBLE) {
+        if (viewHolder.fingerprintIcn.isVisible) {
             updateFingerprintIconPosition()
         }
 
@@ -497,9 +499,9 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
             val currentBitmap = bitmapLayer?.bitmap
             if (currentBitmap != null) {
                 val screenWidth = resources.displayMetrics.widthPixels
-                val bitmapDrawable = BitmapDrawable(resources,
-                    Bitmap.createScaledBitmap(currentBitmap, screenWidth, screenWidth, true))
-                val tintDrawable = ColorDrawable(android.graphics.Color.argb(100, 0, 0, 0))
+                val bitmapDrawable =
+                    currentBitmap.scale(screenWidth, screenWidth).toDrawable(resources)
+                val tintDrawable = android.graphics.Color.argb(100, 0, 0, 0).toDrawable()
                 val gradientDrawable = GradientDrawable()
                 gradientDrawable.orientation = if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
                     GradientDrawable.Orientation.LEFT_RIGHT else GradientDrawable.Orientation.TOP_BOTTOM
@@ -782,13 +784,14 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
                 
                 // Create a layer list for the gradient overlay
                 val gradientOverlay = LayerDrawable(arrayOf(
-                    ColorDrawable(android.graphics.Color.argb(100, 0, 0, 0)),
+                    android.graphics.Color.argb(100, 0, 0, 0).toDrawable(),
                     drawable
                 ))
                 
                 // Use BitmapDrawable as the image source
-                val bitmapDrawable = BitmapDrawable(resources, 
-                    Bitmap.createScaledBitmap(albumArt, screenWidth, screenWidth, true))
+                val bitmapDrawable =
+                    albumArt.scale(screenWidth, screenWidth)
+                        .toDrawable(resources)
                 
                 // Combine both in a layer list
                 val layers = LayerDrawable(arrayOf(bitmapDrawable, gradientOverlay))
@@ -803,11 +806,12 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
                 val screenWidth = resources.displayMetrics.widthPixels
                 
                 // Use BitmapDrawable as the image source
-                val bitmapDrawable = BitmapDrawable(resources, 
-                    Bitmap.createScaledBitmap(albumArt, screenWidth, screenWidth, true))
+                val bitmapDrawable =
+                    albumArt.scale(screenWidth, screenWidth)
+                        .toDrawable(resources)
                     
                 // Create the tint color drawable
-                val tintDrawable = ColorDrawable(android.graphics.Color.argb(100, 0, 0, 0))
+                val tintDrawable = android.graphics.Color.argb(100, 0, 0, 0).toDrawable()
                 
                 // Create the gradient drawable
                 val gradientDrawable = GradientDrawable()

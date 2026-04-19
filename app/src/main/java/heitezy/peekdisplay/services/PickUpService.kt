@@ -25,8 +25,7 @@ class PickUpService : Service(), SensorEventListener {
     private var wakeLock: PowerManager.WakeLock? = null
     private var screenOffWakeLock: PowerManager.WakeLock? = null
     private var proximityWakeLock: PowerManager.WakeLock? = null
-    
-    private val TAG = "PickUpService"
+
     private val WAKELOCK_TAG = "PickUp:WakeLock"
     private val NOTIFICATION_ID = 1
 
@@ -41,13 +40,13 @@ class PickUpService : Service(), SensorEventListener {
     override fun onCreate() {
         super.onCreate()
 
-        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
         proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)
 
         hasProximitySensor = proximitySensor != null
 
-        powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
+        powerManager = getSystemService(POWER_SERVICE) as PowerManager
 
         wakeLock = powerManager.newWakeLock(
             PowerManager.PARTIAL_WAKE_LOCK, 
