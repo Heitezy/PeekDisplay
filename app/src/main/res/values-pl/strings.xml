@@ -93,7 +93,7 @@
     <string name="pref_ao_disable_on_dnd">Wyłącz w tryb nie zakłócaj</string>
     <string name="pref_ao_disable_on_dnd_summary">Pokaż tylko, kiedy tryb nie przeszkadza, jest nieaktywny</string>
     <string name="pref_ao_power_saving">Tryb oszczędzania mocy (root)</string>
-    <string name="pref_ao_power_saving_summary">Włącza tryb zasilania systemu \\, gdy jest włączony wyświetlacz PEEK</string>
+    <string name="pref_ao_power_saving_summary">Włącza tryb zasilania systemu, gdy jest włączony wyświetlacz PEEK</string>
     <string name="pref_ao_double_tap_speed">Prędkość podwójnej</string>
     <string name="pref_ao_double_tap_speed_summary">Czas dwa krany mogą być rozdzielone (w milisekundach)</string>
     <string name="pref_ao_double_tap_disabled">Wyłącz podwójną klapę</string>

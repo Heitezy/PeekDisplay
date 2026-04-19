@@ -93,7 +93,7 @@
     <string name="pref_ao_disable_on_dnd">डू नॉट डिस्टर्ब मोड में अक्षम करें</string>
     <string name="pref_ao_disable_on_dnd_summary">केवल दिखाएँ जब डिस्टर्ब मोड निष्क्रिय न हो</string>
     <string name="pref_ao_power_saving">पावर सेविंग मोड (रूट)</string>
-    <string name="pref_ao_power_saving_summary">जब PEEK डिस्प्ले सक्षम होता है तो सिस्टम \\ के पावर सेवर मोड को चालू करता है</string>
+    <string name="pref_ao_power_saving_summary">जब PEEK डिस्प्ले सक्षम होता है तो सिस्टम के पावर सेवर मोड को चालू करता है</string>
     <string name="pref_ao_double_tap_speed">डबल टैप गति</string>
     <string name="pref_ao_double_tap_speed_summary">समय दो नल अलग हो सकते हैं (मिलीसेकंड में)</string>
     <string name="pref_ao_double_tap_disabled">डबल-टैप अक्षम करें</string>

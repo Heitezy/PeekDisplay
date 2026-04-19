@@ -93,7 +93,7 @@
     <string name="pref_ao_disable_on_dnd">ปิดการใช้งานในโหมดห้ามรบกวน</string>
     <string name="pref_ao_disable_on_dnd_summary">แสดงเฉพาะเมื่อไม่รบกวนโหมดไม่ทำงาน</string>
     <string name="pref_ao_power_saving">โหมดประหยัดพลังงาน (รูท)</string>
-    <string name="pref_ao_power_saving_summary">เปิดโหมด Power Saver ของ System \\ เมื่อเปิดใช้งานการแสดงผล PEEK</string>
+    <string name="pref_ao_power_saving_summary">เปิดโหมด Power Saver ของ System เมื่อเปิดใช้งานการแสดงผล PEEK</string>
     <string name="pref_ao_double_tap_speed">ความเร็วในการแตะสองครั้ง</string>
     <string name="pref_ao_double_tap_speed_summary">เวลาสองก๊อกสามารถแยกจากกัน (เป็นมิลลิวินาที)</string>
     <string name="pref_ao_double_tap_disabled">ปิดใช้งานการแตะสองครั้ง</string>

@@ -162,7 +162,7 @@
     <string name="pref_ao_disable_on_dnd">Disable in Do Not Disturb mode</string>
     <string name="pref_ao_disable_on_dnd_summary">Only show when Do Not Disturb mode is inactive</string>
     <string name="pref_ao_power_saving">Power saving mode (root)</string>
-    <string name="pref_ao_power_saving_summary">Turns on the system\\’s power saver mode when Peek Display is enabled</string>
+    <string name="pref_ao_power_saving_summary">Turns on the system\’s power saver mode when Peek Display is enabled</string>
     <string name="pref_ao_double_tap_speed">Double-tap speed</string>
     <string name="pref_ao_double_tap_speed_summary">The time two taps can be apart (in milliseconds)</string>
     <string name="pref_ao_double_tap_disabled">Disable double-tap</string>

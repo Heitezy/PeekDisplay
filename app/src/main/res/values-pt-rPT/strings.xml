@@ -93,7 +93,7 @@
     <string name="pref_ao_disable_on_dnd">Desativar no modo não perturbar</string>
     <string name="pref_ao_disable_on_dnd_summary">Mostrar apenas quando o modo não perturbe está inativo</string>
     <string name="pref_ao_power_saving">Modo de economia de energia (raiz)</string>
-    <string name="pref_ao_power_saving_summary">Liga o modo de economia de energia do sistema \\</string>
+    <string name="pref_ao_power_saving_summary">Liga o modo de economia de energia do sistema</string>
     <string name="pref_ao_double_tap_speed">Velocidade de dupla tola</string>
     <string name="pref_ao_double_tap_speed_summary">O tempo duas torneiras podem ser separadas (em milissegundos)</string>
     <string name="pref_ao_double_tap_disabled">Desative o TAP duplo</string>

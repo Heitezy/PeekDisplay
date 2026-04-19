@@ -93,7 +93,7 @@
     <string name="pref_ao_disable_on_dnd">Nonaktifkan dalam mode jangan ganggu</string>
     <string name="pref_ao_disable_on_dnd_summary">Tunjukkan hanya ketika tidak mengganggu mode tidak aktif</string>
     <string name="pref_ao_power_saving">Mode penghematan daya (root)</string>
-    <string name="pref_ao_power_saving_summary">Menyalakan mode penghemat daya \\ saat tampilan mengintip diaktifkan</string>
+    <string name="pref_ao_power_saving_summary">Menyalakan mode penghemat daya saat tampilan mengintip diaktifkan</string>
     <string name="pref_ao_double_tap_speed">Kecepatan ketuk ganda</string>
     <string name="pref_ao_double_tap_speed_summary">Waktu dua keran bisa terpisah (dalam milidetik)</string>
     <string name="pref_ao_double_tap_disabled">Nonaktifkan ketuk ganda</string>

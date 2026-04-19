@@ -93,7 +93,7 @@
     <string name="pref_ao_disable_on_dnd">邪魔しないでくださいモードで無効にします</string>
     <string name="pref_ao_disable_on_dnd_summary">乱れないモードが非アクティブである場合にのみ表示します</string>
     <string name="pref_ao_power_saving">電源保存モード（ルート）</string>
-    <string name="pref_ao_power_saving_summary">ピークディスプレイが有効になっているときにシステム\\の電源セーバーモードをオンにします</string>
+    <string name="pref_ao_power_saving_summary">ピークディスプレイが有効になっているときにシステムの電源セーバーモードをオンにします</string>
     <string name="pref_ao_double_tap_speed">ダブルタップ速度</string>
     <string name="pref_ao_double_tap_speed_summary">2つのタップが離れることができる時間（ミリ秒単位）</string>
     <string name="pref_ao_double_tap_disabled">ダブルタップを無効にします</string>
