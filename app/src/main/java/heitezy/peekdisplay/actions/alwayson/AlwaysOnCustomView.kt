@@ -24,7 +24,9 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputConnection
 import android.view.inputmethod.InputMethodManager
 import androidx.core.graphics.scale
-import com.android.volley.Request
+import com.android.volley.NetworkResponse
+import com.android.volley.Response
+import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import heitezy.peekdisplay.R
@@ -292,8 +294,8 @@ class AlwaysOnCustomView : View {
         if (utils.prefs.get(P.SHOW_WEATHER, P.SHOW_WEATHER_DEFAULT)) {
             Volley.newRequestQueue(context)
                 .add(
-                    StringRequest(
-                        Request.Method.GET,
+                    object : StringRequest(
+                        Method.GET,
                         utils.prefs.getWeatherUrl(),
                         { response ->
                             weather = response
@@ -302,7 +304,12 @@ class AlwaysOnCustomView : View {
                         {
                             Log.e(Global.LOG_TAG, it.toString())
                         },
-                    ),
+                    ) {
+                        override fun parseNetworkResponse(response: NetworkResponse): Response<String> {
+                            val parsed = String(response.data, Charsets.UTF_8)
+                            return Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response))
+                        }
+                    },
                 )
         }
     }
@@ -1197,14 +1204,6 @@ class AlwaysOnCustomView : View {
         stopClockHandler()
         longPressHandler.removeCallbacksAndMessages(null)
         keyboardTimeoutHandler.removeCallbacksAndMessages(null)
-    }
-
-    /**
-     * Public method to refresh the background when preferences change
-     */
-    fun refreshBackground() {
-        prepareBackground()
-        invalidate()
     }
 
     companion object {
