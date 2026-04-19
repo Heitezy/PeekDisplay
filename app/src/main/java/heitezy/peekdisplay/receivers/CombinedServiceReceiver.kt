@@ -32,6 +32,8 @@ class CombinedServiceReceiver : BroadcastReceiver() {
 
     private fun onPowerConnected(context: Context) {
         val rules = Rules(context)
+        isCharging = true
+
         if (P.getPreferences(context).getBoolean(
                 "charging_animation",
                 false,
@@ -62,6 +64,8 @@ class CombinedServiceReceiver : BroadcastReceiver() {
 
     private fun onPowerDisconnected(context: Context) {
         val rules = Rules(context)
+        isCharging = false
+
         if (
             !isScreenOn &&
             !Rules.isAmbientMode(context) &&
@@ -166,6 +170,7 @@ class CombinedServiceReceiver : BroadcastReceiver() {
 
     companion object {
         var isScreenOn: Boolean = true
+        var isCharging: Boolean = false
         var isAlwaysOnRunning: Boolean = false
         var hasRequestedStop: Boolean = false
         var compat: Int = 0

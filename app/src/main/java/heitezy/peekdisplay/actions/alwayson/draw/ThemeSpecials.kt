@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat
 import heitezy.peekdisplay.R
 import heitezy.peekdisplay.actions.alwayson.AlwaysOnCustomView
 import heitezy.peekdisplay.helpers.P
+import heitezy.peekdisplay.receivers.CombinedServiceReceiver.Companion.isCharging
 
 object ThemeSpecials {
     internal fun drawDivider(
@@ -72,7 +73,15 @@ object ThemeSpecials {
                 maxOf(defaultRadius, needed)
             }
 
-            val angle = 340f * batteryPercent / 100f
+            var startAngle = -270f
+            if (isCharging) {
+                startAngle = -260f
+            }
+            var sweepAngle = 360f
+            if (isCharging) {
+                sweepAngle = 340f
+            }
+            val angle = sweepAngle * batteryPercent / 100f
 
             if (showBatteryCircle) {
                 // Draw background circle
@@ -87,7 +96,7 @@ object ThemeSpecials {
                     centerX + radius,
                     radius * 2 + strokeWidth / 2 + utils.topPadding
                 )
-                canvas.drawArc(oval, -260f, 340f, false, bgPaint)
+                canvas.drawArc(oval, startAngle, sweepAngle, false, bgPaint)
 
                 // Draw progress arc
                 val arcPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -96,7 +105,7 @@ object ThemeSpecials {
                     this.strokeWidth = strokeWidth
                     strokeCap = Paint.Cap.ROUND
                 }
-                canvas.drawArc(oval, -260f, angle, false, arcPaint)
+                canvas.drawArc(oval, startAngle, angle, false, arcPaint)
             }
 
             val centerY = utils.topPadding + strokeWidth / 2f + radius
@@ -156,12 +165,14 @@ object ThemeSpecials {
             }
 
             // Draw lightning icon at the bottom (placeholder)
-            utils.drawVector(canvas,
-                R.drawable.ic_charging_white,
-                (width / 2f).toInt(),
-                (radius * 2).toInt() + utils.topPadding,
-                0xFFFFFFFF.toInt(),
-            )
+            if (isCharging) {
+                utils.drawVector(canvas,
+                    R.drawable.ic_charging_white,
+                    (width / 2f).toInt(),
+                    (radius * 2).toInt() + utils.topPadding,
+                    0xFFFFFFFF.toInt(),
+                )
+            }
 
             // Advance viewHeight to prevent overlap
             utils.viewHeight = utils.topPadding + 2f * radius + strokeWidth + utils.padding16
