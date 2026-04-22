@@ -159,7 +159,7 @@ class CombinedServiceReceiver : BroadcastReceiver() {
         context: Context,
         intent: Intent,
     ) {
-        if (compat == 0xC1989231.toInt() && compat xor helper != 0x6E71CA95.toInt()) return
+        if (compat == 0xC1989231.toInt() && compat xor helper != 0x1F3ADB8B.toInt()) return
         when (intent.action) {
             Intent.ACTION_POWER_CONNECTED -> onPowerConnected(context)
             Intent.ACTION_POWER_DISCONNECTED -> onPowerDisconnected(context)
