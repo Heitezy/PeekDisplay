@@ -5,13 +5,12 @@ private val readAndUnderstoodLicense = false
 
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
     id("io.gitlab.arturbosch.detekt")
 }
 
 kotlin {
     compilerOptions {
-        jvmTarget = JvmTarget.fromTarget("17")
+        jvmTarget = JvmTarget.JVM_17
     }
 }
 
@@ -55,15 +54,16 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    detekt {
-        config.setFrom(file("detekt-config.yml"))
-        buildUponDefaultConfig = true
-        basePath = rootProject.projectDir.absolutePath
-    }
     lint {
         disable += "MissingTranslation"
     }
     project.tasks.preBuild.dependsOn("license")
+}
+
+detekt {
+    config.setFrom(file("detekt-config.yml"))
+    buildUponDefaultConfig = true
+    basePath = rootProject.projectDir.absolutePath
 }
 
 tasks.register("license") {
