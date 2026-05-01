@@ -9,46 +9,48 @@ import android.os.BatteryManager
 import heitezy.peekdisplay.R
 
 class Rules(context: Context) {
-    private var start = 0L
-    private var end = 0L
+    private var startMinutes = 0
+    private var endMinutes = 0
 
     init {
         val startString = P.getPreferences(context).getString("rules_time_start", "0:00") ?: "0:00"
         val endString = P.getPreferences(context).getString("rules_time_end", "0:00") ?: "0:00"
-        val startCalendar =
-            Calendar.getInstance().apply {
-                set(Calendar.MILLISECOND, 0)
-                set(Calendar.MILLISECOND, 0)
-                set(Calendar.SECOND, 0)
-                set(Calendar.MINUTE, startString.substringAfter(":").toInt())
-                set(Calendar.HOUR_OF_DAY, startString.substringBefore(":").toInt())
-            }
-        val endCalendar =
-            Calendar.getInstance().apply {
-                set(Calendar.MILLISECOND, 0)
-                set(Calendar.MILLISECOND, 0)
-                set(Calendar.SECOND, 0)
-                set(Calendar.MINUTE, endString.substringAfter(":").toInt())
-                set(Calendar.HOUR_OF_DAY, endString.substringBefore(":").toInt())
-            }
-        if (startCalendar.after(endCalendar)) endCalendar.add(Calendar.DATE, 1)
-        start = startCalendar.timeInMillis
-        end = endCalendar.timeInMillis
+        startMinutes =
+            startString.substringBefore(":").toInt() * 60 +
+                    startString.substringAfter(":").toInt()
+        endMinutes =
+            endString.substringBefore(":").toInt() * 60 +
+                    endString.substringAfter(":").toInt()
     }
 
-    private fun isInTimePeriod(): Boolean =
-        if (start == end) {
-            true
-        } else {
-            System.currentTimeMillis() in start + 1 until end
-        }
+    private fun nowMinutes(): Int {
+        val cal = Calendar.getInstance()
+        return cal.get(Calendar.HOUR_OF_DAY) * 60 + cal.get(Calendar.MINUTE)
+    }
 
-    fun millisTillEnd(): Long =
-        if (start == end) {
-            -1
+    private fun isInTimePeriod(): Boolean {
+        if (startMinutes == endMinutes) return true
+        val now = nowMinutes()
+        return if (startMinutes < endMinutes) {
+            now in startMinutes..endMinutes
         } else {
-            end - System.currentTimeMillis()
+            now !in endMinutes..startMinutes
         }
+    }
+
+    fun millisTillEnd(): Long {
+        if (startMinutes == endMinutes) return -1
+        val endCal = Calendar.getInstance().apply {
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+            set(Calendar.HOUR_OF_DAY, endMinutes / 60)
+            set(Calendar.MINUTE, endMinutes % 60)
+        }
+        if (endCal.timeInMillis <= System.currentTimeMillis()) {
+            endCal.add(Calendar.DATE, 1)
+        }
+        return endCal.timeInMillis - System.currentTimeMillis()
+    }
 
     fun canShow(context: Context): Boolean =
         isAlwaysOnDisplayEnabled(context) &&
