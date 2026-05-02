@@ -282,4 +282,8 @@
     <string name="donate_summary">Peekディスプレイの開発をサポートします</string>
     <string name="pref_look_and_feel_weather_unit">帝国ユニットを使用します</string>
     <string name="pref_look_and_feel_weather_unit_summary">華氏の温度を表示します</string>
+    <string name="colorpicker_opacity">不透明度</string>
+    <string name="colorpicker_color">色</string>
+    <string name="colorpicker_custom">カスタム</string>
+    <string name="colorpicker_presets">プリセット</string>
 </resources>

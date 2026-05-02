@@ -282,4 +282,8 @@
     <string name="donate_summary">Unterstützen Sie die Entwicklung des Peek -Displays</string>
     <string name="pref_look_and_feel_weather_unit">Imperiale Einheiten verwenden</string>
     <string name="pref_look_and_feel_weather_unit_summary">Die Temperatur in Fahrenheit anzeigen</string>
+    <string name="colorpicker_opacity">Opazität</string>
+    <string name="colorpicker_color">Farbe</string>
+    <string name="colorpicker_custom">Brauch</string>
+    <string name="colorpicker_presets">Voreinstellungen</string>
 </resources>

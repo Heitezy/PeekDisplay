@@ -282,4 +282,8 @@
     <string name="donate_summary">Susțineți dezvoltarea afișajului PEEK</string>
     <string name="pref_look_and_feel_weather_unit">Folosiți unități imperiale</string>
     <string name="pref_look_and_feel_weather_unit_summary">Afișați temperatura în Fahrenheit</string>
+    <string name="colorpicker_opacity">Opacitate</string>
+    <string name="colorpicker_color">Culoare</string>
+    <string name="colorpicker_custom">Personalizat</string>
+    <string name="colorpicker_presets">Presetări</string>
 </resources>

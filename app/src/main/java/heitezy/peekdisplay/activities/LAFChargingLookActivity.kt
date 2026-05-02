@@ -1,110 +1,99 @@
 package heitezy.peekdisplay.activities
 
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import androidx.core.content.edit
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import heitezy.peekdisplay.R
-import heitezy.peekdisplay.adapters.LayoutListAdapter
 import heitezy.peekdisplay.helpers.P
+import androidx.core.content.edit
+import heitezy.peekdisplay.ui.PeekScaffold
+import heitezy.peekdisplay.ui.PreferenceDivider
+import heitezy.peekdisplay.ui.HorizontalLayoutPicker
 
-class LAFChargingLookActivity : BaseActivity(), LayoutListAdapter.OnItemClickListener {
-    internal var value: String = P.CHARGING_STYLE_DEFAULT
-    private lateinit var preview: ImageView
-    private lateinit var layoutList: RecyclerView
 
-    private val drawables =
-        arrayOf(
-            R.drawable.charging_circle,
-            R.drawable.charging_flash,
-            R.drawable.charging_ios,
-        )
+private val STYLES = listOf(
+    P.CHARGING_STYLE_CIRCLE to R.drawable.charging_circle,
+    P.CHARGING_STYLE_FLASH  to R.drawable.charging_flash,
+    P.CHARGING_STYLE_IOS    to R.drawable.charging_ios,
+)
 
-    private fun positionToString(position: Int): String =
-        when (position) {
-            ITEM_CIRCLE -> P.CHARGING_STYLE_CIRCLE
-            ITEM_FLASH -> P.CHARGING_STYLE_FLASH
-            ITEM_IOS -> P.CHARGING_STYLE_IOS
-            else -> P.CHARGING_STYLE_DEFAULT
-        }
+private fun styleToIndex(style: String) =
+    STYLES.indexOfFirst { it.first == style }.coerceAtLeast(0)
 
-    private fun stringToPosition(string: String): Int =
-        when (string) {
-            P.CHARGING_STYLE_CIRCLE -> ITEM_CIRCLE
-            P.CHARGING_STYLE_FLASH -> ITEM_FLASH
-            P.CHARGING_STYLE_IOS -> ITEM_IOS
-            else -> ITEM_CIRCLE
-        }
+private fun indexToStyle(index: Int) =
+    STYLES.getOrNull(index)?.first ?: P.CHARGING_STYLE_DEFAULT
+
+class LAFChargingLookActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_layout_list)
-
-        // Handle window insets for the main container
-        val rootView = findViewById<RelativeLayout>(R.id.layout_list_activity)
-        ViewCompat.setOnApplyWindowInsetsListener(rootView) { view, windowInsets ->
-            val insets = windowInsets.getInsets(
-                WindowInsetsCompat.Type.systemBars() or
-                        WindowInsetsCompat.Type.displayCutout()
-            )
-
-            view.setPadding(
-                insets.left,
-                insets.top,
-                insets.right,
-                insets.bottom
-            )
-
-            WindowInsetsCompat.CONSUMED
-        }
-
-        preview = findViewById(R.id.preview)
-        layoutList = findViewById(R.id.layout_list)
-
-        layoutList.layoutManager =
-            LinearLayoutManager(this).apply {
-                orientation = LinearLayoutManager.HORIZONTAL
+        setContent {
+            BaseContent {
+                ChargingLookScreen(onBack = { finish() })
             }
-        layoutList.adapter =
-            LayoutListAdapter(
-                drawables,
-                resources.getStringArray(R.array.pref_look_and_feel_charging_array_display),
-                this,
-            )
+        }
     }
+}
+@Composable
+private fun ChargingLookScreen(onBack: () -> Unit) {
+    val context = LocalContext.current
+    val labels = context.resources
+        .getStringArray(R.array.pref_look_and_feel_charging_array_display)
 
-    override fun onItemClick(position: Int) {
-        preview.setImageResource(drawables[position])
-        value = positionToString(position)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        value = P.getPreferences(this).getString(P.CHARGING_STYLE, P.CHARGING_STYLE_DEFAULT)
+    val savedStyle = remember {
+        P.getPreferences(context)
+            .getString(P.CHARGING_STYLE, P.CHARGING_STYLE_DEFAULT)
             ?: P.CHARGING_STYLE_DEFAULT
-        setSelectedItem(layoutList.adapter as LayoutListAdapter, stringToPosition(value))
+    }
+    var selectedIndex by remember { mutableIntStateOf(styleToIndex(savedStyle)) }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            P.getPreferences(context)
+                .edit {
+                    putString(P.CHARGING_STYLE, indexToStyle(selectedIndex))
+                }
+        }
     }
 
-    override fun onStop() {
-        super.onStop()
-        P.getPreferences(this).edit { putString(P.CHARGING_STYLE, value) }
-    }
+    PeekScaffold(
+        title = stringResource(R.string.pref_look_and_feel_charging),
+        onBack = onBack,
+    ) { padding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .verticalScroll(rememberScrollState()),
+        ) {
+            Image(
+                painter = painterResource(STYLES[selectedIndex].second),
+                contentDescription = null,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .padding(horizontal = 32.dp, vertical = 16.dp),
+            )
 
-    private fun setSelectedItem(
-        adapter: LayoutListAdapter,
-        position: Int,
-    ) {
-        preview.setImageResource(drawables[position])
-        adapter.setSelectedItem(position)
-    }
+            PreferenceDivider()
 
-    companion object {
-        private const val ITEM_CIRCLE = 0
-        private const val ITEM_FLASH = 1
-        private const val ITEM_IOS = 2
+            HorizontalLayoutPicker(
+                items = STYLES.mapIndexed { i, (_, drawableRes) ->
+                    drawableRes to labels.getOrElse(i) { "" }
+                },
+                selectedIndex = selectedIndex,
+                onItemSelected = { selectedIndex = it },
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
     }
 }

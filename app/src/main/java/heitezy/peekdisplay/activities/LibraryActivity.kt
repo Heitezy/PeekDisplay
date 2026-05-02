@@ -1,65 +1,52 @@
 package heitezy.peekdisplay.activities
 
 import android.os.Bundle
-import android.widget.FrameLayout
-import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import heitezy.peekdisplay.R
+import heitezy.peekdisplay.ui.PeekScaffold
+import heitezy.peekdisplay.ui.PreferenceItem
 
 class LibraryActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
-
-        // Handle window insets for the main container
-        val rootView = findViewById<FrameLayout>(R.id.settings)
-        ViewCompat.setOnApplyWindowInsetsListener(rootView) { view, windowInsets ->
-            val insets = windowInsets.getInsets(
-                WindowInsetsCompat.Type.systemBars() or
-                        WindowInsetsCompat.Type.displayCutout()
-            )
-
-            view.setPadding(
-                insets.left,
-                insets.top,
-                insets.right,
-                insets.bottom
-            )
-
-            WindowInsetsCompat.CONSUMED
+        setContent {
+            BaseContent {
+                LibraryScreen(onBack = { finish() })
+            }
         }
+    }
+}
 
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.settings, GeneralPreferenceFragment())
-            .commit()
+@Composable
+private fun LibraryScreen(onBack: () -> Unit) {
+    val context = LocalContext.current
+
+    val libraries = remember { context.resources.getStringArray(R.array.about_libraries) }
+    val licenses  = remember { context.resources.getStringArray(R.array.about_libraries_licenses) }
+    require(libraries.size == licenses.size) {
+        "Library array size does not match license array size."
     }
 
-    class GeneralPreferenceFragment : PreferenceFragmentCompat() {
-        override fun onCreatePreferences(
-            savedInstanceState: Bundle?,
-            rootKey: String?,
+    PeekScaffold(
+        title = stringResource(R.string.about_libraries),
+        onBack = onBack,
+    ) { padding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding),
         ) {
-            addPreferencesFromResource(R.xml.pref_about_list)
-            preferenceScreen.removeAll()
-            val libraries = resources.getStringArray(R.array.about_libraries)
-            val licenses = resources.getStringArray(R.array.about_libraries_licenses)
-            if (libraries.size != licenses.size) error("Library array size does not match license array size.")
-            for (index in libraries.indices) {
-                preferenceScreen.addPreference(
-                    Preference(requireContext()).apply {
-                        icon =
-                            ResourcesCompat.getDrawable(
-                                requireContext().resources,
-                                R.drawable.ic_about_library,
-                                requireContext().theme,
-                            )
-                        title = libraries[index]
-                        summary = licenses[index]
-                    },
+            (libraries.toList()).forEachIndexed { index, library ->
+                PreferenceItem(
+                    iconRes = R.drawable.ic_about_library,
+                    title = library,
+                    summary = licenses[index],
                 )
             }
         }

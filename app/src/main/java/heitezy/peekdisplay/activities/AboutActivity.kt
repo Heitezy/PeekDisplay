@@ -2,135 +2,204 @@ package heitezy.peekdisplay.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.FrameLayout
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import heitezy.peekdisplay.BuildConfig
 import heitezy.peekdisplay.R
+import heitezy.peekdisplay.ui.PeekScaffold
+import heitezy.peekdisplay.ui.PreferenceDivider
+import heitezy.peekdisplay.ui.PreferenceItem
 
 class AboutActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
-
-        // Handle window insets for the main container
-        val rootView = findViewById<FrameLayout>(R.id.settings)
-        ViewCompat.setOnApplyWindowInsetsListener(rootView) { view, windowInsets ->
-            val insets = windowInsets.getInsets(
-                WindowInsetsCompat.Type.systemBars() or
-                        WindowInsetsCompat.Type.displayCutout()
-            )
-
-            view.setPadding(
-                insets.left,
-                insets.top,
-                insets.right,
-                insets.bottom
-            )
-
-            WindowInsetsCompat.CONSUMED
-        }
-
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.settings, GeneralPreferenceFragment())
-            .commit()
-    }
-
-    class GeneralPreferenceFragment : PreferenceFragmentCompat() {
-        @Suppress("SameReturnValue")
-        private fun onIconsClicked(): Boolean {
-            MaterialAlertDialogBuilder(requireContext())
-                .setTitle(R.string.about_icons)
-                .setItems(resources.getStringArray(R.array.about_icons_array)) { _, which ->
-                    startActivity(
-                        Intent(
-                            Intent.ACTION_VIEW,
-                            when (which) {
-                                0 -> "https://icons8.com/"
-                                1 -> "https://fonts.google.com/icons?selected=Material+Icons"
-                                else -> "about:blank"
-                            }.toUri(),
-                        ),
-                    )
-                }
-                .show()
-            return true
-        }
-
-        @Suppress("SameReturnValue")
-        private fun onExternalClicked(link: String): Boolean {
-            MaterialAlertDialogBuilder(requireContext())
-                .setTitle(R.string.about_privacy)
-                .setMessage(R.string.about_privacy_desc)
-                .setPositiveButton(android.R.string.ok) { _, _ ->
-                    startActivity(
-                        Intent(
-                            Intent.ACTION_VIEW,
-                            link.toUri(),
-                        ),
-                    )
-                }
-                .setNegativeButton(android.R.string.cancel) { _, _ -> }
-                .setNeutralButton(R.string.about_privacy_policy) { _, _ ->
-                    startActivity(
-                        Intent(
-                            Intent.ACTION_VIEW,
-                            "https://docs.github.com/en/github/site-policy/github-privacy-statement".toUri(),
-                        ),
-                    )
-                }
-                .show()
-            return true
-        }
-
-        override fun onCreatePreferences(
-            savedInstanceState: Bundle?,
-            rootKey: String?,
-        ) {
-            addPreferencesFromResource(R.xml.pref_about)
-            findPreference<Preference>("app_version")?.apply {
-                summary =
-                    requireContext().getString(
-                        R.string.about_app_version_desc,
-                        BuildConfig.VERSION_NAME,
-                        BuildConfig.VERSION_CODE,
-                    )
-            }
-            findPreference<Preference>("github")?.apply {
-                summary = REPOSITORY_URL
-                setOnPreferenceClickListener {
-                    onExternalClicked(REPOSITORY_URL)
-                }
-            }
-            findPreference<Preference>("license")?.setOnPreferenceClickListener {
-                onExternalClicked("$REPOSITORY_URL/blob/$BRANCH/LICENSE")
-            }
-            findPreference<Preference>("icons")?.setOnPreferenceClickListener {
-                onIconsClicked()
-            }
-            findPreference<Preference>("contributors")?.setOnPreferenceClickListener {
-                onExternalClicked("$REPOSITORY_URL/graphs/contributors")
-            }
-            findPreference<Preference>("libraries")?.setOnPreferenceClickListener {
-                startActivity(Intent(requireContext(), LibraryActivity::class.java))
-                true
-            }
-            findPreference<Preference>("donate")?.setOnPreferenceClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, DONATE_URL.toUri()))
-                true
+        setContent {
+            BaseContent {
+                AboutScreen(onBack = { finish() })
             }
         }
     }
 
     companion object {
-        private const val REPOSITORY: String = "Heitezy/PeekDisplay"
-        private const val BRANCH: String = "main"
-        private const val REPOSITORY_URL: String = "https://github.com/$REPOSITORY"
-        private const val DONATE_URL: String = "https://www.paypal.com/donate/?hosted_button_id=TLTPDERG5X4VA"
+        private const val REPOSITORY = "Heitezy/PeekDisplay"
+        const val BRANCH = "main"
+        const val REPOSITORY_URL = "https://github.com/$REPOSITORY"
+        const val DONATE_URL =
+            "https://www.paypal.com/donate/?hosted_button_id=TLTPDERG5X4VA"
+        const val PRIVACY_POLICY_URL =
+            "https://docs.github.com/en/github/site-policy/github-privacy-statement"
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun AboutScreen(onBack: () -> Unit) {
+    val context = LocalContext.current
+
+    var showIconsDialog by remember { mutableStateOf(false) }
+    var pendingExternalUrl by remember { mutableStateOf<String?>(null) }
+
+    fun openUrl(url: String) {
+        context.startActivity(Intent(Intent.ACTION_VIEW, url.toUri()))
+    }
+
+    // Icons dialog
+    if (showIconsDialog) {
+        val iconsArray = context.resources
+            .getStringArray(R.array.about_icons_array)
+        AlertDialog(
+            onDismissRequest = { showIconsDialog = false },
+            title = { Text(stringResource(R.string.about_icons)) },
+            text = {
+                Column {
+                    iconsArray.forEachIndexed { index, item ->
+                        Text(
+                            text = item,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable {
+                                    showIconsDialog = false
+                                    openUrl(
+                                        when (index) {
+                                            0 -> "https://icons8.com/"
+                                            1 -> "https://fonts.google.com/icons?selected=Material+Icons"
+                                            else -> "about:blank"
+                                        }
+                                    )
+                                }
+                                .padding(vertical = 12.dp)
+                        )
+                    }
+                }
+            },
+            confirmButton = {}
+        )
+    }
+
+    // External link privacy dialog
+    pendingExternalUrl?.let { url ->
+        AlertDialog(
+            onDismissRequest = { pendingExternalUrl = null },
+            title = { Text(stringResource(R.string.about_privacy)) },
+            text = { Text(stringResource(R.string.about_privacy_desc)) },
+            confirmButton = {
+                TextButton(onClick = {
+                    pendingExternalUrl = null
+                    openUrl(url)
+                }) { Text(stringResource(android.R.string.ok)) }
+            },
+            dismissButton = {
+                Row {
+                    TextButton(onClick = {
+                        pendingExternalUrl = null
+                        openUrl(AboutActivity.PRIVACY_POLICY_URL)
+                    }) {
+                        Text(stringResource(R.string.about_privacy_policy))
+                    }
+                    TextButton(onClick = { pendingExternalUrl = null }) {
+                        Text(stringResource(android.R.string.cancel))
+                    }
+                }
+            }
+        )
+    }
+
+    PeekScaffold(
+        title = stringResource(R.string.about),
+        onBack = onBack,
+    ) { padding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+        ) {
+            // App header tile
+            PreferenceItem(
+                iconRes = R.drawable.ic_always_on_accent,
+                title = stringResource(R.string.app_name),
+                summary = stringResource(R.string.app_description)
+            )
+
+            PreferenceDivider()
+
+            // App version
+            PreferenceItem(
+                iconRes = R.drawable.ic_about_info,
+                title = stringResource(R.string.about_app_version),
+                summary = stringResource(
+                    R.string.about_app_version_desc,
+                    BuildConfig.VERSION_NAME,
+                    BuildConfig.VERSION_CODE,
+                )
+            )
+
+            // GitHub
+            PreferenceItem(
+                iconRes = R.drawable.ic_about_github,
+                title = stringResource(R.string.about_github),
+                summary = AboutActivity.REPOSITORY_URL,
+                onClick = { pendingExternalUrl = AboutActivity.REPOSITORY_URL }
+            )
+
+            // License
+            PreferenceItem(
+                iconRes = R.drawable.ic_about_github,
+                title = stringResource(R.string.about_license),
+                summary = stringResource(R.string.about_license_desc),
+                onClick = {
+                    pendingExternalUrl =
+                        "${AboutActivity.REPOSITORY_URL}/blob/${AboutActivity.BRANCH}/LICENSE"
+                }
+            )
+
+            // Contributors
+            PreferenceItem(
+                iconRes = R.drawable.ic_about_contributor,
+                title = stringResource(R.string.about_contributors),
+                summary = stringResource(R.string.about_contributors_desc),
+                onClick = {
+                    pendingExternalUrl =
+                        "${AboutActivity.REPOSITORY_URL}/graphs/contributors"
+                }
+            )
+
+            // Libraries
+            PreferenceItem(
+                iconRes = R.drawable.ic_about_library,
+                title = stringResource(R.string.about_libraries),
+                summary = stringResource(R.string.about_libraries_desc),
+                onClick = {
+                    context.startActivity(
+                        Intent(context, LibraryActivity::class.java)
+                    )
+                }
+            )
+
+            // Icons
+            PreferenceItem(
+                iconRes = R.drawable.ic_about_palette,
+                title = stringResource(R.string.about_icons),
+                summary = stringResource(R.string.about_icons_desc),
+                onClick = { showIconsDialog = true }
+            )
+
+            PreferenceDivider()
+
+            // Donate
+            PreferenceItem(
+                iconRes = R.drawable.ic_about_donate,
+                title = stringResource(R.string.donate),
+                summary = stringResource(R.string.donate_summary),
+                onClick = { openUrl(AboutActivity.DONATE_URL) }
+            )
+        }
     }
 }

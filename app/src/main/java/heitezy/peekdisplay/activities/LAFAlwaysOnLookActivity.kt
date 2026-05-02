@@ -1,157 +1,115 @@
 package heitezy.peekdisplay.activities
 
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.RelativeLayout
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.core.content.edit
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import heitezy.peekdisplay.R
 import heitezy.peekdisplay.actions.alwayson.AlwaysOn
-import heitezy.peekdisplay.adapters.LayoutListAdapter
 import heitezy.peekdisplay.helpers.P
+import heitezy.peekdisplay.ui.HorizontalLayoutPicker
+import heitezy.peekdisplay.ui.PeekScaffold
+import heitezy.peekdisplay.ui.PreferenceDivider
 
-class LAFAlwaysOnLookActivity : BaseActivity(), LayoutListAdapter.OnItemClickListener {
-    internal var value: String = P.USER_THEME_DEFAULT
-    private lateinit var preview: ImageView
-    private lateinit var layoutList: RecyclerView
 
-    private val drawables =
-        arrayOf(
-            R.drawable.always_on_moto,
-            R.drawable.always_on_google,
-            R.drawable.always_on_oneplus,
-            R.drawable.always_on_samsung,
-            R.drawable.always_on_samsung2,
-            R.drawable.always_on_samsung3,
-            R.drawable.always_on_80s,
-            R.drawable.always_on_fast,
-            R.drawable.always_on_flower,
-            R.drawable.always_on_game,
-            R.drawable.always_on_handwritten,
-            R.drawable.always_on_jungle,
-            R.drawable.always_on_western,
-            R.drawable.always_on_analog,
-        )
+private val THEMES = listOf(
+    P.USER_THEME_MOTO        to R.drawable.always_on_moto,
+    P.USER_THEME_GOOGLE      to R.drawable.always_on_google,
+    P.USER_THEME_ONEPLUS     to R.drawable.always_on_oneplus,
+    P.USER_THEME_SAMSUNG     to R.drawable.always_on_samsung,
+    P.USER_THEME_SAMSUNG2    to R.drawable.always_on_samsung2,
+    P.USER_THEME_SAMSUNG3    to R.drawable.always_on_samsung3,
+    P.USER_THEME_80S         to R.drawable.always_on_80s,
+    P.USER_THEME_FAST        to R.drawable.always_on_fast,
+    P.USER_THEME_FLOWER      to R.drawable.always_on_flower,
+    P.USER_THEME_GAME        to R.drawable.always_on_game,
+    P.USER_THEME_HANDWRITTEN to R.drawable.always_on_handwritten,
+    P.USER_THEME_JUNGLE      to R.drawable.always_on_jungle,
+    P.USER_THEME_WESTERN     to R.drawable.always_on_western,
+    P.USER_THEME_ANALOG      to R.drawable.always_on_analog,
+)
 
-    @Suppress("CyclomaticComplexMethod")
-    private fun positionToString(position: Int): String =
-        when (position) {
-            ITEM_MOTO -> P.USER_THEME_MOTO
-            ITEM_GOOGLE -> P.USER_THEME_GOOGLE
-            ITEM_ONEPLUS -> P.USER_THEME_ONEPLUS
-            ITEM_SAMSUNG -> P.USER_THEME_SAMSUNG
-            ITEM_SAMSUNG2 -> P.USER_THEME_SAMSUNG2
-            ITEM_SAMSUNG3 -> P.USER_THEME_SAMSUNG3
-            ITEM_80S -> P.USER_THEME_80S
-            ITEM_FAST -> P.USER_THEME_FAST
-            ITEM_FLOWER -> P.USER_THEME_FLOWER
-            ITEM_GAME -> P.USER_THEME_GAME
-            ITEM_HANDWRITTEN -> P.USER_THEME_HANDWRITTEN
-            ITEM_JUNGLE -> P.USER_THEME_JUNGLE
-            ITEM_WESTERN -> P.USER_THEME_WESTERN
-            ITEM_ANALOG -> P.USER_THEME_ANALOG
-            else -> P.USER_THEME_DEFAULT
-        }
+private fun themeToIndex(theme: String) =
+    THEMES.indexOfFirst { it.first == theme }.coerceAtLeast(0)
 
-    @Suppress("CyclomaticComplexMethod")
-    private fun stringToPosition(string: String): Int =
-        when (string) {
-            P.USER_THEME_MOTO -> ITEM_MOTO
-            P.USER_THEME_GOOGLE -> ITEM_GOOGLE
-            P.USER_THEME_ONEPLUS -> ITEM_ONEPLUS
-            P.USER_THEME_SAMSUNG -> ITEM_SAMSUNG
-            P.USER_THEME_SAMSUNG2 -> ITEM_SAMSUNG2
-            P.USER_THEME_SAMSUNG3 -> ITEM_SAMSUNG3
-            P.USER_THEME_80S -> ITEM_80S
-            P.USER_THEME_FAST -> ITEM_FAST
-            P.USER_THEME_FLOWER -> ITEM_FLOWER
-            P.USER_THEME_GAME -> ITEM_GAME
-            P.USER_THEME_HANDWRITTEN -> ITEM_HANDWRITTEN
-            P.USER_THEME_JUNGLE -> ITEM_JUNGLE
-            P.USER_THEME_WESTERN -> ITEM_WESTERN
-            P.USER_THEME_ANALOG -> ITEM_ANALOG
-            else -> ITEM_MOTO
-        }
+private fun indexToTheme(index: Int) =
+    THEMES.getOrNull(index)?.first ?: P.USER_THEME_DEFAULT
 
-    private fun setSelectedItem(
-        adapter: LayoutListAdapter,
-        position: Int,
-    ) {
-        preview.setImageResource(drawables[position])
-        adapter.setSelectedItem(position)
-    }
+class LAFAlwaysOnLookActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_layout_list)
-
-        // Handle window insets for the main container
-        val rootView = findViewById<RelativeLayout>(R.id.layout_list_activity)
-        ViewCompat.setOnApplyWindowInsetsListener(rootView) { view, windowInsets ->
-            val insets = windowInsets.getInsets(
-                WindowInsetsCompat.Type.systemBars() or
-                        WindowInsetsCompat.Type.displayCutout()
-            )
-
-            view.setPadding(
-                insets.left,
-                insets.top,
-                insets.right,
-                insets.bottom
-            )
-
-            WindowInsetsCompat.CONSUMED
-        }
-
-        preview = findViewById(R.id.preview)
-        layoutList = findViewById(R.id.layout_list)
-
-        layoutList.layoutManager =
-            LinearLayoutManager(this).apply {
-                orientation = LinearLayoutManager.HORIZONTAL
+        setContent {
+            BaseContent {
+                AlwaysOnLookScreen(onBack = { finish() })
             }
-        layoutList.adapter =
-            LayoutListAdapter(
-                drawables,
-                resources.getStringArray(R.array.pref_look_and_feel_ao_array_display),
-                this,
+        }
+    }
+}
+@Composable
+private fun AlwaysOnLookScreen(onBack: () -> Unit) {
+    val context = LocalContext.current
+    val labels = context.resources
+        .getStringArray(R.array.pref_look_and_feel_ao_array_display)
+
+    val savedTheme = remember {
+        P.getPreferences(context)
+            .getString(P.USER_THEME, P.USER_THEME_DEFAULT)
+            ?: P.USER_THEME_DEFAULT
+    }
+    var selectedIndex by remember { mutableIntStateOf(themeToIndex(savedTheme)) }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            P.getPreferences(context).edit {
+                putString(P.USER_THEME, indexToTheme(selectedIndex))
+            }
+        }
+    }
+
+    PeekScaffold(
+        title = stringResource(R.string.pref_look_and_feel_ao),
+        onBack = onBack,
+    ) { padding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .verticalScroll(rememberScrollState()),
+        ) {
+            Image(
+                painter = painterResource(THEMES[selectedIndex].second),
+                contentDescription = null,
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .padding(horizontal = 32.dp, vertical = 16.dp),
             )
-    }
 
-    override fun onStart() {
-        super.onStart()
-        value = P.getPreferences(this).getString(P.USER_THEME, P.USER_THEME_DEFAULT) ?: P.USER_THEME_DEFAULT
-        setSelectedItem(layoutList.adapter as LayoutListAdapter, stringToPosition(value))
-    }
+            PreferenceDivider()
 
-    override fun onStop() {
-        super.onStop()
-        P.getPreferences(this).edit { putString(P.USER_THEME, value) }
-    }
-
-    override fun onItemClick(position: Int) {
-        preview.setImageResource(drawables[position])
-        value = positionToString(position)
-        AlwaysOn.finish()
-    }
-
-    companion object {
-        private const val ITEM_MOTO = 0
-        private const val ITEM_GOOGLE = 1
-        private const val ITEM_ONEPLUS = 2
-        private const val ITEM_SAMSUNG = 3
-        private const val ITEM_SAMSUNG2 = 4
-        private const val ITEM_SAMSUNG3 = 5
-        private const val ITEM_80S = 6
-        private const val ITEM_FAST = 7
-        private const val ITEM_FLOWER = 8
-        private const val ITEM_GAME = 9
-        private const val ITEM_HANDWRITTEN = 10
-        private const val ITEM_JUNGLE = 11
-        private const val ITEM_WESTERN = 12
-        private const val ITEM_ANALOG = 13
+            HorizontalLayoutPicker(
+                items = THEMES.mapIndexed { i, (_, drawableRes) ->
+                    drawableRes to labels.getOrElse(i) { "" }
+                },
+                selectedIndex = selectedIndex,
+                onItemSelected = { index ->
+                    selectedIndex = index
+                    AlwaysOn.finish()
+                },
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
     }
 }

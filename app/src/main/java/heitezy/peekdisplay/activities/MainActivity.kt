@@ -1,52 +1,43 @@
 package heitezy.peekdisplay.activities
 
 import android.Manifest
-import android.annotation.SuppressLint
-import android.content.ComponentName
-import android.content.DialogInterface
 import android.content.Intent
-import android.os.Bundle
 import android.provider.Settings
-import android.service.quicksettings.TileService
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.activity.addCallback
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.preference.Preference
-import androidx.preference.SwitchPreference
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.elevation.SurfaceColors
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.repeatOnLifecycle
 import heitezy.peekdisplay.BuildConfig
 import heitezy.peekdisplay.R
-import heitezy.peekdisplay.custom.BasePreferenceFragment
 import heitezy.peekdisplay.helpers.Global
 import heitezy.peekdisplay.helpers.P
 import heitezy.peekdisplay.helpers.Permissions
-import heitezy.peekdisplay.helpers.PreferenceScreenHelper
-import heitezy.peekdisplay.receivers.AlwaysOnAppWidgetProvider
-import heitezy.peekdisplay.services.AlwaysOnTileService
 import heitezy.peekdisplay.services.ForegroundService
+import android.os.Bundle
+import androidx.activity.addCallback
+import androidx.core.content.ContextCompat
+import androidx.core.content.edit
+import heitezy.peekdisplay.ui.PeekScaffold
+import heitezy.peekdisplay.ui.PreferenceDivider
+import heitezy.peekdisplay.ui.PreferenceItem
+import heitezy.peekdisplay.ui.SectionHeader
+import heitezy.peekdisplay.ui.SwitchPreferenceItem
+import heitezy.peekdisplay.ui.PermissionDialog
 
 class MainActivity : BaseActivity() {
-    enum class Dialog {
-        DEVICE_ADMIN,
-        NOTIFICATION_ACCESS,
-        DISPLAY_OVER_OTHER_APPS,
-        PHONE_STATE,
-        CALENDAR,
-    }
+
+    private var debugClicker = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        window.statusBarColor = SurfaceColors.SURFACE_0.getColor(this)
-
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.settings, GeneralPreferenceFragment())
-            .commit()
 
         if (Global.currentAlwaysOnState(this)) {
             ContextCompat.startForegroundService(this, Intent(this, ForegroundService::class.java))
@@ -54,191 +45,257 @@ class MainActivity : BaseActivity() {
 
         onBackPressedDispatcher.addCallback {
             startActivity(
-                Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME)
+                Intent(Intent.ACTION_MAIN)
+                    .addCategory(Intent.CATEGORY_HOME)
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
             )
         }
-    }
 
-    override fun onStart() {
-        super.onStart()
-
-        if (Permissions.needsNotificationPermissions(this)) buildDialog(Dialog.NOTIFICATION_ACCESS)
-        if (Permissions.needsDeviceAdminOrRoot(this)) buildDialog(Dialog.DEVICE_ADMIN)
-        if (Permissions.needsCalendarPermission(this)) buildDialog(Dialog.CALENDAR)
-
-        if (!Permissions.hasPhoneStatePermission(this)) buildDialog(Dialog.PHONE_STATE)
-        if (!Settings.canDrawOverlays(this)) buildDialog(Dialog.DISPLAY_OVER_OTHER_APPS)
-    }
-
-    @SuppressLint("InflateParams")
-    private fun showDialog(
-        icon: Int,
-        title: Int,
-        message: Int,
-        onOk: DialogInterface.OnClickListener,
-    ) {
-        val builder = MaterialAlertDialogBuilder(this)
-        val view = layoutInflater.inflate(R.layout.dialog_permission, null, false)
-        view.findViewById<ImageView>(R.id.icon).setImageResource(icon)
-        view.findViewById<TextView>(R.id.title).setText(title)
-        view.findViewById<TextView>(R.id.message).setText(message)
-        builder.setPositiveButton(resources.getString(android.R.string.ok), onOk)
-        builder.setView(view)
-        builder.setNegativeButton(resources.getString(android.R.string.cancel)) { dialog, _ ->
-            dialog.cancel()
-        }
-        builder.show()
-    }
-
-    @SuppressLint("InflateParams")
-    private fun buildDialog(dialogType: Dialog) {
-        when (dialogType) {
-            Dialog.DEVICE_ADMIN ->
-                showDialog(
-                    R.drawable.ic_color_mode,
-                    R.string.device_admin,
-                    R.string.device_admin_summary,
-                ) { _, _ ->
-                    startActivity(Intent(this, PermissionsActivity::class.java))
-                }
-
-            Dialog.DISPLAY_OVER_OTHER_APPS ->
-                showDialog(
-                    R.drawable.ic_color_draw_over_other_apps,
-                    R.string.setup_draw_over_other_apps,
-                    R.string.setup_draw_over_other_apps_summary,
-                ) { _, _ ->
-                    startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION))
-                }
-
-            Dialog.NOTIFICATION_ACCESS ->
-                showDialog(
-                    R.drawable.ic_color_notification,
-                    R.string.notification_listener_service,
-                    R.string.notification_listener_service_summary,
-                ) { _, _ ->
-                    startActivity(Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"))
-                }
-
-            Dialog.PHONE_STATE ->
-                showDialog(
-                    R.drawable.ic_color_phone_state,
-                    R.string.setup_phone_state,
-                    R.string.setup_phone_state_summary,
-                ) { _, _ ->
-                    ActivityCompat.requestPermissions(
-                        this,
-                        arrayOf(Manifest.permission.READ_PHONE_STATE),
-                        0,
-                    )
-                }
-
-            Dialog.CALENDAR ->
-                showDialog(
-                    R.drawable.ic_color_calendar,
-                    R.string.setup_calendar,
-                    R.string.setup_calendar_summary,
-                ) { _, _ ->
-                    ActivityCompat.requestPermissions(
-                        this,
-                        arrayOf(Manifest.permission.READ_CALENDAR),
-                        0,
-                    )
-                }
-        }
-    }
-
-    class GeneralPreferenceFragment : BasePreferenceFragment() {
-        private var debugClicker = 0
-
-        private fun onAlwaysOnClicked(): Boolean {
-            
-            TileService.requestListeningState(
-                context,
-                ComponentName(requireContext(), AlwaysOnTileService::class.java),
-            )
-            requireContext().sendBroadcast(
-                Intent(context, AlwaysOnAppWidgetProvider::class.java)
-                    .setAction(Global.ALWAYS_ON_STATE_CHANGED),
-            )
-            if (BuildConfig.DEBUG) {
-                debugClicker++
-                if (debugClicker == CLICKS_TIL_TEST) {
-                    debugClicker = 0
-                    startActivity(Intent(requireContext(), AODTestActivity::class.java))
-                }
-            }
-            return true
-        }
-
-        override fun onResume() {
-            super.onResume()
-            val alwaysOnSwitch = findPreference<SwitchPreference>(P.ALWAYS_ON)
-            val currentState = preferenceManager.sharedPreferences?.getBoolean(P.ALWAYS_ON, P.ALWAYS_ON_DEFAULT) ?: P.ALWAYS_ON_DEFAULT
-            if (alwaysOnSwitch?.isChecked != currentState) {
-                alwaysOnSwitch?.isChecked = currentState
+        setContent {
+            BaseContent {
+                MainScreen(
+                    onAlwaysOnToggled = { handleAlwaysOnClicked() },
+                    onNavigate = { intent -> startActivity(intent) },
+                )
             }
         }
+    }
 
-        override fun onCreatePreferences(
-            savedInstanceState: Bundle?,
-            rootKey: String?,
+    private fun handleAlwaysOnClicked(): Boolean {
+        val newValue = Global.changeAlwaysOnState(this)
+        if (BuildConfig.DEBUG) {
+            debugClicker++
+            if (debugClicker == CLICKS_TIL_TEST) {
+                debugClicker = 0
+                startActivity(Intent(this, AODTestActivity::class.java))
+            }
+        }
+        return newValue
+    }
+
+    companion object {
+        private const val CLICKS_TIL_TEST = 4
+    }
+}
+
+private enum class PermissionDialog {
+    DEVICE_ADMIN,
+    NOTIFICATION_ACCESS,
+    DISPLAY_OVER_OTHER_APPS,
+    PHONE_STATE,
+    CALENDAR,
+}
+
+@Composable
+private fun MainScreen(
+    onAlwaysOnToggled: () -> Boolean,
+    onNavigate: (Intent) -> Unit,
+) {
+    val context = LocalContext.current
+    val prefs = remember { P.getPreferences(context) }
+
+    var alwaysOnChecked by remember {
+        mutableStateOf(prefs.getBoolean(P.ALWAYS_ON, P.ALWAYS_ON_DEFAULT))
+    }
+    var chargingChecked by remember {
+        mutableStateOf(prefs.getBoolean("charging_animation", false))
+    }
+
+    val lifecycle = LocalLifecycleOwner.current.lifecycle
+    LaunchedEffect(lifecycle) {
+        lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            alwaysOnChecked = prefs.getBoolean(P.ALWAYS_ON, P.ALWAYS_ON_DEFAULT)
+            chargingChecked = prefs.getBoolean("charging_animation", false)
+        }
+    }
+
+    var pendingDialog by remember { mutableStateOf<PermissionDialog?>(null) }
+
+    LaunchedEffect(lifecycle) {
+        lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            pendingDialog = when {
+                Permissions.needsNotificationPermissions(context) ->
+                    PermissionDialog.NOTIFICATION_ACCESS
+                Permissions.needsDeviceAdminOrRoot(context) ->
+                    PermissionDialog.DEVICE_ADMIN
+                Permissions.needsCalendarPermission(context) ->
+                    PermissionDialog.CALENDAR
+                !Permissions.hasPhoneStatePermission(context) ->
+                    PermissionDialog.PHONE_STATE
+                !Settings.canDrawOverlays(context) ->
+                    PermissionDialog.DISPLAY_OVER_OTHER_APPS
+                else -> null
+            }
+        }
+    }
+
+    pendingDialog?.let { dialog ->
+        PermissionDialogForType(
+            dialog = dialog,
+            onConfirm = {
+                pendingDialog = null
+                when (dialog) {
+                    PermissionDialog.DEVICE_ADMIN ->
+                        onNavigate(Intent(context, PermissionsActivity::class.java))
+                    PermissionDialog.DISPLAY_OVER_OTHER_APPS ->
+                        onNavigate(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION))
+                    PermissionDialog.NOTIFICATION_ACCESS ->
+                        onNavigate(Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"))
+                    PermissionDialog.PHONE_STATE ->
+                        ActivityCompat.requestPermissions(
+                            context as MainActivity,
+                            arrayOf(Manifest.permission.READ_PHONE_STATE),
+                            0,
+                        )
+                    PermissionDialog.CALENDAR ->
+                        ActivityCompat.requestPermissions(
+                            context as MainActivity,
+                            arrayOf(Manifest.permission.READ_CALENDAR),
+                            0,
+                        )
+                }
+            },
+            onDismiss = { pendingDialog = null },
+        )
+    }
+
+    PeekScaffold(title = stringResource(R.string.app_name), titleCentered = true) { padding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .verticalScroll(rememberScrollState()),
         ) {
-            addPreferencesFromResource(R.xml.pref_main)
-            checkPermissions()
+            SectionHeader(stringResource(R.string.pref_general))
 
-            findPreference<Preference>(P.ALWAYS_ON)?.setOnPreferenceClickListener {
-                onAlwaysOnClicked()
-            }
-            PreferenceScreenHelper.linkPreferenceToActivity(
-                this,
-                "pref_watch_face",
-                Intent(requireContext(), LAFWatchFaceActivity::class.java),
+            SwitchPreferenceItem(
+                iconRes = R.drawable.ic_always_on,
+                title = stringResource(R.string.pref_always_on),
+                summaryOn = stringResource(R.string.pref_enabled),
+                summaryOff = stringResource(R.string.pref_disabled),
+                checked = alwaysOnChecked,
+                onCheckedChange = {
+                    alwaysOnChecked = onAlwaysOnToggled()
+                },
             )
-            PreferenceScreenHelper.linkPreferenceToActivity(
-                this,
-                "pref_background",
-                Intent(requireContext(), LAFBackgroundActivity::class.java),
-            )
-            PreferenceScreenHelper.linkPreferenceToActivity(
-                this,
-                "rules",
-                Intent(requireContext(), LAFRulesActivity::class.java),
-            )
-            PreferenceScreenHelper.linkPreferenceToActivity(
-                this,
-                "pref_behavior",
-                Intent(requireContext(), LAFBehaviorActivity::class.java),
-            )
-            PreferenceScreenHelper.linkPreferenceToActivity(
-                this,
-                P.CHARGING_STYLE,
-                Intent(requireContext(), LAFChargingLookActivity::class.java),
-            )
-            findPreference<Preference>("dark_mode")?.setOnPreferenceClickListener {
-                activity?.recreate()
-                true
-            }
-            PreferenceScreenHelper.linkPreferenceToActivity(
-                this,
-                "pref_permissions",
-                Intent(requireContext(), PermissionsActivity::class.java),
-            )
-            PreferenceScreenHelper.linkPreferenceToActivity(
-                this,
-                "pref_help",
-                Intent(requireContext(), HelpActivity::class.java),
-            )
-            PreferenceScreenHelper.linkPreferenceToActivity(
-                this,
-                "pref_about",
-                Intent(requireContext(), AboutActivity::class.java),
-            )
-        }
 
-        companion object {
-            private const val CLICKS_TIL_TEST = 4
+            SwitchPreferenceItem(
+                iconRes = R.drawable.ic_charging,
+                title = stringResource(R.string.pref_charging),
+                hasPermission = Permissions.isDeviceAdminOrRoot(context),
+                permissionDeniedSummary = stringResource(R.string.permissions_device_admin_or_root),
+                summaryOn = stringResource(R.string.pref_enabled),
+                summaryOff = stringResource(R.string.pref_disabled),
+                checked = chargingChecked,
+                onCheckedChange = { checked ->
+                    chargingChecked = checked
+                    prefs.edit { putBoolean("charging_animation", checked) }
+                },
+            )
+
+            PreferenceDivider()
+
+            SectionHeader(stringResource(R.string.pref_look_and_feel))
+
+            PreferenceItem(
+                iconRes = R.drawable.ic_clock,
+                title = stringResource(R.string.pref_ao_watch_face),
+                summary = stringResource(R.string.pref_ao_watch_face_summary),
+                onClick = { onNavigate(Intent(context, LAFWatchFaceActivity::class.java)) },
+            )
+            PreferenceItem(
+                iconRes = R.drawable.ic_smartphone,
+                title = stringResource(R.string.pref_ao_background),
+                summary = stringResource(R.string.pref_ao_background_summary),
+                onClick = { onNavigate(Intent(context, LAFBackgroundActivity::class.java)) },
+            )
+            PreferenceItem(
+                iconRes = R.drawable.ic_build,
+                title = stringResource(R.string.pref_look_and_feel_rules),
+                summary = stringResource(R.string.pref_look_and_feel_rules_summary),
+                onClick = { onNavigate(Intent(context, LAFRulesActivity::class.java)) },
+            )
+            PreferenceItem(
+                iconRes = R.drawable.ic_speed,
+                title = stringResource(R.string.pref_ao_behavior),
+                summary = stringResource(R.string.pref_ao_behavior_summary),
+                onClick = { onNavigate(Intent(context, LAFBehaviorActivity::class.java)) },
+            )
+            PreferenceItem(
+                iconRes = R.drawable.ic_charging,
+                title = stringResource(R.string.pref_look_and_feel_charging),
+                hasPermission = Permissions.isDeviceAdminOrRoot(context),
+                permissionDeniedSummary = stringResource(R.string.permissions_device_admin_or_root),
+                summary = stringResource(R.string.pref_look_and_feel_charging_summary),
+                onClick = { onNavigate(Intent(context, LAFChargingLookActivity::class.java)) },
+            )
+
+            PreferenceDivider()
+
+            SectionHeader(stringResource(R.string.pref_ao_other))
+
+            PreferenceItem(
+                iconRes = R.drawable.ic_security,
+                title = stringResource(R.string.pref_permissions),
+                summary = stringResource(R.string.pref_permissions_summary),
+                onClick = { onNavigate(Intent(context, PermissionsActivity::class.java)) },
+            )
+            PreferenceItem(
+                iconRes = R.drawable.ic_help,
+                title = stringResource(R.string.help_center),
+                summary = stringResource(R.string.help_center_summary),
+                onClick = { onNavigate(Intent(context, HelpActivity::class.java)) },
+            )
+            PreferenceItem(
+                iconRes = R.drawable.ic_info,
+                title = stringResource(R.string.about),
+                summary = stringResource(R.string.about_summary),
+                onClick = { onNavigate(Intent(context, AboutActivity::class.java)) },
+            )
         }
     }
+}
+
+
+@Composable
+private fun PermissionDialogForType(
+    dialog: PermissionDialog,
+    onConfirm: () -> Unit,
+    onDismiss: () -> Unit,
+) {
+    val (iconRes, titleRes, messageRes) = when (dialog) {
+        PermissionDialog.DEVICE_ADMIN -> Triple(
+            R.drawable.ic_color_mode,
+            R.string.device_admin,
+            R.string.device_admin_summary,
+        )
+        PermissionDialog.DISPLAY_OVER_OTHER_APPS -> Triple(
+            R.drawable.ic_color_draw_over_other_apps,
+            R.string.setup_draw_over_other_apps,
+            R.string.setup_draw_over_other_apps_summary,
+        )
+        PermissionDialog.NOTIFICATION_ACCESS -> Triple(
+            R.drawable.ic_color_notification,
+            R.string.notification_listener_service,
+            R.string.notification_listener_service_summary,
+        )
+        PermissionDialog.PHONE_STATE -> Triple(
+            R.drawable.ic_color_phone_state,
+            R.string.setup_phone_state,
+            R.string.setup_phone_state_summary,
+        )
+        PermissionDialog.CALENDAR -> Triple(
+            R.drawable.ic_color_calendar,
+            R.string.setup_calendar,
+            R.string.setup_calendar_summary,
+        )
+    }
+
+    PermissionDialog(
+        iconRes = iconRes,
+        title = stringResource(titleRes),
+        message = stringResource(messageRes),
+        onConfirm = onConfirm,
+        onDismiss = onDismiss,
+    )
 }

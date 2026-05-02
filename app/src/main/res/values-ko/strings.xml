@@ -282,4 +282,8 @@
     <string name="donate_summary">엿보기 디스플레이의 개발을 지원하십시오</string>
     <string name="pref_look_and_feel_weather_unit">제국 유닛을 사용하십시오</string>
     <string name="pref_look_and_feel_weather_unit_summary">화씨의 온도를 표시하십시오</string>
+    <string name="colorpicker_opacity">불투명</string>
+    <string name="colorpicker_color">색상</string>
+    <string name="colorpicker_custom">관습</string>
+    <string name="colorpicker_presets">사전 설정</string>
 </resources>

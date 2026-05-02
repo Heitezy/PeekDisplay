@@ -6,80 +6,114 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.Settings
 import android.text.format.DateFormat
-import android.widget.Button
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
+import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.Text
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.preference.PreferenceManager
-import com.google.android.material.elevation.SurfaceColors
 import heitezy.peekdisplay.R
-import heitezy.peekdisplay.activities.setup.DrawOverOtherAppsFragment
-import heitezy.peekdisplay.activities.setup.PhoneStateFragment
 import heitezy.peekdisplay.helpers.P
+import androidx.core.content.edit
+import heitezy.peekdisplay.ui.SetupScreenContent
 
 class SetupActivity : BaseActivity() {
-    private var currentFragment = DRAW_OVER_OTHER_APPS_FRAGMENT
+
     private var isActionRequired = false
+
+    private val phoneStatePermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        if (granted) {
+            finishSetup()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_setup)
-
-        window.statusBarColor = SurfaceColors.SURFACE_0.getColor(this)
 
         val prefsEditor = PreferenceManager.getDefaultSharedPreferences(this).edit()
-        swapContentFragment(DrawOverOtherAppsFragment(), DRAW_OVER_OTHER_APPS_FRAGMENT)
 
-        if (DateFormat.is24HourFormat(this)) {
-            prefsEditor.putBoolean(P.USE_12_HOUR_CLOCK, false)
-                .apply()
-        } else {
-            prefsEditor.putBoolean(P.USE_12_HOUR_CLOCK, true).apply()
-        }
+        prefsEditor.putBoolean(P.USE_12_HOUR_CLOCK, !DateFormat.is24HourFormat(this))
+        prefsEditor.putInt(P.DOUBLE_TAP_SPEED, P.DOUBLE_TAP_SPEED_DEFAULT)
+        prefsEditor.apply()
 
-        prefsEditor.putInt(P.DOUBLE_TAP_SPEED, P.DOUBLE_TAP_SPEED_DEFAULT).apply()
+        setContent {
+            BaseContent {
+                var step by rememberSaveable { mutableIntStateOf(0) }
 
-        findViewById<Button>(R.id.skipBtn).setOnClickListener {
-            when (currentFragment) {
-                NO_FRAGMENT ->
-                    swapContentFragment(DrawOverOtherAppsFragment(), DRAW_OVER_OTHER_APPS_FRAGMENT)
-
-                DRAW_OVER_OTHER_APPS_FRAGMENT ->
-                    swapContentFragment(PhoneStateFragment(), PHONE_STATE_FRAGMENT)
-
-                PHONE_STATE_FRAGMENT ->
-                    startActivity(Intent(this, MainActivity::class.java))
-            }
-        }
-
-        findViewById<Button>(R.id.continueBtn).setOnClickListener {
-            when (currentFragment) {
-                NO_FRAGMENT -> {
-                    swapContentFragment(DrawOverOtherAppsFragment(), DRAW_OVER_OTHER_APPS_FRAGMENT)
-                }
-
-                DRAW_OVER_OTHER_APPS_FRAGMENT -> {
-                    if (Settings.canDrawOverlays(this)) {
-                        swapContentFragment(PhoneStateFragment(), PHONE_STATE_FRAGMENT)
-                    } else {
-                        startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION))
-                        isActionRequired = true
-                    }
-                }
-
-                PHONE_STATE_FRAGMENT -> {
-                    if (applicationContext.checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
-                        != PackageManager.PERMISSION_GRANTED
+                Scaffold { innerPadding ->
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding)
                     ) {
-                        ActivityCompat.requestPermissions(
-                            this,
-                            arrayOf(Manifest.permission.READ_PHONE_STATE),
-                            0,
-                        )
-                    } else {
-                        prefsEditor.putBoolean("setup_complete", true).apply()
-                        startActivity(Intent(this, MainActivity::class.java))
+                        AnimatedContent(
+                            targetState = step,
+                            transitionSpec = { fadeIn() togetherWith fadeOut() },
+                            modifier = Modifier.align(Alignment.Center),
+                            label = "setup_step",
+                        ) { currentStep ->
+                            when (currentStep) {
+                                0 -> SetupScreenContent(
+                                    iconRes = R.drawable.ic_color_draw_over_other_apps,
+                                    title = stringResource(R.string.setup_draw_over_other_apps),
+                                    summary = stringResource(R.string.setup_draw_over_other_apps_summary),
+                                )
+
+                                1 -> SetupScreenContent(
+                                    iconRes = R.drawable.ic_color_phone_state,
+                                    title = stringResource(R.string.setup_phone_state),
+                                    summary = stringResource(R.string.setup_phone_state_summary),
+                                )
+                            }
+                        }
+
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .align(Alignment.BottomCenter)
+                                .navigationBarsPadding()
+                                .padding(horizontal = 8.dp, vertical = 4.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                        ) {
+                            TextButton(onClick = {
+                                when (step) {
+                                    0 -> step = 1
+                                    1 -> navigateToMain()
+                                }
+                            }) {
+                                Text(stringResource(R.string.setup_skip))
+                            }
+                            TextButton(onClick = {
+                                when (step) {
+                                    0 -> onContinueDrawOverOtherApps { step = 1 }
+                                    1 -> onContinuePhoneState(prefsEditor)
+                                }
+                            }) {
+                                Text(stringResource(R.string.setup_continue))
+                            }
+                        }
                     }
                 }
             }
@@ -89,40 +123,45 @@ class SetupActivity : BaseActivity() {
     override fun onStart() {
         super.onStart()
         if (isActionRequired) {
-            when (currentFragment) {
-                DRAW_OVER_OTHER_APPS_FRAGMENT -> {
-                    if (!Settings.canDrawOverlays(this)) {
-                        Toast.makeText(this, R.string.setup_error, Toast.LENGTH_LONG).show()
-                    } else {
-                        swapContentFragment(PhoneStateFragment(), PHONE_STATE_FRAGMENT)
-                    }
-                }
+            if (!Settings.canDrawOverlays(this)) {
+                Toast.makeText(this, R.string.setup_error, Toast.LENGTH_LONG).show()
             }
             isActionRequired = false
         }
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        super.onBackPressed()
-        if (currentFragment > NO_FRAGMENT) currentFragment--
+    private fun onContinueDrawOverOtherApps(onGranted: () -> Unit) {
+        if (Settings.canDrawOverlays(this)) {
+            onGranted()
+        } else {
+            startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION))
+            isActionRequired = true
+        }
     }
 
-    private fun swapContentFragment(
-        fragment: Fragment,
-        id: Byte,
+    private fun onContinuePhoneState(
+        prefsEditor: android.content.SharedPreferences.Editor,
     ) {
-        currentFragment = id
-        supportFragmentManager.beginTransaction()
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-            .replace(R.id.content, fragment, null)
-            .addToBackStack(null)
-            .commitAllowingStateLoss()
+        if (applicationContext.checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            phoneStatePermissionLauncher.launch(Manifest.permission.READ_PHONE_STATE)
+        } else {
+            prefsEditor.putBoolean("setup_complete", true).apply()
+            finishSetup()
+        }
     }
 
-    companion object {
-        const val NO_FRAGMENT: Byte = 0
-        const val DRAW_OVER_OTHER_APPS_FRAGMENT: Byte = 1
-        const val PHONE_STATE_FRAGMENT: Byte = 2
+    private fun finishSetup() {
+        PreferenceManager.getDefaultSharedPreferences(this)
+            .edit {
+                putBoolean("setup_complete", true)
+            }
+        navigateToMain()
+    }
+
+    private fun navigateToMain() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }

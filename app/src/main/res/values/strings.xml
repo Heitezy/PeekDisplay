@@ -303,8 +303,8 @@
 
     <string-array name="about_libraries" translatable="false">
         <item>Android Preferences KTX</item>
-        <item>AppCompat</item>
-        <item>ColorPicker</item>
+        <item>Activity Compose</item>
+        <item>Jetpack Compose</item>
         <item>Material Components For Android</item>
         <item>Volley</item>
     </string-array>
@@ -395,4 +395,8 @@
     <string name="notification_action_reply">Reply</string>
     <string name="pref_look_and_feel_weather_unit">Use imperial units</string>
     <string name="pref_look_and_feel_weather_unit_summary">Display the temperature in Fahrenheit</string>
+    <string name="colorpicker_opacity">Opacity</string>
+    <string name="colorpicker_color">Color</string>
+    <string name="colorpicker_custom">Custom</string>
+    <string name="colorpicker_presets">Presets</string>
 </resources>

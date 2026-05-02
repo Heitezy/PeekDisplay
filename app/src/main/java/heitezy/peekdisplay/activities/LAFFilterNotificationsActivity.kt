@@ -4,176 +4,184 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.widget.FrameLayout
-import androidx.core.content.edit
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.preference.Preference
-import androidx.preference.PreferenceCategory
-import androidx.preference.PreferenceFragmentCompat
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import heitezy.peekdisplay.R
 import heitezy.peekdisplay.actions.alwayson.AlwaysOn
 import heitezy.peekdisplay.helpers.Global
-import heitezy.peekdisplay.helpers.JSON
 import heitezy.peekdisplay.services.NotificationService
 import org.json.JSONArray
+import androidx.core.content.edit
+import heitezy.peekdisplay.helpers.P
+import heitezy.peekdisplay.ui.PeekScaffold
+import heitezy.peekdisplay.ui.PreferenceDivider
+import heitezy.peekdisplay.ui.PreferenceItem
+import heitezy.peekdisplay.ui.SectionHeader
 
 class LAFFilterNotificationsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
-
-        // Handle window insets for the main container
-        val rootView = findViewById<FrameLayout>(R.id.settings)
-        ViewCompat.setOnApplyWindowInsetsListener(rootView) { view, windowInsets ->
-            val insets = windowInsets.getInsets(
-                WindowInsetsCompat.Type.systemBars() or
-                        WindowInsetsCompat.Type.displayCutout()
-            )
-
-            view.setPadding(
-                insets.left,
-                insets.top,
-                insets.right,
-                insets.bottom
-            )
-
-            WindowInsetsCompat.CONSUMED
+        setContent {
+            BaseContent {
+                FilterNotificationsScreen(onBack = {
+                    AlwaysOn.finish()
+                    finish()
+                })
+            }
         }
+    }
+}
 
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.settings, PreferenceFragment())
-            .commit()
+private fun resolveAppLabel(pm: PackageManager, pkg: String): String =
+    try {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            pm.getApplicationLabel(
+                pm.getApplicationInfo(pkg, PackageManager.ApplicationInfoFlags.of(
+                    PackageManager.GET_META_DATA.toLong()
+                ))
+            ) as String
+        } else {
+            @Suppress("DEPRECATION")
+            pm.getApplicationLabel(
+                pm.getApplicationInfo(pkg, PackageManager.GET_META_DATA)
+            ) as String
+        }
+    } catch (e: PackageManager.NameNotFoundException) {
+        Log.w(Global.LOG_TAG, e.toString())
+        pkg
     }
 
-    class PreferenceFragment : PreferenceFragmentCompat() {
-        private var blockedArray: JSONArray = JSONArray()
-        private lateinit var blocked: PreferenceCategory
-        private lateinit var shown: PreferenceCategory
+@Composable
+private fun FilterNotificationsScreen(onBack: () -> Unit) {
+    val context = LocalContext.current
+    val pm = remember { context.packageManager }
+    val prefs = remember { P.getPreferences(context) }
 
-        override fun onCreatePreferences(
-            savedInstanceState: Bundle?,
-            rootKey: String?,
+    var blockedList by remember {
+        val arr = JSONArray(prefs.getString("blocked_notifications", "[]"))
+        val list = mutableListOf<String>()
+        for (i in 0 until arr.length()) list.add(arr.getString(i))
+        mutableStateOf(list.toList())
+    }
+
+    val activePackages = remember {
+        val seen = mutableSetOf<String>()
+        NotificationService.detailed
+            .map { it.packageName }
+            .filter { seen.add(it) }
+    }
+
+    fun persist(list: List<String>) {
+        val arr = JSONArray().apply { list.forEach { put(it) } }
+        prefs.edit { putString("blocked_notifications", arr.toString()) }
+        NotificationService.activeService?.refreshNotifications()
+    }
+
+    DisposableEffect(Unit) {
+        onDispose { persist(blockedList) }
+    }
+
+    PeekScaffold(
+        title = stringResource(R.string.pref_look_and_feel_filter_notifications),
+        onBack = onBack,
+    ) { padding ->
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding),
         ) {
-            addPreferencesFromResource(R.xml.pref_laf_wf_filter_notifications)
-            blocked = findPreference("blocked") ?: error("Invalid layout.")
-            shown = findPreference("shown") ?: error("Invalid layout.")
-        }
-
-        override fun onStart() {
-            super.onStart()
-            val packageManager = requireContext().packageManager
-            blockedArray =
-                JSONArray(
-                    preferenceManager.sharedPreferences?.getString("blocked_notifications", "[]"),
-                )
-            if (!JSON.isEmpty(blockedArray)) {
-                blocked.removeAll()
-                for (i in 0 until blockedArray.length()) {
-                    addToList(packageManager, blockedArray.getString(i))
-                }
+            item {
+                PreferenceItem(
+                    iconRes = R.drawable.ic_info,
+                    summary = stringResource(R.string.pref_look_and_feel_filter_notifications_explanation))
             }
 
-            shown.removeAll()
-            val apps: ArrayList<String> = ArrayList(NotificationService.detailed.size)
-            var pref: Preference
-            NotificationService.detailed.forEach { notification ->
-                if (!apps.contains(notification.packageName)) {
-                    apps += notification.packageName
-                    pref = generatePref(packageManager, notification.packageName)
-                    pref.setOnPreferenceClickListener {
-                        if (!JSON.contains(blockedArray, notification.packageName)) {
-                            addToList(packageManager, notification.packageName)
-                            blockedArray.put(notification.packageName)
-                            // Save changes immediately
-                            preferenceManager.sharedPreferences?.edit {
-                                putString("blocked_notifications", blockedArray.toString())
+            item {
+                SectionHeader(stringResource(R.string.pref_look_and_feel_filter_notifications_blocked))
+            }
+
+            if (blockedList.isEmpty()) {
+                item {
+                    PreferenceItem(
+                        iconRes = R.drawable.ic_notification,
+                        title = stringResource(R.string.pref_look_and_feel_filter_notifications_empty),
+                        summary = stringResource(R.string.pref_look_and_feel_filter_notifications_empty_summary),
+                    )
+                }
+            } else {
+                items(blockedList, key = { it }) { pkg ->
+                    PreferenceItem(
+                        iconRes = R.drawable.ic_notification,
+                        title = resolveAppLabel(pm, pkg),
+                        summary = pkg,
+                        widget = {
+                            IconButton(onClick = {
+                                blockedList = blockedList - pkg
+                                persist(blockedList)
+                            }) {
+                                Icon(
+                                    painter = painterResource(R.drawable.ic_delete),
+                                    contentDescription = stringResource(android.R.string.cancel),
+                                    tint = MaterialTheme.colorScheme.error,
+                                )
                             }
-                            // Force notification service to update
-                            NotificationService.activeService?.refreshNotifications()
-                        }
-                        true
-                    }
-                    shown.addPreference(pref)
-                }
-            }
-        }
-
-        override fun onStop() {
-            super.onStop()
-            preferenceManager.sharedPreferences?.edit {
-                putString("blocked_notifications", blockedArray.toString())
-            }
-            AlwaysOn.finish()
-        }
-
-        private fun addToList(
-            packageManager: PackageManager,
-            packageName: String,
-        ) {
-            if (JSON.isEmpty(blockedArray)) blocked.removeAll()
-            val pref = generatePref(packageManager, packageName)
-            pref.setOnPreferenceClickListener {
-                JSON.remove(blockedArray, packageName)
-                blocked.removePreference(it)
-                if (JSON.isEmpty(blockedArray)) {
-                    blocked.addPreference(
-                        Preference(preferenceScreen.context).apply {
-                            setIcon(R.drawable.ic_notification)
-                            title =
-                                requireContext().resources.getString(
-                                    R.string.pref_look_and_feel_filter_notifications_empty,
-                                )
-                            summary =
-                                requireContext().resources.getString(
-                                    R.string.pref_look_and_feel_filter_notifications_empty_summary,
-                                )
                         },
                     )
                 }
-                // Save changes immediately
-                preferenceManager.sharedPreferences?.edit {
-                    putString("blocked_notifications", blockedArray.toString())
-                }
-                // Force notification service to update
-                NotificationService.activeService?.refreshNotifications()
-                true
             }
-            blocked.addPreference(pref)
-        }
 
-        private fun generatePref(
-            packageManager: PackageManager,
-            packageName: String,
-        ): Preference {
-            val pref = Preference(preferenceScreen.context)
-            pref.setIcon(R.drawable.ic_notification)
-            pref.title =
-                try {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                        packageManager.getApplicationLabel(
-                            packageManager.getApplicationInfo(
-                                packageName,
-                                PackageManager.ApplicationInfoFlags.of(
-                                    PackageManager.GET_META_DATA.toLong(),
-                                ),
-                            ),
-                        )
-                    } else {
-                        packageManager.getApplicationLabel(
-                            packageManager.getApplicationInfo(
-                                packageName,
-                                PackageManager.GET_META_DATA,
-                            ),
-                        )
-                    } as String
-                } catch (exception: PackageManager.NameNotFoundException) {
-                    Log.w(Global.LOG_TAG, exception.toString())
-                    resources.getString(R.string.pref_look_and_feel_filter_notifications_unknown)
+            item { PreferenceDivider() }
+
+            item {
+                SectionHeader(stringResource(R.string.pref_look_and_feel_filter_notifications_shown))
+            }
+
+            if (activePackages.isEmpty()) {
+                item {
+                    PreferenceItem(
+                        iconRes = R.drawable.ic_notification,
+                        title = stringResource(R.string.pref_look_and_feel_filter_notifications_empty),
+                        summary = stringResource(R.string.pref_look_and_feel_filter_notifications_empty_summary),
+                    )
                 }
-            pref.summary = packageName
-            return pref
+            } else {
+                items(activePackages, key = { "shown_$it" }) { pkg ->
+                    val isAlreadyBlocked = pkg in blockedList
+                    PreferenceItem(
+                        iconRes = R.drawable.ic_notification,
+                        title = resolveAppLabel(pm, pkg),
+                        summary = pkg,
+                        widget = {
+                            IconButton(
+                                enabled = !isAlreadyBlocked,
+                                onClick = {
+                                    if (!isAlreadyBlocked) {
+                                        blockedList = blockedList + pkg
+                                        persist(blockedList)
+                                    }
+                                },
+                            ) {
+                                Icon(
+                                    painter = painterResource(R.drawable.ic_add),
+                                    contentDescription = stringResource(android.R.string.ok),
+                                    tint = if (isAlreadyBlocked)
+                                        MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+                                    else
+                                        MaterialTheme.colorScheme.primary,
+                                )
+                            }
+                        },
+                    )
+                }
+            }
         }
     }
 }

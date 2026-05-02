@@ -282,4 +282,8 @@
     <string name="donate_summary">สนับสนุนการพัฒนาของ Peek Display</string>
     <string name="pref_look_and_feel_weather_unit">ใช้หน่วยอิมพีเรียล</string>
     <string name="pref_look_and_feel_weather_unit_summary">แสดงอุณหภูมิในฟาเรนไฮต์</string>
+    <string name="colorpicker_opacity">ความทึบแสง</string>
+    <string name="colorpicker_color">สี</string>
+    <string name="colorpicker_custom">กำหนดเอง</string>
+    <string name="colorpicker_presets">ค่าที่ตั้งไว้ล่วงหน้า</string>
 </resources>

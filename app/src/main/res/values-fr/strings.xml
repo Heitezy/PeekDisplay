@@ -282,4 +282,8 @@
     <string name="donate_summary">Soutenir le développement de l\'affichage PEEK</string>
     <string name="pref_look_and_feel_weather_unit">Utiliser les unités impériales</string>
     <string name="pref_look_and_feel_weather_unit_summary">Affiche la température en degrés Fahrenheit</string>
+    <string name="colorpicker_opacity">Opacité</string>
+    <string name="colorpicker_color">Couleur</string>
+    <string name="colorpicker_custom">Coutume</string>
+    <string name="colorpicker_presets">Préréglages</string>
 </resources>

@@ -282,4 +282,8 @@
     <string name="donate_summary">Υποστήριξη της ανάπτυξης της εμφάνισης PEEK</string>
     <string name="pref_look_and_feel_weather_unit">Χρησιμοποιήστε αυτοκρατορικές μονάδες</string>
     <string name="pref_look_and_feel_weather_unit_summary">Εμφάνιση της θερμοκρασίας στο Fahrenheit</string>
+    <string name="colorpicker_opacity">Αδιαφάνεια</string>
+    <string name="colorpicker_color">Χρώμα</string>
+    <string name="colorpicker_custom">Εθιμο</string>
+    <string name="colorpicker_presets">Προεπιλογές</string>
 </resources>

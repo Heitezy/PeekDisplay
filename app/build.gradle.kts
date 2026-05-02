@@ -6,6 +6,7 @@ private val readAndUnderstoodLicense = false
 plugins {
     id("com.android.application")
     id("io.gitlab.arturbosch.detekt")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 kotlin {
@@ -25,6 +26,10 @@ android {
         targetSdk = 35
         versionCode = 10
         versionName = "1.0.2"
+    }
+
+    buildFeatures {
+        compose = true
     }
 
     buildTypes {
@@ -69,9 +74,9 @@ detekt {
 tasks.register("license") {
     doFirst {
         val data =
-            file("./src/main/res/xml/pref_about.xml")
+            file("./src/main/java/heitezy/peekdisplay/activities/AboutActivity.kt")
                 .readText()
-                .contains("app:key=\"license\"")
+                .contains("title = stringResource(R.string.about_license)")
         if (!data) {
             throw Exception(
                 "Please note that removing the license from the about page is not allowed if you " +
@@ -92,9 +97,11 @@ tasks.register("license") {
 }
 
 dependencies {
-    implementation("androidx.appcompat:appcompat:1.7.1")
+    implementation(platform("androidx.compose:compose-bom:2026.04.01"))
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.activity:activity-compose:1.13.0")
     implementation("com.google.android.material:material:1.13.0")
     implementation("androidx.preference:preference-ktx:1.2.1")
-    implementation("com.jaredrummler:colorpicker:1.1.0")
     implementation("com.android.volley:volley:1.2.1")
 }

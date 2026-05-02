@@ -282,4 +282,8 @@
     <string name="donate_summary">Mendukung pengembangan tampilan mengintip</string>
     <string name="pref_look_and_feel_weather_unit">Gunakan unit kekaisaran</string>
     <string name="pref_look_and_feel_weather_unit_summary">Tampilkan suhu di Fahrenheit</string>
+    <string name="colorpicker_opacity">Kegelapan</string>
+    <string name="colorpicker_color">Warna</string>
+    <string name="colorpicker_custom">Kebiasaan</string>
+    <string name="colorpicker_presets">Pengaturan Awal</string>
 </resources>

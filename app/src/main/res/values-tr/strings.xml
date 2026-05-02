@@ -282,4 +282,8 @@
     <string name="notification_action_reply">Cevap vermek</string>
     <string name="pref_look_and_feel_weather_unit">İmparatorluk birimlerini kullanın</string>
     <string name="pref_look_and_feel_weather_unit_summary">Fahrenheit\'te sıcaklığı görüntüleyin</string>
+    <string name="colorpicker_opacity">Opaklık</string>
+    <string name="colorpicker_color">Renk</string>
+    <string name="colorpicker_custom">Gelenek</string>
+    <string name="colorpicker_presets">Ön Ayarlar</string>
 </resources>

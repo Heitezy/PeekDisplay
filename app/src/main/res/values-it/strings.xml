@@ -282,4 +282,8 @@
     <string name="donate_summary">Supportare lo sviluppo del display di sbirri</string>
     <string name="pref_look_and_feel_weather_unit">Usa le unità imperiali</string>
     <string name="pref_look_and_feel_weather_unit_summary">Visualizza la temperatura in Fahrenheit</string>
+    <string name="colorpicker_opacity">Opacità</string>
+    <string name="colorpicker_color">Colore</string>
+    <string name="colorpicker_custom">Costume</string>
+    <string name="colorpicker_presets">Preimpostazioni</string>
 </resources>

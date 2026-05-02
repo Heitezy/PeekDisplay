@@ -2,101 +2,157 @@ package heitezy.peekdisplay.activities
 
 import android.content.ComponentName
 import android.content.Intent
-import android.os.Bundle
 import android.provider.Settings
-import android.view.Gravity
-import android.widget.EditText
-import android.widget.FrameLayout
 import android.widget.Toast
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
-import androidx.preference.SwitchPreference
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import android.os.Bundle
+import androidx.core.content.edit
 import heitezy.peekdisplay.R
-import heitezy.peekdisplay.helpers.PreferenceScreenHelper
+import heitezy.peekdisplay.helpers.P
 import heitezy.peekdisplay.helpers.Root
+import heitezy.peekdisplay.ui.DeviceAdminDialog
+import heitezy.peekdisplay.ui.PeekScaffold
+import heitezy.peekdisplay.ui.PreferenceItem
+import heitezy.peekdisplay.ui.SwitchPreferenceItem
 
 class PermissionsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
-
-        // Handle window insets for the main container
-        val rootView = findViewById<FrameLayout>(R.id.settings)
-        ViewCompat.setOnApplyWindowInsetsListener(rootView) { view, windowInsets ->
-            val insets = windowInsets.getInsets(
-                WindowInsetsCompat.Type.systemBars() or
-                        WindowInsetsCompat.Type.displayCutout()
-            )
-
-            view.setPadding(
-                insets.left,
-                insets.top,
-                insets.right,
-                insets.bottom
-            )
-
-            WindowInsetsCompat.CONSUMED
+        setContent {
+            BaseContent {
+                PermissionsScreen(onBack = { finish() })
+            }
         }
+    }
+}
 
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.settings, PreferencePermissions())
-            .commit()
+@Composable
+private fun PermissionsScreen(onBack: () -> Unit) {
+    val context = LocalContext.current
+    val prefs = remember { P.getPreferences(context) }
+    var showDeviceAdminDialog by remember { mutableStateOf(false) }
+    var rootChecked by remember {
+        mutableStateOf(prefs.getBoolean(P.ROOT_MODE, P.ROOT_MODE_DEFAULT))
     }
 
-    class PreferencePermissions : PreferenceFragmentCompat() {
-        override fun onCreatePreferences(
-            savedInstanceState: Bundle?,
-            rootKey: String?,
+    PeekScaffold(
+        title = stringResource(R.string.pref_permissions),
+        onBack = onBack,
+    ) { paddingValues ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues),
         ) {
-            addPreferencesFromResource(R.xml.pref_permissions)
-            PreferenceScreenHelper.linkPreferenceToActivity(
-                this,
-                "ignore_battery_optimizations",
-                Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS),
+            // Battery optimizations
+            PreferenceItem(
+                iconRes = R.drawable.ic_battery,
+                title = stringResource(R.string.pref_ignore_battery_optimizations),
+                summary = stringResource(R.string.pref_ignore_battery_optimizations_summary),
+                onClick = {
+                    context.startActivity(
+                        Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS)
+                    )
+                },
             )
-            findPreference<Preference>("device_admin")?.setOnPreferenceClickListener {
-                val dialogView = layoutInflater.inflate(R.layout.dialog_device_admin, null, false)
-                val editText = dialogView.findViewById<EditText>(R.id.editText)
-                MaterialAlertDialogBuilder(requireContext())
-                    .setTitle(R.string.device_admin)
-                    .setView(dialogView)
-                    .setPositiveButton(android.R.string.ok) { _, _ ->
-                        if (editText.text.toString().trim() == "19") {
-                            startActivity(
-                                Intent().apply {
-                                    component =
-                                        ComponentName(
-                                            "com.android.settings",
-                                            $$"com.android.settings.Settings$DeviceAdminSettingsActivity",
-                                        )
-                                },
+
+            // Notification access
+            PreferenceItem(
+                iconRes = R.drawable.ic_notification,
+                title = stringResource(R.string.pref_notification),
+                summary = stringResource(R.string.pref_notification_summary),
+                onClick = {
+                    context.startActivity(
+                        Intent().apply {
+                            component = ComponentName(
+                                "com.android.settings",
+                                $$"com.android.settings.Settings$NotificationAccessSettingsActivity",
                             )
-                        } else {
-                            Toast.makeText(
-                                requireContext(),
-                                R.string.dialog_device_admin_error,
-                                Toast.LENGTH_LONG,
-                            ).show()
                         }
+                    )
+                },
+            )
+
+            // Draw over other apps
+            PreferenceItem(
+                iconRes = R.drawable.ic_brush,
+                title = stringResource(R.string.pref_draw_over_other_apps),
+                summary = stringResource(R.string.pref_draw_over_other_apps_summary),
+                onClick = {
+                    context.startActivity(
+                        Intent().apply {
+                            component = ComponentName(
+                                "com.android.settings",
+                                $$"com.android.settings.Settings$OverlaySettingsActivity",
+                            )
+                        }
+                    )
+                },
+            )
+
+            // Device admin
+            PreferenceItem(
+                iconRes = R.drawable.ic_security,
+                title = stringResource(R.string.pref_admin),
+                summary = stringResource(R.string.pref_admin_summary),
+                onClick = { showDeviceAdminDialog = true },
+            )
+
+            // Root mode
+            SwitchPreferenceItem(
+                iconRes = R.drawable.ic_hashtag,
+                title = stringResource(R.string.pref_root_mode),
+                summary = stringResource(R.string.pref_root_mode_summary),
+                checked = rootChecked,
+                onCheckedChange = { checked ->
+                    if (checked && !Root.request()) {
+                        Toast.makeText(
+                            context,
+                            R.string.setup_root_failed,
+                            Toast.LENGTH_LONG,
+                        ).show()
+                    } else {
+                        rootChecked = checked
+                        prefs.edit { putBoolean(P.ROOT_MODE, checked) }
                     }
-                    .setNegativeButton(android.R.string.cancel) { _, _ -> }
-                    .show()
-                true
-            }
-            findPreference<Preference>("root_mode")?.setOnPreferenceClickListener {
-                if (!Root.request()) {
-                    val toast =
-                        Toast.makeText(context, R.string.setup_root_failed, Toast.LENGTH_LONG)
-                    toast.setGravity(Gravity.CENTER, 0, 0)
-                    toast.show()
-                    (it as SwitchPreference).isChecked = false
-                }
-                true
-            }
+                },
+            )
         }
+    }
+
+    if (showDeviceAdminDialog) {
+        DeviceAdminDialog(
+            onDismiss = { showDeviceAdminDialog = false },
+            onConfirm = { input ->
+                showDeviceAdminDialog = false
+                if (input.trim() == "19") {
+                    context.startActivity(
+                        Intent().apply {
+                            component = ComponentName(
+                                "com.android.settings",
+                                $$"com.android.settings.Settings$DeviceAdminSettingsActivity",
+                            )
+                        }
+                    )
+                } else {
+                    Toast.makeText(
+                        context,
+                        R.string.dialog_device_admin_error,
+                        Toast.LENGTH_LONG,
+                    ).show()
+                }
+            },
+        )
     }
 }
