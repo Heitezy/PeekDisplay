@@ -9,13 +9,16 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -161,6 +164,9 @@ fun SeekBarPreferenceItem(
     onPermissionRequired: (() -> Unit)? = null,
 ) {
     var sliderPosition by remember(value) { mutableFloatStateOf(value.toFloat()) }
+    // workaround for Slider receives focus automatically on API 24-25
+    var focusable by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { focusable = true }
 
     Column(modifier = modifier.fillMaxWidth()) {
         PreferenceItem(
@@ -184,7 +190,8 @@ fun SeekBarPreferenceItem(
                     start = if (iconRes != null) 72.dp else 16.dp,
                     end = 16.dp,
                     bottom = 10.dp,
-                ),
+                )
+                .focusProperties { canFocus = focusable },
         )
     }
 }
