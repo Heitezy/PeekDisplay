@@ -4,4 +4,8 @@
         <item quantity="one">Fermarsi dopo %d secondo</item>
         <item quantity="other">Fermarsi dopo %d Secondi</item>
     </plurals>
+    <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
+        <item quantity="one">Ogni %d minuto</item>
+        <item quantity="other">Ogni %d minuti</item>
+    </plurals>
 </resources>

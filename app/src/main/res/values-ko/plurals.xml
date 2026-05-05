@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <plurals name="pref_look_and_feel_rules_timeout_summary">
-        <item quantity="one">그만 멈 춥니 다 %d 두번째</item>
-        <item quantity="other">그만 멈 춥니 다 %d 초</item>
+        <item quantity="other">%d초 후에 멈춥니다</item>
+    </plurals>
+    <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
+        <item quantity="other">매 %d 분마다</item>
     </plurals>
 </resources>

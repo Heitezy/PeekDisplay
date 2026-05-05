@@ -4,4 +4,8 @@
         <item quantity="one">Stoppen %d seconde</item>
         <item quantity="other">Stoppen %d seconden</item>
     </plurals>
+    <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
+        <item quantity="one">Elke %d minuut</item>
+        <item quantity="other">Elke %d minuten</item>
+    </plurals>
 </resources>

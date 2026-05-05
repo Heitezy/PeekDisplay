@@ -5,4 +5,9 @@
         <item quantity="few">Зупинити через %d секунди</item>
         <item quantity="other">Зупинити через %d секунд</item>
     </plurals>
+    <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
+        <item quantity="one">Кожну %d хвилину</item>
+        <item quantity="few">Кожні %d хвилини</item>
+        <item quantity="other">Кожні %d хвилин</item>
+    </plurals>
 </resources>

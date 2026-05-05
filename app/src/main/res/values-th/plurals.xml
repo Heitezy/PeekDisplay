@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <plurals name="pref_look_and_feel_rules_timeout_summary">
-        <item quantity="one">หยุด %d ที่สอง</item>
-        <item quantity="other">หยุด %d ไม่กี่วินาที</item>
+        <item quantity="other">หยุดใน %d วินาที</item>
+    </plurals>
+    <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
+        <item quantity="other">ทุก %d นาที</item>
     </plurals>
 </resources>

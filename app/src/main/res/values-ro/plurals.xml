@@ -4,4 +4,8 @@
         <item quantity="one">Oprește -te după %d doilea</item>
         <item quantity="other">Oprește -te după %d secunde</item>
     </plurals>
+    <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
+        <item quantity="one">La fiecare %d minut</item>
+        <item quantity="other">La fiecare %d minute</item>
+    </plurals>
 </resources>

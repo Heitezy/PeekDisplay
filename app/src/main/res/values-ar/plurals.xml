@@ -4,4 +4,8 @@
         <item quantity="one">توقف بعد %d ثانية</item>
         <item quantity="other">توقف بعد %d ثوان</item>
     </plurals>
+    <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
+        <item quantity="one">كل  %d  دقيقة</item>
+        <item quantity="other">كل  %d  دقيقة</item>
+    </plurals>
 </resources>

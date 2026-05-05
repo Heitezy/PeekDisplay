@@ -399,4 +399,7 @@
     <string name="colorpicker_color">Color</string>
     <string name="colorpicker_custom">Custom</string>
     <string name="colorpicker_presets">Presets</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">Refresh interval</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_label">Minutes</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">Disabled (fetch once on start)</string>
 </resources>

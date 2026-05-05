@@ -4,4 +4,8 @@
         <item quantity="one">Σταματώ μετά %d δεύτερος</item>
         <item quantity="other">Σταματώ μετά %d δευτερόλεπτα</item>
     </plurals>
+    <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
+        <item quantity="one">Κάθε %d λεπτό</item>
+        <item quantity="other">Κάθε %d λεπτά</item>
+    </plurals>
 </resources>

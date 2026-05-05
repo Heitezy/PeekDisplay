@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <plurals name="pref_look_and_feel_rules_timeout_summary">
-        <item quantity="one">停下來 %d 第二</item>
-        <item quantity="other">停下來 %d 秒</item>
+        <item quantity="other">剩餘 %d 秒停止</item>
+    </plurals>
+    <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
+        <item quantity="other">每 %d 分鐘</item>
     </plurals>
 </resources>

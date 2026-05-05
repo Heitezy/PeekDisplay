@@ -286,4 +286,7 @@
     <string name="colorpicker_color">Kleur</string>
     <string name="colorpicker_custom">Aangepast</string>
     <string name="colorpicker_presets">Voorinstellingen</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">Vernieuwingsinterval</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_label">Notulen</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">Uitgeschakeld (één keer ophalen bij starten)</string>
 </resources>

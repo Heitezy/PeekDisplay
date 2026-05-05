@@ -286,4 +286,7 @@
     <string name="colorpicker_color">Renk</string>
     <string name="colorpicker_custom">Gelenek</string>
     <string name="colorpicker_presets">Ön Ayarlar</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">Yenileme aralığı</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_label">dakika</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">Devre dışı (başlangıçta bir kez getir)</string>
 </resources>

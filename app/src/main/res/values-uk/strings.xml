@@ -286,4 +286,7 @@
     <string name="colorpicker_color">Колір</string>
     <string name="colorpicker_custom">Власний</string>
     <string name="colorpicker_presets">Пресети</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">Інтервал оновлення</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_label">Хвилин</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">Вимкнено (одноразове отримання при запуску)</string>
 </resources>

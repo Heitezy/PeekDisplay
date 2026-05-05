@@ -4,4 +4,8 @@
         <item quantity="one">Pare depois %d segundo</item>
         <item quantity="other">Pare depois %d segundos</item>
     </plurals>
+    <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
+        <item quantity="one">Cada %d minuto</item>
+        <item quantity="other">A cada %d minutos</item>
+    </plurals>
 </resources>

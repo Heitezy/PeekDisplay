@@ -286,4 +286,7 @@
     <string name="colorpicker_color">สี</string>
     <string name="colorpicker_custom">กำหนดเอง</string>
     <string name="colorpicker_presets">ค่าที่ตั้งไว้ล่วงหน้า</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">ช่วงเวลารีเฟรช</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_label">นาที</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">ปิดการใช้งาน (ดึงข้อมูลหนึ่งครั้งเมื่อเริ่มต้น)</string>
 </resources>

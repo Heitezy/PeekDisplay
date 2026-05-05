@@ -1,7 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <plurals name="pref_look_and_feel_rules_timeout_summary">
-        <item quantity="one">Duraklamak %d ikinci</item>
-        <item quantity="other">Duraklamak %d saniye</item>
+        <item quantity="one">%d saniye sonra dur</item>
+        <item quantity="other">%d saniye sonra dur</item>
+    </plurals>
+    <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
+        <item quantity="one">Her %d dakikada bir</item>
+        <item quantity="other">Her %d dakika</item>
     </plurals>
 </resources>

@@ -64,33 +64,33 @@ internal class P(private val prefs: SharedPreferences) {
     fun getMultiLineTimeFormat(): String {
         val singleLineFormat = getSingleLineTimeFormat()
         return singleLineFormat[0] +
-            singleLineFormat
-                .replace(':', '\n')
-                .replace(' ', '\n')
+                singleLineFormat
+                    .replace(':', '\n')
+                    .replace(' ', '\n')
     }
 
     fun getWeatherUrl(): String =
         "https://wttr.in/" +
-            URLEncoder.encode(
-                get(
-                    WEATHER_LOCATION,
-                    WEATHER_LOCATION_DEFAULT,
-                ),
-                "utf-8",
-            ) +
-            if (get(WEATHER_IMPERIAL, WEATHER_IMPERIAL_DEFAULT)) {
-                "?u"
-            } else {
-                "?m"
-            } +
-            "T&format=" +
-            URLEncoder.encode(
-                get(
-                    WEATHER_FORMAT,
-                    WEATHER_FORMAT_DEFAULT,
-                ),
-                "utf-8",
-            )
+                URLEncoder.encode(
+                    get(
+                        WEATHER_LOCATION,
+                        WEATHER_LOCATION_DEFAULT,
+                    ),
+                    "utf-8",
+                ) +
+                if (get(WEATHER_IMPERIAL, WEATHER_IMPERIAL_DEFAULT)) {
+                    "?u"
+                } else {
+                    "?m"
+                } +
+                "T&format=" +
+                URLEncoder.encode(
+                    get(
+                        WEATHER_FORMAT,
+                        WEATHER_FORMAT_DEFAULT,
+                    ),
+                    "utf-8",
+                )
 
     companion object {
         const val RULES_DISABLE_IN_DO_NOT_DISTURB = "rules_disable_in_do_not_disturb"
@@ -136,6 +136,7 @@ internal class P(private val prefs: SharedPreferences) {
         const val WEATHER_LOCATION = "ao_weather_location"
         const val WEATHER_FORMAT = "ao_weather_format"
         const val WEATHER_IMPERIAL = "ao_weather_imperial"
+        const val WEATHER_REFRESH_INTERVAL = "ao_weather_refresh_interval"
         const val TINT_NOTIFICATIONS = "ao_tint_notifications"
         const val ANIMATE_MOTION = "ao_smooth_animation"
         const val DISPLAY_COLOR_CLOCK = "display_color_clock"
@@ -243,6 +244,7 @@ internal class P(private val prefs: SharedPreferences) {
         const val WEATHER_LOCATION_DEFAULT = ""
         const val WEATHER_FORMAT_DEFAULT = "%t"
         const val WEATHER_IMPERIAL_DEFAULT = false
+        const val WEATHER_REFRESH_INTERVAL_DEFAULT = 60
         const val TINT_NOTIFICATIONS_DEFAULT = false
         const val ANIMATE_MOTION_DEFAULT = false
         const val DISPLAY_COLOR_CLOCK_DEFAULT = -1

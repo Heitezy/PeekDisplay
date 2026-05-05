@@ -286,4 +286,7 @@
     <string name="colorpicker_color">Colore</string>
     <string name="colorpicker_custom">Costume</string>
     <string name="colorpicker_presets">Preimpostazioni</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">Intervallo di aggiornamento</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_label">Minuti</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">Disabilitato (recupera una volta all\'avvio)</string>
 </resources>

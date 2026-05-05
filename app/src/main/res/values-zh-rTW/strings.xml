@@ -286,4 +286,7 @@
     <string name="colorpicker_color">顏色</string>
     <string name="colorpicker_custom">風俗</string>
     <string name="colorpicker_presets">預設</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">刷新間隔</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_label">分分鐘</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">禁用（啟動時獲取一次）</string>
 </resources>

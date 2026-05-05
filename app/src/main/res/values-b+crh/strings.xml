@@ -286,4 +286,7 @@
     <string name="colorpicker_color">Renk</string>
     <string name="colorpicker_custom">Adet</string>
     <string name="colorpicker_presets">Aldından qoyulğanlar</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">Yañılanuv aralığı</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_label">Daqqalar</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">Saqat (startta bir kere ketirmek)</string>
 </resources>

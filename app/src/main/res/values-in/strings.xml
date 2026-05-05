@@ -286,4 +286,7 @@
     <string name="colorpicker_color">Warna</string>
     <string name="colorpicker_custom">Kebiasaan</string>
     <string name="colorpicker_presets">Pengaturan Awal</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">Interval penyegaran</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_label">Menit</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">Dinonaktifkan (ambil sekali saat memulai)</string>
 </resources>

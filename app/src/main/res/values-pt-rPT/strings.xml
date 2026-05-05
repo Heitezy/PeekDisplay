@@ -286,4 +286,7 @@
     <string name="colorpicker_color">Cor</string>
     <string name="colorpicker_custom">Personalizada</string>
     <string name="colorpicker_presets">Predefinições</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">Intervalo de atualização</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_label">Minutos</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">Desativado (procurar uma vez no início)</string>
 </resources>

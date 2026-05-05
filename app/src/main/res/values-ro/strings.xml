@@ -286,4 +286,7 @@
     <string name="colorpicker_color">Culoare</string>
     <string name="colorpicker_custom">Personalizat</string>
     <string name="colorpicker_presets">Presetări</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">Interval de reîmprospătare</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_label">Minute</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">Dezactivat (preluare o dată la pornire)</string>
 </resources>

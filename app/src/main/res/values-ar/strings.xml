@@ -286,4 +286,7 @@
     <string name="colorpicker_color">لون</string>
     <string name="colorpicker_custom">مخصص</string>
     <string name="colorpicker_presets">الإعدادات المسبقة</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">الفاصل الزمني للتحديث</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_label">دقائق</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">معطل (الجلب مرة واحدة عند البدء)</string>
 </resources>

@@ -286,4 +286,7 @@
     <string name="colorpicker_color">Χρώμα</string>
     <string name="colorpicker_custom">Εθιμο</string>
     <string name="colorpicker_presets">Προεπιλογές</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">Διάστημα ανανέωσης</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_label">Πρακτικά</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">Απενεργοποιημένο (ανάκτηση μία φορά κατά την έναρξη)</string>
 </resources>

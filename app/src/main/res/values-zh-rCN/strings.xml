@@ -286,4 +286,7 @@
     <string name="colorpicker_color">颜色</string>
     <string name="colorpicker_custom">风俗</string>
     <string name="colorpicker_presets">预设</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">刷新间隔</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_label">分钟</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">禁用（启动时获取一次）</string>
 </resources>

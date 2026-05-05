@@ -4,4 +4,7 @@
         <item quantity="one">その後やめなさい %d 2番</item>
         <item quantity="other">その後やめなさい %d 秒</item>
     </plurals>
+    <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
+        <item quantity="other">毎 %d 分</item>
+    </plurals>
 </resources>

@@ -98,14 +98,14 @@ class AlwaysOnCustomView : View {
             touchedNotificationIndex = null
             NotificationPreview.setCurrentNotification(null)
             invalidate()
-            
+
             // Resume timeout if it was paused
             AlwaysOn.getInstance()?.resumeTimeout()
             AlwaysOn.getInstance()?.resetTimeout()
         }
     }
     private val KEYBOARD_TIMEOUT_DELAY = 60000L // 1 minute in milliseconds
-    
+
     // Reset keyboard timeout on user interaction
     private fun resetKeyboardTimeout() {
         keyboardTimeoutHandler.removeCallbacks(keyboardTimeoutRunnable)
@@ -290,28 +290,57 @@ class AlwaysOnCustomView : View {
             )
     }
 
-    private fun prepareWeather() {
-        if (utils.prefs.get(P.SHOW_WEATHER, P.SHOW_WEATHER_DEFAULT)) {
-            Volley.newRequestQueue(context)
-                .add(
-                    object : StringRequest(
-                        Method.GET,
-                        utils.prefs.getWeatherUrl(),
-                        { response ->
-                            weather = response
-                            invalidate()
-                        },
-                        {
-                            Log.e(Global.LOG_TAG, it.toString())
-                        },
-                    ) {
-                        override fun parseNetworkResponse(response: NetworkResponse): Response<String> {
-                            val parsed = String(response.data, Charsets.UTF_8)
-                            return Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response))
-                        }
+    private val weatherHandler = Handler(Looper.getMainLooper())
+    private var weatherRunnable: Runnable? = null
+
+    private fun fetchWeatherOnce() {
+        if (!utils.prefs.get(P.SHOW_WEATHER, P.SHOW_WEATHER_DEFAULT)) return
+        Volley.newRequestQueue(context)
+            .add(
+                object : StringRequest(
+                    Method.GET,
+                    utils.prefs.getWeatherUrl(),
+                    { response ->
+                        weather = response
+                        invalidate()
                     },
-                )
+                    {
+                        Log.e(Global.LOG_TAG, it.toString())
+                    },
+                ) {
+                    override fun parseNetworkResponse(response: NetworkResponse): Response<String> {
+                        val parsed = String(response.data, Charsets.UTF_8)
+                        return Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response))
+                    }
+                },
+            )
+    }
+
+    private fun prepareWeather() {
+        stopWeatherHandler()
+        if (!utils.prefs.get(P.SHOW_WEATHER, P.SHOW_WEATHER_DEFAULT)) return
+
+        val intervalMinutes = utils.prefs.get(P.WEATHER_REFRESH_INTERVAL, P.WEATHER_REFRESH_INTERVAL_DEFAULT)
+
+        if (intervalMinutes <= 0) {
+            fetchWeatherOnce()
+            return
         }
+
+        val intervalMs = intervalMinutes * 60_000L
+        val runnable = object : Runnable {
+            override fun run() {
+                fetchWeatherOnce()
+                weatherHandler.postDelayed(this, intervalMs)
+            }
+        }
+        weatherRunnable = runnable
+        weatherHandler.post(runnable)
+    }
+
+    private fun stopWeatherHandler() {
+        weatherRunnable?.let { weatherHandler.removeCallbacks(it) }
+        weatherRunnable = null
     }
 
     private fun init(context: Context) {
@@ -324,7 +353,7 @@ class AlwaysOnCustomView : View {
         prepareDateFormats()
         events = Data.getCalendar(utils)
         prepareWeather()
-        
+
         // Make the view focusable to receive keyboard input
         isFocusable = true
         isFocusableInTouchMode = true
@@ -339,13 +368,13 @@ class AlwaysOnCustomView : View {
         val tempHeight = utils.viewHeight
         if (utils.prefs.get(P.SHOW_CLOCK, P.SHOW_CLOCK_DEFAULT)) {
             utils.viewHeight += utils.padding16 + utils.padding2 +
-                utils.getTextHeight(utils.bigTextSize).run {
-                    if (flags[FLAG_MULTILINE_CLOCK]) {
-                        this * 2
-                    } else {
-                        this
+                    utils.getTextHeight(utils.bigTextSize).run {
+                        if (flags[FLAG_MULTILINE_CLOCK]) {
+                            this * 2
+                        } else {
+                            this
+                        }
                     }
-                }
         }
         if (utils.prefs.get(P.SHOW_DATE, P.SHOW_DATE_DEFAULT)) {
             if (flags[FLAG_SAMSUNG_3]) {
@@ -368,8 +397,8 @@ class AlwaysOnCustomView : View {
         }
         if (utils.prefs.get(P.SHOW_CALENDAR, P.SHOW_CALENDAR_DEFAULT)) {
             utils.viewHeight += 2 * utils.padding16 + events.size * (
-                utils.getTextHeight(utils.smallTextSize) + 2 * utils.padding2
-            )
+                    utils.getTextHeight(utils.smallTextSize) + 2 * utils.padding2
+                    )
         }
         if (utils.prefs.get(P.MESSAGE, P.MESSAGE_DEFAULT) != "") {
             utils.viewHeight += utils.getTextHeight(utils.smallTextSize) + 2 * utils.padding2
@@ -384,7 +413,7 @@ class AlwaysOnCustomView : View {
             resources.configuration.orientation != Configuration.ORIENTATION_LANDSCAPE
         ) {
             utils.viewHeight += (NOTIFICATION_LIMIT / getNotificationRowLength(utils) + 1) * utils.drawableSize +
-                2 * utils.padding16 + utils.prefs.get(P.NOTIFICATION_ICON_TOP_PADDING, P.NOTIFICATION_ICON_TOP_PADDING_DEFAULT)
+                    2 * utils.padding16 + utils.prefs.get(P.NOTIFICATION_ICON_TOP_PADDING, P.NOTIFICATION_ICON_TOP_PADDING_DEFAULT)
         }
         if (utils.prefs.get(P.SHOW_NOTIFICATION_ICONS, P.SHOW_NOTIFICATION_ICONS_DEFAULT) &&
             utils.prefs.get(P.NOTIFICATION_PREVIEW_POSITION, P.NOTIFICATION_PREVIEW_POSITION_DEFAULT) == "below") {
@@ -525,7 +554,7 @@ class AlwaysOnCustomView : View {
         if (utils.prefs.get(P.SHOW_NOTIFICATION_ICONS, P.SHOW_NOTIFICATION_ICONS_DEFAULT)) {
             NotificationIcons.draw(canvas, utils, width, isFingerprintTouched, touchedNotificationIndex)
         }
-        
+
         // Draw notification preview if active
         if (longPressDetected && isNotificationTouched && NotificationPreview.getCurrentNotification() != null) {
             NotificationPreview.draw(canvas, utils, width, height)
@@ -544,7 +573,7 @@ class AlwaysOnCustomView : View {
             AlwaysOn.getInstance()?.resetTimeout()
             resetKeyboardTimeout()
         }
-        
+
         // Handle music controls
         if (abs(event.y.toInt() - skipPositions[2]) < utils.padding16 &&
             utils.prefs.get(P.SHOW_MUSIC_CONTROLS, P.SHOW_MUSIC_CONTROLS_DEFAULT)
@@ -598,7 +627,7 @@ class AlwaysOnCustomView : View {
                     initialTouchY = event.y
                     lastTouchedX = event.x
                     lastTouchedY = event.y
-                    
+
                     // Check if touch is on a notification icon
                     touchedNotificationIndex = null
                     NotificationIcons.iconBounds.forEach { (index, rect) ->
@@ -611,7 +640,7 @@ class AlwaysOnCustomView : View {
                             return@forEach
                         }
                     }
-                    
+
                     // If touching an icon, start long press detection
                     if (touchedNotificationIndex != null) {
                         longPressHandler.postDelayed(longPressRunnable, longPressTimeout)
@@ -647,10 +676,10 @@ class AlwaysOnCustomView : View {
                             requestFocus()
 
                             imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
-                            
+
                             // Reset keyboard timeout
                             resetKeyboardTimeout()
-                            
+
                             return false
                         } else {
                             AlwaysOn.getInstance()?.resumeTimeout()
@@ -663,17 +692,17 @@ class AlwaysOnCustomView : View {
                         }
                     }
                 }
-                
+
                 MotionEvent.ACTION_MOVE -> {
                     lastTouchedX = event.x
                     lastTouchedY = event.y
-                    
+
                     // If we've started a long press and moved, update the preview
                     if (longPressDetected && isNotificationTouched) {
                         // Check if touch moved to another notification icon
                         var newIconFound = false
                         NotificationIcons.iconBounds.forEach { (index, rect) ->
-                            if (rect.contains(event.x.toInt(), event.y.toInt()) && 
+                            if (rect.contains(event.x.toInt(), event.y.toInt()) &&
                                 touchedNotificationIndex != index) {
                                 // Switch to new notification
                                 touchedNotificationIndex = index
@@ -683,7 +712,7 @@ class AlwaysOnCustomView : View {
                                 return@forEach
                             }
                         }
-                        
+
                         // If not on a new icon but still in long-press mode, just update the display
                         if (!newIconFound) {
                             invalidate()
@@ -693,7 +722,7 @@ class AlwaysOnCustomView : View {
                         // Check if touch moved to another notification icon, for highlighting
                         var iconChanged = false
                         NotificationIcons.iconBounds.forEach { (index, rect) ->
-                            if (rect.contains(event.x.toInt(), event.y.toInt()) && 
+                            if (rect.contains(event.x.toInt(), event.y.toInt()) &&
                                 touchedNotificationIndex != index) {
                                 // Switch to new notification for highlighting
                                 touchedNotificationIndex = index
@@ -702,7 +731,7 @@ class AlwaysOnCustomView : View {
                                 return@forEach
                             }
                         }
-                        
+
                         // If moved away from all icons, clear the touchedNotificationIndex
                         if (!iconChanged) {
                             var onAnyIcon = false
@@ -712,38 +741,38 @@ class AlwaysOnCustomView : View {
                                     return@forEach
                                 }
                             }
-                            
+
                             if (!onAnyIcon) {
                                 touchedNotificationIndex = null
                                 invalidate()
                             }
                         }
-                        
+
                         // If moved too far before long press triggered, cancel it
                         val dx = event.x - initialTouchX
                         val dy = event.y - initialTouchY
                         val distance = sqrt((dx * dx + dy * dy).toDouble()).toFloat()
-                        
+
                         if (distance > ViewConfiguration.get(context).scaledTouchSlop) {
                             longPressHandler.removeCallbacks(longPressRunnable)
                         }
                     }
                 }
-                
+
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                     // Cancel long press detection if not already triggered
                     longPressHandler.removeCallbacks(longPressRunnable)
-                    
+
                     // Resume and reset timeout when finger is lifted
                     if (touchedNotificationIndex != null) {
                         AlwaysOn.getInstance()?.resumeTimeout()
                         AlwaysOn.getInstance()?.resetTimeout()
                     }
-                    
+
                     // If long press was active and finger is released
                     if (longPressDetected && isNotificationTouched) {
                         val notificationIndex = NotificationPreview.getCurrentNotification()
-                        
+
                         // Check if released on an action button
                         val actionIndex = NotificationPreview.isPointInAction(lastTouchedX, lastTouchedY)
                         if (actionIndex == NotificationPreview.DISMISS_ACTION_INDEX) {
@@ -757,12 +786,12 @@ class AlwaysOnCustomView : View {
                         } else if (actionIndex >= 0 && notificationIndex != null) {
                             val notification = NotificationService.notifications.getOrNull(notificationIndex)
                             val packageName = notification?.packageName
-                            
+
                             if (packageName != null) {
-                                val detailedNotification = NotificationService.detailed.find { 
-                                    it.packageName == packageName 
+                                val detailedNotification = NotificationService.detailed.find {
+                                    it.packageName == packageName
                                 }
-                                
+
                                 detailedNotification?.notification?.actions?.getOrNull(actionIndex)?.let { action ->
                                     try {
                                         // Check if this is a reply action
@@ -772,25 +801,25 @@ class AlwaysOnCustomView : View {
                                             // For pre-P devices, check if action has RemoteInput
                                             action.remoteInputs != null && action.remoteInputs.isNotEmpty()
                                         }
-                                        
+
                                         if (isReplyAction) {
                                             // Activate reply mode instead of sending the action
                                             NotificationPreview.activateReplyMode(action)
                                             isReplyModeActive = true
-                                            
+
                                             // Pause timeout while in reply mode
                                             AlwaysOn.getInstance()?.pauseTimeout()
-                                            
+
                                             // Request focus so InputConnection works properly
                                             requestFocus()
-                                            
+
                                             // Request input method
                                             val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                                             imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
-                                            
+
                                             // Start keyboard timeout
                                             resetKeyboardTimeout()
-                                            
+
                                             invalidate()
                                             return true
                                         } else {
@@ -831,18 +860,18 @@ class AlwaysOnCustomView : View {
                             val notification = NotificationService.notifications.getOrNull(notificationIndex)
                             if (notification != null) {
                                 val packageName = notification.packageName
-                                val detailedNotification = NotificationService.detailed.find { 
-                                    it.packageName == packageName 
+                                val detailedNotification = NotificationService.detailed.find {
+                                    it.packageName == packageName
                                 }
-                                
+
                                 val pendingIntent = notification.contentIntent ?: detailedNotification?.notification?.contentIntent
-                                
+
                                 if (pendingIntent != null) {
                                     try {
                                         val activity = alwaysOnActivity ?: AlwaysOn.getInstance()
-                                        activity?.let { 
+                                        activity?.let {
                                             KeyguardHelper.dismissKeyguard(it)
-                                            
+
                                             // Use appropriate send method based on Android version
                                             if (Build.VERSION.SDK_INT >= 34) { // Android 14 (UPSIDE_DOWN_CAKE)
                                                 val options = android.app.ActivityOptions.makeBasic()
@@ -873,7 +902,7 @@ class AlwaysOnCustomView : View {
                                     val packageManager = context.packageManager
                                     val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
                                     val activity = alwaysOnActivity ?: AlwaysOn.getInstance()
-                                    
+
                                     activity?.let {
                                         KeyguardHelper.dismissKeyguard(it)
                                         launchIntent?.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -898,7 +927,7 @@ class AlwaysOnCustomView : View {
             }
         }
 
-        // If the touch events come directly to this view (not from fingerprint), 
+        // If the touch events come directly to this view (not from fingerprint),
         // we'll only show the visual highlight for notifications but not trigger them
         if (isFingerprintTouched && event.action == MotionEvent.ACTION_MOVE) {
             // Just invalidate to show highlights
@@ -909,7 +938,7 @@ class AlwaysOnCustomView : View {
                 }
             }
         }
-        
+
         return false
     }
 
@@ -950,7 +979,7 @@ class AlwaysOnCustomView : View {
         if (isTouched && !isFingerprintTouched) {
             initialTouchX = event.rawX
             initialTouchY = event.rawY
-            
+
             // If we're starting a fingerprint touch, cancel any active notification preview
             // but not if in reply mode
             if (longPressDetected && isNotificationTouched && !NotificationPreview.isReplyActive()) {
@@ -975,17 +1004,17 @@ class AlwaysOnCustomView : View {
             val dx = lastTouchedX - initialTouchX
             val dy = lastTouchedY - initialTouchY
             val distance = sqrt((dx * dx + dy * dy).toDouble()).toFloat()
-            
+
             // We need to convert from raw screen coordinates to the local view coordinates
             val location = IntArray(2)
             getLocationOnScreen(location)
-            
+
             // Adjust coordinates to be relative to this view
             val localX = lastTouchedX - location[0]
             val localY = lastTouchedY - location[1]
 
             var releasedOverNotification = false
-            
+
             // Only process notification opening if the setting is enabled
             if (utils.prefs.get(P.SWIPE_NOTIFICATION_OPEN, P.SWIPE_NOTIFICATION_OPEN_DEFAULT)) {
                 NotificationIcons.iconBounds.forEach { (index, rect) ->
@@ -994,19 +1023,19 @@ class AlwaysOnCustomView : View {
                         val notification = NotificationService.notifications.getOrNull(index)
                         if (notification != null) {
                             // Get the corresponding detailed notification to access the content intent
-                            val detailedNotification = NotificationService.detailed.find { 
-                                it.packageName == notification.packageName 
+                            val detailedNotification = NotificationService.detailed.find {
+                                it.packageName == notification.packageName
                             }
-                            
+
                             val pendingIntent = notification.contentIntent ?: detailedNotification?.notification?.contentIntent
-                            
+
                             if (pendingIntent != null) {
                                 try {
                                     // Dismiss keyguard before sending the intent
                                     val activity = alwaysOnActivity ?: AlwaysOn.getInstance()
-                                    activity?.let { 
+                                    activity?.let {
                                         KeyguardHelper.dismissKeyguard(it)
-                                        
+
                                         // Use appropriate send method based on Android version
                                         if (Build.VERSION.SDK_INT >= 34) { // Android 14 (UPSIDE_DOWN_CAKE)
                                             val options = android.app.ActivityOptions.makeBasic()
@@ -1027,7 +1056,7 @@ class AlwaysOnCustomView : View {
                                     val packageManager = context.packageManager
                                     val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
                                     val activity = alwaysOnActivity ?: AlwaysOn.getInstance()
-                                    
+
                                     activity?.let {
                                         KeyguardHelper.dismissKeyguard(it)
                                         launchIntent?.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -1040,7 +1069,7 @@ class AlwaysOnCustomView : View {
                                 val packageManager = context.packageManager
                                 val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
                                 val activity = alwaysOnActivity ?: AlwaysOn.getInstance()
-                                
+
                                 activity?.let {
                                     KeyguardHelper.dismissKeyguard(it)
                                     launchIntent?.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -1051,7 +1080,7 @@ class AlwaysOnCustomView : View {
                     }
                 }
             }
-            
+
             // If not released over a notification and distance is significant,
             // perform the normal unlock action
             if (!releasedOverNotification && distance > 300) {
@@ -1060,7 +1089,7 @@ class AlwaysOnCustomView : View {
                 }
             }
         }
-        
+
         // Force redraw to handle notification icon visibility changes
         invalidate()
     }
@@ -1116,8 +1145,8 @@ class AlwaysOnCustomView : View {
 
         // Setup outAttrs for proper keyboard behavior
         outAttrs.inputType = InputType.TYPE_CLASS_TEXT or
-                            InputType.TYPE_TEXT_FLAG_MULTI_LINE or
-                            InputType.TYPE_TEXT_VARIATION_NORMAL
+                InputType.TYPE_TEXT_FLAG_MULTI_LINE or
+                InputType.TYPE_TEXT_VARIATION_NORMAL
         outAttrs.imeOptions = EditorInfo.IME_ACTION_SEND
 
         // Create a custom InputConnection to handle the text input
@@ -1175,9 +1204,9 @@ class AlwaysOnCustomView : View {
     // Method to check album art state and notify the activity
     private fun checkAlbumArtState() {
         val shouldShowAlbumArt = albumArt != null &&
-                             musicVisible &&
-                             utils.prefs.get(P.SHOW_MUSIC_CONTROLS, P.SHOW_MUSIC_CONTROLS_DEFAULT) &&
-                             utils.prefs.get(P.SHOW_ALBUM_ART, P.SHOW_ALBUM_ART_DEFAULT)
+                musicVisible &&
+                utils.prefs.get(P.SHOW_MUSIC_CONTROLS, P.SHOW_MUSIC_CONTROLS_DEFAULT) &&
+                utils.prefs.get(P.SHOW_ALBUM_ART, P.SHOW_ALBUM_ART_DEFAULT)
         isAlbumArtOverlayVisible = shouldShowAlbumArt
         onAlbumArtStateChanged(shouldShowAlbumArt, albumArt)
     }
@@ -1188,13 +1217,13 @@ class AlwaysOnCustomView : View {
     fun setAlbumArt(bitmap: Bitmap?) {
         val oldAlbumArt = this.albumArt
         this.albumArt = bitmap
-        
+
         // Check if album art state has changed (appeared or disappeared)
         if ((oldAlbumArt == null && bitmap != null) || (oldAlbumArt != null && bitmap == null)) {
             // Refresh background when album art state changes
             prepareBackground()
         }
-        
+
         checkAlbumArtState()
         invalidate()
     }
@@ -1202,6 +1231,7 @@ class AlwaysOnCustomView : View {
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         stopClockHandler()
+        stopWeatherHandler()
         longPressHandler.removeCallbacksAndMessages(null)
         keyboardTimeoutHandler.removeCallbacksAndMessages(null)
     }

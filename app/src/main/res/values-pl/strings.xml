@@ -286,4 +286,7 @@
     <string name="colorpicker_color">Kolor</string>
     <string name="colorpicker_custom">Zwyczaj</string>
     <string name="colorpicker_presets">Ustawienia wstępne</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">Interwał odświeżania</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_label">Protokół</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">Wyłączone (pobierz raz na początku)</string>
 </resources>

@@ -286,4 +286,7 @@
     <string name="colorpicker_color">색상</string>
     <string name="colorpicker_custom">관습</string>
     <string name="colorpicker_presets">사전 설정</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">새로 고침 간격</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_label">분</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">비활성화됨(시작 시 한 번 가져오기)</string>
 </resources>

@@ -4,4 +4,7 @@
         <item quantity="one">Berhenti setelahnya %d Kedua</item>
         <item quantity="other">Berhenti setelahnya %d detik</item>
     </plurals>
+    <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
+        <item quantity="other">Setiap %d menit</item>
+    </plurals>
 </resources>

@@ -286,4 +286,7 @@
     <string name="colorpicker_color">色</string>
     <string name="colorpicker_custom">カスタム</string>
     <string name="colorpicker_presets">プリセット</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">リフレッシュ間隔</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_label">分</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">無効 (開始時に 1 回フェッチ)</string>
 </resources>
