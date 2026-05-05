@@ -65,12 +65,29 @@ object ThemeSpecials {
             val dateHeight = if (showDate) utils.getTextHeight(utils.smallTextSize) else 0f
             val batteryTextHeight = if (showBatteryPercentage) utils.getTextHeight(utils.mediumTextSize) else 0f
 
-            // Compute minimal radius to fit enabled texts inside inner circle area
+            val timeWidth = if (showClock) {
+                utils.paint.textSize = utils.bigTextSize
+                utils.paint.measureText(timeFormat.format(System.currentTimeMillis()))
+            } else 0f
+
+            val dateWidth = if (showDate) {
+                utils.paint.textSize = utils.smallTextSize
+                utils.paint.measureText(dateFormat.format(System.currentTimeMillis())) * 1.3f
+            } else 0f
+
+            val battWidth = if (showBatteryPercentage) {
+                utils.paint.textSize = utils.mediumTextSize
+                utils.paint.measureText("100%") * 1.3f
+            } else 0f
+
+            val widestTextHalfWidth = maxOf(timeWidth, dateWidth, battWidth) / 2f
+
             val radius = if (!showClock && !showDate && !showBatteryPercentage) {
                 defaultRadius
             } else {
-                val needed = (timeHeight / 2f) + (strokeWidth / 2f) + maxOf(dateHeight, batteryTextHeight, 0f)
-                maxOf(defaultRadius, needed)
+                val neededForHeight = (timeHeight / 2f) + (strokeWidth / 2f) + maxOf(dateHeight, batteryTextHeight, 0f)
+                val neededForWidth = widestTextHalfWidth + strokeWidth / 2f + strokeWidth
+                maxOf(defaultRadius, neededForHeight, neededForWidth)
             }
 
             var startAngle = -270f
@@ -130,13 +147,19 @@ object ThemeSpecials {
             val innerBottom = utils.topPadding + 2f * radius
             val halfTimeHeight = timeHeight / 2f
 
+            val dateWidthOverflow = if (dateWidth > defaultRadius) dateWidth - defaultRadius else 0f
+            val battWidthOverflow = if (battWidth > defaultRadius) battWidth - defaultRadius else 0f
+            val shiftFactor = 0.15f
+
             // Draw date using smallTextSize, vertically centered in the upper band (if enabled)
             if (showDate) {
                 val datePaint = utils.getPaint(
                     utils.smallTextSize,
                     utils.prefs.get(P.DISPLAY_COLOR_DATE, P.DISPLAY_COLOR_DATE_DEFAULT),
                 )
-                val upperBandCenter = (innerTop + (centerY - halfTimeHeight)) / 2f
+                val baseUpperCenter = (innerTop + (centerY - halfTimeHeight)) / 2f
+                val upperBandCenter = (baseUpperCenter + (dateWidthOverflow * shiftFactor))
+                    .coerceIn(innerTop, centerY - halfTimeHeight)
                 val dateBaseline = upperBandCenter - (datePaint.ascent() + datePaint.descent()) / 2f
                 val dateText = dateFormat.format(System.currentTimeMillis())
                 canvas.drawText(
@@ -153,7 +176,9 @@ object ThemeSpecials {
                     utils.mediumTextSize,
                     utils.prefs.get(P.DISPLAY_COLOR_BATTERY, P.DISPLAY_COLOR_BATTERY_DEFAULT),
                 )
-                val lowerBandCenter = ((centerY + halfTimeHeight) + innerBottom) / 2f
+                val baseLowerCenter = ((centerY + halfTimeHeight) + innerBottom) / 2f
+                val lowerBandCenter = (baseLowerCenter - (battWidthOverflow * shiftFactor))
+                    .coerceIn(centerY + halfTimeHeight, innerBottom)
                 val battBaseline = lowerBandCenter - (battPaint.ascent() + battPaint.descent()) / 2f
                 val percentText = "$batteryPercent%"
                 canvas.drawText(
