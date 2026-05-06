@@ -271,9 +271,10 @@ fun HelpCard(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
-        Row(
+        FlowRow(
             modifier = Modifier.padding(16.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             if (leftButtonText != null && onClickLeft != null) {
                 FilledTonalButton(onClick = onClickLeft) {

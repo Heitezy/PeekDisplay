@@ -17,6 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import android.os.Bundle
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.core.content.edit
 import heitezy.peekdisplay.R
 import heitezy.peekdisplay.helpers.P
@@ -53,7 +55,8 @@ private fun PermissionsScreen(onBack: () -> Unit) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues),
+                .padding(paddingValues)
+                .verticalScroll(rememberScrollState())
         ) {
             // Battery optimizations
             PreferenceItem(

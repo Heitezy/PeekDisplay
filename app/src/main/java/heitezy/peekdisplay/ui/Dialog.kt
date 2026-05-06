@@ -6,10 +6,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -71,28 +73,33 @@ fun FormatDialog(
             }
         },
         confirmButton = {
-            TextButton(onClick = {
-                val isValid = validate?.invoke(text) ?: true
-
-                if (isValid) {
-                    onConfirm(text)
-                } else {
-                    error = true
-                }
-            }) {
-                Text(stringResource(android.R.string.ok))
-            }
-        },
-        dismissButton = {
-            Row {
-                TextButton(onClick = onMore) {
+            FlowRow(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ) {
+                TextButton(
+                    onClick = onMore,
+                    modifier = Modifier.weight(1f, fill = false)
+                ) {
                     Text(stringResource(R.string.pref_ao_date_format_dialog_neutral))
                 }
                 TextButton(onClick = onDismiss) {
                     Text(stringResource(android.R.string.cancel))
                 }
+                TextButton(onClick = {
+                    val isValid = validate?.invoke(text) ?: true
+
+                    if (isValid) {
+                        onConfirm(text)
+                    } else {
+                        error = true
+                    }
+                }) {
+                    Text(stringResource(android.R.string.ok))
+                }
             }
         },
+        dismissButton = null
     )
 }
 
@@ -140,7 +147,11 @@ fun DeviceAdminDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.device_admin)) },
         text = {
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState()),
+            ) {
                 Text(
                     text = stringResource(R.string.dialog_device_admin_text),
                     style = MaterialTheme.typography.bodyMedium,
@@ -409,13 +420,14 @@ fun ColorPickerDialog(
             }
         },
         confirmButton = {
-            TextButton(onClick = { onColorSelected(currentColor) }) {
-                Text(stringResource(android.R.string.ok))
-            }
-        },
-        dismissButton = {
-            Row {
-                TextButton(onClick = { isCustomMode = !isCustomMode }) {
+            FlowRow(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ) {
+                TextButton(
+                    onClick = { isCustomMode = !isCustomMode },
+                    modifier = Modifier.weight(1f, fill = false)
+                ) {
                     Text(
                         if (isCustomMode) stringResource(R.string.colorpicker_presets) else stringResource(
                             R.string.colorpicker_custom
@@ -425,8 +437,12 @@ fun ColorPickerDialog(
                 TextButton(onClick = onDismiss) {
                     Text(stringResource(android.R.string.cancel))
                 }
+                TextButton(onClick = { onColorSelected(currentColor) }) {
+                    Text(stringResource(android.R.string.ok))
+                }
             }
-        }
+        },
+        dismissButton = null
     )
 }
 

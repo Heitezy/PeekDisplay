@@ -5,6 +5,9 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -91,24 +94,29 @@ private fun AboutScreen(onBack: () -> Unit) {
             title = { Text(stringResource(R.string.about_privacy)) },
             text = { Text(stringResource(R.string.about_privacy_desc)) },
             confirmButton = {
-                TextButton(onClick = {
-                    pendingExternalUrl = null
-                    openUrl(url)
-                }) { Text(stringResource(android.R.string.ok)) }
-            },
-            dismissButton = {
-                Row {
-                    TextButton(onClick = {
-                        pendingExternalUrl = null
-                        openUrl(AboutActivity.PRIVACY_POLICY_URL)
-                    }) {
+                FlowRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.End
+                ) {
+                    TextButton(
+                        onClick = {
+                            pendingExternalUrl = null
+                            openUrl(AboutActivity.PRIVACY_POLICY_URL)
+                        },
+                        modifier = Modifier.weight(1f, fill = false)
+                    ) {
                         Text(stringResource(R.string.about_privacy_policy))
                     }
                     TextButton(onClick = { pendingExternalUrl = null }) {
                         Text(stringResource(android.R.string.cancel))
                     }
+                    TextButton(onClick = {
+                        pendingExternalUrl = null
+                        openUrl(url)
+                    }) { Text(stringResource(android.R.string.ok)) }
                 }
-            }
+            },
+            dismissButton = null
         )
     }
 
@@ -120,6 +128,7 @@ private fun AboutScreen(onBack: () -> Unit) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
+                .verticalScroll(rememberScrollState())
         ) {
             // App header tile
             PreferenceItem(
