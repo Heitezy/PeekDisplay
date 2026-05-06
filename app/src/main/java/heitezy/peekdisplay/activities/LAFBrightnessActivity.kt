@@ -1,5 +1,6 @@
 package heitezy.peekdisplay.activities
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -42,6 +43,8 @@ class LAFBrightnessActivity : BaseActivity() {
 @Composable
 private fun BrightnessScreen(onBack: () -> Unit) {
     val context = LocalContext.current
+    val activity = context as? Activity
+    val window = activity?.window
     val prefs = remember { P.getPreferences(context) }
 
     var forceBrightness by remember {
@@ -95,7 +98,12 @@ private fun BrightnessScreen(onBack: () -> Unit) {
 
             Slider(
                 value = brightnessValue,
-                onValueChange = { brightnessValue = it },
+                onValueChange = {
+                    brightnessValue = it
+                    val attributes = window?.attributes
+                    attributes?.screenBrightness = (brightnessValue / 100)
+                    window?.attributes = attributes
+                },
                 valueRange = 0f..100f,
                 steps = 0,
                 enabled = forceBrightness,
