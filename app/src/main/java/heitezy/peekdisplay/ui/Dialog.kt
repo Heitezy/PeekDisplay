@@ -416,7 +416,11 @@ fun ColorPickerDialog(
         dismissButton = {
             Row {
                 TextButton(onClick = { isCustomMode = !isCustomMode }) {
-                    Text(if (isCustomMode) "Presets" else "Custom")
+                    Text(
+                        if (isCustomMode) stringResource(R.string.colorpicker_presets) else stringResource(
+                            R.string.colorpicker_custom
+                        )
+                    )
                 }
                 TextButton(onClick = onDismiss) {
                     Text(stringResource(android.R.string.cancel))
