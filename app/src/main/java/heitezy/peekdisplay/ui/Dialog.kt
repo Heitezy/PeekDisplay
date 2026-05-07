@@ -346,7 +346,7 @@ fun ColorPickerDialog(
                             } catch (_: Exception) {}
                         },
                         modifier = Modifier.wrapContentWidth(),
-                        label = { Text("Hex Color") },
+                        label = { Text("Hex " + stringResource(R.string.colorpicker_color)) },
                         prefix = { Text("#") },
                         singleLine = true,
                         keyboardOptions = KeyboardOptions(
