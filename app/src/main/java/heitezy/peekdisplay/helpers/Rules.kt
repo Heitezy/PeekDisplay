@@ -32,9 +32,9 @@ class Rules(context: Context) {
         if (startMinutes == endMinutes) return true
         val now = nowMinutes()
         return if (startMinutes < endMinutes) {
-            now in startMinutes..endMinutes
+            now in startMinutes..<endMinutes
         } else {
-            now !in endMinutes..startMinutes
+            now !in endMinutes..<startMinutes
         }
     }
 
