@@ -64,7 +64,7 @@ private fun LAFBehaviorScreen(onBack: () -> Unit) {
         mutableStateOf(
             prefs.getBoolean(
                 P.ANIMATE_MOTION,
-                false
+                P.ANIMATE_MOTION_DEFAULT
             )
         )
     }

@@ -1,8 +1,8 @@
 package heitezy.peekdisplay.actions.alwayson.data
 
+import android.content.Context
 import android.provider.CalendarContract
 import heitezy.peekdisplay.R
-import heitezy.peekdisplay.actions.alwayson.draw.Utils
 import heitezy.peekdisplay.helpers.P
 import heitezy.peekdisplay.helpers.Permissions
 import java.text.SimpleDateFormat
@@ -12,18 +12,18 @@ object Data {
     private const val MILLISECONDS_PER_DAY: Long = 24 * 60 * 60 * 1000
 
     @Suppress("ReturnCount")
-    internal fun getCalendar(utils: Utils): List<String> {
-        if (!utils.prefs.get(P.SHOW_CALENDAR, P.SHOW_CALENDAR_DEFAULT)) return listOf()
-        if (!Permissions.hasCalendarPermission(utils.context)) {
-            return listOf(utils.resources.getString(R.string.missing_permissions))
+    internal fun getCalendar(context: Context, prefs: P): List<String> {
+        if (!prefs.get(P.SHOW_CALENDAR, P.SHOW_CALENDAR_DEFAULT)) return listOf()
+        if (!Permissions.hasCalendarPermission(context)) {
+            return listOf(context.resources.getString(R.string.missing_permissions))
         }
         val singleLineClock =
             SimpleDateFormat(
-                utils.prefs.getSingleLineTimeFormat(),
+                prefs.getSingleLineTimeFormat(),
                 Locale.getDefault(),
             )
         val cursor =
-            utils.context.contentResolver.query(
+            context.contentResolver.query(
                 CalendarContract.Events.CONTENT_URI,
                 arrayOf("title", "dtstart", "dtend"),
                 null,

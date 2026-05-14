@@ -1,15 +1,15 @@
 package heitezy.peekdisplay.actions.alwayson
 
+import android.graphics.Bitmap
 import android.media.MediaMetadata
 import android.media.session.MediaController
 import android.media.session.MediaSessionManager
 import android.media.session.PlaybackState
 import android.util.Log
-import heitezy.peekdisplay.R
 import heitezy.peekdisplay.helpers.Global
 
 class AlwaysOnOnActiveSessionsChangedListener(
-    private val view: AlwaysOnCustomView,
+    var onMediaStateChanged: ((String, Bitmap?) -> Unit)? = null
 ) : MediaSessionManager.OnActiveSessionsChangedListener {
     @JvmField
     internal var controller: MediaController? = null
@@ -42,15 +42,14 @@ class AlwaysOnOnActiveSessionsChangedListener(
 
     internal fun updateMediaState() {
         if (controller != null) {
-            view.musicVisible = true
             var artist = controller?.metadata?.getString(MediaMetadata.METADATA_KEY_ARTIST) ?: ""
             var title = controller?.metadata?.getString(MediaMetadata.METADATA_KEY_TITLE) ?: ""
             
             // Fetch album art
             val albumArt = controller?.metadata?.getBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART)
                 ?: controller?.metadata?.getBitmap(MediaMetadata.METADATA_KEY_ART)
-            view.setAlbumArt(albumArt)
             
+            var musicString = ""
             if (artist.length > MAX_STRING_LENGTH) {
                 artist = artist.substring(0, MAX_STRING_LENGTH - 1) + '…'
             }
@@ -58,15 +57,13 @@ class AlwaysOnOnActiveSessionsChangedListener(
                 title = title.substring(0, MAX_STRING_LENGTH - 1) + '…'
             }
             when {
-                artist == "" -> view.musicString = title
-                title == "" -> view.musicString = artist
-                else ->
-                    view.musicString =
-                        view.resources.getString(R.string.music, artist, title)
+                artist == "" -> musicString = title
+                title == "" -> musicString = artist
+                else -> musicString = "$artist - $title"
             }
+            onMediaStateChanged?.invoke(musicString, albumArt)
         } else {
-            view.musicVisible = false
-            view.setAlbumArt(null) // Clear album art when no music is playing
+            onMediaStateChanged?.invoke("", null)
         }
     }
 

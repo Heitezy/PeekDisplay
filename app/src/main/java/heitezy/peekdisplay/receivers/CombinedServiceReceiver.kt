@@ -5,13 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Handler
 import android.os.Looper
-import android.view.inputmethod.InputMethodManager
 import heitezy.peekdisplay.actions.ChargingCircleActivity
 import heitezy.peekdisplay.actions.ChargingFlashActivity
 import heitezy.peekdisplay.actions.ChargingIOSActivity
 import heitezy.peekdisplay.actions.TurnOnScreenActivity
 import heitezy.peekdisplay.actions.alwayson.AlwaysOn
-import heitezy.peekdisplay.actions.alwayson.draw.NotificationPreview
 import heitezy.peekdisplay.helpers.P
 import heitezy.peekdisplay.helpers.Rules
 
@@ -83,20 +81,6 @@ class CombinedServiceReceiver : BroadcastReceiver() {
     private fun onScreenOff(context: Context) {
         val rules = Rules(context)
         isScreenOn = false
-
-        // Hide software keyboard if it's showing
-        if (NotificationPreview.isReplyActive()) {
-            AlwaysOn.getInstance()?.let { alwaysOn ->
-                val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                alwaysOn.viewHolder.customView.windowToken?.let { token ->
-                    imm.hideSoftInputFromWindow(token, 0)
-                }
-                NotificationPreview.clearReplyMode()
-                alwaysOn.viewHolder.customView.touchedNotificationIndex = null
-                NotificationPreview.setCurrentNotification(null)
-                alwaysOn.viewHolder.customView.invalidate()
-            }
-        }
 
         stopServiceRunnable?.let {
             handler.removeCallbacks(it)

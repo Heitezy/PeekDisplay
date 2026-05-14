@@ -1,30 +1,66 @@
 package heitezy.peekdisplay.activities
 
-import android.app.Activity
 import android.os.Bundle
 import android.widget.Toast
-import heitezy.peekdisplay.R
-import heitezy.peekdisplay.actions.alwayson.AlwaysOnCustomView
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import heitezy.peekdisplay.actions.alwayson.Content
+import heitezy.peekdisplay.actions.alwayson.data.State
 
-@Suppress("MagicNumber")
-class AODTestActivity : Activity() {
+class AODTestActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_aod_test)
 
         Toast.makeText(this, "testing mode", Toast.LENGTH_SHORT).show()
 
-        val view = findViewById<AlwaysOnCustomView>(R.id.view)
-        view.setBatteryStatus(100, false)
-        view.musicString = "Artist - Song"
-        view.onSkipPreviousClicked = {
-            Toast.makeText(this, "left", Toast.LENGTH_SHORT).show()
+        setContent {
+            BaseContent {
+                AODTestScreen()
+            }
         }
-        view.onSkipNextClicked = {
-            Toast.makeText(this, "right", Toast.LENGTH_SHORT).show()
+    }
+
+    @Composable
+    private fun AODTestScreen() {
+        var state by remember {
+            mutableStateOf(
+                State(
+                    time = "12:00",
+                    date = "Monday, Jan 1",
+                    batteryLevel = 100,
+                    musicString = "Artist - Song"
+                )
+            )
         }
-        view.onTitleClicked = {
-            Toast.makeText(this, "center", Toast.LENGTH_SHORT).show()
+
+        Box(modifier = Modifier.fillMaxSize()) {
+            Content(
+                state = state,
+                onSkipPrevious = { Toast.makeText(this@AODTestActivity, "left", Toast.LENGTH_SHORT).show() },
+                onSkipNext = { Toast.makeText(this@AODTestActivity, "right", Toast.LENGTH_SHORT).show() },
+                onTitleClick = { Toast.makeText(this@AODTestActivity, "center", Toast.LENGTH_SHORT).show() },
+                onNotificationHoldStarted = { },
+                onNotificationHoldFinished = { },
+                onActionClick = { _, _ -> },
+                onReplyActionClick = { _, _ -> },
+                onDismissNotification = { },
+                onReplyTextChange = { },
+                onSendReply = { },
+                onDoubleTap = { },
+                onDown = { },
+                onFingerprintTouch = { _, _, _ -> },
+                onFingerprintLongPress = { },
+                onOpenNotification = { },
+                onNotificationHovered = { _ -> },
+                onBoundsUpdated = { _, _, _, _ -> }
+            )
         }
     }
 }

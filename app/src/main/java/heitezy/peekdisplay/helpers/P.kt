@@ -40,12 +40,11 @@ internal class P(private val prefs: SharedPreferences) {
             BACKGROUND_IMAGE_FILIP_BAOTIC_1 -> R.drawable.unsplash_filip_baotic_1
             BACKGROUND_IMAGE_TYLER_LASTOVICH_1 ->
                 R.drawable.unsplash_tyler_lastovich_1
-
             BACKGROUND_IMAGE_TYLER_LASTOVICH_2 ->
                 R.drawable.unsplash_tyler_lastovich_2
-
             BACKGROUND_IMAGE_TYLER_LASTOVICH_3 ->
                 R.drawable.unsplash_tyler_lastovich_3
+            BACKGROUND_IMAGE_CUSTOM -> -1
 
             else -> null
         }
@@ -63,10 +62,9 @@ internal class P(private val prefs: SharedPreferences) {
 
     fun getMultiLineTimeFormat(): String {
         val singleLineFormat = getSingleLineTimeFormat()
-        return singleLineFormat[0] +
-                singleLineFormat
-                    .replace(':', '\n')
-                    .replace(' ', '\n')
+        return singleLineFormat
+            .replace(':', '\n')
+            .replace(' ', '\n')
     }
 
     fun getWeatherUrl(): String =

@@ -1,7 +1,6 @@
 package heitezy.peekdisplay.actions
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.ActivityManager
 import android.app.admin.DevicePolicyManager
 import android.content.ComponentName
@@ -10,16 +9,21 @@ import android.media.AudioManager
 import android.os.Build
 import android.os.Bundle
 import android.view.KeyEvent
-import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.ComponentActivity
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.preference.PreferenceManager
 import heitezy.peekdisplay.R
 import heitezy.peekdisplay.helpers.Root
 import heitezy.peekdisplay.receivers.AdminReceiver
 
 @SuppressLint("Registered")
-open class OffActivity : Activity() {
+open class OffActivity : ComponentActivity() {
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         requestedOrientation =
@@ -32,6 +36,15 @@ open class OffActivity : Activity() {
                 else -> ActivityInfo.SCREEN_ORIENTATION_LOCKED
             }
         super.onCreate(savedInstanceState)
+    }
+
+    @Composable
+    fun OffContent(content: @Composable () -> Unit) {
+        MaterialTheme(colorScheme = darkColorScheme(background = Color.Black, surface = Color.Black)) {
+            Surface(color = Color.Black) {
+                content()
+            }
+        }
     }
 
     override fun onKeyDown(
@@ -69,22 +82,6 @@ open class OffActivity : Activity() {
                     WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON,
             )
         }
-    }
-
-    protected fun fullscreen(view: View) {
-        view.systemUiVisibility = (
-            View.SYSTEM_UI_FLAG_LOW_PROFILE
-                or View.SYSTEM_UI_FLAG_FULLSCREEN
-                or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-        )
-        /*WindowInsetsControllerCompat(window, view).let { controller ->
-            controller.hide(WindowInsetsCompat.Type.systemBars())
-            controller.systemBarsBehavior =
-                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        }*/
     }
 
     protected open fun finishAndOff() {

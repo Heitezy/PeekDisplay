@@ -1,19 +1,20 @@
 package heitezy.peekdisplay.actions.alwayson
 
-import android.annotation.SuppressLint
+import android.app.ActivityOptions
+import android.app.Notification
 import android.app.NotificationManager
+import android.app.RemoteInput
 import android.content.BroadcastReceiver
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.Configuration
-import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Point
-import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.LayerDrawable
-import android.graphics.drawable.TransitionDrawable
 import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.hardware.display.DisplayManager
 import android.media.AudioManager
@@ -27,49 +28,59 @@ import android.os.Looper
 import android.os.PowerManager
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.util.Base64
 import android.util.Log
 import android.view.Display
-import android.view.Gravity
 import android.view.KeyEvent
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.FrameLayout
-import android.widget.ImageView
-import androidx.core.content.ContextCompat
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.style.TextAlign
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.preference.PreferenceManager.getDefaultSharedPreferences
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import heitezy.peekdisplay.Application
 import heitezy.peekdisplay.R
 import heitezy.peekdisplay.actions.OffActivity
-import heitezy.peekdisplay.custom.DoubleTapDetector
-import heitezy.peekdisplay.custom.FingerprintView
-import heitezy.peekdisplay.custom.LongPressDetector
+import heitezy.peekdisplay.actions.alwayson.data.Data
+import heitezy.peekdisplay.actions.alwayson.data.State
 import heitezy.peekdisplay.helpers.Global
+import heitezy.peekdisplay.helpers.IconHelper
 import heitezy.peekdisplay.helpers.KeyguardHelper
 import heitezy.peekdisplay.helpers.P
 import heitezy.peekdisplay.helpers.Root
 import heitezy.peekdisplay.helpers.Rules
 import heitezy.peekdisplay.receivers.CombinedServiceReceiver
 import heitezy.peekdisplay.services.NotificationService
-import android.graphics.drawable.BitmapDrawable
-import android.view.inputmethod.InputMethodManager
-import heitezy.peekdisplay.actions.alwayson.draw.NotificationPreview
-import androidx.core.view.isVisible
-import androidx.core.graphics.scale
-import androidx.core.graphics.drawable.toDrawable
+import kotlinx.coroutines.delay
+import java.text.SimpleDateFormat
+import java.util.Locale
+import kotlin.math.sqrt
 
-@Suppress("TooManyFunctions")
 class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListener {
     @JvmField
     internal var servicesRunning: Boolean = false
 
-    private var offsetX: Float = 0f
-    internal lateinit var viewHolder: AlwaysOnViewHolder
     internal lateinit var prefs: P
 
-    // Threads
-    private var edgeGlowThread: EdgeGlowThread = EdgeGlowThread(this, null)
-    private var animationThread: Thread = Thread()
+    private var peekState by mutableStateOf(State())
 
     // Media Controls
     private var onActiveSessionsChangedListener: AlwaysOnOnActiveSessionsChangedListener? = null
@@ -83,7 +94,8 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
 
     // Proximity
     private var sensorManager: SensorManager? = null
-    private var sensorEventListener: AlwaysOnSensorEventListener? = null
+    private var sensorEventListener: SensorEventListener? = null
+    private var isProximate by mutableStateOf(false)
 
     // DND
     private var notificationManager: NotificationManager? = null
@@ -92,6 +104,10 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
 
     // Call recognition
     private var onModeChangedListener: AudioManager.OnModeChangedListener? = null
+
+    // Keyboard/Reply timeout
+    private var replyTimeoutRunnable: Runnable? = null
+    private val REPLY_TIMEOUT_DELAY = 60000L
 
     // Rules
     private val rulesHandler: Handler = Handler(Looper.getMainLooper())
@@ -102,6 +118,177 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
     private var isTimeoutPaused: Boolean = false
     private var remainingTimeoutTime: Long = 0
     private var lastTimeoutResetTime: Long = 0
+
+    // Cached Formatters
+    private var cachedTimeFormat: SimpleDateFormat? = null
+    private var cachedDateFormat: SimpleDateFormat? = null
+    private var lastTimeFormatString: String? = null
+    private var lastDateFormatString: String? = null
+
+    private fun getTimeFormat(format: String): SimpleDateFormat {
+        if (cachedTimeFormat == null || lastTimeFormatString != format) {
+            cachedTimeFormat = SimpleDateFormat(format, Locale.getDefault())
+            lastTimeFormatString = format
+        }
+        return cachedTimeFormat!!
+    }
+
+    private fun getDateFormat(format: String): SimpleDateFormat {
+        if (cachedDateFormat == null || lastDateFormatString != format) {
+            cachedDateFormat = SimpleDateFormat(format, Locale.getDefault())
+            lastDateFormatString = format
+        }
+        return cachedDateFormat!!
+    }
+
+    private fun updateInitialAODState() {
+        val theme = prefs.get(P.USER_THEME, P.USER_THEME_DEFAULT)
+        val isMultiline = theme == P.USER_THEME_SAMSUNG || theme == P.USER_THEME_ONEPLUS || theme == P.USER_THEME_ANALOG
+        
+        val timeFormatString = if (isMultiline) {
+            prefs.getMultiLineTimeFormat()
+        } else {
+            prefs.getSingleLineTimeFormat()
+        }
+        
+        val timeFormat = getTimeFormat(timeFormatString)
+        val dateFormat = getDateFormat(prefs.get(P.DATE_FORMAT, P.DATE_FORMAT_DEFAULT))
+        
+        val customBgEncoded = prefs.get(P.CUSTOM_BACKGROUND, "")
+        val customBgBitmap = if (customBgEncoded.isNotEmpty()) {
+            try {
+                val bytes = Base64.decode(customBgEncoded, Base64.DEFAULT)
+                BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+            } catch (_: Exception) {
+                null
+            }
+        } else null
+
+        val batteryIntent = registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
+        val level = batteryIntent?.getIntExtra(BatteryManager.EXTRA_LEVEL, 0) ?: 0
+        val status = batteryIntent?.getIntExtra(BatteryManager.EXTRA_STATUS, -1) ?: -1
+        val plugged = batteryIntent?.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1) ?: -1
+        val isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING || 
+                        status == BatteryManager.BATTERY_STATUS_FULL ||
+                        plugged > 0
+
+        peekState = peekState.copy(
+            theme = theme,
+            time = timeFormat.format(System.currentTimeMillis()),
+            date = dateFormat.format(System.currentTimeMillis()),
+            batteryLevel = level,
+            batteryIsCharging = isCharging,
+            batteryIconRes = IconHelper.getBatteryIcon(level),
+            clockColor = Color(prefs.get(P.DISPLAY_COLOR_CLOCK, P.DISPLAY_COLOR_CLOCK_DEFAULT)),
+            dateColor = Color(prefs.get(P.DISPLAY_COLOR_DATE, P.DISPLAY_COLOR_DATE_DEFAULT)),
+            batteryColor = Color(prefs.get(P.DISPLAY_COLOR_BATTERY, P.DISPLAY_COLOR_BATTERY_DEFAULT)),
+            batteryArcColor = Color(prefs.get(P.DISPLAY_COLOR_BATTERY_ARC, P.DISPLAY_COLOR_BATTERY_ARC_DEFAULT)),
+            musicColor = Color(prefs.get(P.DISPLAY_COLOR_MUSIC_CONTROLS, P.DISPLAY_COLOR_MUSIC_CONTROLS_DEFAULT)),
+            messageColor = Color(prefs.get(P.DISPLAY_COLOR_MESSAGE, P.DISPLAY_COLOR_MESSAGE_DEFAULT)),
+            calendarColor = Color(prefs.get(P.DISPLAY_COLOR_CALENDAR, P.DISPLAY_COLOR_CALENDAR_DEFAULT)),
+            weatherColor = Color(prefs.get(P.DISPLAY_COLOR_WEATHER, P.DISPLAY_COLOR_WEATHER_DEFAULT)),
+            notificationColor = Color(prefs.get(P.DISPLAY_COLOR_NOTIFICATION, P.DISPLAY_COLOR_NOTIFICATION_DEFAULT)),
+            textAlign = if (theme == P.USER_THEME_SAMSUNG2) TextAlign.Left else TextAlign.Center,
+            showClock = prefs.get(P.SHOW_CLOCK, P.SHOW_CLOCK_DEFAULT),
+            showDate = prefs.get(P.SHOW_DATE, P.SHOW_DATE_DEFAULT),
+            showBatteryIcon = prefs.get(P.SHOW_BATTERY_ICON, P.SHOW_BATTERY_ICON_DEFAULT),
+            showBatteryPercentage = prefs.get(P.SHOW_BATTERY_PERCENTAGE, P.SHOW_BATTERY_PERCENTAGE_DEFAULT),
+            showMusicControls = prefs.get(P.SHOW_MUSIC_CONTROLS, P.SHOW_MUSIC_CONTROLS_DEFAULT),
+            showAlbumArt = prefs.get(P.SHOW_ALBUM_ART, P.SHOW_ALBUM_ART_DEFAULT),
+            showWeather = prefs.get(P.SHOW_WEATHER, P.SHOW_WEATHER_DEFAULT),
+            showCalendar = prefs.get(P.SHOW_CALENDAR, P.SHOW_CALENDAR_DEFAULT),
+            showNotificationCount = prefs.get(P.SHOW_NOTIFICATION_COUNT, P.SHOW_NOTIFICATION_COUNT_DEFAULT),
+            showNotificationIcons = prefs.get(P.SHOW_NOTIFICATION_ICONS, P.SHOW_NOTIFICATION_ICONS_DEFAULT),
+            message = prefs.get(P.MESSAGE, P.MESSAGE_DEFAULT),
+            calendarEvents = Data.getCalendar(this, prefs),
+            isSamsung3 = theme == P.USER_THEME_SAMSUNG3,
+            isBigDate = theme == P.USER_THEME_SAMSUNG2,
+            isCapsDate = theme == P.USER_THEME_SAMSUNG,
+            isAnalog = theme == P.USER_THEME_ANALOG,
+            isMultiline = isMultiline,
+            showFingerprint = prefs.get(P.SHOW_FINGERPRINT_ICON, P.SHOW_FINGERPRINT_ICON_DEFAULT),
+            useLockIcon = prefs.get(P.LOCK_ICON, P.LOCK_ICON_DEFAULT),
+            fingerprintColor = Color(prefs.get(P.DISPLAY_COLOR_FINGERPRINT, P.DISPLAY_COLOR_FINGERPRINT_DEFAULT)),
+            fingerprintMargin = prefs.get(P.FINGERPRINT_MARGIN, P.FINGERPRINT_MARGIN_DEFAULT),
+            fingerprintInteractionMode = prefs.get(P.FINGERPRINT_INTERACTION_MODE, P.FINGERPRINT_INTERACTION_MODE_DEFAULT),
+            edgeGlowEnabled = prefs.get(P.EDGE_GLOW, P.EDGE_GLOW_DEFAULT),
+            edgeGlowColor = Color(prefs.get(P.DISPLAY_COLOR_EDGE_GLOW, P.DISPLAY_COLOR_EDGE_GLOW_DEFAULT)),
+            edgeGlowDuration = prefs.get(P.EDGE_GLOW_DURATION, P.EDGE_GLOW_DURATION_DEFAULT),
+            edgeGlowDelay = prefs.get(P.EDGE_GLOW_DELAY, P.EDGE_GLOW_DELAY_DEFAULT),
+            edgeGlowStyle = prefs.get(P.EDGE_GLOW_STYLE, P.EDGE_GLOW_STYLE_DEFAULT),
+            disableDoubleTap = prefs.get(P.DISABLE_DOUBLE_TAP, P.DISABLE_DOUBLE_TAP_DEFAULT),
+            backgroundImageRes = prefs.backgroundImage(),
+            customBackground = customBgBitmap,
+            notificationIconSize = prefs.get(P.NOTIFICATION_ICON_SIZE, P.NOTIFICATION_ICON_SIZE_DEFAULT),
+            notificationPreviewPosition = prefs.get(P.NOTIFICATION_PREVIEW_POSITION, P.NOTIFICATION_PREVIEW_POSITION_DEFAULT),
+            tintNotifications = prefs.get(P.TINT_NOTIFICATIONS, P.TINT_NOTIFICATIONS_DEFAULT),
+            interactiveNotifications = prefs.get(P.INTERACTIVE_NOTIFICATION_ICONS, P.INTERACTIVE_NOTIFICATION_ICONS_DEFAULT),
+            invertInteractionHighlight = prefs.get(P.INVERT_INTERACTION_HIGHLIGHT, P.INVERT_INTERACTION_HIGHLIGHT_DEFAULT),
+            swipeNotificationOpen = prefs.get(P.SWIPE_NOTIFICATION_OPEN, P.SWIPE_NOTIFICATION_OPEN_DEFAULT),
+            animateMotion = prefs.get(P.ANIMATE_MOTION, P.ANIMATE_MOTION_DEFAULT),
+            topPadding = prefs.get(P.TOP_PADDING, P.TOP_PADDING_DEFAULT),
+            notificationTopPadding = prefs.get(P.NOTIFICATION_ICON_TOP_PADDING, P.NOTIFICATION_ICON_TOP_PADDING_DEFAULT),
+            scale = prefs.displayScale()
+        )
+
+        peekState = peekState.copy(
+            fingerprintIconRes = if (peekState.useLockIcon) R.drawable.ic_lock else R.drawable.ic_fingerprint_white,
+        )
+        
+        if (theme == P.USER_THEME_SAMSUNG2) {
+            val size = Point()
+            (getSystemService(DISPLAY_SERVICE) as DisplayManager).getDisplay(Display.DEFAULT_DISPLAY).getSize(size)
+            peekState = peekState.copy(scale = prefs.displayScale())
+        }
+    }
+
+    private fun fetchWeather() {
+        if (!prefs.get(P.SHOW_WEATHER, P.SHOW_WEATHER_DEFAULT)) return
+
+        val url = prefs.getWeatherUrl()
+
+        val stringRequest = StringRequest(
+            Request.Method.GET, url,
+            { response ->
+                peekState = peekState.copy(weather = response)
+            },
+            { error ->
+                Log.e(Global.LOG_TAG, "Weather fetch failed: $error")
+            }
+        )
+        Application.requestQueue.add(stringRequest)
+        
+        val interval = prefs.get(P.WEATHER_REFRESH_INTERVAL, P.WEATHER_REFRESH_INTERVAL_DEFAULT)
+        if (interval > 0) {
+            rulesHandler.postDelayed({ fetchWeather() }, interval * 60 * 1000L)
+        }
+    }
+
+    private fun startAODUpdateLoop() {
+        val handler = Handler(Looper.getMainLooper())
+        val runnable = object : Runnable {
+            override fun run() {
+                if (servicesRunning) {
+                    val isMultiline = peekState.theme == P.USER_THEME_SAMSUNG || peekState.theme == P.USER_THEME_ONEPLUS || peekState.theme == P.USER_THEME_ANALOG
+                    val timeFormatString = if (isMultiline) {
+                        prefs.getMultiLineTimeFormat()
+                    } else {
+                        prefs.getSingleLineTimeFormat()
+                    }
+                    val timeFormat = getTimeFormat(timeFormatString)
+                    val dateFormat = getDateFormat(prefs.get(P.DATE_FORMAT, P.DATE_FORMAT_DEFAULT))
+                    peekState = peekState.copy(
+                        time = timeFormat.format(System.currentTimeMillis()),
+                        date = dateFormat.format(System.currentTimeMillis())
+                    )
+                    
+                    val hasSeconds = timeFormatString.contains("s", ignoreCase = true)
+                    handler.postDelayed(this, if (hasSeconds) 1000 else 60000)
+                }
+            }
+        }
+        handler.post(runnable)
+    }
 
     // BroadcastReceiver
     private val systemFilter: IntentFilter = IntentFilter()
@@ -117,15 +304,18 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
                         if (level <= prefs.get(P.RULES_BATTERY, P.RULES_BATTERY_DEFAULT)) {
                             finishAndOff()
                             return
-                        } else if (!servicesRunning) {
-                            return
                         }
-                        viewHolder.customView.setBatteryStatus(
-                            level,
-                            intent.getIntExtra(
-                                BatteryManager.EXTRA_STATUS,
-                                -1,
-                            ) == BatteryManager.BATTERY_STATUS_CHARGING,
+                        
+                        val status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1)
+                        val plugged = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1)
+                        val isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING || 
+                                        status == BatteryManager.BATTERY_STATUS_FULL ||
+                                        plugged > 0
+                        
+                        peekState = peekState.copy(
+                            batteryLevel = level,
+                            batteryIsCharging = isCharging,
+                            batteryIconRes = IconHelper.getBatteryIcon(level)
                         )
                     }
 
@@ -153,31 +343,14 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
             setTheme(R.style.CutoutIgnore)
         }
 
-        setContentView(R.layout.activity_aod)
-
-        // View
-        viewHolder = AlwaysOnViewHolder(this)
-        viewHolder.customView.setActivity(this)
-        viewHolder.customView.scaleX = prefs.displayScale()
-        viewHolder.customView.scaleY = prefs.displayScale()
-        
-        // Set up album art callback
-        viewHolder.customView.onAlbumArtStateChanged = { shouldShow, bitmap ->
-            handleAlbumArtDisplay(shouldShow, bitmap)
-        }
-        
-        if (prefs.get(P.USER_THEME, P.USER_THEME_DEFAULT) == P.USER_THEME_SAMSUNG2) {
-            val size = Point()
-            (getSystemService(DISPLAY_SERVICE) as DisplayManager)
-                .getDisplay(Display.DEFAULT_DISPLAY)
-                .getSize(size)
-            offsetX = (size.x - size.x * prefs.displayScale()) * -HALF
-            viewHolder.customView.translationX = offsetX
+        setContent {
+            OffContent {
+                Screen()
+            }
         }
 
         // Brightness
         if (prefs.get(P.FORCE_BRIGHTNESS, P.FORCE_BRIGHTNESS_DEFAULT)) {
-            // Turning this into a single statement will not work!
             val attributes = window.attributes
             attributes.screenBrightness = prefs.get(
                 P.FORCE_BRIGHTNESS_VALUE,
@@ -193,21 +366,257 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
         }, SMALL_DELAY)
 
         // Hide UI
-        fullscreen(viewHolder.frame)
-        window.decorView.setOnSystemUiVisibilityChangeListener { visibility ->
-            if (visibility and View.SYSTEM_UI_FLAG_FULLSCREEN == 0) {
-                fullscreen(viewHolder.frame)
+        WindowInsetsControllerCompat(window, window.decorView).let { controller ->
+            controller.hide(WindowInsetsCompat.Type.systemBars())
+            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        }
+    }
+
+    @Composable
+    private fun Screen() {
+        val alpha by animateFloatAsState(
+            targetValue = if (isProximate) 0f else 1f,
+            animationSpec = tween(1000),
+            label = "alpha"
+        )
+
+        val animatedDriftY by animateFloatAsState(
+            targetValue = peekState.driftY,
+            animationSpec = if (peekState.animateMotion) tween(2000) else tween(0),
+            label = "driftY"
+        )
+
+        val animatedFpDriftY by animateFloatAsState(
+            targetValue = peekState.fpDriftY,
+            animationSpec = if (peekState.animateMotion) tween(2000) else tween(0),
+            label = "fpDriftY"
+        )
+        
+        val context = LocalContext.current
+        val burnInDelay = remember { prefs.get("ao_animation_delay", 2) * 60000L }
+        
+        LaunchedEffect(Unit) {
+            val size = Point()
+            (context.getSystemService(DISPLAY_SERVICE) as DisplayManager).getDisplay(Display.DEFAULT_DISPLAY).getSize(size)
+            
+            while (true) {
+                delay(burnInDelay)
+                peekState = peekState.copy(driftY = 32f, fpDriftY = 64f)
+                delay(burnInDelay)
+                peekState = peekState.copy(driftY = 0f, fpDriftY = 0f)
             }
         }
-        /*window.decorView.setOnApplyWindowInsetsListener { _, windowInsets ->
-            if (WindowInsetsCompat.toWindowInsetsCompat(windowInsets).isVisible(
-                    WindowInsetsCompat.Type.statusBars()
-                            or WindowInsetsCompat.Type.captionBar()
-                            or WindowInsetsCompat.Type.navigationBars()
-                )
-            ) fullscreen(viewHolder.frame)
-            windowInsets
-        }*/
+
+        Box(modifier = Modifier
+            .fillMaxSize()
+            .alpha(alpha)) {
+            Content(
+                state = peekState.copy(driftY = animatedDriftY, fpDriftY = animatedFpDriftY),
+                onSkipPrevious = { onActiveSessionsChangedListener?.controller?.transportControls?.skipToPrevious() },
+                onSkipNext = { onActiveSessionsChangedListener?.controller?.transportControls?.skipToNext() },
+                onTitleClick = {
+                    resetTimeout()
+                    if (onActiveSessionsChangedListener?.state == PlaybackState.STATE_PLAYING) {
+                        onActiveSessionsChangedListener?.controller?.transportControls?.pause()
+                    } else if (onActiveSessionsChangedListener?.state == PlaybackState.STATE_PAUSED) {
+                        onActiveSessionsChangedListener?.controller?.transportControls?.play()
+                    }
+                },
+                onNotificationHoldStarted = { index ->
+                    resetTimeout()
+                    peekState = peekState.copy(
+                        touchedNotificationIndex = index,
+                        isReplyMode = false,
+                        replyText = TextFieldValue(""),
+                        replyActionIndex = null
+                    )
+                    pauseTimeout()
+                },
+                onNotificationHoldFinished = {
+                    peekState = peekState.copy(
+                        touchedNotificationIndex = null,
+                        isReplyMode = false,
+                        replyText = TextFieldValue(""),
+                        replyActionIndex = null
+                    )
+                    resumeTimeout()
+                    resetTimeout()
+                },
+                onActionClick = { notificationIndex, actionIndex ->
+                    resetTimeout()
+                    val sbn = peekState.detailedNotifications.getOrNull(notificationIndex)
+                    val action = sbn?.notification?.actions?.getOrNull(actionIndex)
+                    if (action != null) {
+                        try {
+                            if (action.title == this@AlwaysOn.getString(R.string.notification_action_reply)) {
+                                this@AlwaysOn.let { KeyguardHelper.dismissKeyguard(it) }
+                            }
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                                if (action.semanticAction == Notification.Action.SEMANTIC_ACTION_CALL) {
+                                    this@AlwaysOn.let { KeyguardHelper.dismissKeyguard(it) }
+                                }
+                            }
+
+                            action.actionIntent.send(this@AlwaysOn, 0, null, null, null, null, getActivityOptionsBundle())
+                            peekState = peekState.copy(touchedNotificationIndex = null)
+                        } catch (_: Exception) {
+                            Log.e(Global.LOG_TAG, "Action send failed")
+                        }
+                    }
+                },
+                onReplyActionClick = { notificationIndex, actionIndex ->
+                    resetTimeout()
+                    peekState = peekState.copy(
+                        isReplyMode = true,
+                        replyActionIndex = actionIndex
+                    )
+                    pauseTimeout()
+                    resetReplyTimeout()
+                },
+                onDismissNotification = { index ->
+                    resetTimeout()
+                    val sbn = peekState.detailedNotifications.getOrNull(index)
+                    if (sbn != null) {
+                        NotificationService.removeNotificationsByPackageAndId(sbn.packageName, sbn.id, sbn.tag)
+                        peekState = peekState.copy(touchedNotificationIndex = null)
+                    }
+                },
+                onReplyTextChange = { text ->
+                    peekState = peekState.copy(replyText = text)
+                    resetReplyTimeout()
+                },
+                onSendReply = { index ->
+                    resetTimeout()
+                    cancelReplyTimeout()
+                    val sbn = peekState.detailedNotifications.getOrNull(index)
+                    val action = peekState.replyActionIndex
+                        ?.let { sbn?.notification?.actions?.getOrNull(it) }
+                        ?: sbn?.notification?.actions?.find { it.remoteInputs != null }
+                    if (action != null && peekState.replyText.text.isNotEmpty()) {
+                        val remoteInputs = action.remoteInputs ?: return@Content
+                        val remoteInput = remoteInputs[0]
+                        val results = Bundle().apply {
+                            putCharSequence(remoteInput.resultKey, peekState.replyText.text)
+                        }
+                        val intent = Intent().addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
+                        RemoteInput.addResultsToIntent(remoteInputs, intent, results)
+                        try {
+                            action.actionIntent.send(this@AlwaysOn, 0, intent, null, null, null, getActivityOptionsBundle())
+                            peekState = peekState.copy(
+                                touchedNotificationIndex = null,
+                                isReplyMode = false,
+                                replyText = TextFieldValue(""),
+                                replyActionIndex = null
+                            )
+                            sbn?.let { NotificationService.removeNotificationsByPackageAndId(it.packageName, sbn.id, sbn.tag) }
+                        } catch (_: Exception) {
+                            Log.e(Global.LOG_TAG, "Reply failed")
+                        }
+                    }
+                },
+                onDoubleTap = {
+                    if (!peekState.disableDoubleTap) {
+                        val duration = prefs.get(P.VIBRATION_DURATION, P.VIBRATION_DURATION_DEFAULT).toLong()
+                        if (duration > 0) {
+                            val vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                vibrator.vibrate(VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE))
+                            } else {
+                                @Suppress("DEPRECATION")
+                                vibrator.vibrate(duration)
+                            }
+                        }
+                        KeyguardHelper.dismissKeyguard(this@AlwaysOn)
+                    }
+                },
+                onDown = {
+                    resetTimeout()
+                },
+                onFingerprintTouch = { isTouched, dx, dy ->
+                    if (isTouched) {
+                        pauseTimeout()
+                    } else {
+                        resumeTimeout()
+                        resetTimeout()
+                    }
+
+                    if (peekState.fingerprintInteractionMode == "swipe") {
+                        val distance = sqrt((dx * dx + dy * dy).toDouble()).toFloat()
+                        val isLockOpen = distance > 300
+
+                        val iconRes = when {
+                            peekState.useLockIcon && isLockOpen -> R.drawable.ic_lock_open
+                            peekState.useLockIcon -> R.drawable.ic_lock
+                            else -> R.drawable.ic_fingerprint_white
+                        }
+
+                        peekState = peekState.copy(
+                            isFingerprintTouched = isTouched,
+                            fingerprintIconRes = iconRes,
+                            hoveredNotificationIndex = if (!isTouched) null else peekState.hoveredNotificationIndex
+                        )
+
+                        if (!isTouched && isLockOpen) {
+                            KeyguardHelper.dismissKeyguard(this@AlwaysOn)
+                            finish()
+                        }
+                    } else {
+                        peekState = peekState.copy(
+                            isFingerprintTouched = isTouched,
+                            hoveredNotificationIndex = if (!isTouched) null else peekState.hoveredNotificationIndex
+                        )
+                    }
+                },
+                onFingerprintLongPress = {
+                    if (peekState.fingerprintInteractionMode == "longpress") {
+                        KeyguardHelper.dismissKeyguard(this@AlwaysOn)
+                        finish()
+                    }
+                },
+                onOpenNotification = { index ->
+                    val sbn = peekState.detailedNotifications.getOrNull(index)
+                    if (sbn != null) {
+                        try {
+                            sbn.notification.contentIntent?.send(this@AlwaysOn, 0, null, null, null, null, getActivityOptionsBundle())
+                            KeyguardHelper.dismissKeyguard(this@AlwaysOn)
+                            finish()
+                        } catch (_: Exception) {
+                            Log.e(Global.LOG_TAG, "Notification open failed")
+                        }
+                    }
+                },
+                onNotificationHovered = { index ->
+                    if (peekState.hoveredNotificationIndex != index) {
+                        peekState = peekState.copy(hoveredNotificationIndex = index)
+                    }
+                },
+                onBoundsUpdated = { iconBounds, actionBounds, fpBounds, previewBounds ->
+                    peekState = peekState.copy(
+                        notificationIconBounds = iconBounds,
+                        touchedNotificationActionBounds = actionBounds,
+                        fingerprintIconBounds = fpBounds,
+                        previewBounds = previewBounds
+                    )
+                }
+            )
+        }
+    }
+
+    private fun getActivityOptionsBundle(): Bundle? {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            val options = ActivityOptions.makeBasic()
+            if (Build.VERSION.SDK_INT >= 36) {
+                options.pendingIntentBackgroundActivityStartMode = 
+                    ActivityOptions.MODE_BACKGROUND_ACTIVITY_START_ALLOW_ALWAYS
+            } else {
+                @Suppress("DEPRECATION")
+                options.pendingIntentBackgroundActivityStartMode = 
+                    ActivityOptions.MODE_BACKGROUND_ACTIVITY_START_ALLOWED
+            }
+            return options.toBundle()
+        }
+        return null
     }
 
     private fun prepareMusicControls() {
@@ -216,7 +625,14 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
         val notificationListener =
             ComponentName(applicationContext, NotificationService::class.java.name)
         onActiveSessionsChangedListener =
-            AlwaysOnOnActiveSessionsChangedListener(viewHolder.customView)
+            AlwaysOnOnActiveSessionsChangedListener().apply {
+                onMediaStateChanged = { musicString, albumArt ->
+                    peekState = peekState.copy(
+                        musicString = musicString,
+                        albumArt = albumArt
+                    )
+                }
+            }
         try {
             mediaSessionManager.addOnActiveSessionsChangedListener(
                 onActiveSessionsChangedListener
@@ -230,91 +646,20 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
             )
         } catch (exception: SecurityException) {
             Log.w(Global.LOG_TAG, exception.toString())
-            viewHolder.customView.musicString =
-                resources.getString(R.string.missing_permissions)
-            // Clear album art if there's an exception
-            viewHolder.customView.setAlbumArt(null)
+            peekState = peekState.copy(musicString = resources.getString(R.string.missing_permissions))
         }
-        viewHolder.customView.onTitleClicked = {
-            resetTimeout()
-            if (onActiveSessionsChangedListener?.state == PlaybackState.STATE_PLAYING) {
-                onActiveSessionsChangedListener?.controller?.transportControls?.pause()
-            } else if (onActiveSessionsChangedListener?.state == PlaybackState.STATE_PAUSED) {
-                onActiveSessionsChangedListener?.controller?.transportControls?.play()
-            }
-        }
-        viewHolder.customView.onSkipPreviousClicked = {
-            resetTimeout()
-            onActiveSessionsChangedListener?.controller?.transportControls?.skipToPrevious()
-        }
-        viewHolder.customView.onSkipNextClicked = {
-            resetTimeout()
-            onActiveSessionsChangedListener?.controller?.transportControls?.skipToNext()
-        }
-    }
-
-    private fun prepareFingerprintIcon() {
-        viewHolder.fingerprintIcn.visibility = View.VISIBLE
-
-        updateFingerprintIconPosition()
-        
-        // Check the interaction mode preference
-        val interactionMode = prefs.get(P.FINGERPRINT_INTERACTION_MODE, P.FINGERPRINT_INTERACTION_MODE_DEFAULT)
-        
-        if (interactionMode == "longpress") {
-            // Long press behavior
-            val longPressDetector = LongPressDetector({
-                KeyguardHelper.dismissKeyguard(this)
-                finish()
-            })
-            viewHolder.fingerprintIcn.setOnTouchListener { v, event ->
-                longPressDetector.onTouchEvent(event)
-                v.performClick()
-            }
-        } else {
-            // Default swipe behavior
-            viewHolder.fingerprintIcn.setOnFingerprintTouchListener(object : FingerprintView.OnFingerprintTouchListener {
-                override fun onFingerprintTouchStateChanged(isTouched: Boolean, event: MotionEvent) {
-                    if (isTouched) {
-                        pauseTimeout()
-                    } else {
-                        resumeTimeout()
-                        resetTimeout()
-                    }
-                    viewHolder.customView.handleFingerprintTouch(isTouched, event)
-                }
-            })
-        }
-    }
-
-    @SuppressLint("RtlHardcoded")
-    private fun updateFingerprintIconPosition() {
-        // Get the layout parameters
-        val layoutParams = viewHolder.fingerprintIcn.layoutParams as FrameLayout.LayoutParams
-        val margin = prefs.get(P.FINGERPRINT_MARGIN, P.FINGERPRINT_MARGIN_DEFAULT)
-        
-        // Check if we're in landscape orientation
-        val isLandscape = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-        
-        if (isLandscape) {
-            // Landscape: center vertically, align to right, use right margin
-            layoutParams.gravity = Gravity.CENTER_VERTICAL or Gravity.RIGHT
-            layoutParams.rightMargin = margin
-            layoutParams.bottomMargin = 0
-        } else {
-            // Portrait: center horizontally, align to bottom, use bottom margin
-            layoutParams.gravity = Gravity.CENTER_HORIZONTAL or Gravity.BOTTOM
-            layoutParams.bottomMargin = margin
-            layoutParams.rightMargin = 0
-        }
-        
-        // Apply the changes
-        viewHolder.fingerprintIcn.layoutParams = layoutParams
     }
 
     private fun prepareProximity() {
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
-        sensorEventListener = AlwaysOnSensorEventListener(viewHolder)
+        sensorEventListener = object : SensorEventListener {
+            override fun onSensorChanged(event: SensorEvent) {
+                if (event.sensor.type == Sensor.TYPE_PROXIMITY) {
+                    isProximate = event.values[0] != event.sensor.maximumRange
+                }
+            }
+            override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
+        }
     }
 
     private fun prepareDoNotDisturb() {
@@ -324,65 +669,6 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
         if (notificationAccess) {
             userDND = notificationManager?.currentInterruptionFilter
                 ?: NotificationManager.INTERRUPTION_FILTER_ALL
-        }
-    }
-
-    private fun prepareEdgeGlow() {
-        if (prefs.get(P.EDGE_GLOW_DURATION, P.EDGE_GLOW_DURATION_DEFAULT) >= MINIMUM_ANIMATION_DURATION) {
-            viewHolder.frame.background =
-                when (prefs.get(P.EDGE_GLOW_STYLE, P.EDGE_GLOW_STYLE_DEFAULT)) {
-                    P.EDGE_GLOW_STYLE_VERTICAL ->
-                        ContextCompat.getDrawable(
-                            this, R.drawable.edge_glow_vertical,
-                        )
-
-                    P.EDGE_GLOW_STYLE_HORIZONTAL ->
-                        ContextCompat.getDrawable(
-                            this, R.drawable.edge_glow_horizontal,
-                        )
-
-                    else -> ContextCompat.getDrawable(this, R.drawable.edge_glow)
-                }
-            viewHolder.frame.background.setTint(
-                prefs.get(
-                    P.DISPLAY_COLOR_EDGE_GLOW,
-                    P.DISPLAY_COLOR_EDGE_GLOW_DEFAULT,
-                ),
-            )
-            edgeGlowThread = EdgeGlowThread(this, viewHolder.frame.background as TransitionDrawable)
-            edgeGlowThread.start()
-            // Initialize the edge glow thread state - only trigger for new notifications
-            edgeGlowThread.shouldTriggerGlow = true
-        }
-    }
-
-    private fun prepareDoubleTap() {
-        val doubleTapDetector =
-            DoubleTapDetector({
-                val duration = prefs.get(P.VIBRATION_DURATION, P.VIBRATION_DURATION_DEFAULT).toLong()
-                if (duration > 0) {
-                    val vibrator =
-                        getSystemService(VIBRATOR_SERVICE) as Vibrator
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        vibrator.vibrate(
-                            VibrationEffect.createOneShot(
-                                duration,
-                                VibrationEffect.DEFAULT_AMPLITUDE,
-                            ),
-                        )
-                    } else {
-                        @Suppress("DEPRECATION")
-                        vibrator.vibrate(duration)
-                    }
-                }
-                KeyguardHelper.dismissKeyguard(this)
-            }, prefs.get(P.DOUBLE_TAP_SPEED, P.DOUBLE_TAP_SPEED_DEFAULT))
-        viewHolder.frame.setOnTouchListener { v, event ->
-            if (event.action == MotionEvent.ACTION_DOWN) {
-                resetTimeout()
-            }
-            doubleTapDetector.onTouchEvent(event)
-            v.performClick()
         }
     }
 
@@ -401,6 +687,8 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        enableEdgeToEdge()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             setShowWhenLocked(true)
@@ -418,6 +706,7 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
         prefs = P(getDefaultSharedPreferences(this))
         userPowerSaving = (getSystemService(POWER_SERVICE) as PowerManager).isPowerSaveMode
 
+        updateInitialAODState()
         prepareView()
 
         // Add DND state change listener
@@ -442,11 +731,6 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
             NotificationService.listeners.add(this)
         }
 
-        // Fingerprint icon
-        if (prefs.get(P.SHOW_FINGERPRINT_ICON, P.SHOW_FINGERPRINT_ICON_DEFAULT)) {
-            prepareFingerprintIcon()
-        }
-
         // Proximity
         if (prefs.get(P.POCKET_MODE, P.POCKET_MODE_DEFAULT)) {
             prepareProximity()
@@ -457,22 +741,12 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
             prepareDoNotDisturb()
         }
 
-        // Edge Glow
-        if (prefs.get(P.EDGE_GLOW, P.EDGE_GLOW_DEFAULT)) {
-            prepareEdgeGlow()
-        }
-
-        // Animation
-        animationThread = AlwaysOnAnimationThread(this, viewHolder, offsetX)
-        animationThread.start()
-
-        // DoubleTap
-        if (!prefs.get(P.DISABLE_DOUBLE_TAP, P.DISABLE_DOUBLE_TAP_DEFAULT)) {
-            prepareDoubleTap()
-        }
-
         // Call recognition
         prepareCallRecognition()
+
+        // Update loop for clock
+        startAODUpdateLoop()
+        fetchWeather()
 
         // Broadcast Receivers
         if (Build.VERSION.SDK_INT >= 34) { // Android 14 (UPSIDE_DOWN_CAKE)
@@ -484,42 +758,8 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        (animationThread as? AlwaysOnAnimationThread)?.updateScreenSize()
-
-        // Update fingerprint icon positioning on orientation change
-        if (viewHolder.fingerprintIcn.isVisible) {
-            updateFingerprintIconPosition()
-        }
-
-        // Rebuild album art gradient orientation immediately on orientation change
-        val albumArtView = findViewById<ImageView>(R.id.album_art_overlay)
-        if (albumArtView != null && albumArtView.drawable is LayerDrawable) {
-            val currentDrawable = albumArtView.drawable as LayerDrawable
-            val bitmapLayer = currentDrawable.getDrawable(0) as? BitmapDrawable
-            val currentBitmap = bitmapLayer?.bitmap
-            if (currentBitmap != null) {
-                val screenWidth = resources.displayMetrics.widthPixels
-                val bitmapDrawable =
-                    currentBitmap.scale(screenWidth, screenWidth).toDrawable(resources)
-                val tintDrawable = android.graphics.Color.argb(100, 0, 0, 0).toDrawable()
-                val gradientDrawable = GradientDrawable()
-                gradientDrawable.orientation = if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
-                    GradientDrawable.Orientation.LEFT_RIGHT else GradientDrawable.Orientation.TOP_BOTTOM
-                gradientDrawable.shape = GradientDrawable.RECTANGLE
-                gradientDrawable.colors = intArrayOf(
-                    android.graphics.Color.TRANSPARENT,
-                    android.graphics.Color.BLACK
-                )
-                gradientDrawable.gradientType = GradientDrawable.LINEAR_GRADIENT
-                val gradientOverlay = LayerDrawable(arrayOf(tintDrawable, gradientDrawable))
-                val layers = LayerDrawable(arrayOf(bitmapDrawable, gradientOverlay))
-                albumArtView.setImageDrawable(layers)
-                albumArtView.visibility = View.VISIBLE
-            }
-        }
     }
 
-    @Suppress("LongMethod")
     override fun onStart() {
         super.onStart()
         CombinedServiceReceiver.isAlwaysOnRunning = true
@@ -529,19 +769,12 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
         initialNotificationCount = NotificationService.count
         lastNotificationCount = NotificationService.count
         
-        if (prefs.get(P.SHOW_CLOCK, P.SHOW_CLOCK_DEFAULT) ||
-            prefs.get(
-                P.SHOW_DATE,
-                P.SHOW_DATE_DEFAULT,
-            )
-        ) {
-            viewHolder.customView.startClockHandler()
-        }
         if (
             prefs.get(P.SHOW_NOTIFICATION_COUNT, P.SHOW_NOTIFICATION_COUNT_DEFAULT) ||
             prefs.get(P.SHOW_NOTIFICATION_ICONS, P.SHOW_NOTIFICATION_ICONS_DEFAULT) ||
             prefs.get(P.EDGE_GLOW, P.EDGE_GLOW_DEFAULT)
         ) {
+            NotificationService.activeService?.refreshNotifications()
             onNotificationsChanged()
         }
         val millisTillEnd: Long = Rules(this).millisTillEnd()
@@ -618,17 +851,28 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
         }
     }
 
+    private fun resetReplyTimeout() {
+        cancelReplyTimeout()
+        replyTimeoutRunnable = Runnable {
+            peekState = peekState.copy(
+                touchedNotificationIndex = null,
+                isReplyMode = false,
+                replyText = TextFieldValue(""),
+                replyActionIndex = null
+            )
+            resumeTimeout()
+            resetTimeout()
+        }
+        rulesHandler.postDelayed(replyTimeoutRunnable!!, REPLY_TIMEOUT_DELAY)
+    }
+
+    private fun cancelReplyTimeout() {
+        replyTimeoutRunnable?.let { rulesHandler.removeCallbacks(it) }
+    }
+
     override fun onStop() {
         super.onStop()
         servicesRunning = false
-        if (prefs.get(P.SHOW_CLOCK, P.SHOW_CLOCK_DEFAULT) ||
-            prefs.get(
-                P.SHOW_DATE,
-                P.SHOW_DATE_DEFAULT,
-            )
-        ) {
-            viewHolder.customView.stopClockHandler()
-        }
         rulesHandler.removeCallbacksAndMessages(null)
         if (prefs.get(
                 P.DO_NOT_DISTURB,
@@ -667,15 +911,6 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
         instance = null
         CombinedServiceReceiver.isAlwaysOnRunning = false
         
-        // Clear any album art to avoid memory leaks
-        viewHolder.customView.setAlbumArt(null)
-        
-        // Reset and stop edge glow thread
-        if (prefs.get(P.EDGE_GLOW, P.EDGE_GLOW_DEFAULT)) {
-            edgeGlowThread.reset()
-            edgeGlowThread.interrupt()
-        }
-        animationThread.interrupt()
         timeoutRunnable = null
         
         if (
@@ -708,151 +943,36 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
 
     override fun finishAndOff() {
         CombinedServiceReceiver.hasRequestedStop = true
-        // Reset edge glow state before finishing
-        if (prefs.get(P.EDGE_GLOW, P.EDGE_GLOW_DEFAULT)) {
-            edgeGlowThread.reset()
-        }
         super.finishAndOff()
     }
 
     override fun onNotificationsChanged() {
         if (!servicesRunning) return
         
-        // If keyboard is showing and we're in reply mode, hide keyboard when a new notification arrives
-        if (NotificationPreview.isReplyActive()) {
-            val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-            viewHolder.customView.windowToken?.let { token ->
-                imm.hideSoftInputFromWindow(token, 0)
-            }
-            NotificationPreview.clearReplyMode()
-            viewHolder.customView.touchedNotificationIndex = null
-            NotificationPreview.setCurrentNotification(null)
-            viewHolder.customView.invalidate()
-            resumeTimeout()
-            resetTimeout()
-        }
+        // Update peekState with new notifications
+        peekState = peekState.copy(
+            notifications = NotificationService.notifications.toList(),
+            detailedNotifications = NotificationService.detailed.toList(),
+            hasNewNotifications = NotificationService.count > lastNotificationCount
+        )
         
-        viewHolder.customView.notifyNotificationDataChanged()
-        if (prefs.get(P.EDGE_GLOW, P.EDGE_GLOW_DEFAULT)) {
-            // Check if notification count has changed
-            if (NotificationService.count > lastNotificationCount) {
-                // New notification received while AlwaysOn is active
-                edgeGlowThread.hasNewNotifications = true
-            } else if (NotificationService.count < lastNotificationCount) {
-                // Notification count decreased - stop edge glow
-                edgeGlowThread.hasNewNotifications = false
-            }
-            
-            // Update the last count for next comparison
-            lastNotificationCount = NotificationService.count
-        }
+        // Update the last count for next comparison
+        lastNotificationCount = NotificationService.count
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        //Pass key events to the custom view for handling replies
-        if (viewHolder.customView.handleKeyEvent(keyCode, event)) {
-            return true
-        }
         return super.onKeyDown(keyCode, event)
-    }
-
-    private fun handleAlbumArtDisplay(shouldShow: Boolean, albumArt: Bitmap?) {
-        if (shouldShow && albumArt != null) {
-            // Check if we already have an album art overlay view
-            var albumArtView = findViewById<ImageView>(R.id.album_art_overlay)
-            
-            // If not, create one
-            if (albumArtView == null) {
-                albumArtView = ImageView(this)
-                albumArtView.id = R.id.album_art_overlay
-                
-                // Set layout parameters to match full screen width and be square
-                val screenWidth = resources.displayMetrics.widthPixels
-                val params = FrameLayout.LayoutParams(screenWidth, screenWidth)
-                params.gravity = Gravity.TOP
-                
-                // Apply tint and add gradient
-                val drawable = GradientDrawable()
-                drawable.orientation = if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
-                    GradientDrawable.Orientation.LEFT_RIGHT else GradientDrawable.Orientation.TOP_BOTTOM
-                drawable.shape = GradientDrawable.RECTANGLE
-                drawable.colors = intArrayOf(
-                    android.graphics.Color.TRANSPARENT,
-                    android.graphics.Color.BLACK
-                )
-                drawable.gradientType = GradientDrawable.LINEAR_GRADIENT
-                
-                // Create a layer list for the gradient overlay
-                val gradientOverlay = LayerDrawable(arrayOf(
-                    android.graphics.Color.argb(100, 0, 0, 0).toDrawable(),
-                    drawable
-                ))
-                
-                // Use BitmapDrawable as the image source
-                val bitmapDrawable =
-                    albumArt.scale(screenWidth, screenWidth)
-                        .toDrawable(resources)
-                
-                // Combine both in a layer list
-                val layers = LayerDrawable(arrayOf(bitmapDrawable, gradientOverlay))
-                
-                albumArtView.setImageDrawable(layers)
-                
-                // Add to the root view at index 0 (behind everything else)
-                val rootView = window.decorView.findViewById<ViewGroup>(android.R.id.content)
-                rootView.addView(albumArtView, 0, params)
-            } else {
-                // Just update the existing view
-                val screenWidth = resources.displayMetrics.widthPixels
-                
-                // Use BitmapDrawable as the image source
-                val bitmapDrawable =
-                    albumArt.scale(screenWidth, screenWidth)
-                        .toDrawable(resources)
-                    
-                // Create the tint color drawable
-                val tintDrawable = android.graphics.Color.argb(100, 0, 0, 0).toDrawable()
-                
-                // Create the gradient drawable
-                val gradientDrawable = GradientDrawable()
-                gradientDrawable.orientation = if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
-                    GradientDrawable.Orientation.LEFT_RIGHT else GradientDrawable.Orientation.TOP_BOTTOM
-                gradientDrawable.shape = GradientDrawable.RECTANGLE
-                gradientDrawable.colors = intArrayOf(
-                    android.graphics.Color.TRANSPARENT,
-                    android.graphics.Color.BLACK
-                )
-                gradientDrawable.gradientType = GradientDrawable.LINEAR_GRADIENT
-                
-                // Combine gradient and tint
-                val gradientOverlay = LayerDrawable(arrayOf(tintDrawable, gradientDrawable))
-                
-                // Combine both in a layer list
-                val layers = LayerDrawable(arrayOf(bitmapDrawable, gradientOverlay))
-                
-                albumArtView.setImageDrawable(layers)
-                albumArtView.visibility = View.VISIBLE
-            }
-        } else {
-            // Hide the album art view if it exists
-            findViewById<ImageView>(R.id.album_art_overlay)?.visibility = View.GONE
-        }
     }
 
     companion object {
         private const val SMALL_DELAY: Long = 300
         private const val MILLISECONDS_PER_SECOND: Long = 1_000
         private const val SENSOR_DELAY_SLOW: Int = 1_000_000
-        private const val MINIMUM_ANIMATION_DURATION: Int = 100
-        private const val HALF: Float = 0.5f
         private var instance: AlwaysOn? = null
 
         fun finish() {
             instance?.finish()
         }
-        
-        fun getInstance(): AlwaysOn? {
-            return instance
-        }
+
     }
 }

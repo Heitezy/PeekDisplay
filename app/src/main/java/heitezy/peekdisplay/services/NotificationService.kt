@@ -38,6 +38,10 @@ class NotificationService : NotificationListenerService() {
     override fun onCreate() {
         super.onCreate()
         activeService = this
+    }
+
+    override fun onListenerConnected() {
+        super.onListenerConnected()
         updateValues()
     }
 
