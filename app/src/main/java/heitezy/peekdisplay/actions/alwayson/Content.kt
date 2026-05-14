@@ -431,8 +431,17 @@ fun Content(
                 val sidePaddingPx = with(density) { 16.dp.roundToPx() }
                 val gapPx        = with(density) { 8.dp.roundToPx() }
 
-                val previewMaxWidth = if (isLandscape) (constraints.maxWidth * 0.6f).toInt()
+                var previewMaxWidth = if (isLandscape) (constraints.maxWidth / 3)
                 else (constraints.maxWidth * 0.9f).toInt()
+
+                if (isLandscape && iconBounds != null) {
+                    val availableWidth = if (above) {
+                        (iconBounds.left - sidePaddingPx - gapPx).toInt()
+                    } else {
+                        (constraints.maxWidth - iconBounds.right - sidePaddingPx - gapPx).toInt()
+                    }
+                    previewMaxWidth = previewMaxWidth.coerceAtMost(availableWidth.coerceAtLeast(0))
+                }
 
                 val previewConstraints = Constraints(
                     minWidth  = 0,
@@ -482,12 +491,12 @@ fun Content(
                         previewY = (iconCenterY - previewH / 2)
                             .coerceIn(sidePaddingPx, constraints.maxHeight - previewH - sidePaddingPx)
 
-                        if (iconBounds.left < constraints.maxWidth / 2) {
-                            previewX = (iconBounds.right + gapPx).toInt()
-                                .coerceAtMost(constraints.maxWidth - previewW - sidePaddingPx)
-                        } else {
+                        if (above) {
                             previewX = (iconBounds.left - previewW - gapPx).toInt()
                                 .coerceAtLeast(sidePaddingPx)
+                        } else {
+                            previewX = (iconBounds.right + gapPx).toInt()
+                                .coerceAtMost(constraints.maxWidth - previewW - sidePaddingPx)
                         }
                     } else {
                         previewX = (constraints.maxWidth - previewW) / 2
@@ -507,13 +516,7 @@ fun Content(
                         else (constraints.maxHeight - previewH - sidePaddingPx)
                     }
 
-                    previewX = if (iconBounds != null) {
-                        val iconCenterX = ((iconBounds.left + iconBounds.right) / 2f).toInt()
-                        (iconCenterX - previewW / 2)
-                            .coerceIn(sidePaddingPx, constraints.maxWidth - previewW - sidePaddingPx)
-                    } else {
-                        (constraints.maxWidth - previewW) / 2
-                    }
+                    previewX = (constraints.maxWidth - previewW) / 2
                 }
 
                 layout(constraints.maxWidth, constraints.maxHeight) {

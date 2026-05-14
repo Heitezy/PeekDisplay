@@ -300,16 +300,18 @@ fun NotificationPreview(
             Spacer(modifier = Modifier.height(8.dp))
 
             Column(
-                modifier = Modifier.onGloballyPositioned { coordinates ->
-                    val position = coordinates.positionInRoot()
-                    val size = coordinates.size
-                    onPositioned(
-                        Rect(
-                            position.x, position.y,
-                            position.x + size.width, position.y + size.height
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .onGloballyPositioned { coordinates ->
+                        val position = coordinates.positionInRoot()
+                        val size = coordinates.size
+                        onPositioned(
+                            Rect(
+                                position.x, position.y,
+                                position.x + size.width, position.y + size.height
+                            )
                         )
-                    )
-                }
+                    }
             ) {
                 Text(
                     text = title,
