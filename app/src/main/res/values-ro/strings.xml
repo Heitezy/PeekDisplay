@@ -124,7 +124,7 @@
     <string name="pref_look_and_feel_weather_info">Afișați informații despre vreme</string>
     <string name="pref_look_and_feel_weather_info_summary">Configurați informațiile meteo pe afișajul dvs. PEEK</string>
     <string name="pref_look_and_feel_weather_show_summary">Afișați informații meteorologice pe afișajul dvs. Peek</string>
-    <string name="pref_look_and_feel_weather_provider">PEEK Afișaj folosește WTRR.in pentru date meteorologice. Preluarea vremii poate transfera date identificabile.</string>
+    <string name="pref_look_and_feel_weather_provider">PEEK Afișaj folosește wttr.in pentru date meteorologice. Preluarea vremii poate transfera date identificabile.</string>
     <string name="pref_look_and_feel_weather_location">Locația vremii</string>
     <string name="pref_look_and_feel_weather_location_summary">Locația pentru raportul meteo. Lăsați acest lucru gol pentru locație automată.</string>
     <string name="pref_look_and_feel_weather_format">Format meteo</string>

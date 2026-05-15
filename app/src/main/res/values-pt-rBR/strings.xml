@@ -124,7 +124,7 @@
     <string name="pref_look_and_feel_weather_info">Mostre informações climáticas</string>
     <string name="pref_look_and_feel_weather_info_summary">Configure informações climáticas em sua exibição de espiada</string>
     <string name="pref_look_and_feel_weather_show_summary">Mostre informações meteorológicas em sua exibição de espiada</string>
-    <string name="pref_look_and_feel_weather_provider">O PEEK Display usa Wtrr.in para dados climáticos. Buscar o clima pode transferir dados identificáveis.</string>
+    <string name="pref_look_and_feel_weather_provider">O PEEK Display usa wttr.in para dados climáticos. Buscar o clima pode transferir dados identificáveis.</string>
     <string name="pref_look_and_feel_weather_location">Localização do tempo</string>
     <string name="pref_look_and_feel_weather_location_summary">A localização para o relatório meteorológico. Deixe isso vazio para localização automática.</string>
     <string name="pref_look_and_feel_weather_format">Formato climático</string>

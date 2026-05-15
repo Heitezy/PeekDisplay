@@ -124,7 +124,7 @@
     <string name="pref_look_and_feel_weather_info">显示天气信息</string>
     <string name="pref_look_and_feel_weather_info_summary">在您的窥视显示上配置天气信息</string>
     <string name="pref_look_and_feel_weather_show_summary">在您的窥视显示上显示天气信息</string>
-    <string name="pref_look_and_feel_weather_provider">Peek Display使用wtrr.in进行天气数据。获取天气可能会传输可识别的数据。</string>
+    <string name="pref_look_and_feel_weather_provider">Peek Display使用wttr.in进行天气数据。获取天气可能会传输可识别的数据。</string>
     <string name="pref_look_and_feel_weather_location">天气位置</string>
     <string name="pref_look_and_feel_weather_location_summary">天气报告的位置。将此空置保留以进行自动座位。</string>
     <string name="pref_look_and_feel_weather_format">天气格式</string>

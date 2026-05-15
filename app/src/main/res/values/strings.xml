@@ -218,7 +218,7 @@
     <string name="pref_look_and_feel_weather_info">Show weather info</string>
     <string name="pref_look_and_feel_weather_info_summary">Configure weather info on your Peek Display</string>
     <string name="pref_look_and_feel_weather_show_summary">Show weather info on your Peek Display</string>
-    <string name="pref_look_and_feel_weather_provider">Peek Display uses wtrr.in for weather data. Fetching the weather may transfer identifiable data.</string>
+    <string name="pref_look_and_feel_weather_provider">Peek Display uses wttr.in for weather data. Fetching the weather may transfer identifiable data.</string>
     <string name="pref_look_and_feel_weather_provider_name" translatable="false">wttr.in</string>
     <string name="pref_look_and_feel_weather_location">Weather location</string>
     <string name="pref_look_and_feel_weather_location_summary">The location for the weather report. Leave this empty for auto-location.</string>

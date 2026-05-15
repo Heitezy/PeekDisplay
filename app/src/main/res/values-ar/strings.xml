@@ -124,7 +124,7 @@
     <string name="pref_look_and_feel_weather_info">عرض معلومات الطقس</string>
     <string name="pref_look_and_feel_weather_info_summary">تكوين معلومات الطقس على عرض نظرة خاطفة</string>
     <string name="pref_look_and_feel_weather_show_summary">إظهار معلومات الطقس على عرض نظرة خاطفة</string>
-    <string name="pref_look_and_feel_weather_provider">يستخدم Peek Display wtrr.in لبيانات الطقس. قد يؤدي جلب الطقس إلى نقل البيانات المحددة.</string>
+    <string name="pref_look_and_feel_weather_provider">يستخدم Peek Display wttr.in لبيانات الطقس. قد يؤدي جلب الطقس إلى نقل البيانات المحددة.</string>
     <string name="pref_look_and_feel_weather_location">موقع الطقس</string>
     <string name="pref_look_and_feel_weather_location_summary">موقع تقرير الطقس. اترك هذا فارغًا للتوظيف التلقائي.</string>
     <string name="pref_look_and_feel_weather_format">تنسيق الطقس</string>

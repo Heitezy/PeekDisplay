@@ -124,7 +124,7 @@
     <string name="pref_look_and_feel_weather_info">Ava aqqında malûmatnı kosʹtermek</string>
     <string name="pref_look_and_feel_weather_info_summary">Siziñ «Pik» displeyiñizde ava aqqında malûmatnı konfiguraciâ étiñiz .</string>
     <string name="pref_look_and_feel_weather_show_summary">Siziñ Pik Displeyiñizde ava aqqında malûmatnı kosʹteriñiz .</string>
-    <string name="pref_look_and_feel_weather_provider">Peek Display ava malûmatları içûn wtrrr.in qullana. Avanı ketirmek belli olğan malûmatnı keçire bile.</string>
+    <string name="pref_look_and_feel_weather_provider">Peek Display ava malûmatları içûn wttr.in qullana. Avanı ketirmek belli olğan malûmatnı keçire bile.</string>
     <string name="pref_look_and_feel_weather_location">Ava eri .</string>
     <string name="pref_look_and_feel_weather_location_summary">Ava aqqında haberniñ eri. Bunı avtolokaciâ içûn boş qaldırıñız.</string>
     <string name="pref_look_and_feel_weather_format">Ava format</string>

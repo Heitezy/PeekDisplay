@@ -169,7 +169,7 @@
     <string name="pref_look_and_feel_weather_info">Toon weersinformatie</string>
     <string name="pref_look_and_feel_weather_info_summary">Configureer weersinformatie op uw Peek Display</string>
     <string name="pref_look_and_feel_weather_show_summary">Toon weersinformatie op uw Peek -display</string>
-    <string name="pref_look_and_feel_weather_provider">Peek Display gebruikt wtrr.in voor weergegevens. Het ophalen van het weer kan identificeerbare gegevens overdragen.</string>
+    <string name="pref_look_and_feel_weather_provider">Peek Display gebruikt wttr.in voor weergegevens. Het ophalen van het weer kan identificeerbare gegevens overdragen.</string>
     <string name="pref_look_and_feel_weather_location">Weerlocatie</string>
     <string name="pref_look_and_feel_weather_location_summary">De locatie voor het weerrapport. Laat dit leeg voor automatische locatie.</string>
     <string name="pref_look_and_feel_weather_format">Weerformaat</string>

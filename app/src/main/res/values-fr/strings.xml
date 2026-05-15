@@ -124,7 +124,7 @@
     <string name="pref_look_and_feel_weather_info">Affiche les informations météo</string>
     <string name="pref_look_and_feel_weather_info_summary">Configurer les informations météos sur votre affichage permanent</string>
     <string name="pref_look_and_feel_weather_show_summary">Afficher les informations météo sur votre affichage permanent</string>
-    <string name="pref_look_and_feel_weather_provider">Peek Display utilise wtrr.in pour les données météo. La récupération de la météo peut transmettre des données identifiables.</string>
+    <string name="pref_look_and_feel_weather_provider">Peek Display utilise wttr.in pour les données météo. La récupération de la météo peut transmettre des données identifiables.</string>
     <string name="pref_look_and_feel_weather_location">Localisation de la météo</string>
     <string name="pref_look_and_feel_weather_location_summary">La localisation du bulletin métérologique. Laissez vide pour une auto-localisation.</string>
     <string name="pref_look_and_feel_weather_format">Format de la météo</string>

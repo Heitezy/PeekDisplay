@@ -169,7 +169,7 @@
     <string name="pref_look_and_feel_weather_info">Hava durumu bilgilerini göster</string>
     <string name="pref_look_and_feel_weather_info_summary">Peek Display nizde hava durumu bilgilerini yapılandırın</string>
     <string name="pref_look_and_feel_weather_show_summary">Hava durumu bilgilerini Peek Display nizde gösterin</string>
-    <string name="pref_look_and_feel_weather_provider">Peek Display, hava durumu verileri için wtrr.in kullanır. Hava durumunu almak, tanımlanabilir verileri aktarabilir.</string>
+    <string name="pref_look_and_feel_weather_provider">Peek Display, hava durumu verileri için wttr.in kullanır. Hava durumunu almak, tanımlanabilir verileri aktarabilir.</string>
     <string name="pref_look_and_feel_weather_location">Hava durumu konumu</string>
     <string name="pref_look_and_feel_weather_location_summary">Hava durumu raporunun yeri. Otomatik konumlandırma için bunu boş bırakın.</string>
     <string name="pref_look_and_feel_weather_format">Hava durumu formatı</string>

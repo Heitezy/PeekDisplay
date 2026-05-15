@@ -127,7 +127,7 @@
     <string name="pref_look_and_feel_weather_info">Показати інформацію про погоду</string>
     <string name="pref_look_and_feel_weather_info_summary">Налаштувати інформацію про погоду на своєму Peek Display</string>
     <string name="pref_look_and_feel_weather_show_summary">Відображати інформацію про погоду на своєму Peek Display</string>
-    <string name="pref_look_and_feel_weather_provider">Peek Display використовує wtrr.in для отримання даних про погоду. Отримання інформації про погоду може передавати ідентифіковані дані.</string>
+    <string name="pref_look_and_feel_weather_provider">Peek Display використовує wttr.in для отримання даних про погоду. Отримання інформації про погоду може передавати ідентифіковані дані.</string>
     <string name="pref_ao_background_image">Фонове зображення</string>
     <string name="pref_ao_dnd">Увімкнути режим «Не турбувати»</string>
     <string name="pref_ao_dnd_summary">Вмикає режим «Не турбувати», коли працює Peek Display</string>

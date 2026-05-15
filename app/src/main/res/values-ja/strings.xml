@@ -124,7 +124,7 @@
     <string name="pref_look_and_feel_weather_info">天気情報を表示します</string>
     <string name="pref_look_and_feel_weather_info_summary">ピークディスプレイに天気情報を構成します</string>
     <string name="pref_look_and_feel_weather_show_summary">ピークディスプレイに天気情報を表示します</string>
-    <string name="pref_look_and_feel_weather_provider">Peek Displayは、気象データにWtrr.inを使用します。天気を取得すると、識別可能なデータが転送される場合があります。</string>
+    <string name="pref_look_and_feel_weather_provider">Peek Displayは、気象データにwttr.inを使用します。天気を取得すると、識別可能なデータが転送される場合があります。</string>
     <string name="pref_look_and_feel_weather_location">天気の場所</string>
     <string name="pref_look_and_feel_weather_location_summary">気象レポートの場所。自動ロケーションのためにこれを空にしたままにしてください。</string>
     <string name="pref_look_and_feel_weather_format">天気形式</string>

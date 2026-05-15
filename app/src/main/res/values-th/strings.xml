@@ -124,7 +124,7 @@
     <string name="pref_look_and_feel_weather_info">แสดงข้อมูลสภาพอากาศ</string>
     <string name="pref_look_and_feel_weather_info_summary">กำหนดค่าข้อมูลสภาพอากาศบนหน้าจอ Peek ของคุณ</string>
     <string name="pref_look_and_feel_weather_show_summary">แสดงข้อมูลสภาพอากาศบนจอแสดงผล Peek ของคุณ</string>
-    <string name="pref_look_and_feel_weather_provider">Peek Display ใช้ wtrr.in สำหรับข้อมูลสภาพอากาศ การดึงสภาพอากาศอาจถ่ายโอนข้อมูลที่ระบุได้</string>
+    <string name="pref_look_and_feel_weather_provider">Peek Display ใช้ wttr.in สำหรับข้อมูลสภาพอากาศ การดึงสภาพอากาศอาจถ่ายโอนข้อมูลที่ระบุได้</string>
     <string name="pref_look_and_feel_weather_location">สถานที่สภาพอากาศ</string>
     <string name="pref_look_and_feel_weather_location_summary">ที่ตั้งสำหรับรายงานสภาพอากาศ ปล่อยให้ว่างเปล่าสำหรับตำแหน่งอัตโนมัติ</string>
     <string name="pref_look_and_feel_weather_format">รูปแบบสภาพอากาศ</string>

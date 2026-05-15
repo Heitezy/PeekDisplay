@@ -124,7 +124,7 @@
     <string name="pref_look_and_feel_weather_info">Tunjukkan info cuaca</string>
     <string name="pref_look_and_feel_weather_info_summary">Konfigurasikan Info Cuaca di Tampilan Peek Anda</string>
     <string name="pref_look_and_feel_weather_show_summary">Tampilkan info cuaca di tampilan mengintip Anda</string>
-    <string name="pref_look_and_feel_weather_provider">Tampilan Peek menggunakan wtrr.in untuk data cuaca. Mengambil cuaca dapat mentransfer data yang dapat diidentifikasi.</string>
+    <string name="pref_look_and_feel_weather_provider">Tampilan Peek menggunakan wttr.in untuk data cuaca. Mengambil cuaca dapat mentransfer data yang dapat diidentifikasi.</string>
     <string name="pref_look_and_feel_weather_location">Lokasi cuaca</string>
     <string name="pref_look_and_feel_weather_location_summary">Lokasi untuk laporan cuaca. Biarkan ini kosong untuk lokasi otomatis.</string>
     <string name="pref_look_and_feel_weather_format">Format cuaca</string>

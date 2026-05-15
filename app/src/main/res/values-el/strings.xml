@@ -124,7 +124,7 @@
     <string name="pref_look_and_feel_weather_info">Δείξτε πληροφορίες για τον καιρό</string>
     <string name="pref_look_and_feel_weather_info_summary">Ρυθμίστε τις πληροφορίες καιρού στην οθόνη PEEK</string>
     <string name="pref_look_and_feel_weather_show_summary">Εμφάνιση πληροφοριών για τον καιρό στην εμφάνιση PEEK</string>
-    <string name="pref_look_and_feel_weather_provider">Η οθόνη PEEK χρησιμοποιεί wtrr.in για δεδομένα καιρού. Η ανάληψη του καιρού μπορεί να μεταφέρει δεδομένα αναγνωρίσιμα.</string>
+    <string name="pref_look_and_feel_weather_provider">Η οθόνη PEEK χρησιμοποιεί wttr.in για δεδομένα καιρού. Η ανάληψη του καιρού μπορεί να μεταφέρει δεδομένα αναγνωρίσιμα.</string>
     <string name="pref_look_and_feel_weather_location">Τοποθεσία καιρού</string>
     <string name="pref_look_and_feel_weather_location_summary">Η τοποθεσία για την αναφορά καιρού. Αφήστε αυτό το άδειο για αυτόματη θέση.</string>
     <string name="pref_look_and_feel_weather_format">Μορφή καιρού</string>

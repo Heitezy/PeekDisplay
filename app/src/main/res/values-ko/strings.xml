@@ -124,7 +124,7 @@
     <string name="pref_look_and_feel_weather_info">날씨 정보를 보여줍니다</string>
     <string name="pref_look_and_feel_weather_info_summary">엿보기 디스플레이에서 날씨 정보를 구성하십시오</string>
     <string name="pref_look_and_feel_weather_show_summary">Peek 디스플레이에 날씨 정보를 표시하십시오</string>
-    <string name="pref_look_and_feel_weather_provider">엿보기 디스플레이는 날씨 데이터에 wtr.in을 사용합니다. 날씨를 가져 오면 식별 가능한 데이터를 전송할 수 있습니다.</string>
+    <string name="pref_look_and_feel_weather_provider">엿보기 디스플레이는 날씨 데이터에 wttr.in을 사용합니다. 날씨를 가져 오면 식별 가능한 데이터를 전송할 수 있습니다.</string>
     <string name="pref_look_and_feel_weather_location">날씨 위치</string>
     <string name="pref_look_and_feel_weather_location_summary">날씨 보고서의 위치. 자동 위치를 위해이 빈 상태로 두십시오.</string>
     <string name="pref_look_and_feel_weather_format">날씨 형식</string>

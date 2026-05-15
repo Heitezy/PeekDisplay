@@ -124,7 +124,7 @@
     <string name="pref_look_and_feel_weather_info">Pokaż informacje o pogodzie</string>
     <string name="pref_look_and_feel_weather_info_summary">Skonfiguruj informacje o pogodzie na wyświetlaczu PEEK</string>
     <string name="pref_look_and_feel_weather_show_summary">Pokaż informacje o pogodzie na swoim wyświetlaczu</string>
-    <string name="pref_look_and_feel_weather_provider">PEEK Display wykorzystuje wtrr.in do danych pogodowych. Pobieranie pogody może przenieść możliwe do zidentyfikowania dane.</string>
+    <string name="pref_look_and_feel_weather_provider">PEEK Display wykorzystuje wttr.in do danych pogodowych. Pobieranie pogody może przenieść możliwe do zidentyfikowania dane.</string>
     <string name="pref_look_and_feel_weather_location">Lokalizacja pogody</string>
     <string name="pref_look_and_feel_weather_location_summary">Lokalizacja raportu pogodowego. Pozostaw to puste na automatyczną lokalizację.</string>
     <string name="pref_look_and_feel_weather_format">Format pogody</string>

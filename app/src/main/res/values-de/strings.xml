@@ -124,7 +124,7 @@
     <string name="pref_look_and_feel_weather_info">Wetter anzeigen</string>
     <string name="pref_look_and_feel_weather_info_summary">Wetter auf dem Peek Display anpassen</string>
     <string name="pref_look_and_feel_weather_show_summary">Wetter auf dem Peek Display anzeigen</string>
-    <string name="pref_look_and_feel_weather_provider">Peek Display verwendet wtrr.in für Wetterdaten. Das Abrufen des Wetters kann identifizierbare Daten übertragen.</string>
+    <string name="pref_look_and_feel_weather_provider">Peek Display verwendet wttr.in für Wetterdaten. Das Abrufen des Wetters kann identifizierbare Daten übertragen.</string>
     <string name="pref_look_and_feel_weather_location">Ort</string>
     <string name="pref_look_and_feel_weather_location_summary">Der Ort für den Wetterbericht. Lassen Sie dies für die automatische Ortung leer.</string>
     <string name="pref_look_and_feel_weather_format">Wetterformat</string>

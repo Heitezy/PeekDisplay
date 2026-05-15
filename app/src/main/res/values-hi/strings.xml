@@ -124,7 +124,7 @@
     <string name="pref_look_and_feel_weather_info">मौसम की जानकारी दिखाएं</string>
     <string name="pref_look_and_feel_weather_info_summary">अपने पीक डिस्प्ले पर मौसम की जानकारी कॉन्फ़िगर करें</string>
     <string name="pref_look_and_feel_weather_show_summary">अपने झलक प्रदर्शन पर मौसम की जानकारी दिखाएं</string>
-    <string name="pref_look_and_feel_weather_provider">पीक डिस्प्ले मौसम के डेटा के लिए wtrr.in का उपयोग करता है। मौसम को प्राप्त करने से पहचान योग्य डेटा स्थानांतरित हो सकता है।</string>
+    <string name="pref_look_and_feel_weather_provider">पीक डिस्प्ले मौसम के डेटा के लिए wttr.in का उपयोग करता है। मौसम को प्राप्त करने से पहचान योग्य डेटा स्थानांतरित हो सकता है।</string>
     <string name="pref_look_and_feel_weather_location">मौसम का स्थान</string>
     <string name="pref_look_and_feel_weather_location_summary">मौसम की रिपोर्ट के लिए स्थान। इसे ऑटो-लोकेशन के लिए खाली छोड़ दें।</string>
     <string name="pref_look_and_feel_weather_format">मौसम का प्रारूप</string>
