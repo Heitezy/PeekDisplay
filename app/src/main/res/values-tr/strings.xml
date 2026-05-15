@@ -1,50 +1,50 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="device_admin_description">Peek Display un ekranınızı kapatmasına izin verin</string>
-    <string name="notification_listener_description">Bildirimleri her zaman ekranda göster</string>
+    <string name="device_admin_description">Peek Display\'in ekranınızı kapatmasına izin verin</string>
+    <string name="notification_listener_description">Bildirimleri Peek Display\'de göster</string>
     <string name="service_text">Peek Display arka planda çalışıyor</string>
     <string name="service_channel">Hizmet kanalı</string>
-    <string name="setup_root_failed">Kök isteği başarısız oldu! Lütfen tekrar deneyin veya modu değiştirin!</string>
+    <string name="setup_root_failed">Root isteği başarısız oldu! Lütfen tekrar deneyin veya modu değiştirin!</string>
     <string name="device_admin">Cihaz Yöneticisi</string>
-    <string name="device_admin_summary">Bu uygulamanın çalışması için bu cihaz yöneticisini etkinleştirmeniz veya kök moduna geçmeniz gerekir.</string>
+    <string name="device_admin_summary">Uygulamanın çalışması için bu cihaz yöneticisini etkinleştirmeniz veya root moduna geçmeniz gerekir.</string>
     <string name="notification_listener_service">Bildirim Erişimi</string>
-    <string name="notification_listener_service_summary">Bildirimlerinizi her zaman ekranda görüntülemek için uygulamanın bildirim erişimini etkinleştirmeniz gerekir.</string>
-    <string name="setup_draw_over_other_apps">Diğer uygulamalar üzerinde görüntüleme</string>
-    <string name="setup_draw_over_other_apps_summary">Peek Display göstermek için bu izin gereklidir.</string>
+    <string name="notification_listener_service_summary">Uygulamanın bildirimlerinizi Peek Display\'de göstermesi için bildirim erişimini etkinleştirmeniz gerekir.</string>
+    <string name="setup_draw_over_other_apps">Diğer uygulamaların üzerinde görüntüleme</string>
+    <string name="setup_draw_over_other_apps_summary">Peek Display\'i göstermek için bu izin gereklidir.</string>
     <string name="setup_phone_state">Telefon durumunu oku</string>
-    <string name="setup_phone_state_summary">Bu izin, gelen aramalar için her zaman ekranda görüntülemeyi durdurmak için gereklidir.</string>
+    <string name="setup_phone_state_summary">Bu izin, gelen aramalarda Peek Display\'i durdurmak için gereklidir.</string>
     <string name="setup_calendar">Takvimi oku</string>
-    <string name="setup_calendar_summary">Uygulamanın etkinliklerinizi her zaman ekranda görüntülemesi için takvim erişimini etkinleştirmeniz gerekir.</string>
+    <string name="setup_calendar_summary">Uygulamanın etkinliklerinizi Peek Display\'de göstermesi için takvim erişimini etkinleştirmeniz gerekir.</string>
     <string name="setup_skip">Atla</string>
     <string name="setup_continue">Devam et</string>
     <string name="setup_error">Bir hata oluştu! Lütfen tekrar deneyin!</string>
-    <string name="dialog_device_admin_text">Uygulamayı kaldırmadan önce cihaz yöneticisi ayrıcalıklarını devre dışı bırakmanız gerektiğini lütfen unutmayın! Bunu anladığınızdan emin olmak için lütfen aşağıdaki işlemi gerçekleştirin:\n7 + 12</string>
+    <string name="dialog_device_admin_text">Uygulamayı kaldırmadan önce cihaz yöneticisi yetkilerini devre dışı bırakmanız gerektiğini lütfen unutmayın! Bunu anladığınızdan emin olmak için lütfen aşağıdaki işlemi gerçekleştirin:\n7 + 12</string>
     <string name="dialog_device_admin_result">Sonuç</string>
     <string name="dialog_device_admin_error">Yanlış sonuç. Tekrar deneyin.</string>
-    <string name="app_description">Her zaman açık bir ekran ekleyen Android uygulaması</string>
-    <string name="charged">%1$d%% Ücretlendirildi</string>
+    <string name="app_description">Peek Display özelliği ekleyen Android uygulaması</string>
+    <string name="charged">%% %1$d Şarj Edildi</string>
     <string name="shortcut_disabled">Devre dışı</string>
     <string name="pref_int_failed">Bu değer kullanılamaz</string>
     <string name="pref_general">Genel Ayarlar</string>
     <string name="pref_enabled">Şu anda etkin</string>
     <string name="pref_disabled">Şu anda devre dışı</string>
-    <string name="pref_always_on">Her zaman ekranda</string>
+    <string name="pref_always_on">Peek Display</string>
     <string name="pref_charging">Şarj animasyonu</string>
-    <string name="pref_look_and_feel">Bak ve hisset</string>
+    <string name="pref_look_and_feel">Görünüm ve His</string>
     <string name="pref_ao_watch_face">Saat ekranı</string>
-    <string name="pref_ao_watch_face_summary">Peek Display nin saat ekranı ile ilgili ayarlar</string>
+    <string name="pref_ao_watch_face_summary">Peek Display\'in saat ekranı ile ilgili ayarlar</string>
     <string name="pref_ao_background">Arka plan</string>
-    <string name="pref_ao_background_summary">Peek Display nin arka planı ile ilgili ayarlar</string>
+    <string name="pref_ao_background_summary">Peek Display\'in arka planı ile ilgili ayarlar</string>
     <string name="pref_ao_behavior">Davranış</string>
     <string name="pref_ao_behavior_summary">Uygulamanın davranışıyla ilgili ayarlar</string>
     <string name="pref_ao_other">Diğer ayarlar</string>
-    <string name="pref_look_and_feel_hour">12 saatlik saat kullanın</string>
-    <string name="pref_look_and_feel_hour_summary_on">Şu anda kullanılan: 12 saatlik saat</string>
-    <string name="pref_look_and_feel_hour_summary_off">Şu anda kullanılan: 24 saat</string>
-    <string name="pref_look_and_feel_am_pm">AM / PM yi göster</string>
-    <string name="pref_look_and_feel_am_pm_summary">12 saatlik saati kullanırken AM / PM yi göster</string>
-    <string name="pref_look_and_feel_ao">Her zaman göz önünde</string>
-    <string name="pref_look_and_feel_ao_summary">Peek Display in görünümünü değiştirir</string>
+    <string name="pref_look_and_feel_hour">12 saatlik format kullan</string>
+    <string name="pref_look_and_feel_hour_summary_on">Şu an kullanılan: 12 saatlik format</string>
+    <string name="pref_look_and_feel_hour_summary_off">Şu an kullanılan: 24 saatlik format</string>
+    <string name="pref_look_and_feel_am_pm">ÖÖ / ÖS göster</string>
+    <string name="pref_look_and_feel_am_pm_summary">12 saatlik formatı kullanırken ÖÖ / ÖS göster</string>
+    <string name="pref_look_and_feel_ao">Peek Display görünümü</string>
+    <string name="pref_look_and_feel_ao_summary">Peek Display\'in görünümünü değiştirir</string>
     <string name="pref_look_and_feel_colors">Renkler</string>
     <string name="pref_look_and_feel_colors_summary">Belirli öğeler için renkleri seçin</string>
     <string name="pref_look_and_feel_colors_clock">Saat rengi</string>
@@ -52,99 +52,99 @@
     <string name="pref_look_and_feel_colors_battery">Pil rengi</string>
     <string name="pref_look_and_feel_colors_battery_arc">Pil rengi (M-Style)</string>
     <string name="pref_look_and_feel_colors_music_controls">Müzik kontrolleri rengi</string>
-    <string name="pref_look_and_feel_colors_calendar">Takvim etkinliği rengi</string>
+    <string name="pref_look_and_feel_colors_calendar">Takvim etkinlik rengi</string>
     <string name="pref_look_and_feel_colors_message">Mesaj rengi</string>
     <string name="pref_look_and_feel_colors_weather">Hava durumu rengi</string>
     <string name="pref_look_and_feel_colors_notification">Bildirim rengi</string>
     <string name="pref_look_and_feel_colors_fingerprint">Parmak izi simge rengi</string>
     <string name="pref_ao_showClock">Saati göster</string>
     <string name="pref_ao_showDate">Tarihi göster</string>
-    <string name="pref_ao_showBatteryIcn">Bir pil simgesi görüntüleyin</string>
+    <string name="pref_ao_showBatteryIcn">Pil simgesi göster</string>
     <string name="pref_ao_showBattery">Pil yüzdesini göster</string>
     <string name="pref_ao_showMusicControls">Müzik kontrollerini göster</string>
-    <string name="pref_ao_showAlbumArt">Ekran Albüm Sanatı</string>
-    <string name="pref_ao_showNotifications">Bildirim sayısını görüntüleme</string>
+    <string name="pref_ao_showAlbumArt">Albüm kapağını göster</string>
+    <string name="pref_ao_showNotifications">Bildirim sayısını göster</string>
     <string name="pref_ao_showNotificationIcons">Bildirim simgelerini göster</string>
     <string name="pref_ao_interactive_notification_icons">Etkileşimli Bildirim Simgeleri</string>
-    <string name="pref_ao_interactive_notification_icons_summary">Önizlemeyi göstermek için bildirim simgesine uzun basın ve ardından yürütmek için istenen eyleme kaydırın</string>
-    <string name="pref_ao_invert_interaction_highlight">Etkileşim vurgulamak</string>
-    <string name="pref_ao_invert_interaction_highlight_summary">Etkileşim sırasında veya boşta bildirim simgelerinin vurgulansa da değişiklik</string>
+    <string name="pref_ao_interactive_notification_icons_summary">Önizlemeyi göstermek için bildirim simgesine uzun basın ve eylemi yürütmek için kaydırın</string>
+    <string name="pref_ao_invert_interaction_highlight">Etkileşim vurgusunu tersine çevir</string>
+    <string name="pref_ao_invert_interaction_highlight_summary">Bildirim simgelerinin etkileşim sırasında mı yoksa boşta mı vurgulanacağını değiştirir</string>
     <string name="pref_ao_notification_icon_size">Bildirim simgesi boyutu</string>
     <string name="pref_ao_notification_icon_size_summary">Bildirim simgelerinin boyutunu değiştirir</string>
-    <string name="pref_ao_notification_icon_top_padding">Bildirim simgesi üst dolgu</string>
-    <string name="pref_ao_notification_icon_top_padding_summary">Bildirim simgelerini yukarıdaki alanı ayarlayın</string>
+    <string name="pref_ao_notification_icon_top_padding">Bildirim simgesi üst boşluğu</string>
+    <string name="pref_ao_notification_icon_top_padding_summary">Bildirim simgelerinin üzerindeki boşluğu ayarlayın</string>
     <string name="pref_ao_notification_preview_position">Bildirim Önizleme Konumu</string>
-    <string name="pref_ao_notification_preview_position_summary">Bildirim önizlemesinin konumu bildirim simgesine göre</string>
-    <string name="pref_ao_top_padding">En iyi dolgu</string>
+    <string name="pref_ao_notification_preview_position_summary">Bildirim önizlemesinin simgeye göre konumu</string>
+    <string name="pref_ao_top_padding">Üst boşluk</string>
     <string name="pref_ao_top_padding_summary">Ekran öğelerinin dikey konumunu ayarlayın</string>
     <string-array name="pref_ao_notification_preview_position_display">
-        <item>İkonun üstünde</item>
-        <item>Icon\'un altında</item>
+        <item>Simgenin üstünde</item>
+        <item>Simgenin altında</item>
     </string-array>
     <string-array name="pref_ao_notification_icon_size_display">
         <item>Küçük</item>
         <item>Standart</item>
-        <item>Genişlemiş</item>
+        <item>Büyük</item>
     </string-array>
-    <string name="pref_ao_fingerprint">Parmak izi simgesini görüntüleme</string>
-    <string name="pref_ao_fingerprint_margin">Parmak izi marjı</string>
+    <string name="pref_ao_fingerprint">Parmak izi simgesi göster</string>
+    <string name="pref_ao_fingerprint_margin">Parmak izi kenar boşluğu</string>
     <string name="pref_ao_fingerprint_margin_summary">Parmak izi simgesinin altındaki boşluk</string>
     <string name="pref_ao_fingerprint_interaction">Parmak izi etkileşim modu</string>
-    <string name="pref_ao_fingerprint_interaction_summary">Parmak izi simgesi ile nasıl etkileşim</string>
+    <string name="pref_ao_fingerprint_interaction_summary">Parmak izi simgesiyle nasıl etkileşime girileceği</string>
     <string name="pref_ao_fingerprint_interaction_swipe">Simgeden kaydır</string>
-    <string name="pref_ao_fingerprint_interaction_longpress">Uzun basın</string>
+    <string name="pref_ao_fingerprint_interaction_longpress">Uzun bas</string>
     <string name="pref_ao_swipe_notification_open">Açmak için bildirime kaydırın</string>
-    <string name="pref_ao_swipe_notification_open_summary">Parmak izi simgesinden onlara kaydırarak bildirimleri açmaya izin verin</string>
+    <string name="pref_ao_swipe_notification_open_summary">Parmak izi simgesinden kaydırarak bildirimlerin açılmasına izin verin</string>
     <string name="pref_ao_edgeGlow">Kenar parlaması</string>
-    <string name="pref_ao_edgeGlow_summary">Bir bildirim alındığında parlayan kenarlar</string>
-    <string name="pref_ao_glowDuration">Parlama süresi (milisaniye cinsinden)</string>
-    <string name="pref_ao_glowDuration_summary">Kenarların parlama süresi</string>
-    <string name="pref_ao_glowDelay">Parlama gecikmesi (milisaniye cinsinden)</string>
-    <string name="pref_ao_glowDelay_summary">Parlamalar arasındaki aralık</string>
-    <string name="pref_ao_glowStyle">Kenar parıltısı stili</string>
-    <string name="pref_ao_glowStyle_summary">Parlayan kenarların görünümünü değiştirir</string>
-    <string name="pref_ao_glowColor">Kenar parıltısı rengi</string>
-    <string name="pref_ao_glowColor_summary">Parlayan kenarların rengini değiştirir</string>
-    <string name="pref_ao_vibration">Titreşim süresi (milisaniye cinsinden)</string>
-    <string name="pref_ao_vibration_summary">Ekrana iki kez dokunduğunuzda telefonun titreme süresi</string>
-    <string name="pref_ao_animation_delay">Hareket gecikmesi (dakika olarak)</string>
-    <string name="pref_ao_animation_delay_summary">İçeriğin farklı konumları arasındaki süre\nUyarı: Çok yüksek değerler ekran yanmalarına neden olabilir!</string>
+    <string name="pref_ao_edgeGlow_summary">Bildirim alındığında kenarları parlatır</string>
+    <string name="pref_ao_glowDuration">Parlama süresi (milisaniye)</string>
+    <string name="pref_ao_glowDuration_summary">Kenarların parladığı süre</string>
+    <string name="pref_ao_glowDelay">Parlama gecikmesi (milisaniye)</string>
+    <string name="pref_ao_glowDelay_summary">Parlamalar arasındaki süre</string>
+    <string name="pref_ao_glowStyle">Kenar parlaması stili</string>
+    <string name="pref_ao_glowStyle_summary">Kenar parlamasının görünümünü değiştirir</string>
+    <string name="pref_ao_glowColor">Kenar parlaması rengi</string>
+    <string name="pref_ao_glowColor_summary">Kenar parlamasının rengini değiştirir</string>
+    <string name="pref_ao_vibration">Titreşim süresi (milisaniye)</string>
+    <string name="pref_ao_vibration_summary">Ekrana iki kez dokunulduğunda telefonun titreşim süresi</string>
+    <string name="pref_ao_animation_delay">Hareket gecikmesi (dakika)</string>
+    <string name="pref_ao_animation_delay_summary">İçeriğin konumları arasındaki süre\nUyarı: Çok yüksek değerler ekran yanmalarına neden olabilir!</string>
     <string name="pref_ao_smooth_animation">Hareketi canlandır</string>
     <string name="pref_ao_smooth_animation_summary">Konum değişikliklerini canlandırın</string>
     <string name="pref_ao_refresh_rate_optimization">Yenileme hızı optimizasyonu</string>
-    <string name="pref_ao_refresh_rate_optimization_summary">Pil tasarrufu sağlamak için ekran sabit olduğunda mevcut en düşük yenileme hızını kullanır</string>
-    <string name="pref_ao_force_brightness">Peek Display ye belirli bir parlaklığı zorla</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">Pil tasarrufu sağlamak için ekran sabitken en düşük yenileme hızını kullanır</string>
+    <string name="pref_ao_force_brightness">Peek Display\'de belirli bir parlaklığı zorla</string>
     <string name="pref_ao_force_brightness_summary">Zorunlu parlaklığı değiştirmek için dokunun</string>
     <string name="pref_ao_force_brightness_title">Parlaklık</string>
-    <string name="pref_ao_force_brightness_example">Bu, her zaman açık ekranınızdaki metnin ne kadar parlak görüneceğidir.</string>
+    <string name="pref_ao_force_brightness_example">Peek Display metinlerinin görüneceği parlaklık seviyesi budur.</string>
     <string name="pref_ao_pocket_mode">Cep modu</string>
-    <string name="pref_ao_pocket_mode_summary">Cebinizde her zaman açık göstergesini devre dışı bırakır\nUyarı: Sensör kullanımı pil kullanımının artmasına neden olabilir!</string>
-    <string name="pref_ao_dnd">Rahatsız etmeyin modunu etkinleştir</string>
-    <string name="pref_ao_dnd_summary">Her zaman açık ekranı çalışırken Rahatsız etmeyin modunu açar</string>
-    <string name="pref_ao_disable_on_dnd">Rahatsız etmeyin modunda kapat</string>
-    <string name="pref_ao_disable_on_dnd_summary">Rahatsız etmeyin modu etkinken her zaman açık ekranı kapatır</string>
+    <string name="pref_ao_pocket_mode_summary">Cebinizde Peek Display\'i devre dışı bırakır\nUyarı: Sensör kullanımı pil tüketimini artırabilir!</string>
+    <string name="pref_ao_dnd">Rahatsız Etmeyin modunu aç</string>
+    <string name="pref_ao_dnd_summary">Peek Display çalışırken Rahatsız Etmeyin modunu açar</string>
+    <string name="pref_ao_disable_on_dnd">Rahatsız Etmeyin modunda devre dışı bırak</string>
+    <string name="pref_ao_disable_on_dnd_summary">Rahatsız Etmeyin modu etkinken Peek Display\'i kapatır</string>
     <string name="pref_ao_power_saving">Güç tasarrufu modu (root)</string>
-    <string name="pref_ao_power_saving_summary">Her zaman açık ekran etkinleştirildiğinde sistemin güç tasarrufu modunu açar</string>
+    <string name="pref_ao_power_saving_summary">Peek Display etkinken sistemin güç tasarrufu modunu açar</string>
     <string name="pref_ao_double_tap_speed">İki kez dokunma hızı</string>
-    <string name="pref_ao_double_tap_speed_summary">İki musluğun birbirinden ayrılabileceği süre (milisaniye cinsinden)</string>
-    <string name="pref_ao_double_tap_disabled">Çift dokunmayı devre dışı bırak</string>
-    <string name="pref_ao_double_tap_disabled_summary">Peek Display den çıkmak için iki kez dokunmayı devre dışı bırakır (önerilmez)</string>
+    <string name="pref_ao_double_tap_speed_summary">İki dokunma arasındaki maksimum süre (milisaniye)</string>
+    <string name="pref_ao_double_tap_disabled">İki kez dokunmayı devre dışı bırak</string>
+    <string name="pref_ao_double_tap_disabled_summary">Peek Display\'den çıkmak için iki kez dokunmayı devre dışı bırakır (önerilmez)</string>
     <string name="pref_ao_message">Mesaj</string>
-    <string name="pref_ao_message_summary">Peek Display de görüntülenen bir mesaj</string>
+    <string name="pref_ao_message_summary">Peek Display\'de gösterilecek bir mesaj</string>
     <string name="pref_ao_date_format">Tarih formatı</string>
-    <string name="pref_ao_date_format_summary">Peek Display de kullanılan tarih formatı</string>
+    <string name="pref_ao_date_format_summary">Peek Display\'de kullanılan tarih formatı</string>
     <string name="pref_ao_date_format_dialog_text">Belirli bir kalıbı takip etmelisiniz</string>
     <string name="pref_ao_date_format_dialog_neutral">Daha fazla bilgi edinin</string>
-    <string name="pref_ao_date_format_illegal">Geçersiz biçim</string>
+    <string name="pref_ao_date_format_illegal">Geçersiz format</string>
     <string name="pref_ao_calendar">Etkinlikleri göster</string>
-    <string name="pref_ao_calendar_summary">Önümüzdeki 24 saat içindeki etkinlikleri Peek Display nizde gösterin</string>
-    <string name="notification_dismiss">Azletmek</string>
+    <string name="pref_ao_calendar_summary">Gelecek 24 saat içindeki etkinlikleri Peek Display\'de göster</string>
+    <string name="notification_dismiss">Yoksay</string>
     <string name="pref_look_and_feel_charging">Şarj animasyonu görünümü</string>
     <string name="pref_look_and_feel_charging_summary">Şarj animasyonunun görünümünü değiştirir</string>
-    <string name="pref_ao_background_image">Arka plan görüntüsü</string>
-    <string name="pref_ao_background_image_summary">Peek Display nin arka plan görüntüsünü değiştirme</string>
+    <string name="pref_ao_background_image">Arka plan görseli</string>
+    <string name="pref_ao_background_image_summary">Peek Display\'in arka plan görselini değiştir</string>
     <string-array name="pref_ao_background_image_array_display">
-        <item>Yok</item>
+        <item>Hiçbiri</item>
         <item>Daniel Olah</item>
         <item>Daniel Olah</item>
         <item>Daniel Olah</item>
@@ -159,42 +159,42 @@
         <item>Tyler Lastovich</item>
         <item>Özel</item>
     </string-array>
-    <string name="pref_look_and_feel_hide_display_cutouts">Ekran kesimlerini gizle</string>
-    <string name="pref_look_and_feel_hide_display_cutouts_summary">Tam ekran içeriğinde ekran kesimlerini gizle</string>
-    <string name="pref_look_and_feel_orientation">Oryantasyon</string>
+    <string name="pref_look_and_feel_hide_display_cutouts">Ekran kesiklerini gizle</string>
+    <string name="pref_look_and_feel_hide_display_cutouts_summary">Tam ekran içeriklerde ekran kesiklerini gizle</string>
+    <string name="pref_look_and_feel_orientation">Yönlendirme</string>
     <string name="pref_look_and_feel_orientation_summary">Ekranın yönünü değiştirir</string>
-    <string name="pref_look_and_feel_heads_up">Uyarı bildirimlerini gizle (root)</string>
-    <string name="pref_look_and_feel_heads_up_summary">Uyarı bildirimlerinin gösterilmesini önler (deneysel)</string>
+    <string name="pref_look_and_feel_heads_up">Peek bildirimlerini gizle (root)</string>
+    <string name="pref_look_and_feel_heads_up_summary">Peek bildirimlerinin gösterilmesini önler (deneysel)</string>
     <string name="pref_look_and_feel_weather">Hava Durumu</string>
-    <string name="pref_look_and_feel_weather_info">Hava durumu bilgilerini göster</string>
-    <string name="pref_look_and_feel_weather_info_summary">Peek Display nizde hava durumu bilgilerini yapılandırın</string>
-    <string name="pref_look_and_feel_weather_show_summary">Hava durumu bilgilerini Peek Display nizde gösterin</string>
-    <string name="pref_look_and_feel_weather_provider">Peek Display, hava durumu verileri için wttr.in kullanır. Hava durumunu almak, tanımlanabilir verileri aktarabilir.</string>
+    <string name="pref_look_and_feel_weather_info">Hava durumu bilgisini göster</string>
+    <string name="pref_look_and_feel_weather_info_summary">Peek Display\'de hava durumu bilgilerini yapılandırın</string>
+    <string name="pref_look_and_feel_weather_show_summary">Hava durumu bilgisini Peek Display\'de göster</string>
+    <string name="pref_look_and_feel_weather_provider">Peek Display hava durumu verileri için wttr.in kullanır. Veri çekilmesi tanımlanabilir veriler aktarabilir.</string>
     <string name="pref_look_and_feel_weather_location">Hava durumu konumu</string>
-    <string name="pref_look_and_feel_weather_location_summary">Hava durumu raporunun yeri. Otomatik konumlandırma için bunu boş bırakın.</string>
+    <string name="pref_look_and_feel_weather_location_summary">Hava durumu raporu için konum. Otomatik konum için boş bırakın.</string>
     <string name="pref_look_and_feel_weather_format">Hava durumu formatı</string>
-    <string name="pref_look_and_feel_weather_format_summary">Peek Display de kullanılan hava durumu formatı</string>
-    <string name="pref_look_and_feel_filter_notifications">Filtre bildirimleri</string>
+    <string name="pref_look_and_feel_weather_format_summary">Peek Display\'de kullanılan hava durumu formatı</string>
+    <string name="pref_look_and_feel_filter_notifications">Bildirimleri filtrele</string>
     <string name="pref_look_and_feel_filter_notifications_summary">Hangi bildirimlerin gösterilmeyeceğini seçin</string>
-    <string name="pref_look_and_feel_filter_notifications_explanation">Engellemek veya engelini kaldırmak için girişlere dokunun</string>
-    <string name="pref_look_and_feel_filter_notifications_blocked">Şuradan gelen bildirimleri engel</string>
-    <string name="pref_look_and_feel_filter_notifications_shown">Bildirimlerin alınabileceği yer:</string>
+    <string name="pref_look_and_feel_filter_notifications_explanation">Engellemek veya engeli kaldırmak için girişlere dokunun</string>
+    <string name="pref_look_and_feel_filter_notifications_blocked">Bildirimleri engelle:</string>
+    <string name="pref_look_and_feel_filter_notifications_shown">Bildirimlerine izin ver:</string>
     <string name="pref_look_and_feel_filter_notifications_empty">Bildirim yok</string>
-    <string name="pref_look_and_feel_filter_notifications_empty_summary">Görünen o ki gösterecek bir şey yok</string>
+    <string name="pref_look_and_feel_filter_notifications_empty_summary">Gösterilecek bir şey yok gibi görünüyor</string>
     <string name="pref_look_and_feel_filter_notifications_unknown">Bilinmeyen uygulama</string>
-    <string name="pref_look_and_feel_tint_notifications">Renk tonu bildirimleri</string>
-    <string name="pref_look_and_feel_tint_notifications_summary">Uygulama renklerinde renk tonu bildirimleri</string>
+    <string name="pref_look_and_feel_tint_notifications">Bildirimleri renklendir</string>
+    <string name="pref_look_and_feel_tint_notifications_summary">Bildirimleri uygulama renklerine göre renklendirir</string>
     <string name="pref_look_and_feel_display_size">Ekran boyutu</string>
-    <string name="pref_look_and_feel_display_size_summary">Peek Display nin ekran boyutu %1$d%%</string>
+    <string name="pref_look_and_feel_display_size_summary">Peek Display ekran boyutu: %% %1$d</string>
     <string name="pref_look_and_feel_rules">Kurallar</string>
-    <string name="pref_look_and_feel_rules_summary">Peek Display nin ne zaman gösterileceğini kontrol edin</string>
+    <string name="pref_look_and_feel_rules_summary">Peek Display\'in ne zaman gösterileceğini kontrol edin</string>
     <string name="pref_look_and_feel_rules_charging_state">Şarj durumu</string>
     <string name="pref_look_and_feel_rules_charger">Şarj tipi</string>
-    <string name="pref_look_and_feel_rules_charger_summary">Hangi şarj türlerinin şarj olarak sayılacağını seçin</string>
+    <string name="pref_look_and_feel_rules_charger_summary">Hangi şarj türlerinin şarj sayılacağını seçin</string>
     <string name="pref_look_and_feel_rules_battery_level">Pil seviyesi</string>
-    <string name="pref_look_and_feel_rules_battery_level_summary">Yalnızca %1$d%% üzerinde göster</string>
+    <string name="pref_look_and_feel_rules_battery_level_summary">Yalnızca %% %1$d üzerinde göster</string>
     <string name="pref_look_and_feel_rules_battery_level_summary_zero">Tüm pil seviyelerinde göster</string>
-    <string name="pref_look_and_feel_rules_time">Zaman dilimi</string>
+    <string name="pref_look_and_feel_rules_time">Zaman aralığı</string>
     <string name="pref_look_and_feel_rules_time_summary">%1$s ile %2$s arasında göster</string>
     <string name="pref_look_and_feel_rules_timeout">Zaman aşımı</string>
     <string name="pref_look_and_feel_rules_timeout_summary_zero">Zaman aşımı ayarlanmadı</string>
@@ -203,36 +203,36 @@
     <string name="pref_permissions">İzinler</string>
     <string name="pref_permissions_summary">İzinlerle ilgili ayarlar</string>
     <string name="pref_ignore_battery_optimizations">Pil optimizasyonlarını yoksay</string>
-    <string name="pref_ignore_battery_optimizations_summary">Sistemden kaynaklanan gecikmeleri önler</string>
+    <string name="pref_ignore_battery_optimizations_summary">Sistem kaynaklı gecikmeleri önler</string>
     <string name="pref_notification">Bildirim erişimi</string>
     <string name="pref_notification_summary">Bildirim erişimini etkinleştirin veya devre dışı bırakın</string>
-    <string name="pref_draw_over_other_apps">Diğer uygulamalar üzerinde görüntüleme</string>
+    <string name="pref_draw_over_other_apps">Diğer uygulamaların üzerinde görüntüleme</string>
     <string name="pref_draw_over_other_apps_summary">Bu izni etkinleştirin veya devre dışı bırakın</string>
     <string name="pref_admin">Cihaz yöneticisi</string>
-    <string name="pref_admin_summary">Bu cihaz yöneticisini normal mod için etkinleştirin\nLütfen kaldırmadan önce uygulamanın cihaz yöneticisi ayrıcalıklarını devre dışı bırakmanız gerektiğini unutmayın!</string>
-    <string name="pref_root_mode">Kök modu</string>
-    <string name="pref_root_mode_summary">Kök işlevselliğini etkinleştirir</string>
+    <string name="pref_admin_summary">Normal mod için bu cihaz yöneticisini etkinleştirin\nLütfen kaldırmadan önce cihaz yöneticisi yetkilerini devre dışı bırakmanız gerektiğini unutmayın!</string>
+    <string name="pref_root_mode">Root modu</string>
+    <string name="pref_root_mode_summary">Root işlevselliğini etkinleştirir</string>
     <string name="help_center">Yardım merkezi</string>
-    <string name="help_center_summary">Kaldırma, tepkisizlik, pilin boşalması</string>
-    <string name="help_center_missing_permissions_text">Bir ayar grileştiğinde ve önce bir şeyi etkinleştirmenizi söylediğinde, gerekli izinleri henüz etkinleştirmediniz. Eksik izinleri vermek için ana sayfadaki “İzinler” sayfasını açın ve gerekli izinleri kullanmaya izin verin. Artık bu izinlere ihtiyaç duyan ayarları etkinleştirebilirsiniz.</string>
+    <string name="help_center_summary">Kaldırma, tepkisizlik, pil tüketimi</string>
+    <string name="help_center_missing_permissions_text">Bir ayar devre dışıysa ve önce bir şeyi etkinleştirmenizi söylüyorsa, gerekli izinleri henüz vermemişsiniz demektir. Eksik izinleri vermek için ana sayfadaki “İzinler” sayfasını açın ve gerekli izinleri onaylayın. Artık bu izinlere ihtiyaç duyan ayarları etkinleştirebilirsiniz.</string>
     <string name="help_center_uninstall">Nasıl kaldırılır</string>
-    <string name="help_center_uninstall_text">Kaldırma işlemi, Android işletim sistemindeki bir tasarım hatası nedeniyle başarısız olabilir. Kaldırmadan önce cihaz yöneticisi izni devre dışı bırakılmamışsa işlem başarısız olur. Kaldırmadan önce cihaz yöneticisi iznini devre dışı bırakmanız gerekir.</string>
+    <string name="help_center_uninstall_text">Kaldırma işlemi, Android işletim sistemindeki bir tasarım hatası nedeniyle başarısız olabilir. Eğer kaldırmadan önce cihaz yöneticisi izni devre dışı bırakılmamışsa işlem başarısız olur. Kaldırmadan önce cihaz yöneticisi iznini kapatmanız gerekir.</string>
     <string name="help_center_uninstall_button">Şimdi kaldır</string>
     <string name="help_center_delays">Gecikmeler nasıl düzeltilir</string>
-    <string name="help_center_delays_text">Bazı üreticiler uygulama işlevselliği yerine pil ömrünü tercih eder, bu nedenle bu uygulama yalnızca bazı cihazlarda gecikmelerle çalışabilir veya hiç çalışmayabilir. Gecikmeler yaşıyorsanız uygulama için pil optimizasyonlarını devre dışı bırakmayı deneyin veya üreticiye özel diğer ayarları kontrol edin.</string>
+    <string name="help_center_delays_text">Bazı üreticiler uygulama işlevselliği yerine pil ömrünü tercih eder, bu nedenle bu uygulama bazı cihazlarda gecikmeli çalışabilir veya hiç çalışmayabilir. Gecikme yaşıyorsanız uygulama için pil optimizasyonlarını devre dışı bırakmayı deneyin veya üreticiye özel diğer ayarları kontrol edin.</string>
     <string name="help_center_delays_button_one">Pil Ayarları</string>
     <string name="help_center_delays_button_two">Üreticiye özel</string>
-    <string name="help_center_battery_drain">Batarya boşalmasının kaynağını bulma</string>
-    <string name="help_center_battery_drain_text">Pilin boşalmasının bir nedeni, LCD ekranlı bir telefon kullanmanız olabilir. Bu uygulama, enerji tasarrufu sağlamak için siyah pikselleri kapatabilen OLED ekrana sahip telefonlar için tasarlanmıştır. LCD ekranlar siyah pikselleri kapatamaz, bu da her zaman açık ekran etkinleştirildiğinde ekranın çok daha fazla enerji kullanmasına neden olur. Başka bir neden de, her zaman açık ekran çalışırken diğer uygulamaların arka planda çalışması olabilir. Android, pil tüketimini Peek Display un pil tüketiminin bir parçası olarak görüntüleyecektir.</string>
+    <string name="help_center_battery_drain">Pil tüketiminin kaynağını bulma</string>
+    <string name="help_center_battery_drain_text">Pil tüketiminin bir nedeni, LCD ekranlı bir telefon kullanmanız olabilir. Bu uygulama, siyah pikselleri kapatarak enerji tasarrufu sağlayabilen OLED ekranlı telefonlar için tasarlanmıştır. LCD ekranlar siyah pikselleri kapatamaz, bu da Peek Display etkinken ekranın çok daha fazla enerji tüketmesine neden olur. Başka bir neden de, Peek Display çalışırken diğer uygulamaların arka planda çalışması olabilir. Android, bu tüketimi Peek Display tüketiminin bir parçası olarak gösterecektir.</string>
     <string name="loading">Yükleniyor</string>
     <string name="missing_permissions">Eksik İzinler</string>
     <string name="permissions_notification_access">Bu özellik için bildirim erişimini açın</string>
-    <string name="permissions_device_admin_or_root">Bu özellik için cihaz yöneticisini veya root u açın</string>
+    <string name="permissions_device_admin_or_root">Bu özellik için cihaz yöneticisini veya root\'u açın</string>
     <string name="about">Hakkında</string>
     <string name="about_summary">Uygulama hakkında</string>
     <string name="about_app_version">Uygulama sürümü</string>
     <string name="about_privacy">Harici İçerik</string>
-    <string name="about_privacy_desc">Harici içerik GitHub dan yüklenecektir. Daha fazla bilgi için gizlilik politikalarını okuyun.</string>
+    <string name="about_privacy_desc">Harici içerikler GitHub\'dan yüklenecektir. Daha fazla bilgi için gizlilik politikalarını okuyun.</string>
     <string name="about_privacy_policy">Gizlilik Politikası</string>
     <string name="about_contributors">Katkıda bulunanlar</string>
     <string name="about_contributors_desc">Katkıda bulunanların listesi</string>
@@ -240,14 +240,14 @@
     <string name="about_github">GitHub deposu</string>
     <string name="about_license">Lisans</string>
     <string name="about_icons">Simgeler</string>
-    <string name="about_icons_desc">Icons8 ve Google dan Simgeler</string>
+    <string name="about_icons_desc">Icons8 ve Google simgeleri</string>
     <string name="about_libraries">Kütüphaneler</string>
-    <string name="about_libraries_desc">Kullanılan tüm kitaplıkların listesi</string>
+    <string name="about_libraries_desc">Kullanılan tüm kütüphanelerin listesi</string>
 
     <string-array name="pref_look_and_feel_rules_charging_state_display">
         <item>Herhangi bir şarj durumunda göster</item>
         <item>Yalnızca şarj olurken göster</item>
-        <item>Yalnızca boşaltma sırasında göster</item>
+        <item>Yalnızca deşarj olurken göster</item>
     </string-array>
 
     <string-array name="pref_look_and_feel_rules_charger_display">
@@ -263,31 +263,31 @@
     </string-array>
 
     <string-array name="pref_ao_glowStyle_display">
-        <item>Tüm taraflar</item>
-        <item>Sol ve sağ taraflar</item>
-        <item>Üst ve alt taraflar</item>
+        <item>Tüm kenarlar</item>
+        <item>Sol ve sağ kenarlar</item>
+        <item>Üst ve alt kenarlar</item>
     </string-array>
 
-    <string name="pref_look_and_feel_rules_pickup_mode">Pikap modu</string>
-    <string name="pref_look_and_feel_rules_pickup_mode_summary">Yalnızca telefonu alırken gösterin</string>
-    <string name="pref_pickup_sensitivity">Pikap hassasiyeti</string>
-    <string name="pref_pickup_sensitivity_summary">Alma tespitinin hassasiyetini ayarlayın</string>
+    <string name="pref_look_and_feel_rules_pickup_mode">Kaldırma modu</string>
+    <string name="pref_look_and_feel_rules_pickup_mode_summary">Yalnızca telefonu elinize aldığınızda göster</string>
+    <string name="pref_pickup_sensitivity">Kaldırma hassasiyeti</string>
+    <string name="pref_pickup_sensitivity_summary">Kaldırma algılama hassasiyetini ayarlayın</string>
     <string-array name="pref_pickup_sensitivity_display">
         <item>Yüksek</item>
         <item>Orta</item>
         <item>Düşük</item>
     </string-array>
-    <string name="pref_ao_lock_icon">Kilit simgesini kullanın</string>
-    <string name="pref_ao_lock_icon_summary">Parmak izi simgesini bir kilit simgesiyle değiştirin</string>
-    <string name="donate">Bağış yapmak</string>
+    <string name="pref_ao_lock_icon">Kilit simgesi kullan</string>
+    <string name="pref_ao_lock_icon_summary">Parmak izi simgesini kilit simgesiyle değiştirin</string>
+    <string name="donate">Bağış Yap</string>
     <string name="donate_summary">Peek Display gelişimini destekleyin</string>
     <string name="notification_action_reply">Cevap vermek</string>
-    <string name="pref_look_and_feel_weather_unit">İmparatorluk birimlerini kullanın</string>
-    <string name="pref_look_and_feel_weather_unit_summary">Fahrenheit\'te sıcaklığı görüntüleyin</string>
+    <string name="pref_look_and_feel_weather_unit">İmparatorluk birimlerini kullan</string>
+    <string name="pref_look_and_feel_weather_unit_summary">Sıcaklığı Fahrenheit olarak göster</string>
     <string name="colorpicker_opacity">Opaklık</string>
     <string name="colorpicker_color">Renk</string>
-    <string name="colorpicker_custom">Gelenek</string>
-    <string name="colorpicker_presets">Ön Ayarlar</string>
+    <string name="colorpicker_custom">Özel</string>
+    <string name="colorpicker_presets">Hazır Ayarlar</string>
     <string name="pref_look_and_feel_weather_refresh_interval">Yenileme aralığı</string>
     <string name="pref_look_and_feel_weather_refresh_interval_label">dakika</string>
     <string name="pref_look_and_feel_weather_refresh_interval_disabled">Devre dışı (başlangıçta bir kez getir)</string>
