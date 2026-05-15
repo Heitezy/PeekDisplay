@@ -1,10 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <plurals name="pref_look_and_feel_rules_timeout_summary">
-        <item quantity="one">その後やめなさい %d 2番</item>
-        <item quantity="other">その後やめなさい %d 秒</item>
+        <item quantity="other">%d秒後に終了</item>
     </plurals>
     <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
-        <item quantity="other">毎 %d 分</item>
+        <item quantity="other">%d分ごと</item>
     </plurals>
 </resources>

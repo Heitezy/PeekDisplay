@@ -1,226 +1,226 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="device_admin_description">ピークディスプレイが画面をオフにすることを許可します</string>
-    <string name="notification_listener_description">ディスプレイに通知を表示します</string>
-    <string name="service_text">Peekディスプレイはバックグラウンドで実行されています</string>
+    <string name="device_admin_description">Peek Displayが画面をオフにすることを許可します</string>
+    <string name="notification_listener_description">画面に通知を表示します</string>
+    <string name="service_text">Peek Displayはバックグラウンドで実行されています</string>
     <string name="service_channel">サービスチャネル</string>
-    <string name="setup_root_failed">ルートリクエストが失敗しました！もう一度やり直すか、モードを切り替えてください！</string>
+    <string name="setup_root_failed">ルート権限のリクエストに失敗しました。もう一度やり直すか、モードを切り替えてください。</string>
     <string name="device_admin">デバイス管理者</string>
-    <string name="device_admin_summary">このデバイス管理者をアクティブにするか、このアプリが動作するためにルートモードに切り替える必要があります。</string>
-    <string name="notification_listener_service">通知アクセス</string>
-    <string name="notification_listener_service_summary">PEEKディスプレイに通知を表示するために、アプリの通知アクセスを有効にする必要があります。</string>
-    <string name="setup_draw_over_other_apps">他のアプリに表示します</string>
-    <string name="setup_draw_over_other_apps_summary">この許可は、Peekディスプレイを表示するために必要です。</string>
-    <string name="setup_phone_state">電話状態を読んでください</string>
-    <string name="setup_phone_state_summary">この許可は、着信コールのピークディスプレイを停止するために必要です。</string>
-    <string name="setup_calendar">カレンダーを読んでください</string>
-    <string name="setup_calendar_summary">アプリがPeekディスプレイにイベントを表示するには、カレンダーアクセスを有効にする必要があります。</string>
+    <string name="device_admin_summary">このアプリが動作するためには、デバイス管理者を有効にするか、ルートモードに切り替える必要があります。</string>
+    <string name="notification_listener_service">通知へのアクセス</string>
+    <string name="notification_listener_service_summary">Peek Displayに通知を表示するには、アプリの通知へのアクセスを有効にする必要があります。</string>
+    <string name="setup_draw_over_other_apps">他のアプリの上に重ねて表示</string>
+    <string name="setup_draw_over_other_apps_summary">この権限は、Peek Displayを表示するために必要です。</string>
+    <string name="setup_phone_state">電話の発信と管理</string>
+    <string name="setup_phone_state_summary">この権限は、着信時にPeek Displayを停止するために必要です。</string>
+    <string name="setup_calendar">カレンダーへのアクセス</string>
+    <string name="setup_calendar_summary">Peek Displayにイベントを表示するには、カレンダーへのアクセスを有効にする必要があります。</string>
     <string name="setup_skip">スキップ</string>
-    <string name="setup_continue">続く</string>
-    <string name="setup_error">何かがうまくいかなかった！もう一度やり直してください！</string>
-    <string name="dialog_device_admin_text">アンインストールする前に、アプリのデバイス管理特権を無効にする必要があることに注意してください。これを確実に理解するには、次の操作を実行してください。\n7 + 12</string>
+    <string name="setup_continue">続行</string>
+    <string name="setup_error">エラーが発生しました。もう一度やり直してください。</string>
+    <string name="dialog_device_admin_text">アンインストールする前に、アプリのデバイス管理権限を無効にする必要があります。確認のため、次の計算結果を入力してください。\n7 + 12</string>
     <string name="dialog_device_admin_result">結果</string>
-    <string name="dialog_device_admin_error">間違った結果。もう一度やり直してください。</string>
-    <string name="app_description">Peekディスプレイを追加するAndroidアプリ。</string>
-    <string name="charged">%1$d%%充電</string>
+    <string name="dialog_device_admin_error">正しくありません。もう一度やり直してください。</string>
+    <string name="app_description">Peek Displayを追加するAndroidアプリ。</string>
+    <string name="charged">%1$d%% 充電完了</string>
     <string name="shortcut_disabled">無効</string>
     <string name="pref_int_failed">この値は使用できません</string>
-    <string name="pref_general">一般的な設定</string>
-    <string name="pref_enabled">現在有効になっています</string>
-    <string name="pref_disabled">現在無効になっています</string>
-    <string name="pref_always_on">ピークディスプレイ</string>
+    <string name="pref_general">全般設定</string>
+    <string name="pref_enabled">有効</string>
+    <string name="pref_disabled">無効</string>
+    <string name="pref_always_on">Peek Display</string>
     <string name="pref_charging">充電アニメーション</string>
-    <string name="pref_look_and_feel">ルックアンドフィール</string>
-    <string name="pref_ao_watch_face">顔を見てください</string>
-    <string name="pref_ao_watch_face_summary">PeekディスプレイのWatch Faceに関連する設定</string>
+    <string name="pref_look_and_feel">ルック＆フィール</string>
+    <string name="pref_ao_watch_face">ウォッチフェイス</string>
+    <string name="pref_ao_watch_face_summary">Peek Displayのウォッチフェイスに関する設定</string>
     <string name="pref_ao_background">背景</string>
-    <string name="pref_ao_background_summary">Peekディスプレイの背景に関連する設定</string>
-    <string name="pref_ao_behavior">行動</string>
-    <string name="pref_ao_behavior_summary">アプリの動作に関連する設定</string>
+    <string name="pref_ao_background_summary">Peek Displayの背景に関する設定</string>
+    <string name="pref_ao_behavior">動作</string>
+    <string name="pref_ao_behavior_summary">アプリの動作に関する設定</string>
     <string name="pref_ao_other">その他の設定</string>
-    <string name="pref_look_and_feel_hour">12時間の時計を使用します</string>
-    <string name="pref_look_and_feel_hour_summary_on">現在使用されています：12時間の時計</string>
-    <string name="pref_look_and_feel_hour_summary_off">現在使用されています：24時間の時計</string>
-    <string name="pref_look_and_feel_am_pm">AM / PMを表示します</string>
-    <string name="pref_look_and_feel_am_pm_summary">12時間のクロックを使用する場合は、AM / PMを表示します</string>
-    <string name="pref_look_and_feel_ao">ピークディスプレイの外観</string>
-    <string name="pref_look_and_feel_ao_summary">Peekディスプレイの外観を変更します</string>
+    <string name="pref_look_and_feel_hour">12時間表示を使用</string>
+    <string name="pref_look_and_feel_hour_summary_on">現在：12時間表示</string>
+    <string name="pref_look_and_feel_hour_summary_off">現在：24時間表示</string>
+    <string name="pref_look_and_feel_am_pm">午前/午後を表示</string>
+    <string name="pref_look_and_feel_am_pm_summary">12時間表示の際に、午前/午後を表示します</string>
+    <string name="pref_look_and_feel_ao">Peek Displayの外観</string>
+    <string name="pref_look_and_feel_ao_summary">Peek Displayの外観を変更します</string>
     <string name="pref_look_and_feel_colors">色</string>
-    <string name="pref_look_and_feel_colors_summary">特定の要素の色を選択します</string>
-    <string name="pref_look_and_feel_colors_clock">時計色</string>
+    <string name="pref_look_and_feel_colors_summary">各要素の色を選択します</string>
+    <string name="pref_look_and_feel_colors_clock">時計の色</string>
     <string name="pref_look_and_feel_colors_date">日付の色</string>
     <string name="pref_look_and_feel_colors_battery">バッテリーの色</string>
     <string name="pref_look_and_feel_colors_battery_arc">バッテリーの色 (M-Style)</string>
-    <string name="pref_look_and_feel_colors_music_controls">音楽は色を制御します</string>
+    <string name="pref_look_and_feel_colors_music_controls">音楽コントロールの色</string>
     <string name="pref_look_and_feel_colors_calendar">カレンダーイベントの色</string>
-    <string name="pref_look_and_feel_colors_message">メッセージカラー</string>
+    <string name="pref_look_and_feel_colors_message">メッセージの色</string>
     <string name="pref_look_and_feel_colors_weather">天気の色</string>
-    <string name="pref_look_and_feel_colors_notification">通知色</string>
+    <string name="pref_look_and_feel_colors_notification">通知の色</string>
     <string name="pref_look_and_feel_colors_fingerprint">指紋アイコンの色</string>
-    <string name="pref_ao_showClock">時間を表示します</string>
-    <string name="pref_ao_showDate">日付を表示します</string>
-    <string name="pref_ao_showBatteryIcn">バッテリーアイコンを表示します</string>
-    <string name="pref_ao_showBattery">バッテリーの割合を表示します</string>
-    <string name="pref_ao_showMusicControls">音楽コントロールを表示します</string>
-    <string name="pref_ao_showNotifications">通知カウントを表示します</string>
-    <string name="pref_ao_showNotificationIcons">通知アイコンを表示します</string>
-    <string name="pref_ao_fingerprint">指紋アイコンを表示します</string>
-    <string name="pref_ao_fingerprint_margin">指紋マージン</string>
+    <string name="pref_ao_showClock">時刻を表示</string>
+    <string name="pref_ao_showDate">日付を表示</string>
+    <string name="pref_ao_showBatteryIcn">バッテリーアイコンを表示</string>
+    <string name="pref_ao_showBattery">バッテリー残量を表示</string>
+    <string name="pref_ao_showMusicControls">音楽コントロールを表示</string>
+    <string name="pref_ao_showNotifications">通知件数を表示</string>
+    <string name="pref_ao_showNotificationIcons">通知アイコンを表示</string>
+    <string name="pref_ao_fingerprint">指紋アイコンを表示</string>
+    <string name="pref_ao_fingerprint_margin">指紋アイコンのマージン</string>
     <string name="pref_ao_fingerprint_margin_summary">指紋アイコンの下のスペース</string>
     <string name="pref_ao_edgeGlow">エッジグロー</string>
-    <string name="pref_ao_edgeGlow_summary">通知を受け取ったときの輝くエッジ</string>
-    <string name="pref_ao_glowDuration">輝く期間（ミリ秒単位）</string>
-    <string name="pref_ao_glowDuration_summary">持続時間エッジは輝いています</string>
-    <string name="pref_ao_glowDelay">輝く遅延（ミリ秒単位）</string>
-    <string name="pref_ao_glowDelay_summary">輝きの間隔</string>
+    <string name="pref_ao_edgeGlow_summary">通知受信時に画面の端を光らせる</string>
+    <string name="pref_ao_glowDuration">点灯時間（ミリ秒）</string>
+    <string name="pref_ao_glowDuration_summary">エッジグローを表示する時間</string>
+    <string name="pref_ao_glowDelay">点灯間隔（ミリ秒）</string>
+    <string name="pref_ao_glowDelay_summary">エッジグローの間隔</string>
     <string name="pref_ao_glowStyle">エッジグロースタイル</string>
-    <string name="pref_ao_glowStyle_summary">輝くエッジの外観を変更します</string>
+    <string name="pref_ao_glowStyle_summary">エッジグローの外観を変更します</string>
     <string name="pref_ao_glowColor">エッジグローの色</string>
-    <string name="pref_ao_glowColor_summary">輝くエッジの色を変更します</string>
-    <string name="pref_ao_vibration">振動期間（ミリ秒単位）</string>
-    <string name="pref_ao_vibration_summary">期間画面をダブルタップすると、電話が振動します</string>
-    <string name="pref_ao_animation_delay">移動遅延（数分で）</string>
-    <string name="pref_ao_animation_delay_summary">コンテンツの異なる位置の間の時間\n警告：値が高すぎると、スクリーンバーンインを引き起こす可能性があります！</string>
-    <string name="pref_ao_smooth_animation">アニメーションモーション</string>
-    <string name="pref_ao_smooth_animation_summary">位置の変更をアニメーション化します</string>
+    <string name="pref_ao_glowColor_summary">エッジグローの色を変更します</string>
+    <string name="pref_ao_vibration">バイブレーション時間（ミリ秒）</string>
+    <string name="pref_ao_vibration_summary">ダブルタップ時のバイブレーション時間</string>
+    <string name="pref_ao_animation_delay">移動間隔（分）</string>
+    <string name="pref_ao_animation_delay_summary">コンテンツが表示位置を変更する間隔\n警告：値が大きすぎると、画面の焼き付きの原因になる可能性があります。</string>
+    <string name="pref_ao_smooth_animation">スムーズなアニメーション</string>
+    <string name="pref_ao_smooth_animation_summary">表示位置の変更をアニメーション化します</string>
     <string name="pref_ao_refresh_rate_optimization">リフレッシュレートの最適化</string>
-    <string name="pref_ao_refresh_rate_optimization_summary">バッテリーを節約するために、ディスプレイが静止しているときに利用可能な最低のリフレッシュレートを使用します</string>
-    <string name="pref_ao_force_brightness">ピークディスプレイに特定の明るさを強制します</string>
-    <string name="pref_ao_force_brightness_summary">タップして、強制的な明るさを変更します</string>
-    <string name="pref_ao_force_brightness_title">輝度</string>
-    <string name="pref_ao_force_brightness_example">これは、ピークディスプレイのテキストがどれほど明るく表示されるかです。</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">バッテリー節約のため、画面が静止しているときは可能な限り低いリフレッシュレートを使用します</string>
+    <string name="pref_ao_force_brightness">Peek Displayの明るさを固定</string>
+    <string name="pref_ao_force_brightness_summary">タップして明るさを変更します</string>
+    <string name="pref_ao_force_brightness_title">明るさ</string>
+    <string name="pref_ao_force_brightness_example">これはPeek Displayでのテキストの明るさの例です。</string>
     <string name="pref_ao_pocket_mode">ポケットモード</string>
-    <string name="pref_ao_pocket_mode_summary">ポケットにピークディスプレイを無効にします\n警告：センサーの使用により、バッテリーの使用量が増加する可能性があります！</string>
-    <string name="pref_ao_dnd">オンにして邪魔しないでください</string>
-    <string name="pref_ao_dnd_summary">PEEKディスプレイが実行されている間、オンになってモードを乱さないでください</string>
-    <string name="pref_ao_disable_on_dnd">邪魔しないでくださいモードで無効にします</string>
-    <string name="pref_ao_disable_on_dnd_summary">乱れないモードが非アクティブである場合にのみ表示します</string>
-    <string name="pref_ao_power_saving">電源保存モード（ルート）</string>
-    <string name="pref_ao_power_saving_summary">ピークディスプレイが有効になっているときにシステムの電源セーバーモードをオンにします</string>
-    <string name="pref_ao_double_tap_speed">ダブルタップ速度</string>
-    <string name="pref_ao_double_tap_speed_summary">2つのタップが離れることができる時間（ミリ秒単位）</string>
-    <string name="pref_ao_double_tap_disabled">ダブルタップを無効にします</string>
-    <string name="pref_ao_double_tap_disabled_summary">ダブルタップを無効にしてピークディスプレイを終了します（推奨されません）</string>
+    <string name="pref_ao_pocket_mode_summary">ポケットの中ではPeek Displayを無効にします\n警告：センサーを使用するため、バッテリー消費量が増加する可能性があります。</string>
+    <string name="pref_ao_dnd">サイレントモードを有効化</string>
+    <string name="pref_ao_dnd_summary">Peek Displayの動作中、サイレントモードを有効にします</string>
+    <string name="pref_ao_disable_on_dnd">サイレントモード中は無効化</string>
+    <string name="pref_ao_disable_on_dnd_summary">サイレントモードが無効なときのみ表示します</string>
+    <string name="pref_ao_power_saving">省電力モード (ルート)</string>
+    <string name="pref_ao_power_saving_summary">Peek Displayが有効なとき、システムの省電力モードをオンにします</string>
+    <string name="pref_ao_double_tap_speed">ダブルタップの速度</string>
+    <string name="pref_ao_double_tap_speed_summary">ダブルタップと判定される間隔（ミリ秒）</string>
+    <string name="pref_ao_double_tap_disabled">ダブルタップを無効化</string>
+    <string name="pref_ao_double_tap_disabled_summary">Peek Displayを終了するためのダブルタップを無効にします (非推奨)</string>
     <string name="pref_ao_message">メッセージ</string>
-    <string name="pref_ao_message_summary">Peekディスプレイに表示されるメッセージ</string>
+    <string name="pref_ao_message_summary">Peek Displayに表示するメッセージ</string>
     <string name="pref_ao_date_format">日付形式</string>
-    <string name="pref_ao_date_format_summary">Peekディスプレイで使用される日付形式</string>
+    <string name="pref_ao_date_format_summary">Peek Displayで使用される日付形式</string>
     <string name="pref_ao_date_format_dialog_text">特定のパターンに従う必要があります</string>
-    <string name="pref_ao_date_format_dialog_neutral">もっと詳しく知る</string>
-    <string name="pref_ao_date_format_illegal">違法な形式</string>
-    <string name="pref_ao_calendar">イベントを表示します</string>
-    <string name="pref_ao_calendar_summary">ピークディスプレイで次の24時間でイベントを表示する</string>
+    <string name="pref_ao_date_format_dialog_neutral">詳細</string>
+    <string name="pref_ao_date_format_illegal">無効な形式</string>
+    <string name="pref_ao_calendar">イベントを表示</string>
+    <string name="pref_ao_calendar_summary">Peek Displayに今後24時間のイベントを表示します</string>
     <string name="pref_look_and_feel_charging">充電アニメーションの外観</string>
     <string name="pref_look_and_feel_charging_summary">充電アニメーションの外観を変更します</string>
     <string name="pref_ao_background_image">背景画像</string>
-    <string name="pref_ao_background_image_summary">Peekディスプレイの背景画像を変更します</string>
-    <string name="pref_look_and_feel_hide_display_cutouts">ディスプレイの切り抜きを非表示にします</string>
-    <string name="pref_look_and_feel_hide_display_cutouts_summary">フルスクリーンのコンテンツにディスプレイのカットアウトを非表示にします</string>
-    <string name="pref_look_and_feel_orientation">オリエンテーション</string>
-    <string name="pref_look_and_feel_orientation_summary">表示\の方向を変更します</string>
-    <string name="pref_look_and_feel_heads_up">ヘッドアップアップ通知（ルート）を隠す</string>
-    <string name="pref_look_and_feel_heads_up_summary">ヘッドアップの通知が表示されるのを防ぎます（実験的）</string>
+    <string name="pref_ao_background_image_summary">Peek Displayの背景画像を変更します</string>
+    <string name="pref_look_and_feel_hide_display_cutouts">ディスプレイの切り欠きを隠す</string>
+    <string name="pref_look_and_feel_hide_display_cutouts_summary">フルスクリーン表示時にディスプレイの切り欠きを隠します</string>
+    <string name="pref_look_and_feel_orientation">画面の向き</string>
+    <string name="pref_look_and_feel_orientation_summary">表示の向きを変更します</string>
+    <string name="pref_look_and_feel_heads_up">ヘッドアップ通知を隠す (ルート)</string>
+    <string name="pref_look_and_feel_heads_up_summary">ヘッドアップ通知の表示を防止します (試験運用中)</string>
     <string name="pref_look_and_feel_weather">天気</string>
-    <string name="pref_look_and_feel_weather_info">天気情報を表示します</string>
-    <string name="pref_look_and_feel_weather_info_summary">ピークディスプレイに天気情報を構成します</string>
-    <string name="pref_look_and_feel_weather_show_summary">ピークディスプレイに天気情報を表示します</string>
-    <string name="pref_look_and_feel_weather_provider">Peek Displayは、気象データにwttr.inを使用します。天気を取得すると、識別可能なデータが転送される場合があります。</string>
+    <string name="pref_look_and_feel_weather_info">天気情報を表示</string>
+    <string name="pref_look_and_feel_weather_info_summary">Peek Displayに表示する天気情報を設定します</string>
+    <string name="pref_look_and_feel_weather_show_summary">Peek Displayに天気情報を表示します</string>
+    <string name="pref_look_and_feel_weather_provider">Peek Displayは気象データにwttr.inを使用します。天気を取得する際、識別可能なデータが送信される場合があります。</string>
     <string name="pref_look_and_feel_weather_location">天気の場所</string>
-    <string name="pref_look_and_feel_weather_location_summary">気象レポートの場所。自動ロケーションのためにこれを空にしたままにしてください。</string>
-    <string name="pref_look_and_feel_weather_format">天気形式</string>
-    <string name="pref_look_and_feel_weather_format_summary">Peekディスプレイで使用される天気形式</string>
-    <string name="pref_look_and_feel_filter_notifications">フィルター通知</string>
+    <string name="pref_look_and_feel_weather_location_summary">天気予報を取得する場所。自動設定にする場合は空欄のままにしてください。</string>
+    <string name="pref_look_and_feel_weather_format">天気の形式</string>
+    <string name="pref_look_and_feel_weather_format_summary">Peek Displayで使用される天気の形式</string>
+    <string name="pref_look_and_feel_filter_notifications">通知をフィルタリング</string>
     <string name="pref_look_and_feel_filter_notifications_summary">表示しない通知を選択します</string>
-    <string name="pref_look_and_feel_filter_notifications_explanation">エントリをタップして、ブロックまたはブロックを解除します</string>
-    <string name="pref_look_and_feel_filter_notifications_blocked">からのブロック通知</string>
-    <string name="pref_look_and_feel_filter_notifications_shown">から利用可能な通知</string>
-    <string name="pref_look_and_feel_filter_notifications_empty">利用可能な通知はありません</string>
-    <string name="pref_look_and_feel_filter_notifications_empty_summary">表示するものは何もないようです</string>
-    <string name="pref_look_and_feel_filter_notifications_unknown">不明なアプリケーション</string>
-    <string name="pref_look_and_feel_tint_notifications">色合いの通知</string>
-    <string name="pref_look_and_feel_tint_notifications_summary">アプリの色の色合いの通知</string>
+    <string name="pref_look_and_feel_filter_notifications_explanation">エントリをタップしてブロック/解除を切り替えます</string>
+    <string name="pref_look_and_feel_filter_notifications_blocked">ブロック中の通知</string>
+    <string name="pref_look_and_feel_filter_notifications_shown">表示中の通知</string>
+    <string name="pref_look_and_feel_filter_notifications_empty">通知はありません</string>
+    <string name="pref_look_and_feel_filter_notifications_empty_summary">表示できる通知がないようです</string>
+    <string name="pref_look_and_feel_filter_notifications_unknown">不明なアプリ</string>
+    <string name="pref_look_and_feel_tint_notifications">通知に色を付ける</string>
+    <string name="pref_look_and_feel_tint_notifications_summary">通知をアプリの色で着色します</string>
     <string name="pref_look_and_feel_display_size">表示サイズ</string>
-    <string name="pref_look_and_feel_display_size_summary">ピークディスプレイのディスプレイサイズはです %1$d%%</string>
+    <string name="pref_look_and_feel_display_size_summary">Peek Displayの表示サイズは %1$d%% です</string>
     <string name="pref_look_and_feel_rules">ルール</string>
-    <string name="pref_look_and_feel_rules_summary">ピークディスプレイを表示するタイミングを制御します</string>
+    <string name="pref_look_and_feel_rules_summary">Peek Displayを表示するタイミングを制御します</string>
     <string name="pref_look_and_feel_rules_charging_state">充電状態</string>
     <string name="pref_look_and_feel_rules_charger">充電タイプ</string>
-    <string name="pref_look_and_feel_rules_charger_summary">どの充電タイプが充電としてカウントされるかを選択します</string>
-    <string name="pref_look_and_feel_rules_battery_level">バッテリーレベル</string>
-    <string name="pref_look_and_feel_rules_battery_level_summary">上にのみ表示します %1$d%%</string>
-    <string name="pref_look_and_feel_rules_battery_level_summary_zero">任意のバッテリーレベルで表示します</string>
+    <string name="pref_look_and_feel_rules_charger_summary">どの充電タイプで表示するかを選択します</string>
+    <string name="pref_look_and_feel_rules_battery_level">バッテリー残量</string>
+    <string name="pref_look_and_feel_rules_battery_level_summary">%1$d%% 以上のときのみ表示します</string>
+    <string name="pref_look_and_feel_rules_battery_level_summary_zero">すべてのバッテリー残量で表示します</string>
     <string name="pref_look_and_feel_rules_time">期間</string>
-    <string name="pref_look_and_feel_rules_time_summary">ショーから %1$s に %2$s</string>
+    <string name="pref_look_and_feel_rules_time_summary">%1$s から %2$s まで表示します</string>
     <string name="pref_look_and_feel_rules_timeout">タイムアウト</string>
-    <string name="pref_look_and_feel_rules_timeout_summary_zero">タイムアウトは設定されていません</string>
+    <string name="pref_look_and_feel_rules_timeout_summary_zero">タイムアウトなし</string>
     <string name="pref_look_and_feel_rules_ambient_mode">アンビエントモード</string>
-    <string name="pref_look_and_feel_rules_ambient_mode_summary">通知を受け取った後にのみ表示されます</string>
+    <string name="pref_look_and_feel_rules_ambient_mode_summary">通知を受け取った後のみ表示します</string>
     <string name="pref_permissions">権限</string>
-    <string name="pref_permissions_summary">権限に関連する設定</string>
-    <string name="pref_ignore_battery_optimizations">バッテリーの最適化を無視します</string>
-    <string name="pref_ignore_battery_optimizations_summary">システムによる遅延を防ぎます</string>
-    <string name="pref_notification">通知アクセス</string>
-    <string name="pref_notification_summary">通知アクセスを有効または無効にします</string>
-    <string name="pref_draw_over_other_apps">他のアプリに表示します</string>
-    <string name="pref_draw_over_other_apps_summary">この許可を有効または無効にします</string>
+    <string name="pref_permissions_summary">権限に関する設定</string>
+    <string name="pref_ignore_battery_optimizations">バッテリーの最適化を無視</string>
+    <string name="pref_ignore_battery_optimizations_summary">システムによる制限を防止します</string>
+    <string name="pref_notification">通知へのアクセス</string>
+    <string name="pref_notification_summary">通知へのアクセスを有効または無効にします</string>
+    <string name="pref_draw_over_other_apps">他のアプリの上に重ねて表示</string>
+    <string name="pref_draw_over_other_apps_summary">この権限を有効または無効にします</string>
     <string name="pref_admin">デバイス管理者</string>
-    <string name="pref_admin_summary">このデバイス管理者を通常モードでアクティブにします\nアンインストールする前に、アプリのデバイス管理特権を無効にする必要があることに注意してください。</string>
+    <string name="pref_admin_summary">通常モードでデバイス管理者を有効にします\n注意：アンインストールする前に、アプリのデバイス管理権限を無効にする必要があります。</string>
     <string name="pref_root_mode">ルートモード</string>
-    <string name="pref_root_mode_summary">ルート機能を有効にします</string>
+    <string name="pref_root_mode_summary">ルート権限が必要な機能を有効にします</string>
     <string name="help_center">ヘルプセンター</string>
-    <string name="help_center_summary">アンインストール、応答性、バッテリーの排水</string>
-    <string name="help_center_missing_permissions_text">設定が灰色になり、最初に何かを有効にするように指示した場合、必要な権限をまだ有効にしていません。不足している権限を付与するには、メインページに「権限」ページを開き、必要な権限の使用に同意します。これで、これらの権限が必要な設定を有効にすることができます。</string>
-    <string name="help_center_uninstall">アンインストールする方法</string>
-    <string name="help_center_uninstall_text">Androidオペレーティングシステムの設計上の欠陥により、アンインストールプロセスが失敗する可能性があります。プロセスをアンインストールする前に、デバイス管理の許可が無効になっていない場合。アンインストールする前に、デバイス管理の許可を無効にする必要があります。</string>
-    <string name="help_center_uninstall_button">今すぐアンインストールしてください</string>
-    <string name="help_center_delays">遅延を修正する方法</string>
-    <string name="help_center_delays_text">一部のメーカーは、アプリの機能よりもバッテリー寿命を好むため、このアプリは一部のデバイスでは遅延でのみ動作するか、まったく動作しない可能性があります。遅延が発生している場合は、アプリのバッテリーの最適化を無効にするか、他のメーカー固有の設定を確認してください。</string>
+    <string name="help_center_summary">アンインストール、応答性、バッテリー消費について</string>
+    <string name="help_center_missing_permissions_text">設定がグレーアウトしていて権限の有効化を求められる場合は、必要な権限をまだ付与していません。不足している権限を付与するには、メインページの「権限」を開き、必要な項目の使用に同意してください。これで設定を変更できるようになります。</string>
+    <string name="help_center_uninstall">アンインストール方法</string>
+    <string name="help_center_uninstall_text">Androidの仕様により、デバイス管理権限が有効なままだとアンインストールに失敗する場合があります。アンインストールする前に、必ずデバイス管理権限を無効にしてください。</string>
+    <string name="help_center_uninstall_button">今すぐアンインストール</string>
+    <string name="help_center_delays">遅延の修正方法</string>
+    <string name="help_center_delays_text">一部のメーカーはアプリの動作よりもバッテリー寿命を優先するため、一部のデバイスでは動作に遅延が生じたり、全く動作しない場合があります。遅延が発生する場合は、アプリのバッテリー最適化を無効にするか、メーカー固有の設定を確認してください。</string>
     <string name="help_center_delays_button_one">バッテリー設定</string>
-    <string name="help_center_delays_button_two">メーカー固有</string>
-    <string name="help_center_battery_drain">バッテリーの排水源を把握します</string>
-    <string name="help_center_battery_drain_text">バッテリーの排水の理由の1つは、LCDディスプレイを備えた携帯電話を使用していることです。このアプリは、エネルギーを節約するために黒いピクセルをオフにできるOLEDディスプレイを備えた電話用に設計されています。 LCDディスプレイは、Peekディスプレイが有効になっているときにより多くのエネルギーを使用してディスプレイを使用するブラックピクセルをオフにすることができません。PEEKディスプレイ中に他のアプリがバックグラウンドで実行されているという理由はありません。 Androidは、Peek Displayのバッテリー消費の一環として、バッテリー消費量を表示します。</string>
-    <string name="loading">読み込み</string>
-    <string name="missing_permissions">許可がありません</string>
-    <string name="permissions_notification_access">この機能の通知アクセスをオンにします</string>
-    <string name="permissions_device_admin_or_root">この機能のデバイス管理またはルートをオンにします</string>
-    <string name="about">について</string>
-    <string name="about_summary">アプリについて</string>
-    <string name="about_app_version">アプリバージョン</string>
+    <string name="help_center_delays_button_two">メーカー固有の設定</string>
+    <string name="help_center_battery_drain">バッテリー消費の原因について</string>
+    <string name="help_center_battery_drain_text">バッテリー消費の主な理由の一つは、LCD（液晶）ディスプレイを搭載したスマートフォンを使用していることです。このアプリは、黒いピクセルをオフにして電力を節約できるOLED（有機EL）ディスプレイ向けに設計されています。LCDディスプレイは黒を表示する際もバックライトを消灯できないため、Peek Display動作中に多くのエネルギーを消費します。Peek Displayの動作が他のアプリのバックグラウンド実行に影響を与えることはありません。Androidの設定に表示されるバッテリー消費量は、Peek Display自身の消費としてカウントされます。</string>
+    <string name="loading">読み込み中</string>
+    <string name="missing_permissions">権限が不足しています</string>
+    <string name="permissions_notification_access">この機能を使用するには、通知へのアクセスをオンにしてください</string>
+    <string name="permissions_device_admin_or_root">この機能を使用するには、デバイス管理者またはルート権限をオンにしてください</string>
+    <string name="about">このアプリについて</string>
+    <string name="about_summary">アプリの情報</string>
+    <string name="about_app_version">アプリのバージョン</string>
     <string name="about_privacy">外部コンテンツ</string>
-    <string name="about_privacy_desc">外部コンテンツはGitHubからロードされます。詳細については、プライバシーポリシーをお読みください。</string>
+    <string name="about_privacy_desc">一部のコンテンツはGitHubから読み込まれます。詳細はプライバシーポリシーをご覧ください。</string>
     <string name="about_privacy_policy">プライバシーポリシー</string>
     <string name="about_contributors">貢献者</string>
-    <string name="about_contributors_desc">貢献者のリスト</string>
-    <string name="about_general">一般的な</string>
+    <string name="about_contributors_desc">貢献者リスト</string>
+    <string name="about_general">全般</string>
     <string name="about_github">GitHubリポジトリ</string>
     <string name="about_license">ライセンス</string>
     <string name="about_icons">アイコン</string>
-    <string name="about_icons_desc">Icons8とGoogleによるアイコン</string>
+    <string name="about_icons_desc">Icons8およびGoogle提供のアイコン</string>
     <string name="about_libraries">ライブラリ</string>
-    <string name="about_libraries_desc">すべての使用済みライブラリのリスト</string>
+    <string name="about_libraries_desc">使用しているライブラリのリスト</string>
 
     <string-array name="pref_look_and_feel_rules_charging_state_display">
-        <item>あらゆる充電状態で表示します</item>
-        <item>充電中にのみ表示します</item>
-        <item>放電中にのみ表示します</item>
+        <item>すべての状態で表示</item>
+        <item>充電中のみ表示</item>
+        <item>放電中のみ表示</item>
     </string-array>
 
     <string-array name="pref_look_and_feel_rules_charger_display">
-        <item>AC</item>
+        <item>ACアダプター</item>
         <item>USB</item>
-        <item>無線</item>
+        <item>ワイヤレス</item>
     </string-array>
 
     <string-array name="pref_look_and_feel_orientation_display">
-        <item>オートロック</item>
-        <item>肖像画</item>
-        <item>風景</item>
+        <item>自動ロック</item>
+        <item>縦向き</item>
+        <item>横向き</item>
     </string-array>
 
     <string-array name="pref_ao_glowStyle_display">
-        <item>すべての側面</item>
-        <item>左側と右側</item>
-        <item>上部と下側</item>
+        <item>全方向</item>
+        <item>左右</item>
+        <item>上下</item>
     </string-array>
 
     <string-array name="pref_ao_background_image_array_display">
@@ -240,55 +240,55 @@
         <item>カスタム</item>
     </string-array>
     <string name="notification_action_reply">返信</string>
-    <string name="pref_ao_showAlbumArt">アルバムアートを表示します</string>
-    <string name="pref_ao_interactive_notification_icons">インタラクティブな通知アイコン</string>
-    <string name="pref_ao_interactive_notification_icons_summary">通知アイコンをロングプレスしてプレビューを表示し、スワイプして目的のアクションにスワイプして実行する</string>
-    <string name="pref_ao_invert_interaction_highlight">反転相互作用のハイライト</string>
-    <string name="pref_ao_invert_interaction_highlight_summary">インタラクション中またはアイドル状態での通知アイコンが強調表示されるかどうかを変更する</string>
-    <string name="pref_ao_notification_icon_size">通知アイコンサイズ</string>
-    <string name="pref_ao_notification_icon_size_summary">通知アイコンのサイズを変更します</string>
-    <string name="pref_ao_notification_icon_top_padding">通知アイコントップパディング</string>
+    <string name="pref_ao_showAlbumArt">アルバムアートを表示</string>
+    <string name="pref_ao_interactive_notification_icons">対話型通知アイコン</string>
+    <string name="pref_ao_interactive_notification_icons_summary">通知アイコンを長押ししてプレビューを表示し、そのままスワイプしてアクションを実行します</string>
+    <string name="pref_ao_invert_interaction_highlight">ハイライトの反転</string>
+    <string name="pref_ao_invert_interaction_highlight_summary">操作中または待機中の通知アイコンのハイライト状態を切り替えます</string>
+    <string name="pref_ao_notification_icon_size">通知アイコンのサイズ</string>
+    <string name="pref_ao_notification_icon_size_summary">通知アイコンの大きさを変更します</string>
+    <string name="pref_ao_notification_icon_top_padding">通知アイコンの上部余白</string>
     <string name="pref_ao_notification_icon_top_padding_summary">通知アイコンの上のスペースを調整します</string>
-    <string name="pref_ao_notification_preview_position">通知プレビュー位置</string>
-    <string name="pref_ao_notification_preview_position_summary">通知アイコンに対する通知プレビューの位置</string>
-    <string name="pref_ao_top_padding">トップパディング</string>
+    <string name="pref_ao_notification_preview_position">通知プレビューの位置</string>
+    <string name="pref_ao_notification_preview_position_summary">アイコンに対する通知プレビューの位置を設定します</string>
+    <string name="pref_ao_top_padding">上部余白</string>
     <string name="pref_ao_top_padding_summary">表示要素の垂直位置を調整します</string>
     <string-array name="pref_ao_notification_preview_position_display">
-        <item>上のアイコン</item>
+        <item>アイコンの上</item>
         <item>アイコンの下</item>
     </string-array>
     <string-array name="pref_ao_notification_icon_size_display">
         <item>小さい</item>
         <item>標準</item>
-        <item>拡大</item>
+        <item>大きい</item>
     </string-array>
-    <string name="pref_ao_fingerprint_interaction">指紋相互作用モード</string>
-    <string name="pref_ao_fingerprint_interaction_summary">指紋アイコンと対話する方法</string>
-    <string name="pref_ao_fingerprint_interaction_swipe">アイコンからスワイプします</string>
-    <string name="pref_ao_fingerprint_interaction_longpress">ロングプレス</string>
-    <string name="pref_ao_swipe_notification_open">通知にスワイプして開きます</string>
+    <string name="pref_ao_fingerprint_interaction">指紋アイコンの操作モード</string>
+    <string name="pref_ao_fingerprint_interaction_summary">指紋アイコンの操作方法を設定します</string>
+    <string name="pref_ao_fingerprint_interaction_swipe">アイコンからスワイプ</string>
+    <string name="pref_ao_fingerprint_interaction_longpress">長押し</string>
+    <string name="pref_ao_swipe_notification_open">スワイプで通知を開く</string>
     <string name="pref_ao_swipe_notification_open_summary">指紋アイコンからスワイプして通知を開くことを許可します</string>
-    <string name="notification_dismiss">却下する</string>
+    <string name="notification_dismiss">閉じる</string>
     <string name="pref_look_and_feel_rules_pickup_mode">ピックアップモード</string>
-    <string name="pref_look_and_feel_rules_pickup_mode_summary">電話を拾うときにのみ表示されます</string>
+    <string name="pref_look_and_feel_rules_pickup_mode_summary">持ち上げたときのみ表示します</string>
     <string name="pref_pickup_sensitivity">ピックアップ感度</string>
-    <string name="pref_pickup_sensitivity_summary">ピックアップ検出の感度を調整します</string>
+    <string name="pref_pickup_sensitivity_summary">持ち上げ検知の感度を調整します</string>
     <string-array name="pref_pickup_sensitivity_display">
-        <item>高い</item>
-        <item>中くらい</item>
-        <item>低い</item>
+        <item>高</item>
+        <item>中</item>
+        <item>低</item>
     </string-array>
-    <string name="pref_ao_lock_icon">ロックアイコンを使用します</string>
+    <string name="pref_ao_lock_icon">ロックアイコンを使用</string>
     <string name="pref_ao_lock_icon_summary">指紋アイコンをロックアイコンに置き換えます</string>
-    <string name="donate">寄付する</string>
-    <string name="donate_summary">Peekディスプレイの開発をサポートします</string>
-    <string name="pref_look_and_feel_weather_unit">帝国ユニットを使用します</string>
-    <string name="pref_look_and_feel_weather_unit_summary">華氏の温度を表示します</string>
+    <string name="donate">寄付</string>
+    <string name="donate_summary">Peek Displayの開発を支援する</string>
+    <string name="pref_look_and_feel_weather_unit">ヤード・ポンド法を使用</string>
+    <string name="pref_look_and_feel_weather_unit_summary">温度を華氏で表示します</string>
     <string name="colorpicker_opacity">不透明度</string>
     <string name="colorpicker_color">色</string>
     <string name="colorpicker_custom">カスタム</string>
     <string name="colorpicker_presets">プリセット</string>
-    <string name="pref_look_and_feel_weather_refresh_interval">リフレッシュ間隔</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">更新間隔</string>
     <string name="pref_look_and_feel_weather_refresh_interval_label">分</string>
-    <string name="pref_look_and_feel_weather_refresh_interval_disabled">無効 (開始時に 1 回フェッチ)</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">無効 (開始時に1回取得)</string>
 </resources>
