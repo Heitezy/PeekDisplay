@@ -149,7 +149,7 @@
     <string name="pref_ao_vibration">Vibration duration (in milliseconds)</string>
     <string name="pref_ao_vibration_summary">Duration the phone vibrates when you double-tap the screen</string>
     <string name="pref_ao_animation_delay">Movement delay (in minutes)</string>
-    <string name="pref_ao_animation_delay_summary">Time between the different positions of the content\nWarning: Too high values can cause screen burn-ins!</string>
+    <string name="pref_ao_animation_delay_summary">Time between the different positions of the content\nWarning: Too high values can cause screen burn-in!</string>
     <string name="pref_ao_smooth_animation">Animate motion</string>
     <string name="pref_ao_smooth_animation_summary">Animate the position changes</string>
     <string name="pref_ao_refresh_rate_optimization">Refresh rate optimization</string>
@@ -226,7 +226,7 @@
     <string name="pref_look_and_feel_weather_format_summary">The weather format used on Peek Display</string>
 
     <string name="pref_look_and_feel_filter_notifications">Filter notifications</string>
-    <string name="pref_look_and_feel_filter_notifications_summary">Choose, which notifications not to show</string>
+    <string name="pref_look_and_feel_filter_notifications_summary">Choose which notifications not to show</string>
     <string name="pref_look_and_feel_filter_notifications_explanation">Tap on the entries to block or unblock them</string>
     <string name="pref_look_and_feel_filter_notifications_blocked">Block notifications from</string>
     <string name="pref_look_and_feel_filter_notifications_shown">Notifications available from</string>
@@ -278,7 +278,7 @@
     <string name="help_center_delays_button_one">Battery Settings</string>
     <string name="help_center_delays_button_two">Manufacturer-specific</string>
     <string name="help_center_battery_drain">Figuring out the source of battery drain</string>
-    <string name="help_center_battery_drain_text">One reason for battery drain could be that you are using a phone with an LCD display. This app is designed for phones with an OLED display that can turn off black pixels to save energy. LCD displays cannot turn off black pixels which will result in the display using a lot more energy when Peek Display is enabled.Another reason could be that other apps are running in the background while Peek Display is running. Android will display their battery consumption as part of Peek Display’s battery consumption.</string>
+    <string name="help_center_battery_drain_text">One reason for battery drain could be that you are using a phone with an LCD display. This app is designed for phones with an OLED display that can turn off black pixels to save energy. LCD displays cannot turn off black pixels which will result in the display using a lot more energy when Peek Display is enabled. Another reason could be that other apps are running in the background while Peek Display is running. Android will display their battery consumption as part of Peek Display’s battery consumption.</string>
 
     <string name="loading">Loading</string>
     <string name="missing_permissions">Missing Permissions</string>
