@@ -1,11 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <plurals name="pref_look_and_feel_rules_timeout_summary">
-        <item quantity="one">Oprește -te după %d doilea</item>
-        <item quantity="other">Oprește -te după %d secunde</item>
+        <item quantity="one">Se oprește după o secundă</item>
+        <item quantity="few">Se oprește după %d secunde</item>
+        <item quantity="other">Se oprește după %d de secunde</item>
     </plurals>
     <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
-        <item quantity="one">La fiecare %d minut</item>
-        <item quantity="other">La fiecare %d minute</item>
+        <item quantity="one">La fiecare minut</item>
+        <item quantity="few">La fiecare %d minute</item>
+        <item quantity="other">La fiecare %d de minute</item>
     </plurals>
 </resources>
