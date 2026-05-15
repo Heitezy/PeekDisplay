@@ -45,7 +45,7 @@
     <string name="pref_look_and_feel_am_pm_summary">Muestra AM / PM cuando se usa el reloj de 12 horas</string>
     <string name="pref_look_and_feel_ao">Mirada de visualización</string>
     <string name="pref_look_and_feel_ao_summary">Cambia el aspecto de la pantalla de vista</string>
-    <string name="pref_look_and_feel_colors">Bandera</string>
+    <string name="pref_look_and_feel_colors">Colores</string>
     <string name="pref_look_and_feel_colors_summary">Seleccione colores para ciertos elementos</string>
     <string name="pref_look_and_feel_colors_clock">Color de reloj</string>
     <string name="pref_look_and_feel_colors_date">Color de cita</string>
@@ -237,7 +237,7 @@
         <item>Tyler Lastovich</item>
         <item>Tyler Lastovich</item>
         <item>Tyler Lastovich</item>
-        <item>Costumbre</item>
+        <item>Personalizado</item>
     </string-array>
     <string name="notification_action_reply">Responder</string>
     <string name="pref_ao_showAlbumArt">Exhibición del álbum</string>
