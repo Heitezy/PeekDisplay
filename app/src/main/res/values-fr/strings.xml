@@ -12,7 +12,7 @@
     <string name="setup_draw_over_other_apps">Afficher sur d\'autres applications</string>
     <string name="setup_draw_over_other_apps_summary">Cette permission est requise pour afficher l\'affichage permanent.</string>
     <string name="setup_phone_state">Lire l\'état du téléphone</string>
-    <string name="setup_phone_state_summary">Cete permission est requise pour arrêter l\'affichage permanent lors d\'appels entrants.</string>
+    <string name="setup_phone_state_summary">Cette permission est requise pour arrêter l\'affichage permanent lors d\'appels entrants.</string>
     <string name="setup_calendar">Lire le calendrier</string>
     <string name="setup_calendar_summary">Vous pouvez activer l\'accès au calendrier pour que l\'application puisse afficher vos événements sur l\'affichage permanent.</string>
     <string name="setup_skip">Passer</string>
@@ -80,7 +80,7 @@
     <string name="pref_ao_vibration">Durée de la vibration (en millisecondes)</string>
     <string name="pref_ao_vibration_summary">Durée pendant laquelle le téléphone vibre lors d\'un double appui sur l\'écran</string>
     <string name="pref_ao_animation_delay">Délai du mouvement (en minutes)</string>
-    <string name="pref_ao_animation_delay_summary">Temps entre les différentes positions du contenu.\nAttention: des valeurs trop hautes peuvent causer des brûlures!</string>
+    <string name="pref_ao_animation_delay_summary">Temps entre les différentes positions du contenu.\nAttention: des valeurs trop hautes peuvent causer des marquages d\'écran !</string>
     <string name="pref_ao_smooth_animation">Mouvement de l\'animation</string>
     <string name="pref_ao_smooth_animation_summary">Animer le changement de position</string>
     <string name="pref_ao_refresh_rate_optimization">Optimisation du taux de rafraîchissement</string>
@@ -107,15 +107,15 @@
     <string name="pref_ao_date_format_summary">Le format de date utilisé sur l\'affichage permanent</string>
     <string name="pref_ao_date_format_dialog_text">Vous devez suivre un schéma particulier</string>
     <string name="pref_ao_date_format_dialog_neutral">En savoir plus</string>
-    <string name="pref_ao_date_format_illegal">Format illégal</string>
+    <string name="pref_ao_date_format_illegal">Format invalide</string>
     <string name="pref_ao_calendar">Afficher les événements</string>
-    <string name="pref_ao_calendar_summary">Affiches les événements des prochaines 24h sur votre affichage permanent</string>
+    <string name="pref_ao_calendar_summary">Affiche les événements des prochaines 24h sur votre affichage permanent</string>
     <string name="pref_look_and_feel_charging">Aspect de l\'animation de chargement</string>
     <string name="pref_look_and_feel_charging_summary">Modifie l\'aspect de l\'animation jouée pendant le rechargement</string>
     <string name="pref_ao_background_image">Image de fond d’écran</string>
     <string name="pref_ao_background_image_summary">Modifie l\'image sur le fond d\'écran de l\'affichage permanent</string>
     <string name="pref_look_and_feel_hide_display_cutouts">Cacher les découpes d\'affichage</string>
-    <string name="pref_look_and_feel_hide_display_cutouts_summary">Masques les découpes d\'affichage sur les contenus en plein écran</string>
+    <string name="pref_look_and_feel_hide_display_cutouts_summary">Masque les découpes d\'affichage sur les contenus en plein écran</string>
     <string name="pref_look_and_feel_orientation">Orientation</string>
     <string name="pref_look_and_feel_orientation_summary">Modifie l\'orientation de l\'écran</string>
     <string name="pref_look_and_feel_heads_up">Cache les notifications d\'alertes (root)</string>
@@ -126,7 +126,7 @@
     <string name="pref_look_and_feel_weather_show_summary">Afficher les informations météo sur votre affichage permanent</string>
     <string name="pref_look_and_feel_weather_provider">Peek Display utilise wttr.in pour les données météo. La récupération de la météo peut transmettre des données identifiables.</string>
     <string name="pref_look_and_feel_weather_location">Localisation de la météo</string>
-    <string name="pref_look_and_feel_weather_location_summary">La localisation du bulletin métérologique. Laissez vide pour une auto-localisation.</string>
+    <string name="pref_look_and_feel_weather_location_summary">La localisation du bulletin météorologique. Laissez vide pour une auto-localisation.</string>
     <string name="pref_look_and_feel_weather_format">Format de la météo</string>
     <string name="pref_look_and_feel_weather_format_summary">Le format de la météo utilisé sur l\'affichage permanent</string>
     <string name="pref_look_and_feel_filter_notifications">Filtrer les notifications</string>
@@ -164,7 +164,7 @@
     <string name="pref_draw_over_other_apps">Afficher au-dessus d\'autres applications</string>
     <string name="pref_draw_over_other_apps_summary">Active ou désactive cette permission</string>
     <string name="pref_admin">Administration de l\'appareil</string>
-    <string name="pref_admin_summary">Actives l\'administration de l\'appareil pour le mode normal\nVeuillez noter que vous devrez désactiver l\'administration de l\'appareil pour désinstaller cette application!</string>
+    <string name="pref_admin_summary">Active l\'administration de l\'appareil pour le mode normal\nVeuillez noter que vous devrez désactiver l\'administration de l\'appareil pour désinstaller cette application !</string>
     <string name="pref_root_mode">Mode root</string>
     <string name="pref_root_mode_summary">Active la fonctionnalité root</string>
     <string name="help_center">Centre d\'aide</string>
@@ -178,7 +178,7 @@
     <string name="help_center_delays_button_one">Paramètres de batterie</string>
     <string name="help_center_delays_button_two">Spécificité constructeur</string>
     <string name="help_center_battery_drain">Comprendre la source d\'un déchargement de batterie</string>
-    <string name="help_center_battery_drain_text">Une des raisons d\'un déchargement de batterie peut être que vous utilisez un téléphone avec un écran LCD. Cette application est conçu pour les téléphones avec un écran OLED pouvant éteindre les pixels noirs de l\'écran pour économiser de l\'énergie. Les écrans LCD ne peuvent pas éteindre les pixels noirs ce qui résulte en une utilisation plus massive de la batterie lorsque l\'affichage est activée. Une autre raison peut être l\'utilisation d\'autres applications en tâche de fond quand l\'affichage permanent fonctionne. Android affichera leur consommation de batterie comme faisant partie de la consommation d\'Peek Display.</string>
+    <string name="help_center_battery_drain_text">Une des raisons d\'un déchargement de batterie peut être que vous utilisez un téléphone avec un écran LCD. Cette application est conçue pour les téléphones avec un écran OLED pouvant éteindre les pixels noirs de l\'écran pour économiser de l\'énergie. Les écrans LCD ne peuvent pas éteindre les pixels noirs ce qui résulte en une utilisation plus massive de la batterie lorsque l\'affichage est activé. Une autre raison peut être l\'utilisation d\'autres applications en tâche de fond quand l\'affichage permanent fonctionne. Android affichera leur consommation de batterie comme faisant partie de la consommation de Peek Display.</string>
     <string name="loading">Chargement</string>
     <string name="missing_permissions">Permissions manquantes</string>
     <string name="permissions_notification_access">Activez l\'accès aux notifications pour cette fonctionnalité</string>
@@ -193,7 +193,7 @@
     <string name="about_contributors_desc">Une liste des contributeurs</string>
     <string name="about_general">Général</string>
     <string name="about_github">Dépôt GitHub</string>
-    <string name="about_license">Lisense</string>
+    <string name="about_license">Licence</string>
     <string name="about_icons">Icônes</string>
     <string name="about_icons_desc">Icônes par Icons8 et Google</string>
     <string name="about_libraries">Bibliothèques</string>
@@ -242,20 +242,20 @@
     <string name="notification_action_reply">Répondre</string>
     <string name="pref_ao_showAlbumArt">Afficher l\'art de l\'album</string>
     <string name="pref_ao_interactive_notification_icons">Icônes de notification interactive</string>
-    <string name="pref_ao_interactive_notification_icons_summary">Appuyez sur l\'icône de notification longue pour afficher l\'aperçu, puis glisser l\'action souhaitée pour exécuter</string>
+    <string name="pref_ao_interactive_notification_icons_summary">Effectuez un appui long sur l\'icon de notification pour afficher l\'aperçu, puis faites glisser vers l\'action souhaitée pour l\'exécuter</string>
     <string name="pref_ao_invert_interaction_highlight">Highlight d\'interaction inversée</string>
     <string name="pref_ao_invert_interaction_highlight_summary">Modifie que les icônes de notification soient mises en évidence lors de l\'interaction ou au ralenti</string>
     <string name="pref_ao_notification_icon_size">Taille de l\'icône de notification</string>
     <string name="pref_ao_notification_icon_size_summary">Modifie la taille des icônes de notification</string>
-    <string name="pref_ao_notification_icon_top_padding">NOTIFICATION ICONIER TOP TAPDDING</string>
-    <string name="pref_ao_notification_icon_top_padding_summary">Ajustez l\'espace au-dessus des icônes de notification</string>
+    <string name="pref_ao_notification_icon_top_padding">Espacement supérieur des icônes de notification</string>
+    <string name="pref_ao_notification_icon_top_padding_summary">Ajuster l\'espace au-dessus des icônes de notification</string>
     <string name="pref_ao_notification_preview_position">Position d\'aperçu de la notification</string>
     <string name="pref_ao_notification_preview_position_summary">Position de l\'aperçu de la notification par rapport à l\'icône de notification</string>
     <string name="pref_ao_top_padding">Rembourrage supérieur</string>
     <string name="pref_ao_top_padding_summary">Ajuster la position verticale des éléments d\'affichage</string>
     <string-array name="pref_ao_notification_preview_position_display">
-        <item>Icône ci-dessus</item>
-        <item>Inséré</item>
+        <item>Au-dessus de l\'icône</item>
+        <item>Au-dessous de l\'icône</item>
     </string-array>
     <string-array name="pref_ao_notification_icon_size_display">
         <item>Petit</item>
@@ -264,29 +264,29 @@
     </string-array>
     <string name="pref_ao_fingerprint_interaction">Mode d\'interaction d\'empreintes digitales</string>
     <string name="pref_ao_fingerprint_interaction_summary">Comment interagir avec l\'icône d\'empreintes digitales</string>
-    <string name="pref_ao_fingerprint_interaction_swipe">Swipe de l\'icône</string>
-    <string name="pref_ao_fingerprint_interaction_longpress">Longue presse</string>
-    <string name="pref_ao_swipe_notification_open">Glissez la notification pour l\'ouvrir</string>
-    <string name="pref_ao_swipe_notification_open_summary">Autoriser les notifications d\'ouverture en leur faisant glisser à partir de l\'icône d\'empreinte digitale</string>
+    <string name="pref_ao_fingerprint_interaction_swipe">Glissement depuis l\'icône</string>
+    <string name="pref_ao_fingerprint_interaction_longpress">Appui long</string>
+    <string name="pref_ao_swipe_notification_open">Faire glisser la notification pour l\'ouvrir</string>
+    <string name="pref_ao_swipe_notification_open_summary">Permet d\'ouvrir les notifications en faisant glisser depuis l\'icône d\'empreinte digitale</string>
     <string name="notification_dismiss">Rejeter</string>
-    <string name="pref_look_and_feel_rules_pickup_mode">Mode de ramassage</string>
-    <string name="pref_look_and_feel_rules_pickup_mode_summary">Afficher uniquement lorsque vous décrochez le téléphone</string>
-    <string name="pref_pickup_sensitivity">Sensibilité à la ramassage</string>
-    <string name="pref_pickup_sensitivity_summary">Ajuster la sensibilité de la détection de ramassage</string>
+    <string name="pref_look_and_feel_rules_pickup_mode">Mode de prise en main</string>
+    <string name="pref_look_and_feel_rules_pickup_mode_summary">Afficher uniquement lorsque vous prenez le téléphone en main</string>
+    <string name="pref_pickup_sensitivity">Sensibilité de la prise en main</string>
+    <string name="pref_pickup_sensitivity_summary">Ajuster la sensibilité de la détection de prise en main</string>
     <string-array name="pref_pickup_sensitivity_display">
         <item>Haut</item>
         <item>Moyen</item>
         <item>Faible</item>
     </string-array>
     <string name="pref_ao_lock_icon">Utiliser l\'icône de verrouillage</string>
-    <string name="pref_ao_lock_icon_summary">Remplacez l\'icône d\'empreintes digitales par une icône de verrouillage</string>
+    <string name="pref_ao_lock_icon_summary">Remplace l\'icône d\'empreintes digitales par une icône de verrouillage</string>
     <string name="donate">Faire un don</string>
     <string name="donate_summary">Soutenir le développement de l\'affichage PEEK</string>
     <string name="pref_look_and_feel_weather_unit">Utiliser les unités impériales</string>
     <string name="pref_look_and_feel_weather_unit_summary">Affiche la température en degrés Fahrenheit</string>
     <string name="colorpicker_opacity">Opacité</string>
     <string name="colorpicker_color">Couleur</string>
-    <string name="colorpicker_custom">Coutume</string>
+    <string name="colorpicker_custom">Personnalisée</string>
     <string name="colorpicker_presets">Préréglages</string>
     <string name="pref_look_and_feel_weather_refresh_interval">Intervalle d\'actualisation</string>
     <string name="pref_look_and_feel_weather_refresh_interval_label">Minutes</string>
