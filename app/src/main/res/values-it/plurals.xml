@@ -1,11 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <plurals name="pref_look_and_feel_rules_timeout_summary">
-        <item quantity="one">Fermarsi dopo %d secondo</item>
-        <item quantity="other">Fermarsi dopo %d Secondi</item>
+        <item quantity="one">Ferma dopo %d secondo</item>
+        <item quantity="many">Ferma dopo %d milioni di secondi</item>
+        <item quantity="other">Ferma dopo %d secondi</item>
     </plurals>
     <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
         <item quantity="one">Ogni %d minuto</item>
+        <item quantity="many">Ogni %d milioni di minuti</item>
         <item quantity="other">Ogni %d minuti</item>
     </plurals>
 </resources>
