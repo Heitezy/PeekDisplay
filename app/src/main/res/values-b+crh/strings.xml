@@ -1,230 +1,230 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="device_admin_description">Ékrannı sëndûrmek içûn «Pik Displey» .</string>
-    <string name="notification_listener_description">Displeyde haberdarlıqlarnı kosʹteriñiz .</string>
-    <string name="service_text">Pik Displey artta çalışmaqta .</string>
-    <string name="service_channel">Hızmet kanalı .</string>
-    <string name="setup_root_failed">Tamır ricası muvafaqietsiz oldı! Lûtfen, kene sınap baqıñız â da rejimni deñiştiriñiz!</string>
-    <string name="device_admin">Qural Admin .</string>
-    <string name="device_admin_summary">Bu qullanmanıñ çalışması içûn bu mahsulat adminini faalʹleştirmek â da tamır rejimine keçmek kerek.</string>
-    <string name="notification_listener_service">Haberdarlıqqa kiriş</string>
-    <string name="notification_listener_service_summary">«Pik Displey»de siziñ haberdarlıqlarıñıznı kosʹtermek içûn qullanma içûn haberdarlıq kirişini temin étmek kerek.</string>
-    <string name="setup_draw_over_other_apps">Başqa qullanmalar ustûnde kosʹteriñiz .</string>
-    <string name="setup_draw_over_other_apps_summary">Bu ruhset «Pik Displey»ni kosʹtermek içûn kerek.</string>
-    <string name="setup_phone_state">Telefon devletini oqumaq</string>
-    <string name="setup_phone_state_summary">Bu ruhset «Pik Displey»ni toqtatmaq içûn kerek, olar kelʹgen çağıruvlar içûn.</string>
+    <string name="device_admin_description">Pik Displeyge ekrannı söndürmege ruhset beriñiz.</string>
+    <string name="notification_listener_description">Bildirişlerni ekranda kösteriñiz.</string>
+    <string name="service_text">Pik Displey artta çalışmaqta.</string>
+    <string name="service_channel">Hızmet kanalı.</string>
+    <string name="setup_root_failed">Tamır ricası muvafaqiyetsiz oldı! Lütfen, kene sınap baqıñız ya da rejimni deñiştiriñiz!</string>
+    <string name="device_admin">Cihaz memurı</string>
+    <string name="device_admin_summary">Bu qullanmanıñ çalışması içün cihaz memurını faalleştirmek ya da tamır rejimine keçmek kerek.</string>
+    <string name="notification_listener_service">Bildirişlerge kiriş</string>
+    <string name="notification_listener_service_summary">Bildirişleriñizni Pik Displeyde köstermek içün qullanmağa bildiriş kirişini temin etmek kerek.</string>
+    <string name="setup_draw_over_other_apps">Başqa qullanmalar üstünde kösteriñiz.</string>
+    <string name="setup_draw_over_other_apps_summary">Pik Displeyni köstermek içün bu ruhset kerek.</string>
+    <string name="setup_phone_state">Telefon vaziyetini oqumaq</string>
+    <string name="setup_phone_state_summary">Kelgen çağıruvlar vaqtında Pik Displeyni toqtatmaq içün bu ruhset kerek.</string>
     <string name="setup_calendar">Taqvimni oqumaq</string>
-    <string name="setup_calendar_summary">Peek displeyinde ozʹ tedbirleriñizni kosʹtermek içûn qullanma içûn taqvim kirişini çalıştırmaq kerek.</string>
-    <string name="setup_skip">Qaldırıp keçmek</string>
-    <string name="setup_continue">Devam étmek</string>
-    <string name="setup_error">Bir şey âramay oldı! Lûtfen, kene sınap baqıñız!</string>
-    <string name="dialog_device_admin_text">Lûtfen, diqqat étiñiz ki, onı çıqarmazdan évelʹ, qullanma\’niñ mahsulat admin imtiâzlarını sëndûrmek kerek! Bunı añlağanıñızğa émin olmaq içûn, aşağıdaki ameliâtnı âpıñız:\n7 + 12</string>
-    <string name="dialog_device_admin_result">Aqibet</string>
-    <string name="dialog_device_admin_error">Âñlış netice. Kene tırışıñız.</string>
-    <string name="app_description">Android ilâvesi, o, Peek Display qoşa.</string>
-    <string name="charged">%1$d%% zarâdka</string>
-    <string name="shortcut_disabled">Saqat</string>
-    <string name="pref_int_failed">Bu qıymetni qullanmaq mumkûn degilʹ .</string>
-    <string name="pref_general">Umumiy parametrler</string>
-    <string name="pref_enabled">Şimdiki vaqıtta 1000 .</string>
-    <string name="pref_disabled">Şimdiki vaqıtta saqat .</string>
-    <string name="pref_always_on">Kozʹ kosʹterûv .</string>
-    <string name="pref_charging">Zarâdlı animaciâ .</string>
-    <string name="pref_look_and_feel">Baqıñız ve duymaq ve duymaq</string>
-    <string name="pref_ao_watch_face">Ûzʹni seyir</string>
-    <string name="pref_ao_watch_face_summary">«Pik Displey»niñ saat ûzûnen bağlı parametrler .</string>
-    <string name="pref_ao_background">Fon</string>
-    <string name="pref_ao_background_summary">Pik displeyiniñ fonunen bağlı parametrler .</string>
+    <string name="setup_calendar_summary">Tedbirleriñizni Pik Displeyde köstermek içün qullanmağa taqvim kirişini bermek kerek.</string>
+    <string name="setup_skip">Atlap keçmek</string>
+    <string name="setup_continue">Devam etmek</string>
+    <string name="setup_error">Bir şey yañlış oldı! Lütfen, kene sınap baqıñız!</string>
+    <string name="dialog_device_admin_text">Lütfen, diqqat etiñiz ki, onı yoq etmezden evel, qullanmanıñ cihaz memurı imtiyazlarını söndürmek kerek! Bunı añlağanıñızğa emin olmaq içün, aşağıdaki ameliatnı yapıñız:\n7 + 12</string>
+    <string name="dialog_device_admin_result">Netice</string>
+    <string name="dialog_device_admin_error">Yañlış netice. Kene tırışıñız.</string>
+    <string name="app_description">Android qullanması, Pik Displey qoşa.</string>
+    <string name="charged">%1$d%% toldurıldı</string>
+    <string name="shortcut_disabled">Ğayrı faal</string>
+    <string name="pref_int_failed">Bu qıymetni qullanmaq mümkün degil.</string>
+    <string name="pref_general">Umumiy ayarlama</string>
+    <string name="pref_enabled">Şimdi faal</string>
+    <string name="pref_disabled">Şimdi ğayrı faal</string>
+    <string name="pref_always_on">Pik Displey</string>
+    <string name="pref_charging">Tolduruv animatsiyası</string>
+    <string name="pref_look_and_feel">Körünüş ve duyuş</string>
+    <string name="pref_ao_watch_face">Saat yüzü</string>
+    <string name="pref_ao_watch_face_summary">Pik Displeyniñ saat yüzü ile bağlı ayarlamalar.</string>
+    <string name="pref_ao_background">Arqa fon</string>
+    <string name="pref_ao_background_summary">Pik Displeyniñ arqa fonı ile bağlı ayarlamalar.</string>
     <string name="pref_ao_behavior">Areket tarzı</string>
-    <string name="pref_ao_behavior_summary">Qullanmanıñ davranışınen bağlı parametrler .</string>
-    <string name="pref_ao_other">Başqa parametrler .</string>
-    <string name="pref_look_and_feel_hour">saatlıq saat qullanıñız .</string>
-    <string name="pref_look_and_feel_hour_summary_on">Şimdi qullanılğan: 12 saatlıq saat .</string>
-    <string name="pref_look_and_feel_hour_summary_off">Şimdi qullanıla: 24 saatlıq saat .</string>
-    <string name="pref_look_and_feel_am_pm">A.M.</string>
-    <string name="pref_look_and_feel_am_pm_summary">saatlıq saat qullanğanda A.M.</string>
-    <string name="pref_look_and_feel_ao">Pik Displey .</string>
-    <string name="pref_look_and_feel_ao_summary">«Pik displey»niñ korûnişini deñiştire .</string>
-    <string name="pref_look_and_feel_colors">Reñkler</string>
-    <string name="pref_look_and_feel_colors_summary">Belli bir élementler içûn renklerni seçip alıñız .</string>
-    <string name="pref_look_and_feel_colors_clock">Saat tûsû</string>
-    <string name="pref_look_and_feel_colors_date">Tarihnıñ renki</string>
-    <string name="pref_look_and_feel_colors_battery">Akkumulâtornıñ tûsû .</string>
-    <string name="pref_look_and_feel_colors_battery_arc">Akkumulâtornıñ tûsû . (M-Style)</string>
-    <string name="pref_look_and_feel_colors_music_controls">Muzıka renkini idare éte .</string>
-    <string name="pref_look_and_feel_colors_calendar">Taqvim vaqiası .</string>
-    <string name="pref_look_and_feel_colors_message">Haber renki</string>
-    <string name="pref_look_and_feel_colors_weather">Ava tûsû .</string>
-    <string name="pref_look_and_feel_colors_notification">Haberdarlıq renki</string>
-    <string name="pref_look_and_feel_colors_fingerprint">Parmaq izleri levhası .</string>
-    <string name="pref_ao_showClock">Vaqıtnı kosʹteriñiz .</string>
-    <string name="pref_ao_showDate">Kunʹniñ kunûni kosʹteriñiz .</string>
-    <string name="pref_ao_showBatteryIcn">Akkumulâtor levhasını kosʹteriñiz .</string>
-    <string name="pref_ao_showBattery">Akkumulâtornıñ faizini kosʹteriñiz .</string>
-    <string name="pref_ao_showMusicControls">Muzıka idaresini displey .</string>
-    <string name="pref_ao_showNotifications">Haberdarlıq sayısını kosʹteriñiz .</string>
-    <string name="pref_ao_showNotificationIcons">Haberdarlıq levhalarını kosʹtermek .</string>
-    <string name="pref_ao_fingerprint">Parmaq iziniñ levhasını kosʹteriñiz .</string>
-    <string name="pref_ao_fingerprint_margin">Parmaq izleri marjası .</string>
-    <string name="pref_ao_fingerprint_margin_summary">Parmaq iziniñ levhasından aşağı er .</string>
-    <string name="pref_ao_edgeGlow">Éc parıldav</string>
-    <string name="pref_ao_edgeGlow_summary">Haberdarlıq kelʹgende çetleri .</string>
-    <string name="pref_ao_glowDuration">Âltıravuq devamlılıq (millisanielerde)</string>
-    <string name="pref_ao_glowDuration_summary">Kenarları parılday .</string>
-    <string name="pref_ao_glowDelay">Âltıravuq keçikûv (millisanielerde)</string>
-    <string name="pref_ao_glowDelay_summary">Âltıravuqlar arasında aralıq .</string>
-    <string name="pref_ao_glowStyle">Éc parıldav uslûbi .</string>
-    <string name="pref_ao_glowStyle_summary">Âltıravuq çetlerniñ korûnişini deñiştire .</string>
-    <string name="pref_ao_glowColor">Éc parıldağan tûs .</string>
-    <string name="pref_ao_glowColor_summary">Âltıravuq çetleriniñ tûsûni deñiştire .</string>
-    <string name="pref_ao_vibration">Titrevniñ devamlılığı (millisanielerde)</string>
-    <string name="pref_ao_vibration_summary">Ékrannı éki kere basqanda, telefonnı titrey .</string>
-    <string name="pref_ao_animation_delay">Areketniñ keçiktirilʹmesi (vaqtlarda)</string>
-    <string name="pref_ao_animation_delay_summary">Mundericeniñ çeşit poziciâları arasında vaqıt .\nDiqqat: Pek ûksek qıymetler ékrannıñ ânğınlarına ketire bile!</string>
-    <string name="pref_ao_smooth_animation">Canlı areket .</string>
-    <string name="pref_ao_smooth_animation_summary">Vaziet deñişmelerini canlandırıñız .</string>
+    <string name="pref_ao_behavior_summary">Qullanmanıñ davranışı ile bağlı ayarlamalar.</string>
+    <string name="pref_ao_other">Başqa ayarlamalar.</string>
+    <string name="pref_look_and_feel_hour">12 saatlıq format qullanıñız.</string>
+    <string name="pref_look_and_feel_hour_summary_on">Şimdi qullanılğan: 12 saatlıq saat.</string>
+    <string name="pref_look_and_feel_hour_summary_off">Şimdi qullanılğan: 24 saatlıq saat.</string>
+    <string name="pref_look_and_feel_am_pm">AM / PM kösteriñiz</string>
+    <string name="pref_look_and_feel_am_pm_summary">12 saatlıq format qullanğanda AM / PM kösteriñiz</string>
+    <string name="pref_look_and_feel_ao">Pik Displey körünüşi.</string>
+    <string name="pref_look_and_feel_ao_summary">Pik Displeyniñ körünüşini deñiştire.</string>
+    <string name="pref_look_and_feel_colors">Renkler</string>
+    <string name="pref_look_and_feel_colors_summary">Belli bir elementler içün renklerni seçip alıñız.</string>
+    <string name="pref_look_and_feel_colors_clock">Saat tüsü</string>
+    <string name="pref_look_and_feel_colors_date">Tarih tüsü</string>
+    <string name="pref_look_and_feel_colors_battery">Batareya tüsü.</string>
+    <string name="pref_look_and_feel_colors_battery_arc">Batareya tüsü. (M-Style)</string>
+    <string name="pref_look_and_feel_colors_music_controls">Muzıka idaresi tüsü.</string>
+    <string name="pref_look_and_feel_colors_calendar">Taqvim tedbiri tüsü.</string>
+    <string name="pref_look_and_feel_colors_message">Haber tüsü</string>
+    <string name="pref_look_and_feel_colors_weather">Ava tüsü.</string>
+    <string name="pref_look_and_feel_colors_notification">Bildiriş tüsü</string>
+    <string name="pref_look_and_feel_colors_fingerprint">Parmaq izi tüsü.</string>
+    <string name="pref_ao_showClock">Vaqıtnı kösteriñiz.</string>
+    <string name="pref_ao_showDate">Tarihnı kösteriñiz.</string>
+    <string name="pref_ao_showBatteryIcn">Batareya işaretini kösteriñiz.</string>
+    <string name="pref_ao_showBattery">Batareya faizini kösteriñiz.</string>
+    <string name="pref_ao_showMusicControls">Muzıka idaresini kösteriñiz.</string>
+    <string name="pref_ao_showNotifications">Bildiriş sayısını kösteriñiz.</string>
+    <string name="pref_ao_showNotificationIcons">Bildiriş işaretlerini kösteriñiz.</string>
+    <string name="pref_ao_fingerprint">Parmaq izi işaretini kösteriñiz.</string>
+    <string name="pref_ao_fingerprint_margin">Parmaq izi boşluğı.</string>
+    <string name="pref_ao_fingerprint_margin_summary">Parmaq izi işaretinden aşağıda boşluq.</string>
+    <string name="pref_ao_edgeGlow">Kenar parıldavı</string>
+    <string name="pref_ao_edgeGlow_summary">Bildiriş kelgende kenarlar parılday.</string>
+    <string name="pref_ao_glowDuration">Parıldav devamlılığı (millisanielerde)</string>
+    <string name="pref_ao_glowDuration_summary">Kenarlar ne qadar parıldaycaq.</string>
+    <string name="pref_ao_glowDelay">Parıldav keçiküvi (millisanielerde)</string>
+    <string name="pref_ao_glowDelay_summary">Parıldavlar arasındaki aralıq.</string>
+    <string name="pref_ao_glowStyle">Kenar parıldavı uslubı.</string>
+    <string name="pref_ao_glowStyle_summary">Kenar parıldavınıñ körünüşini deñiştire.</string>
+    <string name="pref_ao_glowColor">Kenar parıldavı tüsü.</string>
+    <string name="pref_ao_glowColor_summary">Kenar parıldavınıñ tüsünü deñiştire.</string>
+    <string name="pref_ao_vibration">Titrev devamlılığı (millisanielerde)</string>
+    <string name="pref_ao_vibration_summary">Ekrannı eki kere basqanda telefonnıñ titrev devamlılığı.</string>
+    <string name="pref_ao_animation_delay">Areket keçiküvi (daqqalarda)</string>
+    <string name="pref_ao_animation_delay_summary">Mündericeniñ çeşit pozitsiyaları arasında vaqıt.\nDiqqat: Pek yüksek qıymetler ekrannıñ yañmasına ketire bile!</string>
+    <string name="pref_ao_smooth_animation">Canlı areket.</string>
+    <string name="pref_ao_smooth_animation_summary">Vaziyet deñişmelerini canlandıırıñız.</string>
     <string name="pref_ao_refresh_rate_optimization">Yañartuv nisbetini optimizatsiya etüv</string>
     <string name="pref_ao_refresh_rate_optimization_summary">Batareyanı saqlamaq içün ekran statik olğanda eñ tüşük yañartuv nisbetini qullana</string>
-    <string name="pref_ao_force_brightness">Pik displeyinde belli bir ârıqlıqnı zornen zorlap .</string>
-    <string name="pref_ao_force_brightness_summary">Mecburiy ârıqlıqnı deñiştirmek içûn basıñız .</string>
-    <string name="pref_ao_force_brightness_title">parlaqlıq</string>
-    <string name="pref_ao_force_brightness_example">Siziñ «Pik Displey»deki metin boyle ârıq peyda olacaq.</string>
-    <string name="pref_ao_pocket_mode">Cep rejimi .</string>
-    <string name="pref_ao_pocket_mode_summary">cebiñde «Pik»ni ëq éte .\nDiqqat: Sensor qullanuv batareânıñ qullanuvınıñ artmasına sebep ola bile!</string>
-    <string name="pref_ao_dnd">Âpmamaqnı âqmaq .</string>
-    <string name="pref_ao_dnd_summary">Pik Displey çalışqan vaqıtta «Deñiştirme» rejimini âqtı .</string>
-    <string name="pref_ao_disable_on_dnd">«Turmamaq» rejiminde ğayıp ola .</string>
-    <string name="pref_ao_disable_on_dnd_summary">Tek «Turğunlıqnı bozma» rejimi faalʹ olmağanını kosʹteriñiz .</string>
-    <string name="pref_ao_power_saving">Kuçʹni ékonomiâ étmek rejimi (tamır)</string>
-    <string name="pref_ao_power_saving_summary">Peek displeyi çalışqanda, sistema\\’niñ quvetini saqlamaq rejimini âqtı .</string>
-    <string name="pref_ao_double_tap_speed">Éki kerelik surʹatı .</string>
-    <string name="pref_ao_double_tap_speed_summary">Éki kran ayrı ola bile (millisanielerde)</string>
-    <string name="pref_ao_double_tap_disabled">Éki taraflama 1-nci erni deñiştiriñiz .</string>
-    <string name="pref_ao_double_tap_disabled_summary">Pik Displeyden çıqmaq içûn éki kere tasmanı sëndûre (tesal degilʹ) .</string>
-    <string name="pref_ao_message">Beânat</string>
-    <string name="pref_ao_message_summary">Peek displeyinde kosʹterilʹgen haber .</string>
+    <string name="pref_ao_force_brightness">Pik Displeyde belli bir parlaqlıqnı mecbur etiñiz.</string>
+    <string name="pref_ao_force_brightness_summary">Mecburiy parlaqlıqnı deñiştirmek içün basıñız.</string>
+    <string name="pref_ao_force_brightness_title">Parlaqlıq</string>
+    <string name="pref_ao_force_brightness_example">Pik Displeyiñizdeki metin böyle parlaq körünecek.</string>
+    <string name="pref_ao_pocket_mode">Cep rejimi.</string>
+    <string name="pref_ao_pocket_mode_summary">Cebiñizde Pik Displeyni qapatır.\nDiqqat: Sensor qullanuvı batareyanıñ istimalını arttıra bile!</string>
+    <string name="pref_ao_dnd">«Ratsız etmeñiz» rejimini yoqatıñız.</string>
+    <string name="pref_ao_dnd_summary">Pik Displey çalışqanda «Ratsız etmeñiz» rejimini yoqatar.</string>
+    <string name="pref_ao_disable_on_dnd">«Ratsız etmeñiz» rejiminde qapalı.</string>
+    <string name="pref_ao_disable_on_dnd_summary">Tek «Ratsız etmeñiz» rejimi faal olmağanda kösteriñiz.</string>
+    <string name="pref_ao_power_saving">Energiya saqlav rejimi (tamır)</string>
+    <string name="pref_ao_power_saving_summary">Pik Displey çalışqanda sistemada energiya saqlav rejimini yoqatar.</string>
+    <string name="pref_ao_double_tap_speed">Eki kerelik basuv süratı.</string>
+    <string name="pref_ao_double_tap_speed_summary">Eki kerelik basuv arasındaki vaqıt (millisanielerde)</string>
+    <string name="pref_ao_double_tap_disabled">Eki kerelik basuvnı qapatıñız.</string>
+    <string name="pref_ao_double_tap_disabled_summary">Pik Displeyden çıqmaq içün eki kerelik basuvnı qapatır (tavsiye etilmey).</string>
+    <string name="pref_ao_message">Haber</string>
+    <string name="pref_ao_message_summary">Pik Displeyde kösterilecek haber.</string>
     <string name="pref_ao_date_format">Tarih formatı</string>
-    <string name="pref_ao_date_format_summary">Peek displeyinde qullanılğan tarih formatı .</string>
-    <string name="pref_ao_date_format_dialog_text">Belli bir şekilʹge riaet étmek kerek .</string>
-    <string name="pref_ao_date_format_dialog_neutral">Daa çoq bilʹgi alıñız</string>
-    <string name="pref_ao_date_format_illegal">Qanunsız format .</string>
-    <string name="pref_ao_calendar">Vaqialar</string>
-    <string name="pref_ao_calendar_summary">Âqın 24 saatte «Pik Displey»de vaqialarnı kosʹteriñiz.</string>
-    <string name="pref_look_and_feel_charging">Zarâdlı animaciâ .</string>
-    <string name="pref_look_and_feel_charging_summary">Zarâdlı animaciânıñ korûnişini deñiştire .</string>
-    <string name="pref_ao_background_image">Fon resimi .</string>
-    <string name="pref_ao_background_image_summary">«Pik displey»niñ fon resimini deñiştiriñiz .</string>
-    <string name="pref_look_and_feel_hide_display_cutouts">Displeyniñ kesiklerini gizlemek .</string>
-    <string name="pref_look_and_feel_hide_display_cutouts_summary">Tolu ékranlı kontent uzerinde displeyniñ kesiklerini gizleñiz</string>
-    <string name="pref_look_and_feel_orientation">Orientaciâ</string>
-    <string name="pref_look_and_feel_orientation_summary">Displey\’niñ ënelişini deñiştire .</string>
-    <string name="pref_look_and_feel_heads_up">Gizlilerni gizley (tamır)</string>
-    <string name="pref_look_and_feel_heads_up_summary">Başlarnıñ haberlerini kosʹterûvge (éksperimentalʹ) mania ola.</string>
-    <string name="pref_look_and_feel_weather">Ava vazieti</string>
-    <string name="pref_look_and_feel_weather_info">Ava aqqında malûmatnı kosʹtermek</string>
-    <string name="pref_look_and_feel_weather_info_summary">Siziñ «Pik» displeyiñizde ava aqqında malûmatnı konfiguraciâ étiñiz .</string>
-    <string name="pref_look_and_feel_weather_show_summary">Siziñ Pik Displeyiñizde ava aqqında malûmatnı kosʹteriñiz .</string>
-    <string name="pref_look_and_feel_weather_provider">Peek Display ava malûmatları içûn wttr.in qullana. Avanı ketirmek belli olğan malûmatnı keçire bile.</string>
-    <string name="pref_look_and_feel_weather_location">Ava eri .</string>
-    <string name="pref_look_and_feel_weather_location_summary">Ava aqqında haberniñ eri. Bunı avtolokaciâ içûn boş qaldırıñız.</string>
-    <string name="pref_look_and_feel_weather_format">Ava format</string>
-    <string name="pref_look_and_feel_weather_format_summary">Peek displeyinde qullanılğan ava formatı .</string>
-    <string name="pref_look_and_feel_filter_notifications">Filʹtr haberdarlıqları .</string>
-    <string name="pref_look_and_feel_filter_notifications_summary">1990 senesi 10 iûnʹde 100 2019 s.</string>
-    <string name="pref_look_and_feel_filter_notifications_explanation">Olarnı qapatmaq â da açmaq içûn âzmalarğa basıñız .</string>
-    <string name="pref_look_and_feel_filter_notifications_blocked">1990 senesi aqqında haberdarlıqlar.</string>
-    <string name="pref_look_and_feel_filter_notifications_shown">1990 senesi çıqqan haberler.</string>
-    <string name="pref_look_and_feel_filter_notifications_empty">Haberdarlıq ëq</string>
-    <string name="pref_look_and_feel_filter_notifications_empty_summary">Kosʹtermek içûn bir şey ëq kibi korûne.</string>
-    <string name="pref_look_and_feel_filter_notifications_unknown">Belli olmağan ariza .</string>
-    <string name="pref_look_and_feel_tint_notifications">Bir renk haberdarlıqları .</string>
-    <string name="pref_look_and_feel_tint_notifications_summary">Olarnıñ qullanma renklerinde tonbit haberleri .</string>
-    <string name="pref_look_and_feel_display_size">Displeyniñ kolemi .</string>
-    <string name="pref_look_and_feel_display_size_summary">«Pik Displey»niñ displeyniñ kolemi — bu %1$d%%</string>
+    <string name="pref_ao_date_format_summary">Pik Displeyde qullanılğan tarih formatı.</string>
+    <string name="pref_ao_date_format_dialog_text">Belli bir şablonğa riayet etmek kerek.</string>
+    <string name="pref_ao_date_format_dialog_neutral">Daa çoq bilgi alıñız</string>
+    <string name="pref_ao_date_format_illegal">Yañlış format.</string>
+    <string name="pref_ao_calendar">Tedbirleri kösteriñiz</string>
+    <string name="pref_ao_calendar_summary">Pik Displeyde yaqın 24 saat içindeki tedbirleri kösteriñiz.</string>
+    <string name="pref_look_and_feel_charging">Tolduruv animatsiyası körünüşi.</string>
+    <string name="pref_look_and_feel_charging_summary">Tolduruv animatsiyasınıñ körünüşini deñiştire.</string>
+    <string name="pref_ao_background_image">Arqa fon resmi.</string>
+    <string name="pref_ao_background_image_summary">Pik Displeyniñ arqa fon resmini deñiştiriñiz.</string>
+    <string name="pref_look_and_feel_hide_display_cutouts">Ekran kesiklerini gizleñiz.</string>
+    <string name="pref_look_and_feel_hide_display_cutouts_summary">Tam ekranlı münderice üstünde ekran kesiklerini gizleñiz</string>
+    <string name="pref_look_and_feel_orientation">Yöneliş</string>
+    <string name="pref_look_and_feel_orientation_summary">Ekrannıñ yönelişini deñiştire.</string>
+    <string name="pref_look_and_feel_heads_up">Qalquv bildirişlerini gizleñiz (tamır)</string>
+    <string name="pref_look_and_feel_heads_up_summary">Qalquv bildirişleriniñ kösterilmesine mania olur (tecribeviy).</string>
+    <string name="pref_look_and_feel_weather">Ava vaziyeti</string>
+    <string name="pref_look_and_feel_weather_info">Ava malümatını kösteriñiz</string>
+    <string name="pref_look_and_feel_weather_info_summary">Pik Displeyiñizde ava malümatını sazlañız.</string>
+    <string name="pref_look_and_feel_weather_show_summary">Pik Displeyiñizde ava malümatını kösteriñiz.</string>
+    <string name="pref_look_and_feel_weather_provider">Pik Displey ava malümatları içün wttr.in qullana. Ava malümatını aluv bazı malümatlarnı keçire bile.</string>
+    <string name="pref_look_and_feel_weather_location">Ava yeri.</string>
+    <string name="pref_look_and_feel_weather_location_summary">Ava vaziyeti içün yer. Otomatik yer içün boş qaldırıñız.</string>
+    <string name="pref_look_and_feel_weather_format">Ava formatı</string>
+    <string name="pref_look_and_feel_weather_format_summary">Pik Displeyde qullanılğan ava formatı.</string>
+    <string name="pref_look_and_feel_filter_notifications">Bildirişlerni süzüv.</string>
+    <string name="pref_look_and_feel_filter_notifications_summary">Qaysı bildirişlerni köstermeme kerekligini seçiñiz</string>
+    <string name="pref_look_and_feel_filter_notifications_explanation">Olarnı bloklamaq ya da açmaq içün elementlerge basıñız.</string>
+    <string name="pref_look_and_feel_filter_notifications_blocked">Bildirişleri bloklanğanlar:</string>
+    <string name="pref_look_and_feel_filter_notifications_shown">Bildirişleri kösterilecekler:</string>
+    <string name="pref_look_and_feel_filter_notifications_empty">Bildiriş yoq</string>
+    <string name="pref_look_and_feel_filter_notifications_empty_summary">Kösterilecek bir şey yoq kibi körüne.</string>
+    <string name="pref_look_and_feel_filter_notifications_unknown">Bilinmegen qullanma.</string>
+    <string name="pref_look_and_feel_tint_notifications">Bildirişlerni renklendiriñiz.</string>
+    <string name="pref_look_and_feel_tint_notifications_summary">Bildirişlerni qullanma renklerine köre boyalañız.</string>
+    <string name="pref_look_and_feel_display_size">Ekran büyükligi.</string>
+    <string name="pref_look_and_feel_display_size_summary">Pik Displeyniñ ekran büyükligi — %1$d%%</string>
     <string name="pref_look_and_feel_rules">Qaideler</string>
-    <string name="pref_look_and_feel_rules_summary">Ne vaqıt Pik displeyini kosʹtermek .</string>
-    <string name="pref_look_and_feel_rules_charging_state">Zarâdka devlet .</string>
-    <string name="pref_look_and_feel_rules_charger">Zarâdka çeşiti .</string>
-    <string name="pref_look_and_feel_rules_charger_summary">Qaysı zarâdka çeşitleri zarâdka dep sayğanını seçip alıñız .</string>
-    <string name="pref_look_and_feel_rules_battery_level">Akkumulâtorlıq seviesi</string>
-    <string name="pref_look_and_feel_rules_battery_level_summary">Tek ûqarıdaki %1$d%%</string>
-    <string name="pref_look_and_feel_rules_battery_level_summary_zero">Ér bir batareâ seviesinde kosʹteriñiz .</string>
+    <string name="pref_look_and_feel_rules_summary">Pik Displeyniñ ne vaqıt kösterilecegini idare etiñiz.</string>
+    <string name="pref_look_and_feel_rules_charging_state">Tolduruv vaziyeti.</string>
+    <string name="pref_look_and_feel_rules_charger">Tolduruv çeşiti.</string>
+    <string name="pref_look_and_feel_rules_charger_summary">Qaysı tolduruv çeşitleriniñ tolduruv dep sayılacağını seçiñiz.</string>
+    <string name="pref_look_and_feel_rules_battery_level">Batareya seviyesi</string>
+    <string name="pref_look_and_feel_rules_battery_level_summary">Tek %1$d%% üstünde kösteriñiz</string>
+    <string name="pref_look_and_feel_rules_battery_level_summary_zero">Er bir batareya seviyesinde kösteriñiz.</string>
     <string name="pref_look_and_feel_rules_time">Vaqıt devri</string>
-    <string name="pref_look_and_feel_rules_time_summary"> %1$s ⟐den … %2$s</string>
-    <string name="pref_look_and_feel_rules_timeout">Vaqıt-aut</string>
-    <string name="pref_look_and_feel_rules_timeout_summary_zero">Taym-aut qoûlmadı .</string>
-    <string name="pref_look_and_feel_rules_ambient_mode">Étraftaki rejim .</string>
-    <string name="pref_look_and_feel_rules_ambient_mode_summary">Tek bir haber kelʹgen soñ kosʹter .</string>
-    <string name="pref_permissions">ruhset</string>
-    <string name="pref_permissions_summary">Iâtiylernen bağlı parametrler .</string>
-    <string name="pref_ignore_battery_optimizations">Akkumulâtorlarnıñ optimizaciâlarını kozʹge almamaq .</string>
-    <string name="pref_ignore_battery_optimizations_summary">Sistemadan peyda olğan keçikûvlerniñ ogûne kete .</string>
-    <string name="pref_notification">Haberdarlıq kiriş</string>
-    <string name="pref_notification_summary">Haberdarlıq kirişini çalıştırmaq â da saqat étmek .</string>
-    <string name="pref_draw_over_other_apps">Başqa qullanmalar ustûnde kosʹteriñiz .</string>
-    <string name="pref_draw_over_other_apps_summary">Bu ruhsetni çalıştırmaq â da sëndûrmek .</string>
-    <string name="pref_admin">Qural admin .</string>
-    <string name="pref_admin_summary">Bu aletniñ administratorını normalʹ rejim içûn faalʹleştiriñiz .\nLûtfen, diqqat étiñiz ki, onı çıqarmazdan évelʹ, qullanma\’niñ mahsulat admin imtiâzlarını sëndûrmek kerek!</string>
-    <string name="pref_root_mode">Tamır rejimi .</string>
-    <string name="pref_root_mode_summary">Tamırnıñ funkcionalʹligini temin éte .</string>
-    <string name="help_center">Ârdım merkezi .</string>
-    <string name="help_center_summary">Âpqan, cevapsız, batareânıñ drenajı .</string>
-    <string name="help_center_missing_permissions_text">Parametr bozulğanda ve başta bir şeyni çalıştırmaq kerekligini aytqanda, sen daa kerekli ruhsetlerni çalıştırmadıñ. Éksik ruhsetler bermek içûn baş saifede «Idareler» saifesini aça ve kerekli ruhsetlerni qullanmağa razılıq bere. Éndi o ruhsetlerge muhtac olğan parametrlerni çalıştırmaq mumkûn.</string>
-    <string name="help_center_uninstall">Nasıl étmek mumkûn .</string>
-    <string name="help_center_uninstall_text">«Android» ameliât sistemasındaki dizayn qusurından sebep, erleştirûv cerʹânı ğayıp ola bile. Éger mahsulatnı çıqarmazdan évelʹ, aletniñ admin ruhseti ğayıp olmasa, bu cerʹân ğayıp olacaq. Admin ruhseti çıqmazdan évelʹ, mahsulat admin ruhsetini sëndûrmek kerek.</string>
-    <string name="help_center_uninstall_button">Şimdi erleştiriñiz</string>
-    <string name="help_center_delays">Keçiktirûvlerni nasıl tûzetmek mumkûn .</string>
-    <string name="help_center_delays_text">Bazı istisalcılar batareânıñ omûrini qullanma funkcionallığından seveler, şunıñ içûn bu qullanma tek bazı mahsulatlarda keçikûvlernen â da iç de olmay bile. Éger siz keçikûvlerni keçirseñiz, qullanma içûn batareâ optimizaciâlarını sëndûrip baqıñız â da istisalcığa has olğan başqa parametrlerni teşkeriñiz.</string>
-    <string name="help_center_delays_button_one">Akkumulâtor parametrleri</string>
-    <string name="help_center_delays_button_two">Istesalcığa has .</string>
-    <string name="help_center_battery_drain">Akkumulâtor drenajınıñ menbasını añlamaq .</string>
-    <string name="help_center_battery_drain_text">Akkumulâtornıñ drenajınıñ bir sebebi şunda ola bile ki, sen JK-displeyli telefonnı qullanasıñ. Bu qullanma énergiânı ékonomiâ étmek içûn qara pikselʹlerni sëndûrip olacaq OLED displeyli telefonlar içûn âpılğan. JK-displeyler qara pikselʹlerni sëndûrip olamaylar, bu ise Peek Display çalışqanda, displeyde çoq ziâde énergiânı ketirecek. Android ozʹ batareâlarını Peek Display’niñ batareâ istimalınıñ bir qısmı olaraq kosʹterecek.</string>
-    <string name="loading">Ûklûlik</string>
-    <string name="missing_permissions">Éksik ruhsetler .</string>
-    <string name="permissions_notification_access">Bu funkciâ içûn haber étmek içûn kirişni âqıñız .</string>
-    <string name="permissions_device_admin_or_root">Bu funkciâ içûn apparat admin â da tamırını âqıñız .</string>
+    <string name="pref_look_and_feel_rules_time_summary">%1$s ile %2$s arasında kösteriñiz</string>
+    <string name="pref_look_and_feel_rules_timeout">Vaqıt-savut</string>
+    <string name="pref_look_and_feel_rules_timeout_summary_zero">Taym-aut qoyılmadı.</string>
+    <string name="pref_look_and_feel_rules_ambient_mode">Etraflıq rejim.</string>
+    <string name="pref_look_and_feel_rules_ambient_mode_summary">Tek bir bildiriş kelgen soñ kösteriñiz.</string>
+    <string name="pref_permissions">Ruhsetler</string>
+    <string name="pref_permissions_summary">Ruhsetler ile bağlı ayarlamalar.</string>
+    <string name="pref_ignore_battery_optimizations">Batareya optimizatsiyalarını közge almamaq.</string>
+    <string name="pref_ignore_battery_optimizations_summary">Sistemadan peyda olğan keçiküvlerniñ öñüne keçer.</string>
+    <string name="pref_notification">Bildirişlerge kiriş</string>
+    <string name="pref_notification_summary">Bildiriş kirişini faalleştiriñiz ya da qapatıñız.</string>
+    <string name="pref_draw_over_other_apps">Başqa qullanmalar üstünde kösteriñiz.</string>
+    <string name="pref_draw_over_other_apps_summary">Bu ruhsetni faalleştiriñiz ya da qapatıñız.</string>
+    <string name="pref_admin">Cihaz memurı</string>
+    <string name="pref_admin_summary">Normal rejim içün cihaz memurını faalleştiriñiz.\nLütfen, diqqat etiñiz ki, onı yoq etmezden evel, qullanmanıñ cihaz memurı imtiyazlarını söndürmek kerek!</string>
+    <string name="pref_root_mode">Tamır rejimi.</string>
+    <string name="pref_root_mode_summary">Tamır funktsionallığını faalleştire.</string>
+    <string name="help_center">Yardım merkezi.</string>
+    <string name="help_center_summary">Yoq etüv, cevap bermev, batareya istimalı.</string>
+    <string name="help_center_missing_permissions_text">Bir ayar solğun körünse ve evel bir şeyni faalleştirmek kerek dese, kerekli ruhsetlerni bermegeniñizni bildire. Eksik ruhsetlerni bermek içün baş saifede «Ruhsetler» saifesini açıñız ve kerekli ruhsetlerge razılıq beriñiz. Endi o ruhsetlerge muhtac olğan ayarlarnı faalleştirmek mümkün.</string>
+    <string name="help_center_uninstall">Nasıl yoq etmeli.</string>
+    <string name="help_center_uninstall_text">Android işletim sistemindeki bir dizayn qusurı sebebinden yoq etüv süreci muvafaqiyetsiz ola bile. Eger qullanmanı yoq etmezden evel cihaz memurı ruhsetini qapatmasa-ñız, yoq etüv süreci çalışmaycaq. Yoq etmezden evel cihaz memurı ruhsetini söndürmek kerek.</string>
+    <string name="help_center_uninstall_button">Şimdi yoq etiñiz</string>
+    <string name="help_center_delays">Keçiküvlerni nasıl tüzetmeli.</string>
+    <string name="help_center_delays_text">Bazı istisalcılar batareya ömrüni qullanma funktsionallığından üstün köreler, şunıñ içün bu qullanma bazı cihazlarda keçiküvlernen ya da iç çalışmay bile. Eger siz keçiküvlerge rastkelseñiz, qullanma içün batareya optimizatsiyalarını söndürip baqıñız ya da istisalcığa has başqa ayarlarnı teşkeriñiz.</string>
+    <string name="help_center_delays_button_one">Batareya ayarlamaları</string>
+    <string name="help_center_delays_button_two">İstisalcığa has.</string>
+    <string name="help_center_battery_drain">Batareya istimalınıñ sebebini añlamaq.</string>
+    <string name="help_center_battery_drain_text">Batareya istimalınıñ bir sebebi LCD ekranlı telefon qullanmanıñız ola bile. Bu qullanma energiyanı saqlamaq içün qara piksellerni söndürip olğan OLED ekranlı telefonlar içün yapılğan. LCD ekranlar qara piksellerni söndürip olamaylar, bu ise Pik Displey çalışqanda ekrannıñ daha çoq energiya istimal etmesine sebep olur. Android, başqa qullanmalarnıñ artta çalışmasını da Pik Displeyniñ batareya istimalı olaraq köstere bile.</string>
+    <string name="loading">Yüklenmekte</string>
+    <string name="missing_permissions">Eksik ruhsetler.</string>
+    <string name="permissions_notification_access">Bu funktsiya içün bildirişlerge kirişni yoqatıñız.</string>
+    <string name="permissions_device_admin_or_root">Bu funktsiya içün cihaz memurını ya da tamırını yoqatıñız.</string>
     <string name="about">Aqqında</string>
-    <string name="about_summary">Qollanma aqqında .</string>
-    <string name="about_app_version">App versiâsı .</string>
-    <string name="about_privacy">Tışqı munderice .</string>
-    <string name="about_privacy_desc">Tışqı munderice GitHub-dan ûklenecek. Ilerideki malûmat içûn olarnıñ mahfiylik siâsetini oquñ.</string>
-    <string name="about_privacy_policy">Gizlilik siâseti</string>
-    <string name="about_contributors">Iştirakçiler</string>
-    <string name="about_contributors_desc">Iştirakçilerniñ cedveli .</string>
+    <string name="about_summary">Qullanma aqqında.</string>
+    <string name="about_app_version">Qullanma versiyası.</string>
+    <string name="about_privacy">Tışqı münderice.</string>
+    <string name="about_privacy_desc">Tışqı münderice GitHub-dan yüklenecek. Daa çoq malümat içün olarnıñ gizlilik siyasetini oquñ.</string>
+    <string name="about_privacy_policy">Gizlilik siyaseti</string>
+    <string name="about_contributors">İştirakçiler</string>
+    <string name="about_contributors_desc">İştirakçilerniñ cedveli.</string>
     <string name="about_general">Umumiy</string>
-    <string name="about_github">GitHub hazinesi .</string>
-    <string name="about_license">Licenziâ</string>
-    <string name="about_icons">Ikâe</string>
-    <string name="about_icons_desc">Ikons 8 ve Google tarafından .</string>
+    <string name="about_github">GitHub ambarı.</string>
+    <string name="about_license">Litsenziya</string>
+    <string name="about_icons">İşaretler</string>
+    <string name="about_icons_desc">Icons8 ve Google tarafından.</string>
     <string name="about_libraries">Kitaphaneler</string>
-    <string name="about_libraries_desc">Butûn qullanılğan kitaphanelerniñ cedveli .</string>
+    <string name="about_libraries_desc">Bütün qullanılğan kitaphanelerniñ cedveli.</string>
 
     <string-array name="pref_look_and_feel_rules_charging_state_display">
-        <item>Ér bir zarâdka vazietinde kosʹteriñiz .</item>
-        <item>Tek zarâdka âpqanda kosʹteriñiz .</item>
-        <item>Tek ëldan çıqqanda kosʹteriñiz .</item>
+        <item>Er bir tolduruv vaziyetinde kösteriñiz.</item>
+        <item>Tek tolduruv vaqtında kösteriñiz.</item>
+        <item>Tek toldurılmağan vaqıtta kösteriñiz.</item>
     </string-array>
 
     <string-array name="pref_look_and_feel_rules_charger_display">
-        <item>A.S.</item>
+        <item>AC</item>
         <item>USB</item>
-        <item>Sımsız</item>
+        <item>Telsiz</item>
     </string-array>
 
     <string-array name="pref_look_and_feel_orientation_display">
-        <item>Avto-qulf .</item>
-        <item>portret</item>
+        <item>Otomatik kilit.</item>
+        <item>Portret</item>
         <item>Manzara</item>
     </string-array>
 
     <string-array name="pref_ao_glowStyle_display">
-        <item>Butûn taraflar .</item>
-        <item>Sol ve sağ tarafları .</item>
-        <item>Ustûn ve tûbûndeki tarafları .</item>
+        <item>Bütün taraflar.</item>
+        <item>Sol ve sağ taraflar.</item>
+        <item>Üst ve alt taraflar.</item>
     </string-array>
 
     <string-array name="pref_ao_background_image_array_display">
-        <item>Kimse</item>
+        <item>Yoq</item>
         <item>Daniel Olah</item>
         <item>Daniel Olah</item>
         <item>Daniel Olah</item>
@@ -237,58 +237,58 @@
         <item>Tyler Lastovich</item>
         <item>Tyler Lastovich</item>
         <item>Tyler Lastovich</item>
-        <item>Adet</item>
+        <item>Şahsi</item>
     </string-array>
     <string name="notification_action_reply">Cevap bermek</string>
-    <string name="pref_ao_showAlbumArt">Displey alʹbom sanatı .</string>
-    <string name="pref_ao_interactive_notification_icons">Interaktiv haber étûv levhaları .</string>
-    <string name="pref_ao_interactive_notification_icons_summary">Prosmosferanı kosʹtermek içûn haberdarlıq levhasını uzunca basıñız ve soñra 1990 senesi 1000 1000</string>
-    <string name="pref_ao_invert_interaction_highlight">Invertornıñ ozʹara tesiri aydınlattı .</string>
-    <string name="pref_ao_invert_interaction_highlight_summary">Haberdarlıq ikonaları ozʹara tesir vaqtında â da boş erde aydınlatılğanını deñiştireler.</string>
-    <string name="pref_ao_notification_icon_size">Haberdarlıq levhasınıñ kolemi .</string>
-    <string name="pref_ao_notification_icon_size_summary">Haberdarlıq levhalarınıñ kolemini deñiştire .</string>
-    <string name="pref_ao_notification_icon_top_padding">Haberdarlıq levhası ustûndeki prokladka</string>
-    <string name="pref_ao_notification_icon_top_padding_summary">Ûqarıdaki haberdarlıq levhalarını erleştiriñiz .</string>
-    <string name="pref_ao_notification_preview_position">Haberdarlıq ogrenûviniñ poziciâsı .</string>
-    <string name="pref_ao_notification_preview_position_summary">Haberdarlıq aqqında haberniñ haberdarlıq levhasına nisbeten erleştirilʹmesi .</string>
-    <string name="pref_ao_top_padding">Ûqarı prokladka</string>
-    <string name="pref_ao_top_padding_summary">Displey élementleriniñ vertikalʹ erleşûvini erleştiriñiz .</string>
+    <string name="pref_ao_showAlbumArt">Albom resmini kösteriñiz.</string>
+    <string name="pref_ao_interactive_notification_icons">İnteraktiv bildiriş işaretleri.</string>
+    <string name="pref_ao_interactive_notification_icons_summary">Bildirişni ög-baquv içün bildiriş işaretini uzunca basıñız ve soñra kerekli areketni yapıñız</string>
+    <string name="pref_ao_invert_interaction_highlight">Tesirleşüv parıldavını tersine çeviriñiz.</string>
+    <string name="pref_ao_invert_interaction_highlight_summary">Bildiriş işaretleriniñ tesirleşüv vaqtında ya da boş turağanda parıldağanını deñiştire.</string>
+    <string name="pref_ao_notification_icon_size">Bildiriş işareti büyükligi.</string>
+    <string name="pref_ao_notification_icon_size_summary">Bildiriş işaretleriniñ büyükligini deñiştire.</string>
+    <string name="pref_ao_notification_icon_top_padding">Bildiriş işareti üst boşluğı</string>
+    <string name="pref_ao_notification_icon_top_padding_summary">Bildiriş işaretleriniñ üstündeki boşluqnı sazlañız.</string>
+    <string name="pref_ao_notification_preview_position">Bildiriş ög-baquv pozitsiyası.</string>
+    <string name="pref_ao_notification_preview_position_summary">Bildiriş ög-baquvınıñ bildiriş işaretine nisbeten yerleşmesi.</string>
+    <string name="pref_ao_top_padding">Üst boşluq</string>
+    <string name="pref_ao_top_padding_summary">Ekran elementleriniñ vertikal yerleşmesini sazlañız.</string>
     <string-array name="pref_ao_notification_preview_position_display">
-        <item>1990 s.</item>
-        <item>Aşağıda .</item>
+        <item>İşaret üstünde</item>
+        <item>İşaret altında</item>
     </string-array>
     <string-array name="pref_ao_notification_icon_size_display">
-        <item>Kiçik</item>
+        <item>Küçük</item>
         <item>Standart</item>
-        <item>Keñleştirilʹgen</item>
+        <item>Büyük</item>
     </string-array>
-    <string name="pref_ao_fingerprint_interaction">Parmaq basmasınıñ tesirleşûv rejimi .</string>
-    <string name="pref_ao_fingerprint_interaction_summary">Parmaq izleri levhasınen nasıl tesirleşmek mumkûn .</string>
-    <string name="pref_ao_fingerprint_interaction_swipe">Ikonadan sızıñız .</string>
-    <string name="pref_ao_fingerprint_interaction_longpress">Uzûn basmaq .</string>
-    <string name="pref_ao_swipe_notification_open">Onı açmaq içûn haber étmek içûn swip .</string>
-    <string name="pref_ao_swipe_notification_open_summary">Olarğa parmaq izleri levhasından vızup, açıluv aqqında haberdarlıqlar .</string>
-    <string name="notification_dismiss">Qabul étmemek</string>
-    <string name="pref_look_and_feel_rules_pickup_mode">PickUp rejimi .</string>
-    <string name="pref_look_and_feel_rules_pickup_mode_summary">Tek telefonnı alğanda kosʹter .</string>
-    <string name="pref_pickup_sensitivity">«PikL» seziciligi .</string>
-    <string name="pref_pickup_sensitivity_summary">Qabul étmekniñ seziciligini tûzetmek .</string>
+    <string name="pref_ao_fingerprint_interaction">Parmaq izi tesirleşüv rejimi.</string>
+    <string name="pref_ao_fingerprint_interaction_summary">Parmaq izi işareti ile nasıl tesirleşmeli.</string>
+    <string name="pref_ao_fingerprint_interaction_swipe">İşaretten sızıñız.</string>
+    <string name="pref_ao_fingerprint_interaction_longpress">Uzun basmaq.</string>
+    <string name="pref_ao_swipe_notification_open">Açmaq içün bildirişke sızıñız.</string>
+    <string name="pref_ao_swipe_notification_open_summary">Parmaq izi işaretinden sızıp bildirişlerni açmağa ruhset berir.</string>
+    <string name="notification_dismiss">Qapatmaq</string>
+    <string name="pref_look_and_feel_rules_pickup_mode">PickUp rejimi.</string>
+    <string name="pref_look_and_feel_rules_pickup_mode_summary">Tek telefonnı qolğa alğanda kösteriñiz.</string>
+    <string name="pref_pickup_sensitivity">PickUp sezgirligi.</string>
+    <string name="pref_pickup_sensitivity_summary">Telefonnı qolğa aluv sezgirligini tüzetmek.</string>
     <string-array name="pref_pickup_sensitivity_display">
-        <item>Ûksek</item>
+        <item>Yüksek</item>
         <item>Orta</item>
-        <item>Alçaq</item>
+        <item>Tüşük</item>
     </string-array>
-    <string name="pref_ao_lock_icon">Qulflıq levhasını qullanıñız .</string>
-    <string name="pref_ao_lock_icon_summary">Parmaq iziniñ levhasını lokalizaciâ levhasınen deñiştiriñiz .</string>
+    <string name="pref_ao_lock_icon">Kilit işaretini qullanıñız.</string>
+    <string name="pref_ao_lock_icon_summary">Parmaq izi işaretini kilit işareti ile deñiştiriñiz.</string>
     <string name="donate">Bağışlamaq</string>
-    <string name="donate_summary">«Pik displey»niñ inkişafını desteklemek .</string>
-    <string name="pref_look_and_feel_weather_unit">Imperator birlemlerini qullanıñız .</string>
-    <string name="pref_look_and_feel_weather_unit_summary">Farengeytte araretni kosʹteriñiz .</string>
+    <string name="donate_summary">Pik Displeyniñ inkişafını desteklemek.</string>
+    <string name="pref_look_and_feel_weather_unit">İmperial birlemlerini qullanıñız.</string>
+    <string name="pref_look_and_feel_weather_unit_summary">Araretni Farengeyt derece ile kösteriñiz.</string>
     <string name="colorpicker_opacity">Şeffaflıq</string>
     <string name="colorpicker_color">Renk</string>
-    <string name="colorpicker_custom">Adet</string>
-    <string name="colorpicker_presets">Aldından qoyulğanlar</string>
-    <string name="pref_look_and_feel_weather_refresh_interval">Yañılanuv aralığı</string>
-    <string name="pref_look_and_feel_weather_refresh_interval_label">Daqqalar</string>
-    <string name="pref_look_and_feel_weather_refresh_interval_disabled">Saqat (startta bir kere ketirmek)</string>
+    <string name="colorpicker_custom">Şahsi</string>
+    <string name="colorpicker_presets">Ög-ayarlar</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">Yañartuv aralığı</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_label">Daqqa</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">Qapalı (başlağanda bir kere alına)</string>
 </resources>

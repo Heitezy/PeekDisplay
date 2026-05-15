@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <plurals name="pref_look_and_feel_rules_timeout_summary">
-        <item quantity="one">%d saniyede toqtamaq</item>
-        <item quantity="other">%d saniyede toqtamaq</item>
+        <item quantity="one">%d saniyeden soñ toqta</item>
+        <item quantity="other">%d saniyeden soñ toqta</item>
     </plurals>
     <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
         <item quantity="one">Er %d daqqada</item>
