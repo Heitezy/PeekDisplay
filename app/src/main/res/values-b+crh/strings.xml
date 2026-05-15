@@ -83,6 +83,8 @@
     <string name="pref_ao_animation_delay_summary">Mundericeniñ çeşit poziciâları arasında vaqıt .\nDiqqat: Pek ûksek qıymetler ékrannıñ ânğınlarına ketire bile!</string>
     <string name="pref_ao_smooth_animation">Canlı areket .</string>
     <string name="pref_ao_smooth_animation_summary">Vaziet deñişmelerini canlandırıñız .</string>
+    <string name="pref_ao_refresh_rate_optimization">Yañartuv nisbetini optimizatsiya etüv</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">Batareyanı saqlamaq içün ekran statik olğanda eñ tüşük yañartuv nisbetini qullana</string>
     <string name="pref_ao_force_brightness">Pik displeyinde belli bir ârıqlıqnı zornen zorlap .</string>
     <string name="pref_ao_force_brightness_summary">Mecburiy ârıqlıqnı deñiştirmek içûn basıñız .</string>
     <string name="pref_ao_force_brightness_title">parlaqlıq</string>

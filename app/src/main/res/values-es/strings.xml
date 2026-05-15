@@ -83,6 +83,8 @@
     <string name="pref_ao_animation_delay_summary">Tiempo entre las diferentes posiciones del contenido: ¡Los valores demasiado altos pueden causar quemaduras en la pantalla!</string>
     <string name="pref_ao_smooth_animation">Animate Motion</string>
     <string name="pref_ao_smooth_animation_summary">Animar los cambios de posición</string>
+    <string name="pref_ao_refresh_rate_optimization">Optimización de la tasa de refresco</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">Utiliza la tasa de refresco más baja disponible cuando la pantalla está estática para ahorrar batería</string>
     <string name="pref_ao_force_brightness">Fuerza un cierto brillo en el Peek Display</string>
     <string name="pref_ao_force_brightness_summary">Tap para cambiar el brillo forzado</string>
     <string name="pref_ao_force_brightness_title">Brillo</string>

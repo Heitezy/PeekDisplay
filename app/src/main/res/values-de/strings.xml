@@ -83,6 +83,8 @@
     <string name="pref_ao_animation_delay_summary">Zeit zwischen den verschiedenen Positionen des Inhalts\nWarnung: Zu hohe Werte können zum Einbrennen des Bildschirms führen!</string>
     <string name="pref_ao_smooth_animation">Bewegung animieren</string>
     <string name="pref_ao_smooth_animation_summary">Animiert die Positionsänderungen</string>
+    <string name="pref_ao_refresh_rate_optimization">Bildwiederholraten-Optimierung</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">Verwendet die niedrigste verfügbare Bildwiederholfrequenz, wenn das Display statisch ist, um Akku zu sparen</string>
     <string name="pref_ao_force_brightness">Eine bestimmte Helligkeit auf dem Peek Display erzwingen</string>
     <string name="pref_ao_force_brightness_summary">Tippen Sie, um die Helligkeit zu ändern</string>
     <string name="pref_ao_force_brightness_title">Helligkeit</string>

@@ -68,6 +68,14 @@ private fun LAFBehaviorScreen(onBack: () -> Unit) {
             )
         )
     }
+    var refreshRateOptimization by remember {
+        mutableStateOf(
+            prefs.getBoolean(
+                P.REFRESH_RATE_OPTIMIZATION,
+                P.REFRESH_RATE_OPTIMIZATION_DEFAULT
+            )
+        )
+    }
     var doubleTapDisabled by remember {
         mutableStateOf(
             prefs.getBoolean(
@@ -210,6 +218,18 @@ private fun LAFBehaviorScreen(onBack: () -> Unit) {
                 onCheckedChange = { checked ->
                     smoothAnimation = checked
                     prefs.edit { putBoolean(P.ANIMATE_MOTION, checked) }
+                },
+            )
+
+            // Refresh rate optimization
+            SwitchPreferenceItem(
+                iconRes = R.drawable.ic_speed,
+                title = stringResource(R.string.pref_ao_refresh_rate_optimization),
+                summary = stringResource(R.string.pref_ao_refresh_rate_optimization_summary),
+                checked = refreshRateOptimization,
+                onCheckedChange = { checked ->
+                    refreshRateOptimization = checked
+                    prefs.edit { putBoolean(P.REFRESH_RATE_OPTIMIZATION, checked) }
                 },
             )
 

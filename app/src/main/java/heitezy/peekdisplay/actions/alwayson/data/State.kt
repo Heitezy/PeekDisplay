@@ -87,7 +87,9 @@ data class State(
     val fingerprintIconBounds: Rect? = null,
     val previewBounds: Rect? = null,
     val driftY: Float = 0f,
-    val fpDriftY: Float = 0f
+    val fpDriftY: Float = 0f,
+    val isInteracting: Boolean = false,
+    val isDrifting: Boolean = false
 )
 
 data class ThemeSettings(

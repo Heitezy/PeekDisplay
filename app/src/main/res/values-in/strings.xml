@@ -83,6 +83,8 @@
     <string name="pref_ao_animation_delay_summary">Waktu antara berbagai posisi konten\nPeringatan: Nilai yang terlalu tinggi dapat menyebabkan luka bakar layar!</string>
     <string name="pref_ao_smooth_animation">Gerakan hidup</string>
     <string name="pref_ao_smooth_animation_summary">Menghidupkan perubahan posisi</string>
+    <string name="pref_ao_refresh_rate_optimization">Optimalisasi kecepatan refresh</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">Menggunakan kecepatan refresh terendah yang tersedia saat layar statis untuk menghemat baterai</string>
     <string name="pref_ao_force_brightness">Memaksa kecerahan tertentu pada tampilan mengintip</string>
     <string name="pref_ao_force_brightness_summary">Ketuk untuk mengubah kecerahan paksa</string>
     <string name="pref_ao_force_brightness_title">Kecerahan</string>

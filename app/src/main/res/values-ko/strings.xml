@@ -83,6 +83,8 @@
     <string name="pref_ao_animation_delay_summary">내용의 다른 위치 사이의 시간\n경고 : 값이 너무 높은 값은 화면 화상을 유발할 수 있습니다!</string>
     <string name="pref_ao_smooth_animation">애니메이션 운동</string>
     <string name="pref_ao_smooth_animation_summary">위치 변화에 애니메이션</string>
+    <string name="pref_ao_refresh_rate_optimization">새로 고침 빈도 최적화</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">배터리를 절약하기 위해 화면이 정지된 상태일 때 사용 가능한 가장 낮은 새로 고침 빈도를 사용합니다</string>
     <string name="pref_ao_force_brightness">엿보기 디스플레이에 특정 밝기를 강요하십시오</string>
     <string name="pref_ao_force_brightness_summary">강제 밝기를 변경하려면 탭하십시오</string>
     <string name="pref_ao_force_brightness_title">명도</string>

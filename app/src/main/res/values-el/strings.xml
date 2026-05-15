@@ -83,6 +83,8 @@
     <string name="pref_ao_animation_delay_summary">Χρόνος μεταξύ των διαφορετικών θέσεων του περιεχομένου\nΠΡΟΕΙΔΟΠΟΙΗΣΗ: Πολύ υψηλές τιμές μπορεί να προκαλέσει καύση οθόνης!</string>
     <string name="pref_ao_smooth_animation">Κινητική κίνηση</string>
     <string name="pref_ao_smooth_animation_summary">Μετακινήστε τη θέση αλλάζει</string>
+    <string name="pref_ao_refresh_rate_optimization">Βελτιστοποίηση ρυθμού ανανέωσης</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">Χρησιμοποιεί τον χαμηλότερο διαθέσιμο ρυθμό ανανέωσης όταν η οθόνη είναι στατική για εξοικονόμηση μπαταρίας</string>
     <string name="pref_ao_force_brightness">Αναγκάστε μια ορισμένη φωτεινότητα στην οθόνη PEEK</string>
     <string name="pref_ao_force_brightness_summary">Πατήστε για να αλλάξετε την αναγκαστική φωτεινότητα</string>
     <string name="pref_ao_force_brightness_title">Λάμψη</string>

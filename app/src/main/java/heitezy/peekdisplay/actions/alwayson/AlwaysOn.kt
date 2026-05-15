@@ -112,6 +112,13 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
     // Rules
     private val rulesHandler: Handler = Handler(Looper.getMainLooper())
     
+    // Interaction cooldown
+    private val interactionCooldownHandler: Handler = Handler(Looper.getMainLooper())
+    private val interactionCooldownRunnable = Runnable {
+        peekState = peekState.copy(isInteracting = false)
+        updateRefreshRate()
+    }
+
     // Timeout tracking
     private var timeoutRunnable: Runnable? = null
     private var timeoutDuration: Long = 0
@@ -401,9 +408,22 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
             
             while (true) {
                 delay(burnInDelay)
-                peekState = peekState.copy(driftY = 32f, fpDriftY = 64f)
+                if (!peekState.isInteracting) {
+                    peekState = peekState.copy(driftY = 32f, fpDriftY = 64f, isDrifting = true)
+                    updateRefreshRate()
+                    delay(2000)
+                    peekState = peekState.copy(isDrifting = false)
+                    updateRefreshRate()
+                }
+
                 delay(burnInDelay)
-                peekState = peekState.copy(driftY = 0f, fpDriftY = 0f)
+                if (!peekState.isInteracting) {
+                    peekState = peekState.copy(driftY = 0f, fpDriftY = 0f, isDrifting = true)
+                    updateRefreshRate()
+                    delay(2000)
+                    peekState = peekState.copy(isDrifting = false)
+                    updateRefreshRate()
+                }
             }
         }
 
@@ -412,17 +432,28 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
             .alpha(alpha)) {
             Content(
                 state = peekState.copy(driftY = animatedDriftY, fpDriftY = animatedFpDriftY),
-                onSkipPrevious = { onActiveSessionsChangedListener?.controller?.transportControls?.skipToPrevious() },
-                onSkipNext = { onActiveSessionsChangedListener?.controller?.transportControls?.skipToNext() },
+                onSkipPrevious = {
+                    onInteractionStarted()
+                    onActiveSessionsChangedListener?.controller?.transportControls?.skipToPrevious()
+                    onInteractionEnded()
+                },
+                onSkipNext = {
+                    onInteractionStarted()
+                    onActiveSessionsChangedListener?.controller?.transportControls?.skipToNext()
+                    onInteractionEnded()
+                },
                 onTitleClick = {
+                    onInteractionStarted()
                     resetTimeout()
                     if (onActiveSessionsChangedListener?.state == PlaybackState.STATE_PLAYING) {
                         onActiveSessionsChangedListener?.controller?.transportControls?.pause()
                     } else if (onActiveSessionsChangedListener?.state == PlaybackState.STATE_PAUSED) {
                         onActiveSessionsChangedListener?.controller?.transportControls?.play()
                     }
+                    onInteractionEnded()
                 },
                 onNotificationHoldStarted = { index ->
+                    onInteractionStarted()
                     resetTimeout()
                     peekState = peekState.copy(
                         touchedNotificationIndex = index,
@@ -433,6 +464,7 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
                     pauseTimeout()
                 },
                 onNotificationHoldFinished = {
+                    onInteractionEnded()
                     peekState = peekState.copy(
                         touchedNotificationIndex = null,
                         isReplyMode = false,
@@ -443,6 +475,7 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
                     resetTimeout()
                 },
                 onActionClick = { notificationIndex, actionIndex ->
+                    onInteractionStarted()
                     resetTimeout()
                     val sbn = peekState.detailedNotifications.getOrNull(notificationIndex)
                     val action = sbn?.notification?.actions?.getOrNull(actionIndex)
@@ -464,8 +497,10 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
                             Log.e(Global.LOG_TAG, "Action send failed")
                         }
                     }
+                    onInteractionEnded()
                 },
                 onReplyActionClick = { notificationIndex, actionIndex ->
+                    onInteractionStarted()
                     resetTimeout()
                     peekState = peekState.copy(
                         isReplyMode = true,
@@ -473,20 +508,26 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
                     )
                     pauseTimeout()
                     resetReplyTimeout()
+                    onInteractionEnded()
                 },
                 onDismissNotification = { index ->
+                    onInteractionStarted()
                     resetTimeout()
                     val sbn = peekState.detailedNotifications.getOrNull(index)
                     if (sbn != null) {
                         NotificationService.removeNotificationsByPackageAndId(sbn.packageName, sbn.id, sbn.tag)
                         peekState = peekState.copy(touchedNotificationIndex = null)
                     }
+                    onInteractionEnded()
                 },
                 onReplyTextChange = { text ->
+                    onInteractionStarted()
                     peekState = peekState.copy(replyText = text)
                     resetReplyTimeout()
+                    onInteractionEnded()
                 },
                 onSendReply = { index ->
+                    onInteractionStarted()
                     resetTimeout()
                     cancelReplyTimeout()
                     val sbn = peekState.detailedNotifications.getOrNull(index)
@@ -514,8 +555,10 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
                             Log.e(Global.LOG_TAG, "Reply failed")
                         }
                     }
+                    onInteractionEnded()
                 },
                 onDoubleTap = {
+                    onInteractionStarted()
                     if (!peekState.disableDoubleTap) {
                         val duration = prefs.get(P.VIBRATION_DURATION, P.VIBRATION_DURATION_DEFAULT).toLong()
                         if (duration > 0) {
@@ -529,14 +572,19 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
                         }
                         KeyguardHelper.dismissKeyguard(this@AlwaysOn)
                     }
+                    onInteractionEnded()
                 },
                 onDown = {
+                    onInteractionStarted()
                     resetTimeout()
+                    onInteractionEnded()
                 },
                 onFingerprintTouch = { isTouched, dx, dy ->
                     if (isTouched) {
+                        onInteractionStarted()
                         pauseTimeout()
                     } else {
+                        onInteractionEnded()
                         resumeTimeout()
                         resetTimeout()
                     }
@@ -569,12 +617,15 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
                     }
                 },
                 onFingerprintLongPress = {
+                    onInteractionStarted()
                     if (peekState.fingerprintInteractionMode == "longpress") {
                         KeyguardHelper.dismissKeyguard(this@AlwaysOn)
                         finish()
                     }
+                    onInteractionEnded()
                 },
                 onOpenNotification = { index ->
+                    onInteractionStarted()
                     val sbn = peekState.detailedNotifications.getOrNull(index)
                     if (sbn != null) {
                         try {
@@ -585,6 +636,7 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
                             Log.e(Global.LOG_TAG, "Notification open failed")
                         }
                     }
+                    onInteractionEnded()
                 },
                 onNotificationHovered = { index ->
                     if (peekState.hoveredNotificationIndex != index) {
@@ -683,6 +735,78 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
                 onModeChangedListener ?: error("onModeChangedListener is null."),
             )
         }
+    }
+
+    private fun updateRefreshRate() {
+        if (!prefs.get(P.REFRESH_RATE_OPTIMIZATION, P.REFRESH_RATE_OPTIMIZATION_DEFAULT)) {
+            setRefreshRate(false)
+            return
+        }
+
+        val isMultiline = peekState.theme == P.USER_THEME_SAMSUNG || peekState.theme == P.USER_THEME_ONEPLUS || peekState.theme == P.USER_THEME_ANALOG
+        val timeFormatString = if (isMultiline) {
+            prefs.getMultiLineTimeFormat()
+        } else {
+            prefs.getSingleLineTimeFormat()
+        }
+        val hasSeconds = timeFormatString.contains("s", ignoreCase = true)
+
+        val hasActiveAnimations = (peekState.edgeGlowEnabled && peekState.hasNewNotifications) || peekState.isDrifting || hasSeconds
+        val isStatic = !peekState.isInteracting && !hasActiveAnimations
+
+        setRefreshRate(isStatic)
+    }
+
+    private fun setRefreshRate(low: Boolean) {
+        val modeId = if (low) getLowestRefreshRateMode() else 0
+        if (window.attributes.preferredDisplayModeId != modeId) {
+            val params = window.attributes
+            params.preferredDisplayModeId = modeId
+            window.attributes = params
+        }
+    }
+
+    private fun getLowestRefreshRateMode(): Int {
+        val display = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            display
+        } else {
+            @Suppress("DEPRECATION")
+            (getSystemService(DISPLAY_SERVICE) as DisplayManager)
+                .getDisplay(Display.DEFAULT_DISPLAY)
+        }
+
+        val modes = display?.supportedModes
+        if (!modes.isNullOrEmpty()) {
+            val currentMode = display.mode
+            var lowestRate = Float.MAX_VALUE
+            var lowestModeId = currentMode.modeId
+
+            for (mode in modes) {
+                if (mode.physicalWidth == currentMode.physicalWidth &&
+                    mode.physicalHeight == currentMode.physicalHeight
+                ) {
+                    if (mode.refreshRate < lowestRate) {
+                        lowestRate = mode.refreshRate
+                        lowestModeId = mode.modeId
+                    }
+                }
+            }
+            return lowestModeId
+        }
+        return 0
+    }
+
+    private fun onInteractionStarted() {
+        interactionCooldownHandler.removeCallbacks(interactionCooldownRunnable)
+        if (!peekState.isInteracting) {
+            peekState = peekState.copy(isInteracting = true)
+            updateRefreshRate()
+        }
+    }
+
+    private fun onInteractionEnded() {
+        interactionCooldownHandler.removeCallbacks(interactionCooldownRunnable)
+        interactionCooldownHandler.postDelayed(interactionCooldownRunnable, 1500)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -785,6 +909,8 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
             timeoutDuration = timeoutSetting * MILLISECONDS_PER_SECOND
             setupTimeoutRunnable()
         }
+
+        updateRefreshRate()
         
         if (prefs.get(
                 P.DO_NOT_DISTURB,
@@ -958,6 +1084,7 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
         
         // Update the last count for next comparison
         lastNotificationCount = NotificationService.count
+        updateRefreshRate()
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {

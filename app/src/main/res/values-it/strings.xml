@@ -83,6 +83,8 @@
     <string name="pref_ao_animation_delay_summary">Tempo tra le diverse posizioni del contenuto\nATTENZIONE: valori troppo alti possono causare ustioni dello schermo!</string>
     <string name="pref_ao_smooth_animation">Motion animato</string>
     <string name="pref_ao_smooth_animation_summary">Anima le modifiche alla posizione</string>
+    <string name="pref_ao_refresh_rate_optimization">Ottimizzazione della frequenza di aggiornamento</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">Utilizza la frequenza di aggiornamento più bassa disponibile quando il display è statico per risparmiare batteria</string>
     <string name="pref_ao_force_brightness">Forzare una certa luminosità al display</string>
     <string name="pref_ao_force_brightness_summary">Tocca per cambiare la luminosità forzata</string>
     <string name="pref_ao_force_brightness_title">Luminosità</string>

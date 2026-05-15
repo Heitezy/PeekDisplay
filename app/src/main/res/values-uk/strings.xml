@@ -151,6 +151,8 @@
     <string name="pref_look_and_feel_charging">Вигляд анімації зарядки</string>
     <string name="pref_ao_smooth_animation">Анімація руху</string>
     <string name="pref_ao_smooth_animation_summary">Анімуйте зміни положення</string>
+    <string name="pref_ao_refresh_rate_optimization">Оптимізація частоти оновлення</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">Використовує найнижчу доступну частоту оновлення, коли екран статичний, щоб заощадити заряд акумулятора</string>
     <string name="pref_ao_force_brightness">Примусове встановлення певної яскравості на Peek Display</string>
     <string name="pref_ao_force_brightness_summary">Натисніть, щоб змінити примусову яскравість</string>
     <string name="pref_ao_force_brightness_title">Яскравість</string>

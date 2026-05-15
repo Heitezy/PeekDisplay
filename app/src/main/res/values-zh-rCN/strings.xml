@@ -83,6 +83,8 @@
     <string name="pref_ao_animation_delay_summary">内容不同位置之间的时间\n警告：太高的值会导致屏幕燃烧！</string>
     <string name="pref_ao_smooth_animation">动画运动</string>
     <string name="pref_ao_smooth_animation_summary">动画位置更改</string>
+    <string name="pref_ao_refresh_rate_optimization">刷新率优化</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">屏幕静止时使用最低可用刷新率，以节省电量</string>
     <string name="pref_ao_force_brightness">在窥视显示上强制某种亮度</string>
     <string name="pref_ao_force_brightness_summary">点击以改变强制亮度</string>
     <string name="pref_ao_force_brightness_title">亮度</string>

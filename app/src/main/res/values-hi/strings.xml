@@ -83,6 +83,8 @@
     <string name="pref_ao_animation_delay_summary">सामग्री के विभिन्न पदों के बीच का समय\nचेतावनी: बहुत अधिक मान स्क्रीन बर्न-इन का कारण बन सकते हैं!</string>
     <string name="pref_ao_smooth_animation">चेतन प्रस्ताव</string>
     <string name="pref_ao_smooth_animation_summary">स्थिति परिवर्तन को चेतन करें</string>
+    <string name="pref_ao_refresh_rate_optimization">रिफ्रेश रेट ऑप्टिमाइजेशन</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">बैटरी बचाने के लिए डिस्प्ले के स्थिर होने पर उपलब्ध सबसे कम रिफ्रेश रेट का उपयोग करता है</string>
     <string name="pref_ao_force_brightness">पीक डिस्प्ले पर एक निश्चित चमक को मजबूर करें</string>
     <string name="pref_ao_force_brightness_summary">जबरन चमक को बदलने के लिए टैप करें</string>
     <string name="pref_ao_force_brightness_title">चमक</string>

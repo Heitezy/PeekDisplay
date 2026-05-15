@@ -137,6 +137,7 @@ internal class P(private val prefs: SharedPreferences) {
         const val WEATHER_REFRESH_INTERVAL = "ao_weather_refresh_interval"
         const val TINT_NOTIFICATIONS = "ao_tint_notifications"
         const val ANIMATE_MOTION = "ao_smooth_animation"
+        const val REFRESH_RATE_OPTIMIZATION = "ao_refresh_rate_optimization"
         const val DISPLAY_COLOR_CLOCK = "display_color_clock"
         const val DISPLAY_COLOR_DATE = "display_color_date"
         const val DISPLAY_COLOR_BATTERY = "display_color_battery"
@@ -245,6 +246,7 @@ internal class P(private val prefs: SharedPreferences) {
         const val WEATHER_REFRESH_INTERVAL_DEFAULT = 60
         const val TINT_NOTIFICATIONS_DEFAULT = false
         const val ANIMATE_MOTION_DEFAULT = false
+        const val REFRESH_RATE_OPTIMIZATION_DEFAULT = true
         const val DISPLAY_COLOR_CLOCK_DEFAULT = -1
         const val DISPLAY_COLOR_DATE_DEFAULT = -1
         const val DISPLAY_COLOR_BATTERY_DEFAULT = -1

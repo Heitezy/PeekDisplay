@@ -83,6 +83,8 @@
     <string name="pref_ao_animation_delay_summary">เวลาระหว่างตำแหน่งที่แตกต่างกันของเนื้อหา\nคำเตือน: ค่าที่สูงเกินไปอาจทำให้หน้าจอเผาไหม้!</string>
     <string name="pref_ao_smooth_animation">การเคลื่อนไหวเคลื่อนไหว</string>
     <string name="pref_ao_smooth_animation_summary">เคลื่อนไหวตำแหน่งการเปลี่ยนแปลง</string>
+    <string name="pref_ao_refresh_rate_optimization">การเพิ่มประสิทธิภาพอัตราการรีเฟรช</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">ใช้อัตราการรีเฟรชต่ำสุดที่มีอยู่เมื่อหน้าจอหยุดนิ่งเพื่อประหยัดแบตเตอรี่</string>
     <string name="pref_ao_force_brightness">บังคับความสว่างบางอย่างบนจอแสดงผล Peek</string>
     <string name="pref_ao_force_brightness_summary">แตะเพื่อเปลี่ยนความสว่างบังคับ</string>
     <string name="pref_ao_force_brightness_title">ความสว่าง</string>

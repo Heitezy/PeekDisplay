@@ -83,6 +83,8 @@
     <string name="pref_ao_animation_delay_summary">Czas między różnymi pozycjami treści\nOstrzeżenie: zbyt wysokie wartości mogą powodować oparzenia ekranu!</string>
     <string name="pref_ao_smooth_animation">Ożywiony ruch</string>
     <string name="pref_ao_smooth_animation_summary">Animuj zmiany pozycji</string>
+    <string name="pref_ao_refresh_rate_optimization">Optymalizacja częstotliwości odświeżania</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">Używa najniższej dostępnej częstotliwości odświeżania, gdy ekran jest statyczny, aby oszczędzać baterię</string>
     <string name="pref_ao_force_brightness">Wymuszają pewną jasność na wyświetlaczu Peek</string>
     <string name="pref_ao_force_brightness_summary">Stuknij, aby zmienić wymuszoną jasność</string>
     <string name="pref_ao_force_brightness_title">Jasność</string>

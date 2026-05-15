@@ -83,6 +83,8 @@
     <string name="pref_ao_animation_delay_summary">Timp între diferitele poziții ale conținutului\nAVERTIZARE: Valorile prea mari pot provoca arsuri pe ecran!</string>
     <string name="pref_ao_smooth_animation">Animarea mișcării</string>
     <string name="pref_ao_smooth_animation_summary">Animați schimbările de poziție</string>
+    <string name="pref_ao_refresh_rate_optimization">Optimizarea ratei de reîmprospătare</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">Utilizează cea mai mică rată de reîmprospătare disponibilă atunci când afișajul este static pentru a economisi bateria</string>
     <string name="pref_ao_force_brightness">Forțați o anumită luminozitate pe afișajul peek</string>
     <string name="pref_ao_force_brightness_summary">Atingeți pentru a schimba luminozitatea forțată</string>
     <string name="pref_ao_force_brightness_title">Luminozitate</string>

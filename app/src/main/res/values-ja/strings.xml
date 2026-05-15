@@ -83,6 +83,8 @@
     <string name="pref_ao_animation_delay_summary">コンテンツの異なる位置の間の時間\n警告：値が高すぎると、スクリーンバーンインを引き起こす可能性があります！</string>
     <string name="pref_ao_smooth_animation">アニメーションモーション</string>
     <string name="pref_ao_smooth_animation_summary">位置の変更をアニメーション化します</string>
+    <string name="pref_ao_refresh_rate_optimization">リフレッシュレートの最適化</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">バッテリーを節約するために、ディスプレイが静止しているときに利用可能な最低のリフレッシュレートを使用します</string>
     <string name="pref_ao_force_brightness">ピークディスプレイに特定の明るさを強制します</string>
     <string name="pref_ao_force_brightness_summary">タップして、強制的な明るさを変更します</string>
     <string name="pref_ao_force_brightness_title">輝度</string>

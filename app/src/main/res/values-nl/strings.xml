@@ -111,6 +111,8 @@
     <string name="pref_ao_animation_delay_summary">Tijd tussen de verschillende posities van de inhoud\nWaarschuwing: té hoge waarden kunnen zorgen voor inbranding!</string>
     <string name="pref_ao_smooth_animation">Animate Motion</string>
     <string name="pref_ao_smooth_animation_summary">Animeer de positie verandert</string>
+    <string name="pref_ao_refresh_rate_optimization">Optimalisatie vernieuwingsfrequentie</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">Gebruikt de laagst beschikbare vernieuwingsfrequentie wanneer het scherm statisch is om de batterij te sparen</string>
     <string name="pref_ao_force_brightness">Specifieke helderheid afdwingen</string>
     <string name="pref_ao_force_brightness_summary">Druk om het helderheidsniveau aan te passen</string>
     <string name="pref_ao_force_brightness_title">Helderheid</string>

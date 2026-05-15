@@ -83,6 +83,8 @@
     <string name="pref_ao_animation_delay_summary">الوقت بين المواضع المختلفة للمحتوى\nتحذير: يمكن أن تسبب القيم المرتفعة للغاية حرق الشاشة!</string>
     <string name="pref_ao_smooth_animation">تحريك الحركة</string>
     <string name="pref_ao_smooth_animation_summary">تنشيط تغيير الموقف</string>
+    <string name="pref_ao_refresh_rate_optimization">تحسين معدل التحديث</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">يستخدم أقل معدل تحديث متاح عندما تكون الشاشة ثابتة لتوفير البطارية</string>
     <string name="pref_ao_force_brightness">إجبار سطوع معين على عرض نظرة خاطفة</string>
     <string name="pref_ao_force_brightness_summary">اضغط لتغيير السطوع القسري</string>
     <string name="pref_ao_force_brightness_title">سطوع</string>
