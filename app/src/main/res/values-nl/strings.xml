@@ -1,148 +1,148 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="device_admin_description">Sta toe dat Peek Display je scherm uitschakelt</string>
-    <string name="notification_listener_description">Toon het aantal meldingen op het altijdaan-scherm</string>
+    <string name="notification_listener_description">Toon meldingen op het scherm</string>
     <string name="service_text">Peek Display draait op de achtergrond</string>
-    <string name="service_channel">Dienstkanaal</string>
+    <string name="service_channel">Servicekanaal</string>
     <string name="setup_root_failed">Rootverzoek mislukt! Probeer het opnieuw of kies een andere modus.</string>
     <string name="device_admin">Apparaatbeheerder</string>
-    <string name="device_admin_summary">Schakel deze apparaatbeheerder in of kies voor de rootmodus.</string>
-    <string name="notification_listener_service">Meldingsdienst</string>
-    <string name="notification_listener_service_summary">Schakel de meldingsdienst in om het aantal meldingen te tonen op het altijdaan-scherm.</string>
-    <string name="setup_draw_over_other_apps">Weergeven vóór andere apps</string>
-    <string name="setup_draw_over_other_apps_summary">Deze machtiging is vereist om het altijdaan-scherm te kunnen tonen.</string>
-    <string name="setup_phone_state">Lees telefoonstatus</string>
-    <string name="setup_phone_state_summary">Deze toestemming is vereist om PEEK -display te stoppen voor inkomende oproepen.</string>
-    <string name="setup_calendar">Lees kalender</string>
-    <string name="setup_calendar_summary">U moet agenda -toegang voor de app inschakelen om uw gebeurtenissen op PEEK -display weer te geven.</string>
+    <string name="device_admin_summary">Je moet deze apparaatbeheerder inschakelen of overschakelen naar rootmodus om de app te laten werken.</string>
+    <string name="notification_listener_service">Toegang tot meldingen</string>
+    <string name="notification_listener_service_summary">Schakel toegang tot meldingen in om meldingen te kunnen tonen op Peek Display.</string>
+    <string name="setup_draw_over_other_apps">Weergeven over andere apps</string>
+    <string name="setup_draw_over_other_apps_summary">Deze machtiging is vereist om Peek Display te kunnen tonen.</string>
+    <string name="setup_phone_state">Telefoonstatus lezen</string>
+    <string name="setup_phone_state_summary">Deze toestemming is vereist om Peek Display te stoppen bij inkomende oproepen.</string>
+    <string name="setup_calendar">Agenda lezen</string>
+    <string name="setup_calendar_summary">Schakel agendatoegang in om je evenementen op Peek Display te tonen.</string>
     <string name="setup_skip">Overslaan</string>
-    <string name="setup_continue">Afronden</string>
+    <string name="setup_continue">Doorgaan</string>
     <string name="setup_error">Er is iets misgegaan! Probeer het opnieuw.</string>
-    <string name="dialog_device_admin_text">Houd er rekening mee dat u de apparaatbeheerders van de app -apparaat moet deactiveren voordat u deze verwijdert! Om ervoor te zorgen dat u dit begrepen, voert u de volgende bewerking uit:\n7 + 12</string>
+    <string name="dialog_device_admin_text">Let op: je moet de apparaatbeheerdersrechten van de app deactiveren voordat je deze verwijdert! Voer de volgende bewerking uit om te bevestigen dat je dit begrepen hebt:\n7 + 12</string>
     <string name="dialog_device_admin_result">Resultaat</string>
-    <string name="dialog_device_admin_error">Verkeerd resultaat. Probeer het opnieuw.</string>
-    <string name="app_description">Android -app die Peek Display toevoegt.</string>
+    <string name="dialog_device_admin_error">Onjuist resultaat. Probeer het opnieuw.</string>
+    <string name="app_description">Android-app die Peek Display toevoegt.</string>
     <string name="charged">%1$d%% opgeladen</string>
     <string name="shortcut_disabled">Uitgeschakeld</string>
     <string name="pref_int_failed">Deze waarde kan niet worden gebruikt</string>
-    <string name="pref_general">Algemeen</string>
-    <string name="pref_enabled">Ingeschakeld</string>
-    <string name="pref_disabled">Uitgeschakeld</string>
+    <string name="pref_general">Algemene instellingen</string>
+    <string name="pref_enabled">Momenteel ingeschakeld</string>
+    <string name="pref_disabled">Momenteel uitgeschakeld</string>
     <string name="pref_always_on">Peek Display</string>
     <string name="pref_charging">Oplaadanimatie</string>
-    <string name="pref_look_and_feel">Uiterlijk</string>
-    <string name="pref_ao_watch_face">Kijk naar het gezicht</string>
-    <string name="pref_ao_watch_face_summary">Instellingen met betrekking tot het horloge -gezicht van Peek Display</string>
+    <string name="pref_look_and_feel">Vormgeving</string>
+    <string name="pref_ao_watch_face">Wijzerplaat</string>
+    <string name="pref_ao_watch_face_summary">Instellingen met betrekking tot de wijzerplaat van Peek Display</string>
     <string name="pref_ao_background">Achtergrond</string>
     <string name="pref_ao_background_summary">Instellingen met betrekking tot de achtergrond van Peek Display</string>
     <string name="pref_ao_behavior">Gedrag</string>
     <string name="pref_ao_behavior_summary">Instellingen met betrekking tot het gedrag van de app</string>
-    <string name="pref_ao_other">Andere instellingen</string>
+    <string name="pref_ao_other">Overige instellingen</string>
     <string name="pref_look_and_feel_hour">12-uursklok gebruiken</string>
-    <string name="pref_look_and_feel_hour_summary_on">Huidige instelling: 12-uursklok</string>
-    <string name="pref_look_and_feel_hour_summary_off">Huidige instelling: 24-uursklok</string>
+    <string name="pref_look_and_feel_hour_summary_on">Huidig gebruik: 12-uursklok</string>
+    <string name="pref_look_and_feel_hour_summary_off">Huidig gebruik: 24-uursklok</string>
     <string name="pref_look_and_feel_am_pm">AM/PM tonen</string>
-    <string name="pref_look_and_feel_am_pm_summary">Toont AM/PM op de 12-uursklok</string>
-    <string name="pref_look_and_feel_ao">Uiterlijk</string>
-    <string name="pref_look_and_feel_ao_summary">Pas het uiterlijk van het altijdaan-scherm aan</string>
+    <string name="pref_look_and_feel_am_pm_summary">Toon AM/PM bij gebruik van de 12-uursklok</string>
+    <string name="pref_look_and_feel_ao">Uiterlijk van Peek Display</string>
+    <string name="pref_look_and_feel_ao_summary">Pas het uiterlijk van Peek Display aan</string>
     <string name="pref_look_and_feel_colors">Kleuren</string>
     <string name="pref_look_and_feel_colors_summary">Selecteer kleuren voor bepaalde elementen</string>
-    <string name="pref_look_and_feel_colors_clock">Klokkleur</string>
-    <string name="pref_look_and_feel_colors_date">Datumkleur</string>
-    <string name="pref_look_and_feel_colors_battery">Batterijkleur</string>
-    <string name="pref_look_and_feel_colors_battery_arc">Batterijkleur (M-Style)</string>
-    <string name="pref_look_and_feel_colors_music_controls">Muziekbesturing kleur</string>
-    <string name="pref_look_and_feel_colors_calendar">Kalenderevenementkleur</string>
-    <string name="pref_look_and_feel_colors_message">Berichtkleur</string>
-    <string name="pref_look_and_feel_colors_weather">Weerkleur</string>
-    <string name="pref_look_and_feel_colors_notification">Kennisgevingskleur</string>
-    <string name="pref_look_and_feel_colors_fingerprint">Vingerafdrukpictogram kleur</string>
+    <string name="pref_look_and_feel_colors_clock">Kleur van de klok</string>
+    <string name="pref_look_and_feel_colors_date">Kleur van de datum</string>
+    <string name="pref_look_and_feel_colors_battery">Kleur van de batterij</string>
+    <string name="pref_look_and_feel_colors_battery_arc">Kleur van de batterij (M-Style)</string>
+    <string name="pref_look_and_feel_colors_music_controls">Kleur van de muziekbediening</string>
+    <string name="pref_look_and_feel_colors_calendar">Kleur van agenda-evenementen</string>
+    <string name="pref_look_and_feel_colors_message">Kleur van het bericht</string>
+    <string name="pref_look_and_feel_colors_weather">Kleur van het weer</string>
+    <string name="pref_look_and_feel_colors_notification">Kleur van de melding</string>
+    <string name="pref_look_and_feel_colors_fingerprint">Kleur van het vingerafdrukpictogram</string>
     <string name="pref_ao_showClock">Tijd tonen</string>
     <string name="pref_ao_showDate">Datum tonen</string>
-    <string name="pref_ao_showBatteryIcn">Accupictogram tonen</string>
-    <string name="pref_ao_showBattery">Accupercentage tonen</string>
-    <string name="pref_ao_showMusicControls">Muziekbesturingselementen weergeven</string>
-    <string name="pref_ao_showAlbumArt">Toon albumkunst</string>
+    <string name="pref_ao_showBatteryIcn">Batterijpictogram tonen</string>
+    <string name="pref_ao_showBattery">Batterijpercentage tonen</string>
+    <string name="pref_ao_showMusicControls">Muziekbediening tonen</string>
+    <string name="pref_ao_showAlbumArt">Albumhoezen tonen</string>
     <string name="pref_ao_showNotifications">Aantal meldingen tonen</string>
     <string name="pref_ao_showNotificationIcons">Meldingspictogrammen tonen</string>
     <string name="pref_ao_interactive_notification_icons">Interactieve meldingspictogrammen</string>
-    <string name="pref_ao_interactive_notification_icons_summary">Lang Druk op het meldingspictogram om een ​​voorbeeld te tonen en vervolgens naar de gewenste actie te vegen om uit te voeren</string>
-    <string name="pref_ao_invert_interaction_highlight">Interactie omkeren</string>
-    <string name="pref_ao_invert_interaction_highlight_summary">Wijzigingen of meldingspictogrammen worden gemarkeerd tijdens interactie of in inactiviteit</string>
-    <string name="pref_ao_notification_icon_size">Meldingspictogramgrootte</string>
-    <string name="pref_ao_notification_icon_size_summary">Verandert de grootte van meldingspictogrammen</string>
-    <string name="pref_ao_notification_icon_top_padding">Meldingspictogram topvulling</string>
-    <string name="pref_ao_notification_icon_top_padding_summary">Pas de bovenstaande meldingspictogrammen aan</string>
-    <string name="pref_ao_notification_preview_position">Melding Preview Positie</string>
+    <string name="pref_ao_interactive_notification_icons_summary">Houd een meldingspictogram lang ingedrukt om een voorbeeld te tonen en veeg vervolgens naar de gewenste actie</string>
+    <string name="pref_ao_invert_interaction_highlight">Interactiemarkering omkeren</string>
+    <string name="pref_ao_invert_interaction_highlight_summary">Bepaalt of meldingspictogrammen gemarkeerd worden tijdens interactie of in rust</string>
+    <string name="pref_ao_notification_icon_size">Grootte van meldingspictogrammen</string>
+    <string name="pref_ao_notification_icon_size_summary">Verandert de grootte van de meldingspictogrammen</string>
+    <string name="pref_ao_notification_icon_top_padding">Bovenmarge van meldingspictogrammen</string>
+    <string name="pref_ao_notification_icon_top_padding_summary">Pas de ruimte boven de meldingspictogrammen aan</string>
+    <string name="pref_ao_notification_preview_position">Positie van meldingsvoorbeelden</string>
     <string name="pref_ao_notification_preview_position_summary">Positie van het meldingsvoorbeeld ten opzichte van het meldingspictogram</string>
-    <string name="pref_ao_top_padding">Topvulling</string>
-    <string name="pref_ao_top_padding_summary">Pas de verticale positie van de display -elementen aan</string>
+    <string name="pref_ao_top_padding">Bovenmarge</string>
+    <string name="pref_ao_top_padding_summary">Pas de verticale positie van de weergave-elementen aan</string>
     <string-array name="pref_ao_notification_preview_position_display">
         <item>Boven pictogram</item>
-        <item>Onder het pictogram</item>
+        <item>Onder pictogram</item>
     </string-array>
     <string-array name="pref_ao_notification_icon_size_display">
         <item>Klein</item>
         <item>Standaard</item>
         <item>Vergroot</item>
     </string-array>
-    <string name="pref_ao_fingerprint">Geef een vingerafdrukpictogram weer</string>
+    <string name="pref_ao_fingerprint">Vingerafdrukpictogram tonen</string>
     <string name="pref_ao_fingerprint_margin">Vingerafdrukmarge</string>
     <string name="pref_ao_fingerprint_margin_summary">Ruimte onder het vingerafdrukpictogram</string>
-    <string name="pref_ao_fingerprint_interaction">Vingerafdruk interactiemodus</string>
-    <string name="pref_ao_fingerprint_interaction_summary">Hoe u met het vingerafdrukpictogram omgaat</string>
-    <string name="pref_ao_fingerprint_interaction_swipe">Veeg uit het pictogram</string>
-    <string name="pref_ao_fingerprint_interaction_longpress">Lange pers</string>
-    <string name="pref_ao_swipe_notification_open">Veeg naar de melding om het te openen</string>
-    <string name="pref_ao_swipe_notification_open_summary">Laat het openen van meldingen door naar hen te vegen vanuit vingerafdrukpictogram</string>
+    <string name="pref_ao_fingerprint_interaction">Vingerafdruk-interactiemodus</string>
+    <string name="pref_ao_fingerprint_interaction_summary">Hoe je met het vingerafdrukpictogram communiceert</string>
+    <string name="pref_ao_fingerprint_interaction_swipe">Vanaf pictogram vegen</string>
+    <string name="pref_ao_fingerprint_interaction_longpress">Lang indrukken</string>
+    <string name="pref_ao_swipe_notification_open">Vegen naar melding om te openen</string>
+    <string name="pref_ao_swipe_notification_open_summary">Meldingen kunnen worden geopend door er vanaf het vingerafdrukpictogram naartoe te vegen</string>
     <string name="pref_ao_edgeGlow">Randen oplichten</string>
-    <string name="pref_ao_edgeGlow_summary">Laat de schermranden oplichten bij het ontvangen van een melding</string>
-    <string name="pref_ao_glowDuration">Duur (in milliseconden)</string>
-    <string name="pref_ao_glowDuration_summary">Hoe lang de randen moeten oplichten</string>
-    <string name="pref_ao_glowDelay">Gloeiende vertraging (in milliseconden)</string>
-    <string name="pref_ao_glowDelay_summary">Interval tussen de gloeit</string>
-    <string name="pref_ao_glowStyle">Edge Glow Style</string>
-    <string name="pref_ao_glowStyle_summary">Verandert het uiterlijk van de gloeiende randen</string>
-    <string name="pref_ao_glowColor">Edge Glow -kleur</string>
-    <string name="pref_ao_glowColor_summary">Verandert de kleur van de gloeiende randen</string>
-    <string name="pref_ao_vibration">Duur (in milliseconden)</string>
-    <string name="pref_ao_vibration_summary">Hoe lang de telefoon moet trillen als je dubbeltikt op het scherm</string>
-    <string name="pref_ao_animation_delay">Bewegingvertraging (in minuten)</string>
-    <string name="pref_ao_animation_delay_summary">Tijd tussen de verschillende posities van de inhoud\nWaarschuwing: té hoge waarden kunnen zorgen voor inbranding!</string>
-    <string name="pref_ao_smooth_animation">Animate Motion</string>
-    <string name="pref_ao_smooth_animation_summary">Animeer de positie verandert</string>
-    <string name="pref_ao_refresh_rate_optimization">Optimalisatie vernieuwingsfrequentie</string>
-    <string name="pref_ao_refresh_rate_optimization_summary">Gebruikt de laagst beschikbare vernieuwingsfrequentie wanneer het scherm statisch is om de batterij te sparen</string>
-    <string name="pref_ao_force_brightness">Specifieke helderheid afdwingen</string>
-    <string name="pref_ao_force_brightness_summary">Druk om het helderheidsniveau aan te passen</string>
+    <string name="pref_ao_edgeGlow_summary">Oplichtende randen bij ontvangst van een melding</string>
+    <string name="pref_ao_glowDuration">Duur van oplichten (in milliseconden)</string>
+    <string name="pref_ao_glowDuration_summary">Hoelang de randen oplichten</string>
+    <string name="pref_ao_glowDelay">Vertraging van oplichten (in milliseconden)</string>
+    <string name="pref_ao_glowDelay_summary">Interval tussen het oplichten</string>
+    <string name="pref_ao_glowStyle">Stijl van oplichtende randen</string>
+    <string name="pref_ao_glowStyle_summary">Verandert het uiterlijk van de oplichtende randen</string>
+    <string name="pref_ao_glowColor">Kleur van oplichtende randen</string>
+    <string name="pref_ao_glowColor_summary">Verandert de kleur van de oplichtende randen</string>
+    <string name="pref_ao_vibration">Trillingsduur (in milliseconden)</string>
+    <string name="pref_ao_vibration_summary">Hoelang de telefoon trilt bij dubbeltikken op het scherm</string>
+    <string name="pref_ao_animation_delay">Bewegingsvertraging (in minuten)</string>
+    <string name="pref_ao_animation_delay_summary">Tijd tussen de verschillende posities van de inhoud\nWaarschuwing: te hoge waarden kunnen inbranden veroorzaken!</string>
+    <string name="pref_ao_smooth_animation">Beweging animeren</string>
+    <string name="pref_ao_smooth_animation_summary">Animeren van positieveranderingen</string>
+    <string name="pref_ao_refresh_rate_optimization">Optimalisatie van vernieuwingsfrequentie</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">Gebruikt de laagst beschikbare vernieuwingsfrequentie bij een statisch scherm om batterij te sparen</string>
+    <string name="pref_ao_force_brightness">Specifieke helderheid afdwingen op Peek Display</string>
+    <string name="pref_ao_force_brightness_summary">Tik om de geforceerde helderheid aan te passen</string>
     <string name="pref_ao_force_brightness_title">Helderheid</string>
-    <string name="pref_ao_force_brightness_example">Zó helder wordt tekst getoond op het altijdaan-scherm.</string>
+    <string name="pref_ao_force_brightness_example">Dit is hoe helder de tekst op Peek Display zal verschijnen.</string>
     <string name="pref_ao_pocket_mode">Broekzakmodus</string>
-    <string name="pref_ao_pocket_mode_summary">Schakelt het altijdaan-scherm uit als je telefoon in je broekzak zit\nWaarschuwing: dit kan het accuverbruik verhogen!</string>
-    <string name="pref_ao_dnd">Nietstoren inschakelen</string>
-    <string name="pref_ao_dnd_summary">Schakel dit in om de nietstoren-modus in te schakelen zolang het altijdaan-scherm wordt getoond</string>
-    <string name="pref_ao_disable_on_dnd">Uitschakelen tijdens nietstoren-modus</string>
-    <string name="pref_ao_disable_on_dnd_summary">Schakelt het altijdaan-scherm uit wanneer de nietstoren-modus actief is</string>
+    <string name="pref_ao_pocket_mode_summary">Schakelt Peek Display uit in je broekzak\nWaarschuwing: sensorgebruik kan batterijverbruik verhogen!</string>
+    <string name="pref_ao_dnd">Niet storen inschakelen</string>
+    <string name="pref_ao_dnd_summary">Schakelt de Niet storen-modus in zolang Peek Display actief is</string>
+    <string name="pref_ao_disable_on_dnd">Uitschakelen in Niet storen-modus</string>
+    <string name="pref_ao_disable_on_dnd_summary">Alleen tonen wanneer de Niet storen-modus niet actief is</string>
     <string name="pref_ao_power_saving">Energiebesparingsmodus (root)</string>
-    <string name="pref_ao_power_saving_summary">Bespaart energie zolang het altijdaan-scherm wordt getoond</string>
-    <string name="pref_ao_double_tap_speed">Dubbele tapsnelheid</string>
-    <string name="pref_ao_double_tap_speed_summary">De tijd dat twee kranen uit elkaar kunnen zijn (in milliseconden)</string>
-    <string name="pref_ao_double_tap_disabled">Dubbelklik uitschakelen</string>
+    <string name="pref_ao_power_saving_summary">Schakelt de energiebesparingsmodus van het systeem in wanneer Peek Display actief is</string>
+    <string name="pref_ao_double_tap_speed">Snelheid van dubbeltikken</string>
+    <string name="pref_ao_double_tap_speed_summary">De maximale tijd tussen twee tikken (in milliseconden)</string>
+    <string name="pref_ao_double_tap_disabled">Dubbeltikken uitschakelen</string>
     <string name="pref_ao_double_tap_disabled_summary">Schakelt dubbeltikken uit om Peek Display te sluiten (niet aanbevolen)</string>
     <string name="pref_ao_message">Bericht</string>
     <string name="pref_ao_message_summary">Een bericht dat wordt weergegeven op Peek Display</string>
     <string name="pref_ao_date_format">Datumformaat</string>
-    <string name="pref_ao_date_format_summary">Het datumformaat dat wordt gebruikt op Peek Display</string>
-    <string name="pref_ao_date_format_dialog_text">U moet een specifiek patroon volgen</string>
-    <string name="pref_ao_date_format_dialog_neutral">Leer meer</string>
-    <string name="pref_ao_date_format_illegal">Illegaal formaat</string>
-    <string name="pref_ao_calendar">Toon evenementen</string>
-    <string name="pref_ao_calendar_summary">Toon evenementen in de komende 24 uur op je Peek -display</string>
+    <string name="pref_ao_date_format_summary">Het gebruikte datumformaat op Peek Display</string>
+    <string name="pref_ao_date_format_dialog_text">Je moet een specifiek patroon volgen</string>
+    <string name="pref_ao_date_format_dialog_neutral">Meer informatie</string>
+    <string name="pref_ao_date_format_illegal">Ongeldig formaat</string>
+    <string name="pref_ao_calendar">Evenementen tonen</string>
+    <string name="pref_ao_calendar_summary">Toon evenementen voor de komende 24 uur op Peek Display</string>
     <string name="notification_dismiss">Afwijzen</string>
-    <string name="pref_look_and_feel_charging">Oplaadanimatiestijl</string>
-    <string name="pref_look_and_feel_charging_summary">Pas de stijl aan van de oplaadanimatie</string>
+    <string name="pref_look_and_feel_charging">Stijl van oplaadanimatie</string>
+    <string name="pref_look_and_feel_charging_summary">Past de stijl van de oplaadanimatie aan</string>
     <string name="pref_ao_background_image">Achtergrondafbeelding</string>
-    <string name="pref_ao_background_image_summary">Wijzig het achtergrondafbeelding van het Peek -display</string>
+    <string name="pref_ao_background_image_summary">Wijzig de achtergrondafbeelding van Peek Display</string>
     <string-array name="pref_ao_background_image_array_display">
         <item>Geen</item>
         <item>Daniel Olah</item>
@@ -160,135 +160,135 @@
         <item>Aangepast</item>
     </string-array>
     <string name="pref_look_and_feel_hide_display_cutouts">Scherminkepingen verbergen</string>
-    <string name="pref_look_and_feel_hide_display_cutouts_summary">Verberg scherminkepingen bij beeldvullende inhoud</string>
+    <string name="pref_look_and_feel_hide_display_cutouts_summary">Verberg scherminkepingen bij schermvullende inhoud</string>
     <string name="pref_look_and_feel_orientation">Oriëntatie</string>
-    <string name="pref_look_and_feel_orientation_summary">Verandert de oriëntatie van het display \</string>
-    <string name="pref_look_and_feel_heads_up">Verberg heads -upmeldingen (root)</string>
-    <string name="pref_look_and_feel_heads_up_summary">Voorkomt dat de heads -upmeldingen worden getoond (experimenteel)</string>
+    <string name="pref_look_and_feel_orientation_summary">Verandert de oriëntatie van het scherm</string>
+    <string name="pref_look_and_feel_heads_up">Heads-up meldingen verbergen (root)</string>
+    <string name="pref_look_and_feel_heads_up_summary">Voorkomt dat heads-up meldingen worden getoond (experimenteel)</string>
     <string name="pref_look_and_feel_weather">Weer</string>
-    <string name="pref_look_and_feel_weather_info">Toon weersinformatie</string>
-    <string name="pref_look_and_feel_weather_info_summary">Configureer weersinformatie op uw Peek Display</string>
-    <string name="pref_look_and_feel_weather_show_summary">Toon weersinformatie op uw Peek -display</string>
-    <string name="pref_look_and_feel_weather_provider">Peek Display gebruikt wttr.in voor weergegevens. Het ophalen van het weer kan identificeerbare gegevens overdragen.</string>
+    <string name="pref_look_and_feel_weather_info">Weersinformatie tonen</string>
+    <string name="pref_look_and_feel_weather_info_summary">Configureer weersinformatie op Peek Display</string>
+    <string name="pref_look_and_feel_weather_show_summary">Toon weersinformatie op Peek Display</string>
+    <string name="pref_look_and_feel_weather_provider">Peek Display gebruikt wttr.in voor weergegevens. Het ophalen van het weer kan identificeerbare gegevens verzenden.</string>
     <string name="pref_look_and_feel_weather_location">Weerlocatie</string>
     <string name="pref_look_and_feel_weather_location_summary">De locatie voor het weerrapport. Laat dit leeg voor automatische locatie.</string>
     <string name="pref_look_and_feel_weather_format">Weerformaat</string>
-    <string name="pref_look_and_feel_weather_format_summary">Het weerformaat dat wordt gebruikt op Peek Display</string>
-    <string name="pref_look_and_feel_filter_notifications">Filtermeldingen</string>
-    <string name="pref_look_and_feel_filter_notifications_summary">Kies, welke meldingen niet moeten worden getoond</string>
-    <string name="pref_look_and_feel_filter_notifications_explanation">Tik op de vermeldingen om ze te blokkeren of te deblokkeren</string>
-    <string name="pref_look_and_feel_filter_notifications_blocked">Blokmeldingen van</string>
+    <string name="pref_look_and_feel_weather_format_summary">Het gebruikte weerformaat op Peek Display</string>
+    <string name="pref_look_and_feel_filter_notifications">Meldingen filteren</string>
+    <string name="pref_look_and_feel_filter_notifications_summary">Kies welke meldingen niet getoond moeten worden</string>
+    <string name="pref_look_and_feel_filter_notifications_explanation">Tik op de items om ze te blokkeren of te deblokkeren</string>
+    <string name="pref_look_and_feel_filter_notifications_blocked">Blokkeer meldingen van</string>
     <string name="pref_look_and_feel_filter_notifications_shown">Meldingen beschikbaar van</string>
     <string name="pref_look_and_feel_filter_notifications_empty">Geen meldingen beschikbaar</string>
     <string name="pref_look_and_feel_filter_notifications_empty_summary">Het lijkt erop dat er niets te tonen is</string>
-    <string name="pref_look_and_feel_filter_notifications_unknown">Onbekende toepassing</string>
-    <string name="pref_look_and_feel_tint_notifications">Tint -meldingen</string>
-    <string name="pref_look_and_feel_tint_notifications_summary">Tint -meldingen in hun app -kleuren</string>
+    <string name="pref_look_and_feel_filter_notifications_unknown">Onbekende applicatie</string>
+    <string name="pref_look_and_feel_tint_notifications">Meldingen inkleuren</string>
+    <string name="pref_look_and_feel_tint_notifications_summary">Kleur meldingen in de kleuren van hun app</string>
     <string name="pref_look_and_feel_display_size">Weergavegrootte</string>
-    <string name="pref_look_and_feel_display_size_summary">De display -grootte van Peek Display is %1$d%%</string>
+    <string name="pref_look_and_feel_display_size_summary">De weergavegrootte van Peek Display is %1$d%%</string>
     <string name="pref_look_and_feel_rules">Regels</string>
-    <string name="pref_look_and_feel_rules_summary">Controle wanneer Peek -display moet worden weergegeven</string>
-    <string name="pref_look_and_feel_rules_charging_state">Laadstaat</string>
-    <string name="pref_look_and_feel_rules_charger">Laadtype</string>
-    <string name="pref_look_and_feel_rules_charger_summary">Kies welke laadtypen als opladen tellen</string>
+    <string name="pref_look_and_feel_rules_summary">Bepaal wanneer Peek Display getoond moet worden</string>
+    <string name="pref_look_and_feel_rules_charging_state">Oplaadstatus</string>
+    <string name="pref_look_and_feel_rules_charger">Type oplader</string>
+    <string name="pref_look_and_feel_rules_charger_summary">Kies welke laadtypes als opladen tellen</string>
     <string name="pref_look_and_feel_rules_battery_level">Batterijniveau</string>
-    <string name="pref_look_and_feel_rules_battery_level_summary">Toon alleen hierboven %1$d%%</string>
-    <string name="pref_look_and_feel_rules_battery_level_summary_zero">Toon op elk batterijpunt</string>
+    <string name="pref_look_and_feel_rules_battery_level_summary">Alleen tonen boven %1$d%%</string>
+    <string name="pref_look_and_feel_rules_battery_level_summary_zero">Tonen bij elk batterijniveau</string>
     <string name="pref_look_and_feel_rules_time">Tijdsperiode</string>
-    <string name="pref_look_and_feel_rules_time_summary">Tonen van %1$s naar %2$s</string>
-    <string name="pref_look_and_feel_rules_timeout">Time -out</string>
-    <string name="pref_look_and_feel_rules_timeout_summary_zero">Er is geen time -out ingesteld</string>
+    <string name="pref_look_and_feel_rules_time_summary">Tonen van %1$s tot %2$s</string>
+    <string name="pref_look_and_feel_rules_timeout">Time-out</string>
+    <string name="pref_look_and_feel_rules_timeout_summary_zero">Geen time-out ingesteld</string>
     <string name="pref_look_and_feel_rules_ambient_mode">Omgevingsmodus</string>
-    <string name="pref_look_and_feel_rules_ambient_mode_summary">Alleen laten zien nadat een melding was ontvangen</string>
+    <string name="pref_look_and_feel_rules_ambient_mode_summary">Alleen tonen nadat een melding is ontvangen</string>
     <string name="pref_permissions">Machtigingen</string>
-    <string name="pref_permissions_summary">Instellingen omtrent machtigingen</string>
-    <string name="pref_ignore_battery_optimizations">Negeer batterijoptimalisaties</string>
+    <string name="pref_permissions_summary">Instellingen met betrekking tot machtigingen</string>
+    <string name="pref_ignore_battery_optimizations">Batterijoptimalisaties negeren</string>
     <string name="pref_ignore_battery_optimizations_summary">Voorkomt vertragingen veroorzaakt door het systeem</string>
-    <string name="pref_notification">Meldingstoegang</string>
-    <string name="pref_notification_summary">Schakel meldingstoegang in of uit</string>
-    <string name="pref_draw_over_other_apps">Weergeven vóór andere apps</string>
-    <string name="pref_draw_over_other_apps_summary">Schakel weergeven vóór andere apps in of uit</string>
+    <string name="pref_notification">Toegang tot meldingen</string>
+    <string name="pref_notification_summary">Toegang tot meldingen in- of uitschakelen</string>
+    <string name="pref_draw_over_other_apps">Weergeven over andere apps</string>
+    <string name="pref_draw_over_other_apps_summary">Schakel deze machtiging in of uit</string>
     <string name="pref_admin">Apparaatbeheerder</string>
-    <string name="pref_admin_summary">Activeer deze apparaatbeheerder voor de normale modus\nHoud er rekening mee dat u de apparaatbeheerders van de app -apparaat moet deactiveren voordat u deze verwijdert!</string>
+    <string name="pref_admin_summary">Activeer deze apparaatbeheerder voor de normale modus\nLet op: je moet de apparaatbeheerdersrechten van de app deactiveren voordat je deze verwijdert!</string>
     <string name="pref_root_mode">Rootmodus</string>
-    <string name="pref_root_mode_summary">Maakt root -functionaliteit mogelijk</string>
+    <string name="pref_root_mode_summary">Schakelt root-functionaliteit in</string>
     <string name="help_center">Helpcentrum</string>
-    <string name="help_center_summary">Verwijderend, niet -reageren, batterijafvoer</string>
-    <string name="help_center_missing_permissions_text">Wanneer een instelling grijs is en u vertelt om eerst iets in te schakelen, hebt u de benodigde machtigingen nog niet ingeschakeld. Om ontbrekende machtigingen te verlenen, openen de pagina "Machtigingen" op de hoofdpagina en stemt u in met het gebruik van de vereiste machtigingen. U kunt nu de instellingen inschakelen die die machtigingen nodig hebben.</string>
+    <string name="help_center_summary">Verwijderen, reageert niet, batterijverbruik</string>
+    <string name="help_center_missing_permissions_text">Wanneer een instelling grijs is en je vraagt om eerst iets in te schakelen, heb je de benodigde machtigingen nog niet verleend. Open de pagina \"Machtigingen\" op het hoofdscherm om de ontbrekende machtigingen te verlenen. Daarna kun je de instellingen inschakelen die deze machtigingen nodig hebben.</string>
     <string name="help_center_uninstall">Hoe te verwijderen</string>
-    <string name="help_center_uninstall_text">Het verwijderingsproces kan mislukken vanwege een ontwerpfout in het Android -besturingssysteem. Als de beheerder van de apparaat niet is uitgeschakeld voordat het proces wordt verwijderd, mislukt het proces. U moet de beheerder van de apparaatbeheerder uitschakelen voordat u verwijderd bent.</string>
+    <string name="help_center_uninstall_text">Het verwijderingsproces kan mislukken door een beperking in het Android-besturingssysteem. Als de apparaatbeheerder niet is uitgeschakeld voordat je de app verwijdert, zal het proces mislukken. Je moet de apparaatbeheerder uitschakelen voordat je de app verwijdert.</string>
     <string name="help_center_uninstall_button">Nu verwijderen</string>
-    <string name="help_center_delays">Hoe vertragingen op te lossen</string>
-    <string name="help_center_delays_text">Sommige fabrikanten geven de voorkeur aan de levensduur van de batterij boven de app -functionaliteit, daarom werkt deze app misschien alleen met vertragingen of helemaal niet op sommige apparaten. Als u vertragingen ondervindt, probeer dan het uitschakelen van batterijoptimalisaties voor de app of controleer andere fabrikant-specifieke instellingen.</string>
-    <string name="help_center_delays_button_one">Batterijinstellingen</string>
+    <string name="help_center_delays">Vertragingen oplossen</string>
+    <string name="help_center_delays_text">Sommige fabrikanten geven de voorkeur aan batterijduur boven app-functionaliteit, waardoor deze app mogelijk met vertraging of helemaal niet werkt op sommige apparaten. Als je vertragingen ervaart, probeer dan batterijoptimalisaties voor de app uit te schakelen of controleer andere fabrikant-specifieke instellingen.</string>
+    <string name="help_center_delays_button_one">Batterij-instellingen</string>
     <string name="help_center_delays_button_two">Fabrikant-specifiek</string>
-    <string name="help_center_battery_drain">Het uitzoeken van de bron van batterijafvoer</string>
-    <string name="help_center_battery_drain_text">Een reden voor batterijafvoer kan zijn dat u een telefoon met een LCD -display gebruikt. Deze app is ontworpen voor telefoons met een OLED -display dat zwarte pixels kan uitschakelen om energie te besparen. LCD -displays kunnen geen zwarte pixels uitschakelen die resulteren in het display met veel meer energie wanneer Peek Display is ingeschakeld. Een andere reden kan zijn dat andere apps op de achtergrond worden uitgevoerd terwijl PEEK -display actief is. Android zal hun batterijverbruik weergeven als onderdeel van het batterijverbruik van Peek Display.</string>
+    <string name="help_center_battery_drain">Oorzaak van batterijverbruik achterhalen</string>
+    <string name="help_center_battery_drain_text">Een reden voor batterijverbruik kan zijn dat je een telefoon met een LCD-scherm gebruikt. Deze app is ontworpen voor telefoons met een OLED-scherm, die zwarte pixels kunnen uitschakelen om energie te besparen. LCD-schermen kunnen geen zwarte pixels uitschakelen, wat resulteert in veel hoger energieverbruik wanneer Peek Display is ingeschakeld. Een andere reden kan zijn dat andere apps op de achtergrond draaien terwijl Peek Display actief is. Android toont hun batterijverbruik dan als onderdeel van het verbruik van Peek Display.</string>
     <string name="loading">Laden</string>
     <string name="missing_permissions">Ontbrekende machtigingen</string>
-    <string name="permissions_notification_access">Schakel de toegang tot de melding in voor deze functie</string>
+    <string name="permissions_notification_access">Schakel toegang tot meldingen in voor deze functie</string>
     <string name="permissions_device_admin_or_root">Schakel apparaatbeheerder of root in voor deze functie</string>
     <string name="about">Over</string>
     <string name="about_summary">Over de app</string>
-    <string name="about_app_version">App -versie</string>
+    <string name="about_app_version">App-versie</string>
     <string name="about_privacy">Externe inhoud</string>
-    <string name="about_privacy_desc">Externe inhoud wordt geladen vanuit GitHub. Lees hun privacybeleid voor meer informatie.</string>
+    <string name="about_privacy_desc">Externe inhoud wordt geladen vanaf GitHub. Lees hun privacybeleid voor meer informatie.</string>
     <string name="about_privacy_policy">Privacybeleid</string>
-    <string name="about_contributors">Medewerkers</string>
+    <string name="about_contributors">Bijdragers</string>
     <string name="about_contributors_desc">Een lijst van de bijdragers</string>
     <string name="about_general">Algemeen</string>
-    <string name="about_github">GitHub -repository</string>
+    <string name="about_github">GitHub-repository</string>
     <string name="about_license">Licentie</string>
     <string name="about_icons">Pictogrammen</string>
-    <string name="about_icons_desc">Pictogrammen van iconen8 en Google</string>
+    <string name="about_icons_desc">Pictogrammen door Icons8 en Google</string>
     <string name="about_libraries">Bibliotheken</string>
     <string name="about_libraries_desc">Een lijst met alle gebruikte bibliotheken</string>
 
     <string-array name="pref_look_and_feel_rules_charging_state_display">
-        <item>Show in elke laadstaat</item>
-        <item>Toon alleen tijdens het opladen</item>
-        <item>Toon alleen tijdens het ontladen</item>
+        <item>Tonen bij elke oplaadstatus</item>
+        <item>Alleen tonen tijdens opladen</item>
+        <item>Alleen tonen tijdens ontladen</item>
     </string-array>
 
     <string-array name="pref_look_and_feel_rules_charger_display">
-        <item>AC</item>
+        <item>Netstroom (AC)</item>
         <item>USB</item>
-        <item>Draadloze</item>
+        <item>Draadloos</item>
     </string-array>
 
     <string-array name="pref_look_and_feel_orientation_display">
-        <item>Auto-lock</item>
+        <item>Automatisch vergrendelen</item>
         <item>Portret</item>
         <item>Landschap</item>
     </string-array>
 
     <string-array name="pref_ao_glowStyle_display">
         <item>Alle kanten</item>
-        <item>Links en rechterkant</item>
-        <item>Boven- en onderkant</item>
+        <item>Links en rechts</item>
+        <item>Boven en onder</item>
     </string-array>
 
-    <string name="pref_look_and_feel_rules_pickup_mode">Pick -up modus</string>
-    <string name="pref_look_and_feel_rules_pickup_mode_summary">Alleen laten zien bij het ophalen van de telefoon</string>
-    <string name="pref_pickup_sensitivity">Pick -up gevoeligheid</string>
-    <string name="pref_pickup_sensitivity_summary">Pas de gevoeligheid aan van het ophalen van detectie</string>
+    <string name="pref_look_and_feel_rules_pickup_mode">Optilmodus</string>
+    <string name="pref_look_and_feel_rules_pickup_mode_summary">Alleen tonen bij het optillen van de telefoon</string>
+    <string name="pref_pickup_sensitivity">Optilgevoeligheid</string>
+    <string name="pref_pickup_sensitivity_summary">Pas de gevoeligheid van de optildetectie aan</string>
     <string-array name="pref_pickup_sensitivity_display">
         <item>Hoog</item>
-        <item>Medium</item>
+        <item>Gemiddeld</item>
         <item>Laag</item>
     </string-array>
-    <string name="pref_ao_lock_icon">Gebruik slotpictogram</string>
-    <string name="pref_ao_lock_icon_summary">Vervang vingerafdrukpictogram door een slotpictogram</string>
+    <string name="pref_ao_lock_icon">Slotpictogram gebruiken</string>
+    <string name="pref_ao_lock_icon_summary">Vervang het vingerafdrukpictogram door een slotpictogram</string>
     <string name="donate">Doneren</string>
-    <string name="donate_summary">Ondersteuning van de ontwikkeling van Peek Display</string>
-    <string name="notification_action_reply">Antwoord</string>
-    <string name="pref_look_and_feel_weather_unit">Gebruik imperiale eenheden</string>
-    <string name="pref_look_and_feel_weather_unit_summary">Geef de temperatuur weer in Fahrenheit</string>
-    <string name="colorpicker_opacity">Opaciteit</string>
+    <string name="donate_summary">Ondersteun de ontwikkeling van Peek Display</string>
+    <string name="notification_action_reply">Beantwoorden</string>
+    <string name="pref_look_and_feel_weather_unit">Imperiale eenheden gebruiken</string>
+    <string name="pref_look_and_feel_weather_unit_summary">Temperatuur weergeven in Fahrenheit</string>
+    <string name="colorpicker_opacity">Ondoorzichtigheid</string>
     <string name="colorpicker_color">Kleur</string>
     <string name="colorpicker_custom">Aangepast</string>
     <string name="colorpicker_presets">Voorinstellingen</string>
     <string name="pref_look_and_feel_weather_refresh_interval">Vernieuwingsinterval</string>
-    <string name="pref_look_and_feel_weather_refresh_interval_label">Notulen</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_label">Minuten</string>
     <string name="pref_look_and_feel_weather_refresh_interval_disabled">Uitgeschakeld (één keer ophalen bij starten)</string>
 </resources>

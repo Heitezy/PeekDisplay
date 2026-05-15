@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <plurals name="pref_look_and_feel_rules_timeout_summary">
-        <item quantity="one">Stoppen %d seconde</item>
-        <item quantity="other">Stoppen %d seconden</item>
+        <item quantity="one">Stopt na %d seconde</item>
+        <item quantity="other">Stopt na %d seconden</item>
     </plurals>
     <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
         <item quantity="one">Elke %d minuut</item>
