@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <plurals name="pref_look_and_feel_rules_timeout_summary">
-        <item quantity="one">Σταματώ μετά %d δεύτερος</item>
-        <item quantity="other">Σταματώ μετά %d δευτερόλεπτα</item>
+        <item quantity="one">Διακοπή μετά από %d δευτερόλεπτο</item>
+        <item quantity="other">Διακοπή μετά από %d δευτερόλεπτα</item>
     </plurals>
     <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
         <item quantity="one">Κάθε %d λεπτό</item>
