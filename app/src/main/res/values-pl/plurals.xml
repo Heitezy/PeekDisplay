@@ -1,11 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <plurals name="pref_look_and_feel_rules_timeout_summary">
-        <item quantity="one">Zatrzymaj się po %d drugi</item>
-        <item quantity="other">Zatrzymaj się po %d towary drugiej jakości</item>
+        <item quantity="one">Zatrzymaj po %d sekundzie</item>
+        <item quantity="few">Zatrzymaj po %d sekundach</item>
+        <item quantity="many">Zatrzymaj po %d sekundach</item>
+        <item quantity="other">Zatrzymaj po %d sekundach</item>
     </plurals>
     <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
         <item quantity="one">Co %d minutę</item>
+        <item quantity="few">Co %d minuty</item>
+        <item quantity="many">Co %d minut</item>
         <item quantity="other">Co %d minuty</item>
     </plurals>
 </resources>
