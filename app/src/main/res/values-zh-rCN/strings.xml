@@ -1,57 +1,57 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="device_admin_description">允许窥视显示以关闭屏幕</string>
-    <string name="notification_listener_description">在显示屏上显示通知</string>
-    <string name="service_text">Peek Display在后台运行</string>
-    <string name="service_channel">服务渠道</string>
-    <string name="setup_root_failed">根请求失败！请重试或切换模式！</string>
-    <string name="device_admin">设备管理员</string>
-    <string name="device_admin_summary">您需要激活此设备管理员或切换到根模式以使该应用程序工作。</string>
-    <string name="notification_listener_service">通知访问</string>
-    <string name="notification_listener_service_summary">您需要启用通知访问该应用程序，以在窥视显示上显示您的通知。</string>
-    <string name="setup_draw_over_other_apps">通过其他应用程序显示</string>
-    <string name="setup_draw_over_other_apps_summary">需要此权限以显示peek显示。</string>
-    <string name="setup_phone_state">阅读电话状态</string>
-    <string name="setup_phone_state_summary">需要此许可才能停止查看传入呼叫。</string>
-    <string name="setup_calendar">阅读日历</string>
-    <string name="setup_calendar_summary">您需要启用该应用程序的日历访问，以便在Peek Display上显示您的事件。</string>
+    <string name="device_admin_description">允许 Peek Display 关闭屏幕</string>
+    <string name="notification_listener_description">在屏幕上显示通知</string>
+    <string name="service_text">Peek Display 正在后台运行</string>
+    <string name="service_channel">服务通道</string>
+    <string name="setup_root_failed">Root 请求失败！请重试或切换模式！</string>
+    <string name="device_admin">设备管理器</string>
+    <string name="device_admin_summary">您需要激活设备管理器权限或切换到 Root 模式以使应用程序正常工作。</string>
+    <string name="notification_listener_service">通知使用权</string>
+    <string name="notification_listener_service_summary">您需要为该应用程序启用通知使用权，以便在 Peek Display 上显示您的通知。</string>
+    <string name="setup_draw_over_other_apps">在其他应用之上显示</string>
+    <string name="setup_draw_over_other_apps_summary">需要此权限以显示 Peek Display。</string>
+    <string name="setup_phone_state">读取通话状态</string>
+    <string name="setup_phone_state_summary">需要此权限以便在来电时停止 Peek Display。</string>
+    <string name="setup_calendar">读取日历</string>
+    <string name="setup_calendar_summary">您需要启用该应用程序的日历访问权限，以便在 Peek Display 上显示您的日程。</string>
     <string name="setup_skip">跳过</string>
     <string name="setup_continue">继续</string>
-    <string name="setup_error">出了问题！请再试一次！</string>
-    <string name="dialog_device_admin_text">请注意，您必须在卸载之前停用应用程序管理特权！为了确保您理解这一点，请执行以下操作：\n7 + 12</string>
+    <string name="setup_error">出错了！请重试！</string>
+    <string name="dialog_device_admin_text">请注意，您必须在卸载之前停用设备管理器权限！为了确保您已理解，请回答以下计算题：\n7 + 12</string>
     <string name="dialog_device_admin_result">结果</string>
-    <string name="dialog_device_admin_error">错误的结果。再试一次。</string>
-    <string name="app_description">Android应用程序添加了peek Display。</string>
-    <string name="charged">%1$d%%收费</string>
-    <string name="shortcut_disabled">禁用</string>
+    <string name="dialog_device_admin_error">结果错误。请重试。</string>
+    <string name="app_description">为 Android 添加 Peek Display 预览显示的应用程序。</string>
+    <string name="charged">已充电 %1$d%%</string>
+    <string name="shortcut_disabled">已禁用</string>
     <string name="pref_int_failed">无法使用此值</string>
-    <string name="pref_general">一般设置</string>
-    <string name="pref_enabled">当前启用</string>
-    <string name="pref_disabled">当前禁用</string>
-    <string name="pref_always_on">窥视显示</string>
+    <string name="pref_general">常规设置</string>
+    <string name="pref_enabled">当前已启用</string>
+    <string name="pref_disabled">当前已禁用</string>
+    <string name="pref_always_on">Peek Display</string>
     <string name="pref_charging">充电动画</string>
-    <string name="pref_look_and_feel">看起来和感觉</string>
-    <string name="pref_ao_watch_face">看脸</string>
-    <string name="pref_ao_watch_face_summary">与窥视表的手表面相关的设置</string>
+    <string name="pref_look_and_feel">外观与感觉</string>
+    <string name="pref_ao_watch_face">表盘</string>
+    <string name="pref_ao_watch_face_summary">与 Peek Display 表盘相关的设置</string>
     <string name="pref_ao_background">背景</string>
-    <string name="pref_ao_background_summary">与窥视显示背景有关的设置</string>
+    <string name="pref_ao_background_summary">与 Peek Display 背景相关的设置</string>
     <string name="pref_ao_behavior">行为</string>
     <string name="pref_ao_behavior_summary">与应用程序行为相关的设置</string>
     <string name="pref_ao_other">其他设置</string>
-    <string name="pref_look_and_feel_hour">使用12小时的时钟</string>
-    <string name="pref_look_and_feel_hour_summary_on">目前使用：12小时时钟</string>
-    <string name="pref_look_and_feel_hour_summary_off">目前使用：24小时时钟</string>
-    <string name="pref_look_and_feel_am_pm">显示AM / PM</string>
-    <string name="pref_look_and_feel_am_pm_summary">使用12小时时钟时显示AM / PM</string>
-    <string name="pref_look_and_feel_ao">窥视显示外观</string>
-    <string name="pref_look_and_feel_ao_summary">更改窥视显示的外观</string>
+    <string name="pref_look_and_feel_hour">使用 12 小时制</string>
+    <string name="pref_look_and_feel_hour_summary_on">当前使用：12 小时制</string>
+    <string name="pref_look_and_feel_hour_summary_off">当前使用：24 小时制</string>
+    <string name="pref_look_and_feel_am_pm">显示 上午/下午</string>
+    <string name="pref_look_and_feel_am_pm_summary">使用 12 小时制时显示 上午/下午</string>
+    <string name="pref_look_and_feel_ao">Peek Display 外观</string>
+    <string name="pref_look_and_feel_ao_summary">更改 Peek Display 的外观</string>
     <string name="pref_look_and_feel_colors">颜色</string>
-    <string name="pref_look_and_feel_colors_summary">为某些元素选择颜色</string>
+    <string name="pref_look_and_feel_colors_summary">为特定元素选择颜色</string>
     <string name="pref_look_and_feel_colors_clock">时钟颜色</string>
     <string name="pref_look_and_feel_colors_date">日期颜色</string>
     <string name="pref_look_and_feel_colors_battery">电池颜色</string>
     <string name="pref_look_and_feel_colors_battery_arc">电池颜色 (M-Style)</string>
-    <string name="pref_look_and_feel_colors_music_controls">音乐控制颜色</string>
+    <string name="pref_look_and_feel_colors_music_controls">音乐控件颜色</string>
     <string name="pref_look_and_feel_colors_calendar">日历事件颜色</string>
     <string name="pref_look_and_feel_colors_message">消息颜色</string>
     <string name="pref_look_and_feel_colors_weather">天气颜色</string>
@@ -65,166 +65,166 @@
     <string name="pref_ao_showNotifications">显示通知计数</string>
     <string name="pref_ao_showNotificationIcons">显示通知图标</string>
     <string name="pref_ao_fingerprint">显示指纹图标</string>
-    <string name="pref_ao_fingerprint_margin">指纹余量</string>
+    <string name="pref_ao_fingerprint_margin">指纹边距</string>
     <string name="pref_ao_fingerprint_margin_summary">指纹图标下方的空间</string>
     <string name="pref_ao_edgeGlow">边缘发光</string>
-    <string name="pref_ao_edgeGlow_summary">收到通知时发光的边缘</string>
-    <string name="pref_ao_glowDuration">发光持续时间（以毫秒为单位）</string>
-    <string name="pref_ao_glowDuration_summary">持续时间边缘发光</string>
-    <string name="pref_ao_glowDelay">发光延迟（以毫秒为单位）</string>
-    <string name="pref_ao_glowDelay_summary">发光之间的间隔</string>
-    <string name="pref_ao_glowStyle">边缘发光风格</string>
-    <string name="pref_ao_glowStyle_summary">改变发光边缘的外观</string>
+    <string name="pref_ao_edgeGlow_summary">收到通知时边缘发光</string>
+    <string name="pref_ao_glowDuration">发光持续时间（毫秒）</string>
+    <string name="pref_ao_glowDuration_summary">边缘发光的持续时间</string>
+    <string name="pref_ao_glowDelay">发光延迟（毫秒）</string>
+    <string name="pref_ao_glowDelay_summary">发光之间的间隔时间</string>
+    <string name="pref_ao_glowStyle">边缘发光样式</string>
+    <string name="pref_ao_glowStyle_summary">更改发光边缘的外观</string>
     <string name="pref_ao_glowColor">边缘发光颜色</string>
-    <string name="pref_ao_glowColor_summary">改变发光边缘的颜色</string>
-    <string name="pref_ao_vibration">振动持续时间（以毫秒为单位）</string>
-    <string name="pref_ao_vibration_summary">持续时间在屏幕上双击时手机会振动</string>
-    <string name="pref_ao_animation_delay">运动延迟（几分钟）</string>
-    <string name="pref_ao_animation_delay_summary">内容不同位置之间的时间\n警告：太高的值会导致屏幕燃烧！</string>
-    <string name="pref_ao_smooth_animation">动画运动</string>
-    <string name="pref_ao_smooth_animation_summary">动画位置更改</string>
+    <string name="pref_ao_glowColor_summary">更改发光边缘的颜色</string>
+    <string name="pref_ao_vibration">振动持续时间（毫秒）</string>
+    <string name="pref_ao_vibration_summary">在屏幕上双击时手机振动的持续时间</string>
+    <string name="pref_ao_animation_delay">移动延迟（分钟）</string>
+    <string name="pref_ao_animation_delay_summary">内容在不同位置之间移动的时间间隔\n警告：过高的值可能会导致屏幕烧屏！</string>
+    <string name="pref_ao_smooth_animation">平滑动画</string>
+    <string name="pref_ao_smooth_animation_summary">位置更改时的动画效果</string>
     <string name="pref_ao_refresh_rate_optimization">刷新率优化</string>
-    <string name="pref_ao_refresh_rate_optimization_summary">屏幕静止时使用最低可用刷新率，以节省电量</string>
-    <string name="pref_ao_force_brightness">在窥视显示上强制某种亮度</string>
-    <string name="pref_ao_force_brightness_summary">点击以改变强制亮度</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">屏幕静止时使用最低可用刷新率以节省电量</string>
+    <string name="pref_ao_force_brightness">在 Peek Display 上强制指定亮度</string>
+    <string name="pref_ao_force_brightness_summary">点击以更改强制亮度</string>
     <string name="pref_ao_force_brightness_title">亮度</string>
-    <string name="pref_ao_force_brightness_example">这就是您窥视显示上的文字出现的光明。</string>
+    <string name="pref_ao_force_brightness_example">这是 Peek Display 上文本显示的亮度示例。</string>
     <string name="pref_ao_pocket_mode">口袋模式</string>
-    <string name="pref_ao_pocket_mode_summary">禁用在口袋里窥视显示\n警告：传感器使用可能会导致电池使用增加！</string>
-    <string name="pref_ao_dnd">打开不要打扰</string>
-    <string name="pref_ao_dnd_summary">打开窥视显示运行时请勿打扰模式</string>
-    <string name="pref_ao_disable_on_dnd">在不打扰模式下禁用</string>
-    <string name="pref_ao_disable_on_dnd_summary">仅在不打扰模式的时候显示不活动</string>
-    <string name="pref_ao_power_saving">节电模式（根）</string>
-    <string name="pref_ao_power_saving_summary">启用PEEK显示器时，打开系统\\的节能模式</string>
-    <string name="pref_ao_double_tap_speed">双尾速度</string>
-    <string name="pref_ao_double_tap_speed_summary">可以分开两个水龙头的时间（以毫秒为单位）</string>
+    <string name="pref_ao_pocket_mode_summary">在口袋里时禁用 Peek Display\n警告：使用传感器可能会增加电池消耗！</string>
+    <string name="pref_ao_dnd">开启勿扰模式</string>
+    <string name="pref_ao_dnd_summary">在 Peek Display 运行时开启系统勿扰模式</string>
+    <string name="pref_ao_disable_on_dnd">勿扰模式下禁用</string>
+    <string name="pref_ao_disable_on_dnd_summary">仅在非勿扰模式下显示 Peek Display</string>
+    <string name="pref_ao_power_saving">省电模式 (Root)</string>
+    <string name="pref_ao_power_saving_summary">启用 Peek Display 时开启系统省电模式</string>
+    <string name="pref_ao_double_tap_speed">双击速度</string>
+    <string name="pref_ao_double_tap_speed_summary">两次点击之间的最大间隔时间（毫秒）</string>
     <string name="pref_ao_double_tap_disabled">禁用双击</string>
-    <string name="pref_ao_double_tap_disabled_summary">禁用双击以退出窥视显示（不建议）</string>
-    <string name="pref_ao_message">信息</string>
-    <string name="pref_ao_message_summary">在窥视显示上显示的消息</string>
+    <string name="pref_ao_double_tap_disabled_summary">禁用通过双击退出 Peek Display（不建议）</string>
+    <string name="pref_ao_message">自定义消息</string>
+    <string name="pref_ao_message_summary">在 Peek Display 上显示的消息</string>
     <string name="pref_ao_date_format">日期格式</string>
-    <string name="pref_ao_date_format_summary">窥视显示上使用的日期格式</string>
-    <string name="pref_ao_date_format_dialog_text">您必须遵循特定模式</string>
+    <string name="pref_ao_date_format_summary">在 Peek Display 上使用的日期格式</string>
+    <string name="pref_ao_date_format_dialog_text">您必须遵循特定格式模式</string>
     <string name="pref_ao_date_format_dialog_neutral">了解更多</string>
     <string name="pref_ao_date_format_illegal">非法格式</string>
     <string name="pref_ao_calendar">显示事件</string>
-    <string name="pref_ao_calendar_summary">在您的窥视显示上的接下来的24h中显示活动</string>
+    <string name="pref_ao_calendar_summary">在 Peek Display 上显示未来 24 小时内的日程事件</string>
     <string name="pref_look_and_feel_charging">充电动画外观</string>
     <string name="pref_look_and_feel_charging_summary">更改充电动画的外观</string>
-    <string name="pref_ao_background_image">背景图像</string>
-    <string name="pref_ao_background_image_summary">更改窥视显示的背景图像</string>
-    <string name="pref_look_and_feel_hide_display_cutouts">隐藏显示切口</string>
-    <string name="pref_look_and_feel_hide_display_cutouts_summary">在全屏内容上隐藏显示切口</string>
-    <string name="pref_look_and_feel_orientation">方向</string>
-    <string name="pref_look_and_feel_orientation_summary">更改显示\的方向</string>
-    <string name="pref_look_and_feel_heads_up">隐藏通知（root）</string>
-    <string name="pref_look_and_feel_heads_up_summary">防止头部通知显示（实验）</string>
+    <string name="pref_ao_background_image">背景图片</string>
+    <string name="pref_ao_background_image_summary">更改 Peek Display 的背景图片</string>
+    <string name="pref_look_and_feel_hide_display_cutouts">隐藏显示屏缺口</string>
+    <string name="pref_look_and_feel_hide_display_cutouts_summary">在全屏内容上隐藏显示屏缺口（如刘海或挖孔）</string>
+    <string name="pref_look_and_feel_orientation">屏幕方向</string>
+    <string name="pref_look_and_feel_orientation_summary">更改显示方向</string>
+    <string name="pref_look_and_feel_heads_up">隐藏悬浮通知 (Root)</string>
+    <string name="pref_look_and_feel_heads_up_summary">防止显示系统悬浮通知（实验性）</string>
     <string name="pref_look_and_feel_weather">天气</string>
     <string name="pref_look_and_feel_weather_info">显示天气信息</string>
-    <string name="pref_look_and_feel_weather_info_summary">在您的窥视显示上配置天气信息</string>
-    <string name="pref_look_and_feel_weather_show_summary">在您的窥视显示上显示天气信息</string>
-    <string name="pref_look_and_feel_weather_provider">Peek Display使用wttr.in进行天气数据。获取天气可能会传输可识别的数据。</string>
+    <string name="pref_look_and_feel_weather_info_summary">在 Peek Display 上配置天气信息</string>
+    <string name="pref_look_and_feel_weather_show_summary">在 Peek Display 上显示天气信息</string>
+    <string name="pref_look_and_feel_weather_provider">Peek Display 使用 wttr.in 获取天气数据。获取天气可能会传输可识别的数据。</string>
     <string name="pref_look_and_feel_weather_location">天气位置</string>
-    <string name="pref_look_and_feel_weather_location_summary">天气报告的位置。将此空置保留以进行自动座位。</string>
+    <string name="pref_look_and_feel_weather_location_summary">天气预报的位置。留空以进行自动定位。</string>
     <string name="pref_look_and_feel_weather_format">天气格式</string>
-    <string name="pref_look_and_feel_weather_format_summary">窥视显示上使用的天气格式</string>
+    <string name="pref_look_and_feel_weather_format_summary">在 Peek Display 上使用的天气格式</string>
     <string name="pref_look_and_feel_filter_notifications">过滤通知</string>
-    <string name="pref_look_and_feel_filter_notifications_summary">选择，哪些通知不显示</string>
-    <string name="pref_look_and_feel_filter_notifications_explanation">点击条目阻止或解除屏蔽</string>
-    <string name="pref_look_and_feel_filter_notifications_blocked">封锁通知</string>
-    <string name="pref_look_and_feel_filter_notifications_shown">可提供的通知</string>
+    <string name="pref_look_and_feel_filter_notifications_summary">选择哪些通知不显示</string>
+    <string name="pref_look_and_feel_filter_notifications_explanation">点击条目以屏蔽或取消屏蔽</string>
+    <string name="pref_look_and_feel_filter_notifications_blocked">已屏蔽的通知</string>
+    <string name="pref_look_and_feel_filter_notifications_shown">显示的通知</string>
     <string name="pref_look_and_feel_filter_notifications_empty">没有可用的通知</string>
     <string name="pref_look_and_feel_filter_notifications_empty_summary">似乎没有什么可显示的</string>
     <string name="pref_look_and_feel_filter_notifications_unknown">未知应用</string>
-    <string name="pref_look_and_feel_tint_notifications">有色通知</string>
-    <string name="pref_look_and_feel_tint_notifications_summary">其应用程序颜色中的有色通知</string>
-    <string name="pref_look_and_feel_display_size">显示尺寸</string>
-    <string name="pref_look_and_feel_display_size_summary">窥视显示的显示大小为 %1$d%%</string>
+    <string name="pref_look_and_feel_tint_notifications">通知着色</string>
+    <string name="pref_look_and_feel_tint_notifications_summary">根据应用颜色为通知图标着色</string>
+    <string name="pref_look_and_feel_display_size">显示大小</string>
+    <string name="pref_look_and_feel_display_size_summary">Peek Display 的显示大小为 %1$d%%</string>
     <string name="pref_look_and_feel_rules">规则</string>
-    <string name="pref_look_and_feel_rules_summary">控制何时显示窥视显示</string>
+    <string name="pref_look_and_feel_rules_summary">控制何时显示 Peek Display</string>
     <string name="pref_look_and_feel_rules_charging_state">充电状态</string>
     <string name="pref_look_and_feel_rules_charger">充电类型</string>
-    <string name="pref_look_and_feel_rules_charger_summary">选择哪种充电类型算作充电</string>
-    <string name="pref_look_and_feel_rules_battery_level">电池水平</string>
-    <string name="pref_look_and_feel_rules_battery_level_summary">仅显示上面 %1$d%%</string>
-    <string name="pref_look_and_feel_rules_battery_level_summary_zero">在任何电池级别显示</string>
+    <string name="pref_look_and_feel_rules_charger_summary">选择哪些充电类型计入充电状态</string>
+    <string name="pref_look_and_feel_rules_battery_level">电池电量</string>
+    <string name="pref_look_and_feel_rules_battery_level_summary">仅在电量高于 %1$d%% 时显示</string>
+    <string name="pref_look_and_feel_rules_battery_level_summary_zero">在任何电量下均显示</string>
     <string name="pref_look_and_feel_rules_time">时间段</string>
-    <string name="pref_look_and_feel_rules_time_summary">展示 %1$s 到 %2$s</string>
-    <string name="pref_look_and_feel_rules_timeout">暂停</string>
-    <string name="pref_look_and_feel_rules_timeout_summary_zero">尚未设置超时</string>
+    <string name="pref_look_and_feel_rules_time_summary">在 %1$s 到 %2$s 之间显示</string>
+    <string name="pref_look_and_feel_rules_timeout">超时</string>
+    <string name="pref_look_and_feel_rules_timeout_summary_zero">尚未设置超时时间</string>
     <string name="pref_look_and_feel_rules_ambient_mode">环境模式</string>
     <string name="pref_look_and_feel_rules_ambient_mode_summary">仅在收到通知后显示</string>
     <string name="pref_permissions">权限</string>
-    <string name="pref_permissions_summary">与权限有关的设置</string>
+    <string name="pref_permissions_summary">与权限相关的设置</string>
     <string name="pref_ignore_battery_optimizations">忽略电池优化</string>
     <string name="pref_ignore_battery_optimizations_summary">防止系统造成的延迟</string>
-    <string name="pref_notification">通知访问</string>
-    <string name="pref_notification_summary">启用或禁用通知访问</string>
-    <string name="pref_draw_over_other_apps">通过其他应用程序显示</string>
-    <string name="pref_draw_over_other_apps_summary">启用或禁用此许可</string>
-    <string name="pref_admin">设备管理员</string>
-    <string name="pref_admin_summary">激活此设备的正常模式\n请注意，您必须在卸载之前停用应用程序管理特权！</string>
-    <string name="pref_root_mode">根模式</string>
-    <string name="pref_root_mode_summary">启用根功能</string>
+    <string name="pref_notification">通知使用权</string>
+    <string name="pref_notification_summary">启用或禁用通知使用权</string>
+    <string name="pref_draw_over_other_apps">在其他应用之上显示</string>
+    <string name="pref_draw_over_other_apps_summary">启用或禁用此权限</string>
+    <string name="pref_admin">设备管理器</string>
+    <string name="pref_admin_summary">为正常模式激活此权限\n请注意，您必须在卸载之前停用设备管理器权限！</string>
+    <string name="pref_root_mode">Root 模式</string>
+    <string name="pref_root_mode_summary">启用 Root 功能</string>
     <string name="help_center">帮助中心</string>
-    <string name="help_center_summary">卸载，无响应性，电池排放</string>
-    <string name="help_center_missing_permissions_text">当设置变成灰色并告诉您首先启用某些内容时，您尚未启用所需的权限。授予丢失的权限在主页上打开“权限”页面，并同意使用所需的权限。现在，您可以启用需要这些权限的设置。</string>
+    <string name="help_center_summary">卸载、无响应、电池消耗</string>
+    <string name="help_center_missing_permissions_text">当某些设置显示为灰色并提示您先启用某些功能时，说明您尚未启用所需的权限。请转到主页上的“权限”页面，并授予所需的权限。之后，您就可以启用需要这些权限的设置了。</string>
     <string name="help_center_uninstall">如何卸载</string>
-    <string name="help_center_uninstall_text">由于Android操作系统的设计缺陷，卸载过程可能会失败。如果设备管理权在卸载之前未禁用，则将失败。卸载之前，您必须禁用设备管理员的权限。</string>
-    <string name="help_center_uninstall_button">现在卸载</string>
+    <string name="help_center_uninstall_text">由于 Android 系统的设计原因，如果未在卸载前禁用设备管理器权限，卸载过程可能会失败。在卸载之前，您必须先禁用设备管理器权限。</string>
+    <string name="help_center_uninstall_button">立即卸载</string>
     <string name="help_center_delays">如何修复延迟</string>
-    <string name="help_center_delays_text">一些制造商更喜欢电池寿命而不是应用程序功能，这就是为什么此应用程序可能仅在某些设备上与延迟无效的原因。如果您遇到延迟，请尝试禁用该应用程序的电池优化或检查其他特定于制造商的设置。</string>
+    <string name="help_center_delays_text">部分制造商为了延长电池寿命而牺牲了应用功能，这可能导致此应用在某些设备上出现延迟或失效。如果您遇到延迟，请尝试禁用此应用的电池优化，或检查其他制造商特定的设置。</string>
     <string name="help_center_delays_button_one">电池设置</string>
-    <string name="help_center_delays_button_two">特定于制造商</string>
-    <string name="help_center_battery_drain">弄清电池排出的来源</string>
-    <string name="help_center_battery_drain_text">电池耗尽的原因之一可能是您使用的是带有LCD显示屏的手机。该应用程序是为带有OLED显示屏的手机设计的，可以关闭黑色像素以节省能量。 LCD显示器无法关闭黑色像素，当启用PEEK显示时，将使用更多的能量导致显示器。其他原因可能是其他应用程序在PEEK Display正在运行时在后台运行。作为PEEK Display消耗的一部分，Android将显示其电池消耗。</string>
+    <string name="help_center_delays_button_two">制造商特定设置</string>
+    <string name="help_center_battery_drain">了解电池消耗来源</string>
+    <string name="help_center_battery_drain_text">电池消耗较快的原因之一可能是您使用的手机配备的是 LCD 屏幕。该应用是为 OLED 屏幕设计的，OLED 屏幕可以通过关闭黑色像素来节省能量。LCD 屏幕无法关闭黑色像素，因此在启用 Peek Display 时会消耗更多电量。另一个原因可能是其他应用在 Peek Display 运行时在后台运行。Android 系统会将这些消耗计入 Peek Display 的电池使用量中。</string>
     <string name="loading">加载中</string>
     <string name="missing_permissions">缺少权限</string>
-    <string name="permissions_notification_access">打开此功能的通知访问</string>
-    <string name="permissions_device_admin_or_root">打开此功能的设备管理或根</string>
+    <string name="permissions_notification_access">开启此功能的通知使用权</string>
+    <string name="permissions_device_admin_or_root">开启此功能的设备管理器或 Root 权限</string>
     <string name="about">关于</string>
-    <string name="about_summary">关于应用程序</string>
+    <string name="about_summary">关于此应用</string>
     <string name="about_app_version">应用版本</string>
     <string name="about_privacy">外部内容</string>
-    <string name="about_privacy_desc">外部内容将从github加载。阅读他们的隐私政策以获取更多信息。</string>
+    <string name="about_privacy_desc">外部内容将从 GitHub 加载。阅读其隐私政策以获取更多信息。</string>
     <string name="about_privacy_policy">隐私政策</string>
     <string name="about_contributors">贡献者</string>
-    <string name="about_contributors_desc">贡献者的清单</string>
-    <string name="about_general">一般的</string>
-    <string name="about_github">GitHub存储库</string>
-    <string name="about_license">执照</string>
+    <string name="about_contributors_desc">贡献者名单</string>
+    <string name="about_general">常规</string>
+    <string name="about_github">GitHub 仓库</string>
+    <string name="about_license">许可证</string>
     <string name="about_icons">图标</string>
-    <string name="about_icons_desc">Icons8和Google的图标</string>
+    <string name="about_icons_desc">来自 Icons8 和 Google 的图标</string>
     <string name="about_libraries">库</string>
-    <string name="about_libraries_desc">所有二手库的列表</string>
+    <string name="about_libraries_desc">所使用的所有第三方库列表</string>
 
     <string-array name="pref_look_and_feel_rules_charging_state_display">
-        <item>在任何充电状态下展示</item>
+        <item>在任何充电状态下显示</item>
         <item>仅在充电时显示</item>
-        <item>仅在出院时显示</item>
+        <item>仅在未充电时显示</item>
     </string-array>
 
     <string-array name="pref_look_and_feel_rules_charger_display">
-        <item>交流</item>
+        <item>交流电</item>
         <item>USB</item>
-        <item>无线的</item>
+        <item>无线</item>
     </string-array>
 
     <string-array name="pref_look_and_feel_orientation_display">
-        <item>自动锁</item>
-        <item>肖像</item>
-        <item>景观</item>
+        <item>自动</item>
+        <item>竖屏</item>
+        <item>横屏</item>
     </string-array>
 
     <string-array name="pref_ao_glowStyle_display">
-        <item>四面八方</item>
+        <item>四周</item>
         <item>左右两侧</item>
-        <item>顶部和底面</item>
+        <item>顶部和底部</item>
     </string-array>
 
     <string-array name="pref_ao_background_image_array_display">
-        <item>没有任何</item>
+        <item>无</item>
         <item>Daniel Olah</item>
         <item>Daniel Olah</item>
         <item>Daniel Olah</item>
@@ -237,58 +237,58 @@
         <item>Tyler Lastovich</item>
         <item>Tyler Lastovich</item>
         <item>Tyler Lastovich</item>
-        <item>风俗</item>
+        <item>自定义</item>
     </string-array>
     <string name="notification_action_reply">回复</string>
-    <string name="pref_ao_showAlbumArt">展示专辑艺术</string>
+    <string name="pref_ao_showAlbumArt">显示专辑封面</string>
     <string name="pref_ao_interactive_notification_icons">交互式通知图标</string>
-    <string name="pref_ao_interactive_notification_icons_summary">长按通知图标以显示预览，然后滑动到所需的操作以执行</string>
-    <string name="pref_ao_invert_interaction_highlight">反相互作用亮点</string>
-    <string name="pref_ao_invert_interaction_highlight_summary">更改通知图标是否在互动期间突出显示或闲置</string>
+    <string name="pref_ao_interactive_notification_icons_summary">长按通知图标显示预览，然后滑动到所需操作以执行</string>
+    <string name="pref_ao_invert_interaction_highlight">反转交互高亮</string>
+    <string name="pref_ao_invert_interaction_highlight_summary">更改通知图标在交互期间还是空闲期间突出显示</string>
     <string name="pref_ao_notification_icon_size">通知图标大小</string>
     <string name="pref_ao_notification_icon_size_summary">更改通知图标的大小</string>
-    <string name="pref_ao_notification_icon_top_padding">通知图标顶部填充</string>
-    <string name="pref_ao_notification_icon_top_padding_summary">调整上面的通知图标上方的空间</string>
+    <string name="pref_ao_notification_icon_top_padding">通知图标顶部间距</string>
+    <string name="pref_ao_notification_icon_top_padding_summary">调整通知图标上方的空间</string>
     <string name="pref_ao_notification_preview_position">通知预览位置</string>
     <string name="pref_ao_notification_preview_position_summary">通知预览相对于通知图标的位置</string>
-    <string name="pref_ao_top_padding">顶部填充</string>
+    <string name="pref_ao_top_padding">顶部间距</string>
     <string name="pref_ao_top_padding_summary">调整显示元素的垂直位置</string>
     <string-array name="pref_ao_notification_preview_position_display">
-        <item>上方图标上方</item>
-        <item>在图标下方</item>
+        <item>图标上方</item>
+        <item>图标下方</item>
     </string-array>
     <string-array name="pref_ao_notification_icon_size_display">
-        <item>小的</item>
+        <item>小</item>
         <item>标准</item>
-        <item>放大</item>
+        <item>大</item>
     </string-array>
-    <string name="pref_ao_fingerprint_interaction">指纹相互作用模式</string>
-    <string name="pref_ao_fingerprint_interaction_summary">如何与指纹图标互动</string>
+    <string name="pref_ao_fingerprint_interaction">指纹交互模式</string>
+    <string name="pref_ao_fingerprint_interaction_summary">如何与指纹图标进行交互</string>
     <string name="pref_ao_fingerprint_interaction_swipe">从图标滑动</string>
-    <string name="pref_ao_fingerprint_interaction_longpress">长印刷</string>
-    <string name="pref_ao_swipe_notification_open">滑动以通知打开它</string>
-    <string name="pref_ao_swipe_notification_open_summary">允许通过指纹图标向它们刷卡来打开通知</string>
-    <string name="notification_dismiss">解雇</string>
-    <string name="pref_look_and_feel_rules_pickup_mode">拾取模式</string>
+    <string name="pref_ao_fingerprint_interaction_longpress">长按</string>
+    <string name="pref_ao_swipe_notification_open">滑动通知以打开</string>
+    <string name="pref_ao_swipe_notification_open_summary">允许通过指纹图标向其滑动来打开通知</string>
+    <string name="notification_dismiss">清除</string>
+    <string name="pref_look_and_feel_rules_pickup_mode">拾起模式</string>
     <string name="pref_look_and_feel_rules_pickup_mode_summary">仅在拿起电话时显示</string>
-    <string name="pref_pickup_sensitivity">拾取灵敏度</string>
-    <string name="pref_pickup_sensitivity_summary">调整拾取检测的灵敏度</string>
+    <string name="pref_pickup_sensitivity">拾起灵敏度</string>
+    <string name="pref_pickup_sensitivity_summary">调整拾起检测的灵敏度</string>
     <string-array name="pref_pickup_sensitivity_display">
-        <item>高的</item>
-        <item>中等的</item>
-        <item>低的</item>
+        <item>高</item>
+        <item>中</item>
+        <item>低</item>
     </string-array>
-    <string name="pref_ao_lock_icon">使用锁图标</string>
-    <string name="pref_ao_lock_icon_summary">用锁图标替换指纹图标</string>
-    <string name="donate">捐</string>
-    <string name="donate_summary">支持窥视显示的开发</string>
-    <string name="pref_look_and_feel_weather_unit">使用帝国单位</string>
-    <string name="pref_look_and_feel_weather_unit_summary">显示华氏温度</string>
+    <string name="pref_ao_lock_icon">使用锁定图标</string>
+    <string name="pref_ao_lock_icon_summary">用锁定图标替换指纹图标</string>
+    <string name="donate">捐赠</string>
+    <string name="donate_summary">支持 Peek Display 的开发</string>
+    <string name="pref_look_and_feel_weather_unit">使用英制单位</string>
+    <string name="pref_look_and_feel_weather_unit_summary">以华氏度显示温度</string>
     <string name="colorpicker_opacity">不透明度</string>
     <string name="colorpicker_color">颜色</string>
-    <string name="colorpicker_custom">风俗</string>
+    <string name="colorpicker_custom">自定义</string>
     <string name="colorpicker_presets">预设</string>
     <string name="pref_look_and_feel_weather_refresh_interval">刷新间隔</string>
     <string name="pref_look_and_feel_weather_refresh_interval_label">分钟</string>
-    <string name="pref_look_and_feel_weather_refresh_interval_disabled">禁用（启动时获取一次）</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">已禁用（启动时获取一次）</string>
 </resources>
