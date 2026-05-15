@@ -67,7 +67,7 @@
     <string name="pref_ao_showNotificationIcons">Meldingspictogrammen tonen</string>
     <string name="pref_ao_interactive_notification_icons">Interactieve meldingspictogrammen</string>
     <string name="pref_ao_interactive_notification_icons_summary">Lang Druk op het meldingspictogram om een ​​voorbeeld te tonen en vervolgens naar de gewenste actie te vegen om uit te voeren</string>
-    <string name="pref_ao_invert_interaction_highlight">Kind interactie Hoogtepunt omkeren</string>
+    <string name="pref_ao_invert_interaction_highlight">Interactie omkeren</string>
     <string name="pref_ao_invert_interaction_highlight_summary">Wijzigingen of meldingspictogrammen worden gemarkeerd tijdens interactie of in inactiviteit</string>
     <string name="pref_ao_notification_icon_size">Meldingspictogramgrootte</string>
     <string name="pref_ao_notification_icon_size_summary">Verandert de grootte van meldingspictogrammen</string>
