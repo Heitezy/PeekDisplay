@@ -6,6 +6,6 @@
     </plurals>
     <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
         <item quantity="one">Jede %d Minute</item>
-        <item quantity="other">Jeder %d Minuten</item>
+        <item quantity="other">Alle %d Minuten</item>
     </plurals>
 </resources>

@@ -243,7 +243,7 @@
     <string name="pref_ao_showAlbumArt">Display Album Art</string>
     <string name="pref_ao_interactive_notification_icons">Interaktive Benachrichtigungssymbole</string>
     <string name="pref_ao_interactive_notification_icons_summary">Langes Drücken Sie auf das Benachrichtigungssymbol, um Vorschau anzuzeigen und dann zu den gewünschten Aktionen zu wischen, um auszuführen</string>
-    <string name="pref_ao_invert_interaction_highlight">Invert -Interaktions -Highlight</string>
+    <string name="pref_ao_invert_interaction_highlight">Interaktions-Highlight invertieren</string>
     <string name="pref_ao_invert_interaction_highlight_summary">Änderungen, ob Benachrichtigungssymbole während der Interaktion oder im Leerlauf hervorgehoben werden</string>
     <string name="pref_ao_notification_icon_size">Benachrichtigungssymbolgröße</string>
     <string name="pref_ao_notification_icon_size_summary">Verändert die Größe der Benachrichtigungssymbole</string>
@@ -251,7 +251,7 @@
     <string name="pref_ao_notification_icon_top_padding_summary">Passen Sie den Speicherplatz über Benachrichtigungssymbole an</string>
     <string name="pref_ao_notification_preview_position">Benachrichtigungsposition</string>
     <string name="pref_ao_notification_preview_position_summary">Position der Benachrichtigungsvorschau relativ zum Benachrichtigungssymbol</string>
-    <string name="pref_ao_top_padding">Top -Polsterung</string>
+    <string name="pref_ao_top_padding">Abstand oben</string>
     <string name="pref_ao_top_padding_summary">Passen Sie die vertikale Position der Anzeigeelemente an</string>
     <string-array name="pref_ao_notification_preview_position_display">
         <item>Über Ikone</item>
@@ -262,15 +262,15 @@
         <item>Standard</item>
         <item>Vergrößert</item>
     </string-array>
-    <string name="pref_ao_fingerprint_interaction">Fingerabdruck -Interaktionsmodus</string>
+    <string name="pref_ao_fingerprint_interaction">Fingerabdruck-Interaktionsmodus</string>
     <string name="pref_ao_fingerprint_interaction_summary">Wie man mit dem Fingerabdrucksymbol interagiert</string>
     <string name="pref_ao_fingerprint_interaction_swipe">Wischen Sie von der Ikone</string>
     <string name="pref_ao_fingerprint_interaction_longpress">Lange Presse</string>
-    <string name="pref_ao_swipe_notification_open">Wischen Sie zur Benachrichtigung, um es zu öffnen</string>
-    <string name="pref_ao_swipe_notification_open_summary">Erlauben Sie Eröffnungsbenachrichtigungen, indem Sie ihnen von der Fingerabdruck -Ikone zu ihnen wischen</string>
+    <string name="pref_ao_swipe_notification_open">Wischen Sie zur Benachrichtigung, um sie zu öffnen</string>
+    <string name="pref_ao_swipe_notification_open_summary">Erlauben Sie das Öffnen von Benachrichtigungen, indem Sie vom Fingerabdruck-Symbol zu diesen wischen</string>
     <string name="notification_dismiss">Zurückweisen</string>
-    <string name="pref_look_and_feel_rules_pickup_mode">Abholmodus</string>
-    <string name="pref_look_and_feel_rules_pickup_mode_summary">Zeigen Sie nur an, wenn Sie den Hörer abholen</string>
+    <string name="pref_look_and_feel_rules_pickup_mode">Pickup Modus</string>
+    <string name="pref_look_and_feel_rules_pickup_mode_summary">Nur beim Anheben des Telefons anzeigen</string>
     <string name="pref_pickup_sensitivity">Empfindlichkeit der Abholung</string>
     <string name="pref_pickup_sensitivity_summary">Passen Sie die Empfindlichkeit der Erkennung an</string>
     <string-array name="pref_pickup_sensitivity_display">
@@ -278,10 +278,10 @@
         <item>Medium</item>
         <item>Niedrig</item>
     </string-array>
-    <string name="pref_ao_lock_icon">Verwenden Sie das Lock -Symbol</string>
-    <string name="pref_ao_lock_icon_summary">Ersetzen Sie das Fingerabdrucksymbol durch ein Schlossymbol</string>
+    <string name="pref_ao_lock_icon">Verwenden Sie das Schloss-Symbol</string>
+    <string name="pref_ao_lock_icon_summary">Ersetzen Sie das Fingerabdruck-Symbol durch ein Schloss-Symbol</string>
     <string name="donate">Spenden</string>
-    <string name="donate_summary">Unterstützen Sie die Entwicklung des Peek -Displays</string>
+    <string name="donate_summary">Unterstützen Sie die Entwicklung von Peek Display</string>
     <string name="pref_look_and_feel_weather_unit">Imperiale Einheiten verwenden</string>
     <string name="pref_look_and_feel_weather_unit_summary">Die Temperatur in Fahrenheit anzeigen</string>
     <string name="colorpicker_opacity">Opazität</string>
