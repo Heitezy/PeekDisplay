@@ -1,11 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <plurals name="pref_look_and_feel_rules_timeout_summary">
-        <item quantity="one">توقف بعد %d ثانية</item>
-        <item quantity="other">توقف بعد %d ثوان</item>
+        <item quantity="zero">لم يتم تعيين مهلة</item>
+        <item quantity="one">توقف بعد ثانية واحدة</item>
+        <item quantity="two">توقف بعد ثانيتين</item>
+        <item quantity="few">توقف بعد %d ثوانٍ</item>
+        <item quantity="many">توقف بعد %d ثانية</item>
+        <item quantity="other">توقف بعد %d ثانية</item>
     </plurals>
     <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
-        <item quantity="one">كل  %d  دقيقة</item>
-        <item quantity="other">كل  %d  دقيقة</item>
+        <item quantity="zero">معطل</item>
+        <item quantity="one">كل دقيقة</item>
+        <item quantity="two">كل دقيقتين</item>
+        <item quantity="few">كل %d دقائق</item>
+        <item quantity="many">كل %d دقيقة</item>
+        <item quantity="other">كل %d دقيقة</item>
     </plurals>
 </resources>

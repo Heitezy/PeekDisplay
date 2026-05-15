@@ -1,203 +1,203 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="device_admin_description">السماح بعرض نظرة خاطفة بإيقاف شاشتك</string>
-    <string name="notification_listener_description">إظهار الإخطارات على الشاشة</string>
-    <string name="service_text">عرض نظرة خاطفة يعمل في الخلفية</string>
+    <string name="device_admin_description">السماح لـ Peek Display بإيقاف تشغيل الشاشة</string>
+    <string name="notification_listener_description">إظهار الإشعارات على الشاشة</string>
+    <string name="service_text">Peek Display يعمل في الخلفية</string>
     <string name="service_channel">قناة الخدمة</string>
-    <string name="setup_root_failed">فشل طلب الجذر! يرجى المحاولة مرة أخرى أو تبديل الوضع!</string>
+    <string name="setup_root_failed">فشل طلب صلاحيات الجذر! يرجى المحاولة مرة أخرى أو تغيير الوضع!</string>
     <string name="device_admin">مسؤول الجهاز</string>
-    <string name="device_admin_summary">تحتاج إلى تنشيط مسؤول الجهاز هذا أو التبديل إلى وضع الجذر حتى يعمل هذا التطبيق.</string>
-    <string name="notification_listener_service">الوصول إلى الإخطار</string>
-    <string name="notification_listener_service_summary">تحتاج إلى تمكين وصول الإخطار للتطبيق لعرض إشعاراتك على عرض نظرة خاطفة.</string>
-    <string name="setup_draw_over_other_apps">عرض على تطبيقات أخرى</string>
-    <string name="setup_draw_over_other_apps_summary">هذا الإذن مطلوب لإظهار عرض نظرة خاطفة.</string>
-    <string name="setup_phone_state">اقرأ حالة الهاتف</string>
-    <string name="setup_phone_state_summary">مطلوب هذا الإذن لإيقاف عرض نظرة خاطفة للمكالمات الواردة.</string>
-    <string name="setup_calendar">اقرأ التقويم</string>
-    <string name="setup_calendar_summary">تحتاج إلى تمكين وصول التقويم للتطبيق لعرض الأحداث الخاصة بك على عرض نظرة خاطفة.</string>
-    <string name="setup_skip">يتخطى</string>
-    <string name="setup_continue">يكمل</string>
-    <string name="setup_error">حدث خطأ ما! من فضلك حاول مرة أخرى!</string>
-    <string name="dialog_device_admin_text">يرجى ملاحظة أنه يتعين عليك إلغاء تنشيط امتيازات مسؤول جهاز التطبيق قبل إلغاء تثبيته! للتأكد من فهمك هذا ، يرجى إجراء العملية التالية:\n7 + 12</string>
-    <string name="dialog_device_admin_result">نتيجة</string>
-    <string name="dialog_device_admin_error">نتيجة خاطئة. حاول ثانية.</string>
-    <string name="app_description">تطبيق Android الذي يضيف عرض نظرة خاطفة.</string>
-    <string name="charged">%1$d٪٪ مشحونة</string>
-    <string name="shortcut_disabled">عاجز</string>
+    <string name="device_admin_summary">يجب تفعيل مسؤول الجهاز أو التبديل إلى وضع الجذر لكي يعمل هذا التطبيق.</string>
+    <string name="notification_listener_service">الوصول إلى الإشعارات</string>
+    <string name="notification_listener_service_summary">يجب تمكين الوصول إلى الإشعارات للسماح للتطبيق بعرض إشعاراتك على Peek Display.</string>
+    <string name="setup_draw_over_other_apps">الظهور فوق التطبيقات الأخرى</string>
+    <string name="setup_draw_over_other_apps_summary">هذا الإذن مطلوب لإظهار Peek Display.</string>
+    <string name="setup_phone_state">قراءة حالة الهاتف</string>
+    <string name="setup_phone_state_summary">هذا الإذن مطلوب لإيقاف Peek Display عند تلقي مكالمات واردة.</string>
+    <string name="setup_calendar">قراءة التقويم</string>
+    <string name="setup_calendar_summary">يجب تمكين الوصول إلى التقويم لعرض أحداثك على Peek Display.</string>
+    <string name="setup_skip">تخطي</string>
+    <string name="setup_continue">استمرار</string>
+    <string name="setup_error">حدث خطأ ما! يرجى المحاولة مرة أخرى!</string>
+    <string name="dialog_device_admin_text">يرجى ملاحظة أنه يجب إلغاء تفعيل صلاحيات مسؤول الجهاز للتطبيق قبل إلغاء تثبيته! للتأكد من فهمك لذلك، يرجى إجراء العملية التالية:\n7 + 12</string>
+    <string name="dialog_device_admin_result">النتيجة</string>
+    <string name="dialog_device_admin_error">نتيجة خاطئة. حاول مرة أخرى.</string>
+    <string name="app_description">تطبيق أندرويد يضيف ميزة Peek Display.</string>
+    <string name="charged">تم الشحن بنسبة %1$d%%</string>
+    <string name="shortcut_disabled">معطل</string>
     <string name="pref_int_failed">لا يمكن استخدام هذه القيمة</string>
     <string name="pref_general">الإعدادات العامة</string>
-    <string name="pref_enabled">تمكين حاليا</string>
-    <string name="pref_disabled">معطل حاليا</string>
-    <string name="pref_always_on">عرض نظرة خاطفة</string>
-    <string name="pref_charging">شحن الرسوم المتحركة</string>
-    <string name="pref_look_and_feel">انظر ويشعر</string>
-    <string name="pref_ao_watch_face">مشاهدة الوجه</string>
-    <string name="pref_ao_watch_face_summary">الإعدادات المتعلقة بعرض مشاهدة نظرة خاطفة</string>
-    <string name="pref_ao_background">خلفية</string>
-    <string name="pref_ao_background_summary">الإعدادات المتعلقة بخلفية عرض نظرة خاطفة</string>
-    <string name="pref_ao_behavior">سلوك</string>
+    <string name="pref_enabled">مفعل حالياً</string>
+    <string name="pref_disabled">معطل حالياً</string>
+    <string name="pref_always_on">Peek Display</string>
+    <string name="pref_charging">رسوم الشحن المتحركة</string>
+    <string name="pref_look_and_feel">المظهر والأسلوب</string>
+    <string name="pref_ao_watch_face">واجهة الساعة</string>
+    <string name="pref_ao_watch_face_summary">الإعدادات المتعلقة بواجهة ساعة Peek Display</string>
+    <string name="pref_ao_background">الخلفية</string>
+    <string name="pref_ao_background_summary">الإعدادات المتعلقة بخلفية Peek Display</string>
+    <string name="pref_ao_behavior">السلوك</string>
     <string name="pref_ao_behavior_summary">الإعدادات المتعلقة بسلوك التطبيق</string>
     <string name="pref_ao_other">إعدادات أخرى</string>
-    <string name="pref_look_and_feel_hour">استخدم الساعة 12 ساعة</string>
-    <string name="pref_look_and_feel_hour_summary_on">المستخدم حاليا: الساعة 12 ساعة</string>
-    <string name="pref_look_and_feel_hour_summary_off">المستخدم حاليا: الساعة 24 ساعة</string>
-    <string name="pref_look_and_feel_am_pm">عرض AM / PM</string>
-    <string name="pref_look_and_feel_am_pm_summary">أظهر AM / PM عند استخدام الساعة 12 ساعة</string>
-    <string name="pref_look_and_feel_ao">نظرة نظرة خاطفة</string>
-    <string name="pref_look_and_feel_ao_summary">يغير مظهر نظرة خاطفة</string>
+    <string name="pref_look_and_feel_hour">استخدام تنسيق 12 ساعة</string>
+    <string name="pref_look_and_feel_hour_summary_on">المستخدم حالياً: تنسيق 12 ساعة</string>
+    <string name="pref_look_and_feel_hour_summary_off">المستخدم حالياً: تنسيق 24 ساعة</string>
+    <string name="pref_look_and_feel_am_pm">إظهار صباحاً/مساءً</string>
+    <string name="pref_look_and_feel_am_pm_summary">إظهار صباحاً/مساءً عند استخدام تنسيق 12 ساعة</string>
+    <string name="pref_look_and_feel_ao">مظهر Peek Display</string>
+    <string name="pref_look_and_feel_ao_summary">تغيير مظهر Peek Display</string>
     <string name="pref_look_and_feel_colors">الألوان</string>
-    <string name="pref_look_and_feel_colors_summary">حدد الألوان لبعض العناصر</string>
+    <string name="pref_look_and_feel_colors_summary">تحديد ألوان عناصر معينة</string>
     <string name="pref_look_and_feel_colors_clock">لون الساعة</string>
     <string name="pref_look_and_feel_colors_date">لون التاريخ</string>
     <string name="pref_look_and_feel_colors_battery">لون البطارية</string>
     <string name="pref_look_and_feel_colors_battery_arc">لون البطارية (M-Style)</string>
-    <string name="pref_look_and_feel_colors_music_controls">يتحكم الموسيقى في اللون</string>
-    <string name="pref_look_and_feel_colors_calendar">لون الحدث التقويم</string>
+    <string name="pref_look_and_feel_colors_music_controls">لون أزرار التحكم في الموسيقى</string>
+    <string name="pref_look_and_feel_colors_calendar">لون أحداث التقويم</string>
     <string name="pref_look_and_feel_colors_message">لون الرسالة</string>
     <string name="pref_look_and_feel_colors_weather">لون الطقس</string>
-    <string name="pref_look_and_feel_colors_notification">لون الإخطار</string>
-    <string name="pref_look_and_feel_colors_fingerprint">لون أيقونة بصمة</string>
+    <string name="pref_look_and_feel_colors_notification">لون الإشعارات</string>
+    <string name="pref_look_and_feel_colors_fingerprint">لون أيقونة بصمة الإصبع</string>
     <string name="pref_ao_showClock">عرض الوقت</string>
     <string name="pref_ao_showDate">عرض التاريخ</string>
-    <string name="pref_ao_showBatteryIcn">عرض رمز البطارية</string>
+    <string name="pref_ao_showBatteryIcn">عرض أيقونة البطارية</string>
     <string name="pref_ao_showBattery">عرض نسبة البطارية</string>
-    <string name="pref_ao_showMusicControls">عرض عناصر التحكم في الموسيقى</string>
-    <string name="pref_ao_showNotifications">عرض عدد الإخطار</string>
-    <string name="pref_ao_showNotificationIcons">عرض أيقونات الإخطار</string>
-    <string name="pref_ao_fingerprint">عرض أيقونة بصمات الأصابع</string>
-    <string name="pref_ao_fingerprint_margin">هامش البصمة</string>
-    <string name="pref_ao_fingerprint_margin_summary">مساحة تحت أيقونة بصمة</string>
-    <string name="pref_ao_edgeGlow">توهج الحافة</string>
-    <string name="pref_ao_edgeGlow_summary">حواف متوهجة عند استلام إخطار</string>
-    <string name="pref_ao_glowDuration">مدة متوهجة (بالميلي ثانية)</string>
-    <string name="pref_ao_glowDuration_summary">مدة الحواف متوهجة</string>
-    <string name="pref_ao_glowDelay">تأخير متوهج (بالميلي ثانية)</string>
-    <string name="pref_ao_glowDelay_summary">الفاصل الزمني بين التوهج</string>
-    <string name="pref_ao_glowStyle">نمط توهج الحافة</string>
+    <string name="pref_ao_showMusicControls">عرض أزرار التحكم في الموسيقى</string>
+    <string name="pref_ao_showNotifications">عرض عدد الإشعارات</string>
+    <string name="pref_ao_showNotificationIcons">عرض أيقونات الإشعارات</string>
+    <string name="pref_ao_fingerprint">عرض أيقونة بصمة الإصبع</string>
+    <string name="pref_ao_fingerprint_margin">هامش بصمة الإصبع</string>
+    <string name="pref_ao_fingerprint_margin_summary">المسافة أسفل أيقونة بصمة الإصبع</string>
+    <string name="pref_ao_edgeGlow">وهج الحواف</string>
+    <string name="pref_ao_edgeGlow_summary">توهج الحواف عند تلقي إشعار</string>
+    <string name="pref_ao_glowDuration">مدة التوهج (بالميلي ثانية)</string>
+    <string name="pref_ao_glowDuration_summary">المدة التي تستمر فيها الحواف في التوهج</string>
+    <string name="pref_ao_glowDelay">تأخير التوهج (بالميلي ثانية)</string>
+    <string name="pref_ao_glowDelay_summary">الفاصل الزمني بين التوهجات</string>
+    <string name="pref_ao_glowStyle">نمط وهج الحواف</string>
     <string name="pref_ao_glowStyle_summary">يغير مظهر الحواف المتوهجة</string>
-    <string name="pref_ao_glowColor">لون توهج الحافة</string>
+    <string name="pref_ao_glowColor">لون وهج الحواف</string>
     <string name="pref_ao_glowColor_summary">يغير لون الحواف المتوهجة</string>
     <string name="pref_ao_vibration">مدة الاهتزاز (بالميلي ثانية)</string>
-    <string name="pref_ao_vibration_summary">مدة تهتز الهاتف عند نقر الشاشة المزدوجة</string>
-    <string name="pref_ao_animation_delay">تأخير الحركة (في دقائق)</string>
-    <string name="pref_ao_animation_delay_summary">الوقت بين المواضع المختلفة للمحتوى\nتحذير: يمكن أن تسبب القيم المرتفعة للغاية حرق الشاشة!</string>
+    <string name="pref_ao_vibration_summary">مدة اهتزاز الهاتف عند النقر المزدوج على الشاشة</string>
+    <string name="pref_ao_animation_delay">تأخير الحركة (بالدقائق)</string>
+    <string name="pref_ao_animation_delay_summary">الوقت بين المواضع المختلفة للمحتوى\nتحذير: القيم المرتفعة جداً قد تسبب احتراق الشاشة!</string>
     <string name="pref_ao_smooth_animation">تحريك الحركة</string>
-    <string name="pref_ao_smooth_animation_summary">تنشيط تغيير الموقف</string>
+    <string name="pref_ao_smooth_animation_summary">تفعيل تغيير الموضع بسلاسة</string>
     <string name="pref_ao_refresh_rate_optimization">تحسين معدل التحديث</string>
-    <string name="pref_ao_refresh_rate_optimization_summary">يستخدم أقل معدل تحديث متاح عندما تكون الشاشة ثابتة لتوفير البطارية</string>
-    <string name="pref_ao_force_brightness">إجبار سطوع معين على عرض نظرة خاطفة</string>
-    <string name="pref_ao_force_brightness_summary">اضغط لتغيير السطوع القسري</string>
-    <string name="pref_ao_force_brightness_title">سطوع</string>
-    <string name="pref_ao_force_brightness_example">هذا هو مدى سطوع النص على عرض نظرة خاطفة.</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">استخدام أقل معدل تحديث متاح عندما تكون الشاشة ثابتة لتوفير البطارية</string>
+    <string name="pref_ao_force_brightness">فرض سطوع معين على Peek Display</string>
+    <string name="pref_ao_force_brightness_summary">انقر لتغيير السطوع المفروض</string>
+    <string name="pref_ao_force_brightness_title">السطوع</string>
+    <string name="pref_ao_force_brightness_example">هذا هو مدى سطوع النص على Peek Display.</string>
     <string name="pref_ao_pocket_mode">وضع الجيب</string>
-    <string name="pref_ao_pocket_mode_summary">يعطل عرض نظرة خاطفة في جيبك\nتحذير: قد يؤدي استخدام المستشعر إلى زيادة استخدام البطارية!</string>
-    <string name="pref_ao_dnd">تشغيل لا تزعج</string>
-    <string name="pref_ao_dnd_summary">تشغيل لا تزعج الوضع أثناء تشغيل نظرة خاطفة</string>
-    <string name="pref_ao_disable_on_dnd">تعطيل في الوضع لا يزعج</string>
-    <string name="pref_ao_disable_on_dnd_summary">تظهر فقط عندما لا يكون وضع الإزعاج غير نشط</string>
-    <string name="pref_ao_power_saving">وضع توفير الطاقة (الجذر)</string>
-    <string name="pref_ao_power_saving_summary">يعمل على تشغيل وضع توفير الطاقة في النظام عند تمكين عرض PEEK</string>
-    <string name="pref_ao_double_tap_speed">سرعة النفرة المزدوجة</string>
-    <string name="pref_ao_double_tap_speed_summary">يمكن أن يكون هناك TIPS TAPS (بالميلي ثانية)</string>
-    <string name="pref_ao_double_tap_disabled">تعطيل النقل المزدوج</string>
-    <string name="pref_ao_double_tap_disabled_summary">تعطيل النقر المزدوج للخروج من عرض نظرة خاطفة (غير موصى به)</string>
-    <string name="pref_ao_message">رسالة</string>
-    <string name="pref_ao_message_summary">رسالة يتم عرضها على عرض نظرة خاطفة</string>
+    <string name="pref_ao_pocket_mode_summary">تعطيل Peek Display عندما يكون الهاتف في جيبك\nتحذير: استخدام المستشعر قد يؤدي لزيادة استهلاك البطارية!</string>
+    <string name="pref_ao_dnd">تفعيل وضع "عدم الإزعاج"</string>
+    <string name="pref_ao_dnd_summary">تفعيل وضع "عدم الإزعاج" أثناء عمل Peek Display</string>
+    <string name="pref_ao_disable_on_dnd">التعطيل في وضع "عدم الإزعاج"</string>
+    <string name="pref_ao_disable_on_dnd_summary">يظهر فقط عندما يكون وضع "عدم الإزعاج" غير نشط</string>
+    <string name="pref_ao_power_saving">وضع توفير الطاقة (جذر)</string>
+    <string name="pref_ao_power_saving_summary">تفعيل وضع توفير الطاقة في النظام عند تمكين Peek Display</string>
+    <string name="pref_ao_double_tap_speed">سرعة النقر المزدوج</string>
+    <string name="pref_ao_double_tap_speed_summary">المدة القصوى بين النقرتين (بالميلي ثانية)</string>
+    <string name="pref_ao_double_tap_disabled">تعطيل النقر المزدوج</string>
+    <string name="pref_ao_double_tap_disabled_summary">تعطيل النقر المزدوج للخروج من Peek Display (غير موصى به)</string>
+    <string name="pref_ao_message">الرسالة</string>
+    <string name="pref_ao_message_summary">رسالة يتم عرضها على Peek Display</string>
     <string name="pref_ao_date_format">تنسيق التاريخ</string>
-    <string name="pref_ao_date_format_summary">تنسيق التاريخ المستخدم على عرض نظرة خاطفة</string>
-    <string name="pref_ao_date_format_dialog_text">عليك أن تتبع نمطًا محددًا</string>
-    <string name="pref_ao_date_format_dialog_neutral">يتعلم أكثر</string>
-    <string name="pref_ao_date_format_illegal">شكل غير قانوني</string>
+    <string name="pref_ao_date_format_summary">تنسيق التاريخ المستخدم في Peek Display</string>
+    <string name="pref_ao_date_format_dialog_text">يجب اتباع نمط محدد</string>
+    <string name="pref_ao_date_format_dialog_neutral">معرفة المزيد</string>
+    <string name="pref_ao_date_format_illegal">تنسيق غير صالح</string>
     <string name="pref_ao_calendar">عرض الأحداث</string>
-    <string name="pref_ao_calendar_summary">إظهار الأحداث في الـ 24 ساعة التالية على عرض نظرة خاطفة</string>
-    <string name="pref_look_and_feel_charging">شحن الرسوم المتحركة نظرة</string>
-    <string name="pref_look_and_feel_charging_summary">يغير مظهر الرسوم المتحركة الشحن</string>
+    <string name="pref_ao_calendar_summary">إظهار أحداث الـ 24 ساعة القادمة على Peek Display</string>
+    <string name="pref_look_and_feel_charging">مظهر رسوم الشحن المتحركة</string>
+    <string name="pref_look_and_feel_charging_summary">يغير مظهر الرسوم المتحركة للشحن</string>
     <string name="pref_ao_background_image">صورة الخلفية</string>
-    <string name="pref_ao_background_image_summary">تغيير صورة الخلفية لعرض نظرة خاطفة</string>
-    <string name="pref_look_and_feel_hide_display_cutouts">إخفاء قواطع العرض</string>
-    <string name="pref_look_and_feel_hide_display_cutouts_summary">إخفاء قواطع العرض على محتوى ملء الشاشة</string>
-    <string name="pref_look_and_feel_orientation">توجيه</string>
-    <string name="pref_look_and_feel_orientation_summary">يغير اتجاه العرض</string>
-    <string name="pref_look_and_feel_heads_up">إخفاء الإخطارات (الجذر) الرؤوس (الجذر)</string>
-    <string name="pref_look_and_feel_heads_up_summary">يمنع الرؤوس الإخطارات من العرض (التجريبي)</string>
-    <string name="pref_look_and_feel_weather">طقس</string>
+    <string name="pref_ao_background_image_summary">تغيير صورة الخلفية لـ Peek Display</string>
+    <string name="pref_look_and_feel_hide_display_cutouts">إخفاء نتوءات الشاشة (Notch)</string>
+    <string name="pref_look_and_feel_hide_display_cutouts_summary">إخفاء نتوءات الشاشة في محتوى ملء الشاشة</string>
+    <string name="pref_look_and_feel_orientation">الاتجاه</string>
+    <string name="pref_look_and_feel_orientation_summary">يغير اتجاه الشاشة</string>
+    <string name="pref_look_and_feel_heads_up">إخفاء إشعارات العناوين (جذر)</string>
+    <string name="pref_look_and_feel_heads_up_summary">يمنع ظهور إشعارات العناوين (تجريبي)</string>
+    <string name="pref_look_and_feel_weather">الطقس</string>
     <string name="pref_look_and_feel_weather_info">عرض معلومات الطقس</string>
-    <string name="pref_look_and_feel_weather_info_summary">تكوين معلومات الطقس على عرض نظرة خاطفة</string>
-    <string name="pref_look_and_feel_weather_show_summary">إظهار معلومات الطقس على عرض نظرة خاطفة</string>
-    <string name="pref_look_and_feel_weather_provider">يستخدم Peek Display wttr.in لبيانات الطقس. قد يؤدي جلب الطقس إلى نقل البيانات المحددة.</string>
+    <string name="pref_look_and_feel_weather_info_summary">تكوين معلومات الطقس في Peek Display</string>
+    <string name="pref_look_and_feel_weather_show_summary">إظهار معلومات الطقس في Peek Display</string>
+    <string name="pref_look_and_feel_weather_provider">يستخدم Peek Display خدمة wttr.in لبيانات الطقس. جلب الطقس قد يتضمن نقل بيانات محددة.</string>
     <string name="pref_look_and_feel_weather_location">موقع الطقس</string>
-    <string name="pref_look_and_feel_weather_location_summary">موقع تقرير الطقس. اترك هذا فارغًا للتوظيف التلقائي.</string>
+    <string name="pref_look_and_feel_weather_location_summary">موقع تقرير الطقس. اتركه فارغاً لتحديد الموقع تلقائياً.</string>
     <string name="pref_look_and_feel_weather_format">تنسيق الطقس</string>
-    <string name="pref_look_and_feel_weather_format_summary">تنسيق الطقس المستخدم على عرض نظرة خاطفة</string>
-    <string name="pref_look_and_feel_filter_notifications">تصفية الإخطارات</string>
-    <string name="pref_look_and_feel_filter_notifications_summary">اختر ، ما هي الإشعارات لعدم إظهارها</string>
-    <string name="pref_look_and_feel_filter_notifications_explanation">اضغط على الإدخالات لمنعها أو إلغاء حظرها</string>
-    <string name="pref_look_and_feel_filter_notifications_blocked">قم بإخطارات من</string>
-    <string name="pref_look_and_feel_filter_notifications_shown">الإخطارات المتاحة من</string>
-    <string name="pref_look_and_feel_filter_notifications_empty">لا إشعارات متاحة</string>
-    <string name="pref_look_and_feel_filter_notifications_empty_summary">يبدو أنه لا يوجد شيء لإظهاره</string>
+    <string name="pref_look_and_feel_weather_format_summary">تنسيق الطقس المستخدم في Peek Display</string>
+    <string name="pref_look_and_feel_filter_notifications">تصفية الإشعارات</string>
+    <string name="pref_look_and_feel_filter_notifications_summary">اختر الإشعارات التي لا تريد إظهارها</string>
+    <string name="pref_look_and_feel_filter_notifications_explanation">انقر على الإدخالات لحظرها أو إلغاء حظرها</string>
+    <string name="pref_look_and_feel_filter_notifications_blocked">حظر الإشعارات من</string>
+    <string name="pref_look_and_feel_filter_notifications_shown">الإشعارات المتاحة من</string>
+    <string name="pref_look_and_feel_filter_notifications_empty">لا توجد إشعارات متاحة</string>
+    <string name="pref_look_and_feel_filter_notifications_empty_summary">يبدو أنه لا يوجد شيء لعرضه</string>
     <string name="pref_look_and_feel_filter_notifications_unknown">تطبيق غير معروف</string>
-    <string name="pref_look_and_feel_tint_notifications">إخطارات صبغة</string>
-    <string name="pref_look_and_feel_tint_notifications_summary">إشعارات صبغة في ألوان التطبيق الخاصة بهم</string>
+    <string name="pref_look_and_feel_tint_notifications">تلوين الإشعارات</string>
+    <string name="pref_look_and_feel_tint_notifications_summary">تلوين الإشعارات بألوان تطبيقاتها الخاصة</string>
     <string name="pref_look_and_feel_display_size">حجم العرض</string>
-    <string name="pref_look_and_feel_display_size_summary">حجم عرض عرض نظرة خاطفة %1$d٪٪</string>
-    <string name="pref_look_and_feel_rules">قواعد</string>
-    <string name="pref_look_and_feel_rules_summary">تحكم عند إظهار عرض نظرة خاطفة</string>
-    <string name="pref_look_and_feel_rules_charging_state">شحن الدولة</string>
+    <string name="pref_look_and_feel_display_size_summary">حجم عرض Peek Display هو %1$d%%</string>
+    <string name="pref_look_and_feel_rules">القواعد</string>
+    <string name="pref_look_and_feel_rules_summary">التحكم في وقت إظهار Peek Display</string>
+    <string name="pref_look_and_feel_rules_charging_state">حالة الشحن</string>
     <string name="pref_look_and_feel_rules_charger">نوع الشحن</string>
-    <string name="pref_look_and_feel_rules_charger_summary">اختر أنواع الشحن التي تعتبر الشحن</string>
+    <string name="pref_look_and_feel_rules_charger_summary">اختر أنواع الشحن التي تعتبر شحناً</string>
     <string name="pref_look_and_feel_rules_battery_level">مستوى البطارية</string>
-    <string name="pref_look_and_feel_rules_battery_level_summary">تظهر فقط أعلاه %1$d٪٪</string>
-    <string name="pref_look_and_feel_rules_battery_level_summary_zero">عرض على أي مستوى بطارية</string>
+    <string name="pref_look_and_feel_rules_battery_level_summary">يظهر فقط فوق %1$d%%</string>
+    <string name="pref_look_and_feel_rules_battery_level_summary_zero">عرض في أي مستوى للبطارية</string>
     <string name="pref_look_and_feel_rules_time">الفترة الزمنية</string>
-    <string name="pref_look_and_feel_rules_time_summary">عرض من %1$s ل %2$s</string>
-    <string name="pref_look_and_feel_rules_timeout">نفذ الوقت</string>
-    <string name="pref_look_and_feel_rules_timeout_summary_zero">لم يتم تعيين أي مهلة</string>
+    <string name="pref_look_and_feel_rules_time_summary">العرض من %1$s إلى %2$s</string>
+    <string name="pref_look_and_feel_rules_timeout">مهلة الانتظار</string>
+    <string name="pref_look_and_feel_rules_timeout_summary_zero">لم يتم تعيين مهلة</string>
     <string name="pref_look_and_feel_rules_ambient_mode">الوضع المحيط</string>
-    <string name="pref_look_and_feel_rules_ambient_mode_summary">العرض فقط بعد استلام إخطار</string>
-    <string name="pref_permissions">أذونات</string>
+    <string name="pref_look_and_feel_rules_ambient_mode_summary">العرض فقط بعد تلقي إشعار</string>
+    <string name="pref_permissions">الأذونات</string>
     <string name="pref_permissions_summary">الإعدادات المتعلقة بالأذونات</string>
     <string name="pref_ignore_battery_optimizations">تجاهل تحسينات البطارية</string>
-    <string name="pref_ignore_battery_optimizations_summary">يمنع التأخير الناجم عن النظام</string>
-    <string name="pref_notification">الوصول إلى الإخطار</string>
-    <string name="pref_notification_summary">تمكين أو تعطيل الوصول إلى الإخطار</string>
-    <string name="pref_draw_over_other_apps">عرض على تطبيقات أخرى</string>
+    <string name="pref_ignore_battery_optimizations_summary">يمنع التأخيرات الناتجة عن النظام</string>
+    <string name="pref_notification">الوصول إلى الإشعارات</string>
+    <string name="pref_notification_summary">تمكين أو تعطيل الوصول إلى الإشعارات</string>
+    <string name="pref_draw_over_other_apps">الظهور فوق التطبيقات الأخرى</string>
     <string name="pref_draw_over_other_apps_summary">تمكين أو تعطيل هذا الإذن</string>
     <string name="pref_admin">مسؤول الجهاز</string>
-    <string name="pref_admin_summary">قم بتنشيط مسؤول الجهاز لهذا الوضع العادي\nيرجى ملاحظة أنه يتعين عليك إلغاء تنشيط امتيازات مسؤول جهاز التطبيق قبل إلغاء تثبيته!</string>
+    <string name="pref_admin_summary">تفعيل مسؤول الجهاز للوضع العادي\nيرجى ملاحظة أنه يجب إلغاء تفعيل صلاحيات مسؤول الجهاز للتطبيق قبل إلغاء تثبيته!</string>
     <string name="pref_root_mode">وضع الجذر</string>
-    <string name="pref_root_mode_summary">تمكين وظيفة الجذر</string>
+    <string name="pref_root_mode_summary">تمكين وظائف الجذر</string>
     <string name="help_center">مركز المساعدة</string>
-    <string name="help_center_summary">إلغاء تثبيت ، عدم الاستجابة ، تصريف البطارية</string>
-    <string name="help_center_missing_permissions_text">عندما يكون الإعداد رماديًا ويخبرك بتمكين شيء ما أولاً ، لم تقم بتمكين الأذونات المطلوبة بعد. لمنح الأذونات المفقودة ، افتح صفحة "الأذونات" على الصفحة الرئيسية والموافقة على استخدام الأذونات المطلوبة. يمكنك الآن تمكين الإعدادات التي تحتاج إلى تلك الأذونات.</string>
+    <string name="help_center_summary">إلغاء التثبيت، عدم الاستجابة، استنزاف البطارية</string>
+    <string name="help_center_missing_permissions_text">عندما يكون الإعداد بلون رمادي ويطلب منك تمكين شيء ما أولاً، فهذا يعني أنك لم تمنح الأذونات المطلوبة بعد. لمنح الأذونات الناقصة، افتح صفحة "الأذونات" في القائمة الرئيسية ووافق على استخدام الأذونات المطلوبة. يمكنك الآن تمكين الإعدادات التي تحتاج لتلك الأذونات.</string>
     <string name="help_center_uninstall">كيفية إلغاء التثبيت</string>
-    <string name="help_center_uninstall_text">يمكن أن تفشل عملية إلغاء التثبيت بسبب عيب في التصميم في نظام تشغيل Android. إذا لم يتم تعطيل إذن مسؤول الجهاز قبل إلغاء تثبيت العملية. يجب عليك تعطيل إذن مسؤول الجهاز قبل إلغاء التثبيت.</string>
+    <string name="help_center_uninstall_text">قد تفشل عملية إلغاء التثبيت بسبب خلل في تصميم نظام أندرويد إذا لم يتم تعطيل إذن مسؤول الجهاز قبل البدء. يجب عليك تعطيل إذن مسؤول الجهاز يدوياً قبل إلغاء التثبيت.</string>
     <string name="help_center_uninstall_button">إلغاء التثبيت الآن</string>
     <string name="help_center_delays">كيفية إصلاح التأخير</string>
-    <string name="help_center_delays_text">يفضل بعض الشركات المصنعة عمر البطارية على وظائف التطبيق وهذا هو السبب في أن هذا التطبيق قد يعمل فقط مع التأخيرات أو لا على الإطلاق على بعض الأجهزة. إذا كنت تعاني من تأخير ، فحاول تعطيل تحسينات البطارية للتطبيق أو تحقق من إعدادات الشركة المصنعة الأخرى الخاصة.</string>
+    <string name="help_center_delays_text">تفضل بعض الشركات المصنعة عمر البطارية على وظائف التطبيقات، ولهذا قد يعمل هذا التطبيق مع تأخيرات أو لا يعمل على الإطلاق في بعض الأجهزة. إذا كنت تواجه تأخيراً، فحاول تعطيل تحسينات البطارية للتطبيق أو تحقق من إعدادات الشركة المصنعة الخاصة الأخرى.</string>
     <string name="help_center_delays_button_one">إعدادات البطارية</string>
-    <string name="help_center_delays_button_two">الشركة المصنعة الخاصة</string>
-    <string name="help_center_battery_drain">اكتشاف مصدر استنزاف البطارية</string>
-    <string name="help_center_battery_drain_text">يمكن أن يكون أحد أسباب استنزاف البطارية هو أنك تستخدم هاتفًا مع شاشة LCD. تم تصميم هذا التطبيق للهواتف التي تحتوي على شاشة OLED التي يمكنها إيقاف تشغيل وحدات البكسل السوداء لتوفير الطاقة. لا يمكن لشروط شاشة LCD إيقاف تشغيل وحدات البكسل السوداء والتي ستؤدي إلى استخدام الشاشة كثيرًا من الطاقة عند تمكين شاشة PEEK. يمكن أن يكون هناك سبب آخر هو أن التطبيقات الأخرى تعمل في الخلفية أثناء تشغيل PEEK. سيعرض Android استهلاك البطاريات الخاص به كجزء من استهلاك بطارية Peek Display.</string>
-    <string name="loading">تحميل</string>
+    <string name="help_center_delays_button_two">إعدادات المصنع الخاصة</string>
+    <string name="help_center_battery_drain">تحديد مصدر استنزاف البطارية</string>
+    <string name="help_center_battery_drain_text">أحد أسباب استنزاف البطارية قد يكون استخدام هاتف بشاشة LCD. هذا التطبيق مصمم للهواتف التي تحتوي على شاشة OLED القادرة على إطفاء البكسلات السوداء لتوفير الطاقة. شاشات LCD لا تستطيع إطفاء البكسلات السوداء مما يؤدي لاستهلاك طاقة أكبر عند تمكين Peek Display. سبب آخر قد يكون تطبيقات أخرى تعمل في الخلفية أثناء تشغيل Peek Display، حيث سيعرض نظام أندرويد استهلاكها للبطارية كجزء من استهلاك Peek Display.</string>
+    <string name="loading">جاري التحميل&#8230;</string>
     <string name="missing_permissions">أذونات مفقودة</string>
-    <string name="permissions_notification_access">قم بتشغيل الوصول إلى الإخطار لهذه الميزة</string>
-    <string name="permissions_device_admin_or_root">قم بتشغيل مسؤول الجهاز أو الجذر لهذه الميزة</string>
-    <string name="about">عن</string>
+    <string name="permissions_notification_access">قم بتفعيل الوصول إلى الإشعارات لهذه الميزة</string>
+    <string name="permissions_device_admin_or_root">قم بتفعيل مسؤول الجهاز أو وضع الجذر لهذه الميزة</string>
+    <string name="about">حول</string>
     <string name="about_summary">حول التطبيق</string>
     <string name="about_app_version">إصدار التطبيق</string>
     <string name="about_privacy">المحتوى الخارجي</string>
     <string name="about_privacy_desc">سيتم تحميل المحتوى الخارجي من GitHub. اقرأ سياسة الخصوصية الخاصة بهم لمزيد من المعلومات.</string>
     <string name="about_privacy_policy">سياسة الخصوصية</string>
-    <string name="about_contributors">المساهمين</string>
+    <string name="about_contributors">المساهمون</string>
     <string name="about_contributors_desc">قائمة المساهمين</string>
     <string name="about_general">عام</string>
-    <string name="about_github">مستودع جيثب</string>
-    <string name="about_license">رخصة</string>
-    <string name="about_icons">أيقونات</string>
-    <string name="about_icons_desc">الرموز بواسطة Icons8 و Google</string>
+    <string name="about_github">مستودع GitHub</string>
+    <string name="about_license">الترخيص</string>
+    <string name="about_icons">الأيقونات</string>
+    <string name="about_icons_desc">الأيقونات بواسطة Icons8 و Google</string>
     <string name="about_libraries">المكتبات</string>
-    <string name="about_libraries_desc">قائمة بجميع المكتبات المستعملة</string>
+    <string name="about_libraries_desc">قائمة بجميع المكتبات المستخدمة</string>
 
     <string-array name="pref_look_and_feel_rules_charging_state_display">
         <item>عرض في أي حالة شحن</item>
@@ -212,19 +212,19 @@
     </string-array>
 
     <string-array name="pref_look_and_feel_orientation_display">
-        <item>قفل السيارات</item>
-        <item>لَوحَة</item>
-        <item>منظر جمالي</item>
+        <item>قفل تلقائي</item>
+        <item>عمودي</item>
+        <item>أفقي</item>
     </string-array>
 
     <string-array name="pref_ao_glowStyle_display">
         <item>جميع الجوانب</item>
-        <item>الجانبين اليسرى واليمين</item>
+        <item>الجانبين الأيسر والأيمن</item>
         <item>الجانبين العلوي والسفلي</item>
     </string-array>
 
     <string-array name="pref_ao_background_image_array_display">
-        <item>لا أحد</item>
+        <item>بلا</item>
         <item>Daniel Olah</item>
         <item>Daniel Olah</item>
         <item>Daniel Olah</item>
@@ -240,55 +240,55 @@
         <item>مخصص</item>
     </string-array>
     <string name="notification_action_reply">رد</string>
-    <string name="pref_ao_showAlbumArt">عرض فن الألبوم</string>
-    <string name="pref_ao_interactive_notification_icons">أيقونات الإخطار التفاعلية</string>
-    <string name="pref_ao_interactive_notification_icons_summary">اضغط لفترة طويلة على أيقونة الإخطار لإظهار المعاينة ثم التمرير إلى الإجراء المطلوب للتنفيذ</string>
-    <string name="pref_ao_invert_interaction_highlight">انقلاب التفاعل تسليط الضوء</string>
-    <string name="pref_ao_invert_interaction_highlight_summary">تغيير ما إذا كان يتم تسليط الضوء على أيقونات الإخطار أثناء التفاعل أو في الخمول</string>
-    <string name="pref_ao_notification_icon_size">حجم رمز الإخطار</string>
-    <string name="pref_ao_notification_icon_size_summary">يغير حجم أيقونات الإخطار</string>
-    <string name="pref_ao_notification_icon_top_padding">رمز الإخطار أعلى الحشو</string>
-    <string name="pref_ao_notification_icon_top_padding_summary">اضبط المساحة فوق أيقونات الإخطار</string>
-    <string name="pref_ao_notification_preview_position">موقف معاينة الإخطار</string>
-    <string name="pref_ao_notification_preview_position_summary">موقف معاينة الإخطار بالنسبة إلى أيقونة الإخطار</string>
-    <string name="pref_ao_top_padding">حشو أعلى</string>
-    <string name="pref_ao_top_padding_summary">اضبط الموضع العمودي لعناصر العرض</string>
+    <string name="pref_ao_showAlbumArt">عرض غلاف الألبوم</string>
+    <string name="pref_ao_interactive_notification_icons">أيقونات إشعارات تفاعلية</string>
+    <string name="pref_ao_interactive_notification_icons_summary">اضغط مطولاً على أيقونة الإشعار لإظهار المعاينة، ثم اسحب للإجراء المطلوب تنفيذه</string>
+    <string name="pref_ao_invert_interaction_highlight">عكس تمييز التفاعل</string>
+    <string name="pref_ao_invert_interaction_highlight_summary">تغيير ما إذا كان سيتم تمييز أيقونات الإشعارات أثناء التفاعل أو عند السكون</string>
+    <string name="pref_ao_notification_icon_size">حجم أيقونة الإشعارات</string>
+    <string name="pref_ao_notification_icon_size_summary">يغير حجم أيقونات الإشعارات</string>
+    <string name="pref_ao_notification_icon_top_padding">هامش أيقونة الإشعارات العلوي</string>
+    <string name="pref_ao_notification_icon_top_padding_summary">ضبط المسافة فوق أيقونات الإشعارات</string>
+    <string name="pref_ao_notification_preview_position">موضع معاينة الإشعارات</string>
+    <string name="pref_ao_notification_preview_position_summary">موضع معاينة الإشعارات بالنسبة لأيقونة الإشعارات</string>
+    <string name="pref_ao_top_padding">الهامش العلوي</string>
+    <string name="pref_ao_top_padding_summary">ضبط الموضع العمودي لعناصر الشاشة</string>
     <string-array name="pref_ao_notification_preview_position_display">
         <item>فوق الأيقونة</item>
-        <item>أيقونة أدناه</item>
+        <item>تحت الأيقونة</item>
     </string-array>
     <string-array name="pref_ao_notification_icon_size_display">
         <item>صغير</item>
-        <item>معيار</item>
+        <item>قياسي</item>
         <item>موسع</item>
     </string-array>
-    <string name="pref_ao_fingerprint_interaction">وضع التفاعل بصمة الإصبع</string>
-    <string name="pref_ao_fingerprint_interaction_summary">كيفية التفاعل مع أيقونة بصمات الأصابع</string>
-    <string name="pref_ao_fingerprint_interaction_swipe">انقلب من أيقونة</string>
-    <string name="pref_ao_fingerprint_interaction_longpress">مطبعة طويلة</string>
-    <string name="pref_ao_swipe_notification_open">انتقد لإعلامه لفتحه</string>
-    <string name="pref_ao_swipe_notification_open_summary">السماح بفتح الإخطارات عن طريق التمرير إليهم من أيقونة بصمات الأصابع</string>
-    <string name="notification_dismiss">رفض</string>
+    <string name="pref_ao_fingerprint_interaction">وضع التفاعل مع بصمة الإصبع</string>
+    <string name="pref_ao_fingerprint_interaction_summary">كيفية التفاعل مع أيقونة بصمة الإصبع</string>
+    <string name="pref_ao_fingerprint_interaction_swipe">السحب من الأيقونة</string>
+    <string name="pref_ao_fingerprint_interaction_longpress">ضغط مطول</string>
+    <string name="pref_ao_swipe_notification_open">السحب لفتح الإشعار</string>
+    <string name="pref_ao_swipe_notification_open_summary">السماح بفتح الإشعارات عن طريق السحب إليها من أيقونة بصمة الإصبع</string>
+    <string name="notification_dismiss">تجاهل</string>
     <string name="pref_look_and_feel_rules_pickup_mode">وضع الالتقاط</string>
-    <string name="pref_look_and_feel_rules_pickup_mode_summary">تظهر فقط عند التقاط الهاتف</string>
+    <string name="pref_look_and_feel_rules_pickup_mode_summary">يظهر فقط عند التقاط الهاتف</string>
     <string name="pref_pickup_sensitivity">حساسية الالتقاط</string>
-    <string name="pref_pickup_sensitivity_summary">اضبط حساسية اكتشاف التقاط</string>
+    <string name="pref_pickup_sensitivity_summary">ضبط حساسية اكتشاف التقاط الهاتف</string>
     <string-array name="pref_pickup_sensitivity_display">
-        <item>عالي</item>
-        <item>واسطة</item>
-        <item>قليل</item>
+        <item>عالية</item>
+        <item>متوسطة</item>
+        <item>منخفضة</item>
     </string-array>
-    <string name="pref_ao_lock_icon">استخدم أيقونة القفل</string>
-    <string name="pref_ao_lock_icon_summary">استبدل أيقونة بصمات الأصابع برمز قفل</string>
-    <string name="donate">يتبرع</string>
-    <string name="donate_summary">دعم تطوير عرض نظرة خاطفة</string>
+    <string name="pref_ao_lock_icon">استخدام أيقونة القفل</string>
+    <string name="pref_ao_lock_icon_summary">استبدال أيقونة بصمة الإصبع بأيقونة قفل</string>
+    <string name="donate">تبرع</string>
+    <string name="donate_summary">دعم تطوير Peek Display</string>
     <string name="pref_look_and_feel_weather_unit">استخدام الوحدات الإمبراطورية</string>
-    <string name="pref_look_and_feel_weather_unit_summary">عرض درجة الحرارة في فهرنهايت</string>
+    <string name="pref_look_and_feel_weather_unit_summary">عرض درجة الحرارة بالفهرنهايت</string>
     <string name="colorpicker_opacity">الشفافية</string>
-    <string name="colorpicker_color">لون</string>
+    <string name="colorpicker_color">اللون</string>
     <string name="colorpicker_custom">مخصص</string>
     <string name="colorpicker_presets">الإعدادات المسبقة</string>
-    <string name="pref_look_and_feel_weather_refresh_interval">الفاصل الزمني للتحديث</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">فاصل التحديث الزمني</string>
     <string name="pref_look_and_feel_weather_refresh_interval_label">دقائق</string>
-    <string name="pref_look_and_feel_weather_refresh_interval_disabled">معطل (الجلب مرة واحدة عند البدء)</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">معطل (جلب لمرة واحدة عند البدء)</string>
 </resources>
