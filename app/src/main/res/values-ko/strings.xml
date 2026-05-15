@@ -1,226 +1,226 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="device_admin_description">Peek 디스플레이가 화면을 끄도록 허용하십시오</string>
+    <string name="device_admin_description">Peek Display가 화면을 끌 수 있도록 허용합니다</string>
     <string name="notification_listener_description">디스플레이에 알림 표시</string>
-    <string name="service_text">엿보기 디스플레이가 백그라운드에서 실행 중입니다</string>
+    <string name="service_text">Peek Display가 백그라운드에서 실행 중입니다</string>
     <string name="service_channel">서비스 채널</string>
-    <string name="setup_root_failed">루트 요청이 실패했습니다! 다시 시도하거나 스위치 모드!</string>
-    <string name="device_admin">장치 관리자</string>
-    <string name="device_admin_summary">이 앱이 작동하려면이 장치 관리자 또는 루트 모드로 전환해야합니다.</string>
-    <string name="notification_listener_service">알림 액세스</string>
-    <string name="notification_listener_service_summary">앱에 대한 알림 액세스를 활성화하여 Peek 디스플레이에 알림을 표시해야합니다.</string>
-    <string name="setup_draw_over_other_apps">다른 앱에 표시됩니다</string>
-    <string name="setup_draw_over_other_apps_summary">이 권한은 Peek 디스플레이를 보여주기 위해 필요합니다.</string>
-    <string name="setup_phone_state">전화 상태를 읽으십시오</string>
-    <string name="setup_phone_state_summary">이 권한은 들어오는 통화에 대한 Peek Display를 중지해야합니다.</string>
-    <string name="setup_calendar">캘린더를 읽으십시오</string>
-    <string name="setup_calendar_summary">앱의 캘린더 액세스를 활성화하여 엿보기 디스플레이에 이벤트를 표시해야합니다.</string>
-    <string name="setup_skip">건너뛰다</string>
-    <string name="setup_continue">계속하다</string>
-    <string name="setup_error">뭔가 잘못되었습니다! 다시 시도하십시오!</string>
-    <string name="dialog_device_admin_text">제거하기 전에 앱의 장치 관리자 권한을 비활성화해야합니다. 이를 이해하려면 다음 작업을 수행하십시오.\n7 + 12</string>
+    <string name="setup_root_failed">루트 요청 실패! 다시 시도하거나 모드를 전환하세요!</string>
+    <string name="device_admin">기기 관리자</string>
+    <string name="device_admin_summary">이 앱이 작동하려면 기기 관리자 또는 루트 모드로 전환해야 합니다.</string>
+    <string name="notification_listener_service">알림 접근 권한</string>
+    <string name="notification_listener_service_summary">Peek Display에 알림을 표시하려면 앱의 알림 접근 권한을 활성화해야 합니다.</string>
+    <string name="setup_draw_over_other_apps">다른 앱 위에 표시</string>
+    <string name="setup_draw_over_other_apps_summary">Peek Display를 화면에 표시하기 위해 이 권한이 필요합니다.</string>
+    <string name="setup_phone_state">전화 상태 읽기</string>
+    <string name="setup_phone_state_summary">전화 수신 시 Peek Display를 중지하기 위해 이 권한이 필요합니다.</string>
+    <string name="setup_calendar">캘린더 읽기</string>
+    <string name="setup_calendar_summary">Peek Display에 이벤트를 표시하려면 앱의 캘린더 접근 권한을 활성화해야 합니다.</string>
+    <string name="setup_skip">건너뛰기</string>
+    <string name="setup_continue">계속</string>
+    <string name="setup_error">문제가 발생했습니다! 다시 시도해 주세요!</string>
+    <string name="dialog_device_admin_text">제거하기 전에 앱의 기기 관리자 권한을 비활성화해야 합니다. 확인을 위해 다음 문제를 풀어주세요:\n7 + 12</string>
     <string name="dialog_device_admin_result">결과</string>
-    <string name="dialog_device_admin_error">잘못된 결과. 다시 시도하십시오.</string>
-    <string name="app_description">Peek 디스플레이를 추가하는 Android 앱.</string>
-    <string name="charged">%1$d%%가 청구되었습니다</string>
-    <string name="shortcut_disabled">장애가 있는</string>
+    <string name="dialog_device_admin_error">잘못된 결과입니다. 다시 시도해 주세요.</string>
+    <string name="app_description">Peek Display를 추가하는 Android 앱입니다.</string>
+    <string name="charged">%1$d%% 충전됨</string>
+    <string name="shortcut_disabled">비활성화됨</string>
     <string name="pref_int_failed">이 값은 사용할 수 없습니다</string>
-    <string name="pref_general">일반적인 설정</string>
-    <string name="pref_enabled">현재 활성화되었습니다</string>
-    <string name="pref_disabled">현재 비활성화되었습니다</string>
-    <string name="pref_always_on">엿보기 디스플레이</string>
+    <string name="pref_general">일반 설정</string>
+    <string name="pref_enabled">현재 활성화됨</string>
+    <string name="pref_disabled">현재 비활성화됨</string>
+    <string name="pref_always_on">Peek Display</string>
     <string name="pref_charging">충전 애니메이션</string>
-    <string name="pref_look_and_feel">외모와 느낌</string>
-    <string name="pref_ao_watch_face">얼굴을 시청하십시오</string>
-    <string name="pref_ao_watch_face_summary">엿보기 디스플레이의 시계 얼굴과 관련된 설정</string>
+    <string name="pref_look_and_feel">디자인 및 테마</string>
+    <string name="pref_ao_watch_face">시계 화면</string>
+    <string name="pref_ao_watch_face_summary">Peek Display 시계 화면 관련 설정</string>
     <string name="pref_ao_background">배경</string>
-    <string name="pref_ao_background_summary">엿보기 디스플레이의 배경과 관련된 설정</string>
-    <string name="pref_ao_behavior">행동</string>
-    <string name="pref_ao_behavior_summary">앱의 동작과 관련된 설정</string>
-    <string name="pref_ao_other">다른 설정</string>
-    <string name="pref_look_and_feel_hour">12 시간 시계를 사용하십시오</string>
-    <string name="pref_look_and_feel_hour_summary_on">현재 사용 : 12 시간 시계</string>
-    <string name="pref_look_and_feel_hour_summary_off">현재 사용 : 24 시간 시계</string>
-    <string name="pref_look_and_feel_am_pm">AM / PM 표시</string>
-    <string name="pref_look_and_feel_am_pm_summary">12 시간 시계를 사용할 때 AM / PM을 표시하십시오</string>
-    <string name="pref_look_and_feel_ao">엿보기 디스플레이 룩</string>
-    <string name="pref_look_and_feel_ao_summary">엿보기 디스플레이의 모양을 변경합니다</string>
-    <string name="pref_look_and_feel_colors">그림 물감</string>
-    <string name="pref_look_and_feel_colors_summary">특정 요소에 대한 색상을 선택하십시오</string>
+    <string name="pref_ao_background_summary">Peek Display 배경 관련 설정</string>
+    <string name="pref_ao_behavior">동작</string>
+    <string name="pref_ao_behavior_summary">앱 동작 관련 설정</string>
+    <string name="pref_ao_other">기타 설정</string>
+    <string name="pref_look_and_feel_hour">12시간 형식 사용</string>
+    <string name="pref_look_and_feel_hour_summary_on">현재 사용 중: 12시간 형식</string>
+    <string name="pref_look_and_feel_hour_summary_off">현재 사용 중: 24시간 형식</string>
+    <string name="pref_look_and_feel_am_pm">오전/오후 표시</string>
+    <string name="pref_look_and_feel_am_pm_summary">12시간 형식을 사용할 때 오전/오후를 표시합니다</string>
+    <string name="pref_look_and_feel_ao">Peek Display 디자인</string>
+    <string name="pref_look_and_feel_ao_summary">Peek Display의 모양을 변경합니다</string>
+    <string name="pref_look_and_feel_colors">색상</string>
+    <string name="pref_look_and_feel_colors_summary">특정 요소의 색상을 선택합니다</string>
     <string name="pref_look_and_feel_colors_clock">시계 색상</string>
     <string name="pref_look_and_feel_colors_date">날짜 색상</string>
     <string name="pref_look_and_feel_colors_battery">배터리 색상</string>
     <string name="pref_look_and_feel_colors_battery_arc">배터리 색상 (M-Style)</string>
-    <string name="pref_look_and_feel_colors_music_controls">음악 제어 색상</string>
+    <string name="pref_look_and_feel_colors_music_controls">음악 컨트롤 색상</string>
     <string name="pref_look_and_feel_colors_calendar">캘린더 이벤트 색상</string>
     <string name="pref_look_and_feel_colors_message">메시지 색상</string>
-    <string name="pref_look_and_feel_colors_weather">날씨 색</string>
+    <string name="pref_look_and_feel_colors_weather">날씨 색상</string>
     <string name="pref_look_and_feel_colors_notification">알림 색상</string>
     <string name="pref_look_and_feel_colors_fingerprint">지문 아이콘 색상</string>
-    <string name="pref_ao_showClock">시간을 표시하십시오</string>
-    <string name="pref_ao_showDate">날짜를 표시하십시오</string>
-    <string name="pref_ao_showBatteryIcn">배터리 아이콘을 표시하십시오</string>
-    <string name="pref_ao_showBattery">배터리 백분율을 표시하십시오</string>
-    <string name="pref_ao_showMusicControls">음악 컨트롤을 표시합니다</string>
-    <string name="pref_ao_showNotifications">알림 수를 표시합니다</string>
-    <string name="pref_ao_showNotificationIcons">알림 아이콘을 표시합니다</string>
-    <string name="pref_ao_fingerprint">지문 아이콘을 표시하십시오</string>
-    <string name="pref_ao_fingerprint_margin">지문 마진</string>
-    <string name="pref_ao_fingerprint_margin_summary">지문 아이콘 아래의 공간</string>
-    <string name="pref_ao_edgeGlow">가장자리 빛</string>
-    <string name="pref_ao_edgeGlow_summary">알림을받을 때 빛나는 가장자리</string>
-    <string name="pref_ao_glowDuration">빛나는 지속 시간 (밀리 초)</string>
-    <string name="pref_ao_glowDuration_summary">기간 가장자리가 빛납니다</string>
-    <string name="pref_ao_glowDelay">빛나는 지연 (밀리 초)</string>
-    <string name="pref_ao_glowDelay_summary">빛 사이의 간격</string>
-    <string name="pref_ao_glowStyle">가장자리 글로우 스타일</string>
-    <string name="pref_ao_glowStyle_summary">빛나는 가장자리의 모양을 바꿉니다</string>
-    <string name="pref_ao_glowColor">가장자리 글로우 컬러</string>
-    <string name="pref_ao_glowColor_summary">빛나는 가장자리의 색상을 변경합니다</string>
-    <string name="pref_ao_vibration">진동 지속 시간 (밀리 초)</string>
-    <string name="pref_ao_vibration_summary">화면을 두 번 탭하면 전화가 진동합니다</string>
-    <string name="pref_ao_animation_delay">운동 지연 (몇 분)</string>
-    <string name="pref_ao_animation_delay_summary">내용의 다른 위치 사이의 시간\n경고 : 값이 너무 높은 값은 화면 화상을 유발할 수 있습니다!</string>
-    <string name="pref_ao_smooth_animation">애니메이션 운동</string>
-    <string name="pref_ao_smooth_animation_summary">위치 변화에 애니메이션</string>
-    <string name="pref_ao_refresh_rate_optimization">새로 고침 빈도 최적화</string>
-    <string name="pref_ao_refresh_rate_optimization_summary">배터리를 절약하기 위해 화면이 정지된 상태일 때 사용 가능한 가장 낮은 새로 고침 빈도를 사용합니다</string>
-    <string name="pref_ao_force_brightness">엿보기 디스플레이에 특정 밝기를 강요하십시오</string>
-    <string name="pref_ao_force_brightness_summary">강제 밝기를 변경하려면 탭하십시오</string>
-    <string name="pref_ao_force_brightness_title">명도</string>
-    <string name="pref_ao_force_brightness_example">이것은 엿보기 디스플레이의 텍스트가 얼마나 밝게 나타나는지입니다.</string>
+    <string name="pref_ao_showClock">시간 표시</string>
+    <string name="pref_ao_showDate">날짜 표시</string>
+    <string name="pref_ao_showBatteryIcn">배터리 아이콘 표시</string>
+    <string name="pref_ao_showBattery">배터리 잔량(%) 표시</string>
+    <string name="pref_ao_showMusicControls">음악 컨트롤 표시</string>
+    <string name="pref_ao_showNotifications">알림 개수 표시</string>
+    <string name="pref_ao_showNotificationIcons">알림 아이콘 표시</string>
+    <string name="pref_ao_fingerprint">지문 아이콘 표시</string>
+    <string name="pref_ao_fingerprint_margin">지문 여백</string>
+    <string name="pref_ao_fingerprint_margin_summary">지문 아이콘 하단 공간</string>
+    <string name="pref_ao_edgeGlow">엣지 라이팅</string>
+    <string name="pref_ao_edgeGlow_summary">알림 수신 시 가장자리 효과</string>
+    <string name="pref_ao_glowDuration">효과 지속 시간 (ms)</string>
+    <string name="pref_ao_glowDuration_summary">가장자리 효과가 지속되는 시간</string>
+    <string name="pref_ao_glowDelay">효과 지연 시간 (ms)</string>
+    <string name="pref_ao_glowDelay_summary">효과 사이의 간격</string>
+    <string name="pref_ao_glowStyle">엣지 효과 스타일</string>
+    <string name="pref_ao_glowStyle_summary">가장자리 효과의 모양을 변경합니다</string>
+    <string name="pref_ao_glowColor">엣지 효과 색상</string>
+    <string name="pref_ao_glowColor_summary">가장자리 효과의 색상을 변경합니다</string>
+    <string name="pref_ao_vibration">진동 지속 시간 (ms)</string>
+    <string name="pref_ao_vibration_summary">화면을 두 번 탭할 때의 진동 세기</string>
+    <string name="pref_ao_animation_delay">이동 지연 시간 (분)</string>
+    <string name="pref_ao_animation_delay_summary">콘텐츠가 다른 위치로 이동하는 주기\n주의: 값이 너무 크면 화면 번인(Burn-in) 현상이 발생할 수 있습니다!</string>
+    <string name="pref_ao_smooth_animation">부드러운 애니메이션</string>
+    <string name="pref_ao_smooth_animation_summary">위치 변경 시 애니메이션 효과 사용</string>
+    <string name="pref_ao_refresh_rate_optimization">새로고침 빈도 최적화</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">배터리를 절약하기 위해 화면이 정지된 상태일 때 사용 가능한 가장 낮은 새로고침 빈도를 사용합니다</string>
+    <string name="pref_ao_force_brightness">Peek Display 밝기 고정</string>
+    <string name="pref_ao_force_brightness_summary">밝기를 고정하려면 탭하세요</string>
+    <string name="pref_ao_force_brightness_title">밝기</string>
+    <string name="pref_ao_force_brightness_example">Peek Display의 텍스트가 표시될 밝기입니다.</string>
     <string name="pref_ao_pocket_mode">포켓 모드</string>
-    <string name="pref_ao_pocket_mode_summary">주머니에 엿보기 디스플레이를 비활성화합니다\n경고 : 센서 사용량이 배터리 사용량을 증가시킬 수 있습니다!</string>
-    <string name="pref_ao_dnd">켜는 것은 방해하지 않습니다</string>
-    <string name="pref_ao_dnd_summary">Peek Display가 실행중인 동안 방해 모드를 방해하지 않습니다.</string>
-    <string name="pref_ao_disable_on_dnd">방해 모드를 비활성화합니다</string>
-    <string name="pref_ao_disable_on_dnd_summary">방해하지 않으면 모드가 비활성화 될 때만 표시됩니다</string>
-    <string name="pref_ao_power_saving">전력 절약 모드 (루트)</string>
-    <string name="pref_ao_power_saving_summary">엿보기 디스플레이가 활성화 될 때 시스템의 전원 보호기 모드를 켭니다.</string>
-    <string name="pref_ao_double_tap_speed">이중 탭 속도</string>
-    <string name="pref_ao_double_tap_speed_summary">두 탭이 분리 될 수있는 시간 (밀리 초)</string>
-    <string name="pref_ao_double_tap_disabled">더블 탭을 비활성화합니다</string>
-    <string name="pref_ao_double_tap_disabled_summary">엿보기 디스플레이를 종료하기 위해 더블 탭을 비활성화합니다 (권장되지 않음)</string>
+    <string name="pref_ao_pocket_mode_summary">주머니 속에서는 Peek Display를 비활성화합니다\n주의: 센서 사용으로 인해 배터리 소모가 증가할 수 있습니다!</string>
+    <string name="pref_ao_dnd">방해 금지 모드 켜기</string>
+    <string name="pref_ao_dnd_summary">Peek Display 실행 중에 방해 금지 모드를 활성화합니다.</string>
+    <string name="pref_ao_disable_on_dnd">방해 금지 모드 시 비활성화</string>
+    <string name="pref_ao_disable_on_dnd_summary">방해 금지 모드가 꺼져 있을 때만 표시됩니다</string>
+    <string name="pref_ao_power_saving">절전 모드 (루트)</string>
+    <string name="pref_ao_power_saving_summary">Peek Display 활성화 시 시스템 절전 모드를 켭니다.</string>
+    <string name="pref_ao_double_tap_speed">더블 탭 속도</string>
+    <string name="pref_ao_double_tap_speed_summary">더블 탭으로 인식될 최대 간격 (ms)</string>
+    <string name="pref_ao_double_tap_disabled">더블 탭 비활성화</string>
+    <string name="pref_ao_double_tap_disabled_summary">더블 탭으로 Peek Display를 종료하는 기능을 끕니다 (권장하지 않음)</string>
     <string name="pref_ao_message">메시지</string>
-    <string name="pref_ao_message_summary">엿보기 디스플레이에 표시되는 메시지</string>
+    <string name="pref_ao_message_summary">Peek Display에 표시할 메시지</string>
     <string name="pref_ao_date_format">날짜 형식</string>
-    <string name="pref_ao_date_format_summary">엿보기 디스플레이에 사용 된 날짜 형식</string>
-    <string name="pref_ao_date_format_dialog_text">특정 패턴을 따라야합니다</string>
-    <string name="pref_ao_date_format_dialog_neutral">자세히 알아보십시오</string>
-    <string name="pref_ao_date_format_illegal">불법 형식</string>
+    <string name="pref_ao_date_format_summary">Peek Display에 사용될 날짜 형식</string>
+    <string name="pref_ao_date_format_dialog_text">특정 패턴을 따라야 합니다</string>
+    <string name="pref_ao_date_format_dialog_neutral">자세히 알아보기</string>
+    <string name="pref_ao_date_format_illegal">잘못된 형식</string>
     <string name="pref_ao_calendar">이벤트 표시</string>
-    <string name="pref_ao_calendar_summary">다음 24 시간 동안 엿보기 디스플레이 표시</string>
-    <string name="pref_look_and_feel_charging">충전 애니메이션 룩</string>
+    <string name="pref_ao_calendar_summary">향후 24시간 동안의 일정을 표시합니다</string>
+    <string name="pref_look_and_feel_charging">충전 애니메이션 디자인</string>
     <string name="pref_look_and_feel_charging_summary">충전 애니메이션의 모양을 변경합니다</string>
     <string name="pref_ao_background_image">배경 이미지</string>
-    <string name="pref_ao_background_image_summary">엿보기 디스플레이의 배경 이미지를 변경하십시오</string>
-    <string name="pref_look_and_feel_hide_display_cutouts">디스플레이 컷 아웃을 숨기십시오</string>
-    <string name="pref_look_and_feel_hide_display_cutouts_summary">전체 화면 컨텐츠에 디스플레이 컷 아웃을 숨기십시오</string>
-    <string name="pref_look_and_feel_orientation">정위</string>
-    <string name="pref_look_and_feel_orientation_summary">디스플레이의 방향을 변경합니다</string>
-    <string name="pref_look_and_feel_heads_up">머리 숨기기 위로 알림 (루트)</string>
-    <string name="pref_look_and_feel_heads_up_summary">헤드가 표시되는 것을 방지합니다 (실험)</string>
+    <string name="pref_ao_background_image_summary">Peek Display의 배경 이미지를 변경합니다</string>
+    <string name="pref_look_and_feel_hide_display_cutouts">디스플레이 컷아웃 숨기기</string>
+    <string name="pref_look_and_feel_hide_display_cutouts_summary">전체 화면 콘텐츠에서 노치/컷아웃 영역을 숨깁니다</string>
+    <string name="pref_look_and_feel_orientation">화면 방향</string>
+    <string name="pref_look_and_feel_orientation_summary">디스플레이 방향을 변경합니다</string>
+    <string name="pref_look_and_feel_heads_up">헤드업 알림 숨기기 (루트)</string>
+    <string name="pref_look_and_feel_heads_up_summary">헤드업 알림이 표시되지 않도록 합니다 (실험적)</string>
     <string name="pref_look_and_feel_weather">날씨</string>
-    <string name="pref_look_and_feel_weather_info">날씨 정보를 보여줍니다</string>
-    <string name="pref_look_and_feel_weather_info_summary">엿보기 디스플레이에서 날씨 정보를 구성하십시오</string>
-    <string name="pref_look_and_feel_weather_show_summary">Peek 디스플레이에 날씨 정보를 표시하십시오</string>
-    <string name="pref_look_and_feel_weather_provider">엿보기 디스플레이는 날씨 데이터에 wttr.in을 사용합니다. 날씨를 가져 오면 식별 가능한 데이터를 전송할 수 있습니다.</string>
+    <string name="pref_look_and_feel_weather_info">날씨 정보 표시</string>
+    <string name="pref_look_and_feel_weather_info_summary">Peek Display의 날씨 정보를 설정합니다</string>
+    <string name="pref_look_and_feel_weather_show_summary">Peek Display에 날씨 정보를 표시합니다</string>
+    <string name="pref_look_and_feel_weather_provider">Peek Display는 날씨 데이터에 wttr.in을 사용합니다. 날씨 정보를 가져올 때 식별 가능한 데이터가 전송될 수 있습니다.</string>
     <string name="pref_look_and_feel_weather_location">날씨 위치</string>
-    <string name="pref_look_and_feel_weather_location_summary">날씨 보고서의 위치. 자동 위치를 위해이 빈 상태로 두십시오.</string>
+    <string name="pref_look_and_feel_weather_location_summary">날씨 보고 위치입니다. 자동 위치 설정을 위해 비워 두세요.</string>
     <string name="pref_look_and_feel_weather_format">날씨 형식</string>
-    <string name="pref_look_and_feel_weather_format_summary">엿보기 디스플레이에 사용되는 날씨 형식</string>
-    <string name="pref_look_and_feel_filter_notifications">필터 알림</string>
-    <string name="pref_look_and_feel_filter_notifications_summary">표시하지 않는 알림을 선택하십시오</string>
-    <string name="pref_look_and_feel_filter_notifications_explanation">항목을 탭하여 차단하거나 차단 해제하십시오</string>
-    <string name="pref_look_and_feel_filter_notifications_blocked">블록 알림</string>
-    <string name="pref_look_and_feel_filter_notifications_shown">알림을받을 수 있습니다</string>
-    <string name="pref_look_and_feel_filter_notifications_empty">알림을 사용할 수 없습니다</string>
-    <string name="pref_look_and_feel_filter_notifications_empty_summary">보여줄 것이 없을 것 같습니다</string>
-    <string name="pref_look_and_feel_filter_notifications_unknown">알 수없는 응용 프로그램</string>
-    <string name="pref_look_and_feel_tint_notifications">색조 알림</string>
-    <string name="pref_look_and_feel_tint_notifications_summary">앱 색상의 색조 알림</string>
-    <string name="pref_look_and_feel_display_size">디스플레이 크기</string>
-    <string name="pref_look_and_feel_display_size_summary">엿보기 디스플레이의 디스플레이 크기는입니다 %1$d%%</string>
+    <string name="pref_look_and_feel_weather_format_summary">Peek Display에 사용될 날씨 형식</string>
+    <string name="pref_look_and_feel_filter_notifications">알림 필터링</string>
+    <string name="pref_look_and_feel_filter_notifications_summary">표시하지 않을 알림을 선택합니다</string>
+    <string name="pref_look_and_feel_filter_notifications_explanation">항목을 탭하여 차단하거나 차단 해제하세요</string>
+    <string name="pref_look_and_feel_filter_notifications_blocked">차단된 알림</string>
+    <string name="pref_look_and_feel_filter_notifications_shown">표시되는 알림</string>
+    <string name="pref_look_and_feel_filter_notifications_empty">사용 가능한 알림 없음</string>
+    <string name="pref_look_and_feel_filter_notifications_empty_summary">표시할 내용이 없습니다</string>
+    <string name="pref_look_and_feel_filter_notifications_unknown">알 수 없는 앱</string>
+    <string name="pref_look_and_feel_tint_notifications">알림 색상 입히기</string>
+    <string name="pref_look_and_feel_tint_notifications_summary">앱 아이콘 색상으로 알림에 색상을 입힙니다</string>
+    <string name="pref_look_and_feel_display_size">표시 크기</string>
+    <string name="pref_look_and_feel_display_size_summary">Peek Display의 표시 크기는 %1$d%%입니다</string>
     <string name="pref_look_and_feel_rules">규칙</string>
-    <string name="pref_look_and_feel_rules_summary">엿보기 디스플레이를 표시 할 때 제어</string>
+    <string name="pref_look_and_feel_rules_summary">Peek Display 표시 조건 제어</string>
     <string name="pref_look_and_feel_rules_charging_state">충전 상태</string>
-    <string name="pref_look_and_feel_rules_charger">충전 유형</string>
-    <string name="pref_look_and_feel_rules_charger_summary">충전 유형을 충전으로 선택하십시오</string>
-    <string name="pref_look_and_feel_rules_battery_level">배터리 레벨</string>
-    <string name="pref_look_and_feel_rules_battery_level_summary">위에 만 표시하십시오 %1$d%%</string>
-    <string name="pref_look_and_feel_rules_battery_level_summary_zero">배터리 레벨에서 표시하십시오</string>
-    <string name="pref_look_and_feel_rules_time">기간</string>
-    <string name="pref_look_and_feel_rules_time_summary">쇼에서 보여줍니다 %1$s 에게 %2$s</string>
+    <string name="pref_look_and_feel_rules_charger">충전기 유형</string>
+    <string name="pref_look_and_feel_rules_charger_summary">충전 시 표시할 충전기 유형을 선택합니다</string>
+    <string name="pref_look_and_feel_rules_battery_level">배터리 잔량</string>
+    <string name="pref_look_and_feel_rules_battery_level_summary">%1$d%% 이상일 때만 표시</string>
+    <string name="pref_look_and_feel_rules_battery_level_summary_zero">모든 배터리 잔량에서 표시</string>
+    <string name="pref_look_and_feel_rules_time">시간대</string>
+    <string name="pref_look_and_feel_rules_time_summary">%1$s부터 %2$s까지 표시</string>
     <string name="pref_look_and_feel_rules_timeout">시간 초과</string>
-    <string name="pref_look_and_feel_rules_timeout_summary_zero">시간 초과가 설정되지 않았습니다</string>
-    <string name="pref_look_and_feel_rules_ambient_mode">주변 모드</string>
-    <string name="pref_look_and_feel_rules_ambient_mode_summary">알림을받은 후에 만 ​​표시됩니다</string>
+    <string name="pref_look_and_feel_rules_timeout_summary_zero">시간 초과 설정 없음</string>
+    <string name="pref_look_and_feel_rules_ambient_mode">앰비언트 모드</string>
+    <string name="pref_look_and_feel_rules_ambient_mode_summary">알림을 받았을 때만 표시됩니다</string>
     <string name="pref_permissions">권한</string>
-    <string name="pref_permissions_summary">권한과 관련된 설정</string>
-    <string name="pref_ignore_battery_optimizations">배터리 최적화를 무시하십시오</string>
-    <string name="pref_ignore_battery_optimizations_summary">시스템으로 인한 지연을 방지합니다</string>
-    <string name="pref_notification">알림 액세스</string>
-    <string name="pref_notification_summary">알림 액세스를 활성화 또는 비활성화합니다</string>
-    <string name="pref_draw_over_other_apps">다른 앱에 표시됩니다</string>
-    <string name="pref_draw_over_other_apps_summary">이 권한을 활성화 또는 비활성화하십시오</string>
-    <string name="pref_admin">장치 관리자</string>
-    <string name="pref_admin_summary">이 장치 관리자를 일반 모드로 활성화하십시오\n제거하기 전에 앱의 장치 관리자 권한을 비활성화해야합니다.</string>
+    <string name="pref_permissions_summary">권한 관련 설정</string>
+    <string name="pref_ignore_battery_optimizations">배터리 최적화 제외</string>
+    <string name="pref_ignore_battery_optimizations_summary">시스템에 의한 실행 지연을 방지합니다</string>
+    <string name="pref_notification">알림 접근 권한</string>
+    <string name="pref_notification_summary">알림 접근 권한을 활성화하거나 비활성화합니다</string>
+    <string name="pref_draw_over_other_apps">다른 앱 위에 표시</string>
+    <string name="pref_draw_over_other_apps_summary">이 권한을 활성화하거나 비활성화합니다</string>
+    <string name="pref_admin">기기 관리자</string>
+    <string name="pref_admin_summary">일반 모드 사용을 위해 기기 관리자를 활성화합니다\n제거하기 전에 앱의 기기 관리자 권한을 비활성화해야 합니다.</string>
     <string name="pref_root_mode">루트 모드</string>
     <string name="pref_root_mode_summary">루트 기능을 활성화합니다</string>
     <string name="help_center">도움말 센터</string>
-    <string name="help_center_summary">제거, 무응답, 배터리 배수</string>
-    <string name="help_center_missing_permissions_text">설정이 회색으로 나가고 먼저 무언가를 활성화하라고 지시하면 아직 필요한 권한을 활성화하지 못했습니다. 누락 된 권한을 부여하려면 메인 페이지의 "권한"페이지를 열고 필요한 권한 사용에 동의합니다. 이제 해당 권한이 필요한 설정을 활성화 할 수 있습니다.</string>
+    <string name="help_center_summary">제거 방법, 응답 없음, 배터리 소모 문제</string>
+    <string name="help_center_missing_permissions_text">설정이 비활성화되어 있고 먼저 무언가를 활성화하라는 메시지가 표시되면, 아직 필요한 권한을 부여하지 않은 것입니다. 누락된 권한을 부여하려면 메인 페이지의 \"권한\" 메뉴로 이동하여 동의해 주세요. 권한이 부여되면 해당 설정들을 활성화할 수 있습니다.</string>
     <string name="help_center_uninstall">제거하는 방법</string>
-    <string name="help_center_uninstall_text">안드로이드 운영 체제의 설계 결함으로 인해 제거 프로세스가 실패 할 수 있습니다. 제거하기 전에 장치 관리자 권한이 비활성화되지 않은 경우 프로세스가 실패합니다. 제거하기 전에 장치 관리자 권한을 비활성화해야합니다.</string>
-    <string name="help_center_uninstall_button">지금 제거하십시오</string>
-    <string name="help_center_delays">지연을 고치는 방법</string>
-    <string name="help_center_delays_text">일부 제조업체는 앱 기능보다 배터리 수명을 선호 하므로이 앱은 일부 장치에서만 지연되거나 전혀 작동하지 않을 수 있습니다. 지연이있는 경우 앱의 배터리 최적화를 비활성화하거나 다른 제조업체 별 설정을 확인하십시오.</string>
+    <string name="help_center_uninstall_text">Android 운영체제 특성상 기기 관리자 권한이 활성화된 상태에서는 제거가 실패할 수 있습니다. 제거하기 전에 반드시 기기 관리자 권한을 비활성화해야 합니다.</string>
+    <string name="help_center_uninstall_button">지금 제거</string>
+    <string name="help_center_delays">지연 현상 해결 방법</string>
+    <string name="help_center_delays_text">일부 제조사 기기에서는 배터리 절약을 위해 앱 기능이 제한되어 지연이 발생하거나 작동하지 않을 수 있습니다. 지연이 발생하면 앱의 배터리 최적화를 비활성화하거나 제조사별 설정을 확인해 주세요.</string>
     <string name="help_center_delays_button_one">배터리 설정</string>
-    <string name="help_center_delays_button_two">제조업체 별</string>
-    <string name="help_center_battery_drain">배터리 배수 소스를 파악합니다</string>
-    <string name="help_center_battery_drain_text">배터리 배수의 한 가지 이유는 LCD 디스플레이가있는 전화기를 사용하고 있기 때문일 수 있습니다. 이 앱은 OLED 디스플레이가있는 전화 용으로 설계되어 검은 색 픽셀을 끄면 에너지를 절약 할 수 있습니다. LCD 디스플레이는 검은 색 픽셀을 끄면 엿보기 디스플레이가 활성화 될 때 더 많은 에너지를 사용하여 디스플레이가 발생할 수 없으며, Peek 디스플레이가 실행되는 동안 다른 앱이 백그라운드에서 실행 중일 수 있습니다. Android는 Peek Display의 배터리 소비의 일부로 배터리 소비를 표시합니다.</string>
-    <string name="loading">로딩</string>
-    <string name="missing_permissions">누락 된 권한</string>
-    <string name="permissions_notification_access">이 기능에 대한 알림 액세스를 켜십시오</string>
-    <string name="permissions_device_admin_or_root">이 기능의 장치 관리자 또는 루트를 켜십시오</string>
-    <string name="about">에 대한</string>
-    <string name="about_summary">앱에 대해</string>
+    <string name="help_center_delays_button_two">제조사별 설정</string>
+    <string name="help_center_battery_drain">배터리 소모 원인 파악</string>
+    <string name="help_center_battery_drain_text">배터리 소모가 큰 이유 중 하나는 LCD 디스플레이를 사용하기 때문일 수 있습니다. 이 앱은 검은색 픽셀을 꺼서 전력을 아끼는 OLED 디스플레이에 최적화되어 있습니다. LCD 디스플레이는 검은색을 표시할 때도 백라이트를 켜야 하므로 에너지가 더 많이 소모됩니다. 또한 Peek Display 실행 중에 다른 앱이 백그라운드에서 동작할 경우, Android 시스템은 이를 Peek Display의 소모량으로 표시할 수도 있습니다.</string>
+    <string name="loading">로딩 중</string>
+    <string name="missing_permissions">누락된 권한</string>
+    <string name="permissions_notification_access">이 기능을 위해 알림 접근 권한을 켜주세요</string>
+    <string name="permissions_device_admin_or_root">이 기능을 위해 기기 관리자 또는 루트 권한을 켜주세요</string>
+    <string name="about">정보</string>
+    <string name="about_summary">앱 정보</string>
     <string name="about_app_version">앱 버전</string>
     <string name="about_privacy">외부 콘텐츠</string>
-    <string name="about_privacy_desc">외부 컨텐츠는 Github에서로드됩니다. 자세한 내용은 개인 정보 보호 정책을 읽으십시오.</string>
-    <string name="about_privacy_policy">개인 정보 보호 정책</string>
-    <string name="about_contributors">기고자</string>
-    <string name="about_contributors_desc">기고자 목록</string>
-    <string name="about_general">일반적인</string>
-    <string name="about_github">Github 저장소</string>
-    <string name="about_license">특허</string>
+    <string name="about_privacy_desc">외부 콘텐츠는 GitHub에서 로드됩니다. 자세한 내용은 개인정보 처리방침을 확인해 주세요.</string>
+    <string name="about_privacy_policy">개인정보 처리방침</string>
+    <string name="about_contributors">기여자</string>
+    <string name="about_contributors_desc">기여자 목록</string>
+    <string name="about_general">일반</string>
+    <string name="about_github">GitHub 저장소</string>
+    <string name="about_license">라이선스</string>
     <string name="about_icons">아이콘</string>
-    <string name="about_icons_desc">ICONS8 및 Google의 아이콘</string>
-    <string name="about_libraries">도서관</string>
-    <string name="about_libraries_desc">모든 중고 라이브러리 목록</string>
+    <string name="about_icons_desc">ICONS8 및 Google 아이콘</string>
+    <string name="about_libraries">라이브러리</string>
+    <string name="about_libraries_desc">사용된 라이브러리 목록</string>
 
     <string-array name="pref_look_and_feel_rules_charging_state_display">
-        <item>충전 상태에서 보여줍니다</item>
-        <item>충전 중에 만 표시하십시오</item>
-        <item>방전하는 동안 만 표시하십시오</item>
+        <item>항상 표시</item>
+        <item>충전 중일 때만 표시</item>
+        <item>배터리 사용 중일 때만 표시</item>
     </string-array>
 
     <string-array name="pref_look_and_feel_rules_charger_display">
         <item>AC</item>
         <item>USB</item>
-        <item>무선 전화</item>
+        <item>무선</item>
     </string-array>
 
     <string-array name="pref_look_and_feel_orientation_display">
-        <item>자동 잠금</item>
-        <item>초상화</item>
-        <item>풍경</item>
+        <item>자동 회전 방지</item>
+        <item>세로</item>
+        <item>가로</item>
     </string-array>
 
     <string-array name="pref_ao_glowStyle_display">
-        <item>모든면</item>
-        <item>왼쪽과 오른쪽</item>
-        <item>상단과 하단</item>
+        <item>모든 면</item>
+        <item>좌우</item>
+        <item>상하</item>
     </string-array>
 
     <string-array name="pref_ao_background_image_array_display">
@@ -237,58 +237,58 @@
         <item>Tyler Lastovich</item>
         <item>Tyler Lastovich</item>
         <item>Tyler Lastovich</item>
-        <item>관습</item>
+        <item>사용자 정의</item>
     </string-array>
     <string name="notification_action_reply">답장</string>
-    <string name="pref_ao_showAlbumArt">디스플레이 앨범 아트</string>
-    <string name="pref_ao_interactive_notification_icons">대화식 알림 아이콘</string>
-    <string name="pref_ao_interactive_notification_icons_summary">미리보기를 표시하려면 알림 아이콘을 길게 누른 다음 원하는 동작으로 스 와이프하여 실행하십시오.</string>
-    <string name="pref_ao_invert_interaction_highlight">상호 작용 하이라이트를 반전시킵니다</string>
-    <string name="pref_ao_invert_interaction_highlight_summary">상호 작용 중 또는 유휴 상태에서 알림 아이콘이 강조 표시되는지 여부</string>
+    <string name="pref_ao_showAlbumArt">앨범 아트 표시</string>
+    <string name="pref_ao_interactive_notification_icons">대화형 알림 아이콘</string>
+    <string name="pref_ao_interactive_notification_icons_summary">알림 아이콘을 길게 눌러 미리보기를 확인하고, 원하는 방향으로 스와이프하여 실행하세요.</string>
+    <string name="pref_ao_invert_interaction_highlight">상호작용 하이라이트 반전</string>
+    <string name="pref_ao_invert_interaction_highlight_summary">상호작용 중 또는 대기 상태에서 알림 아이콘 강조 여부</string>
     <string name="pref_ao_notification_icon_size">알림 아이콘 크기</string>
     <string name="pref_ao_notification_icon_size_summary">알림 아이콘의 크기를 변경합니다</string>
-    <string name="pref_ao_notification_icon_top_padding">알림 아이콘 상단 패딩</string>
-    <string name="pref_ao_notification_icon_top_padding_summary">알림 아이콘 위의 공간을 조정하십시오</string>
+    <string name="pref_ao_notification_icon_top_padding">알림 아이콘 상단 여백</string>
+    <string name="pref_ao_notification_icon_top_padding_summary">알림 아이콘 위의 공간을 조정합니다</string>
     <string name="pref_ao_notification_preview_position">알림 미리보기 위치</string>
-    <string name="pref_ao_notification_preview_position_summary">알림 아이콘에 대한 알림 미리보기 위치</string>
-    <string name="pref_ao_top_padding">상단 패딩</string>
-    <string name="pref_ao_top_padding_summary">디스플레이 요소의 수직 위치를 조정하십시오</string>
+    <string name="pref_ao_notification_preview_position_summary">알림 아이콘 기준 미리보기 위치</string>
+    <string name="pref_ao_top_padding">상단 여백</string>
+    <string name="pref_ao_top_padding_summary">화면 요소의 수직 위치를 조정합니다</string>
     <string-array name="pref_ao_notification_preview_position_display">
-        <item>위의 아이콘</item>
+        <item>아이콘 위</item>
         <item>아이콘 아래</item>
     </string-array>
     <string-array name="pref_ao_notification_icon_size_display">
-        <item>작은</item>
-        <item>기준</item>
-        <item>크게 하는</item>
+        <item>작게</item>
+        <item>보통</item>
+        <item>크게</item>
     </string-array>
-    <string name="pref_ao_fingerprint_interaction">지문 상호 작용 모드</string>
-    <string name="pref_ao_fingerprint_interaction_summary">지문 아이콘과 상호 작용하는 방법</string>
-    <string name="pref_ao_fingerprint_interaction_swipe">아이콘에서 스 와이프하십시오</string>
-    <string name="pref_ao_fingerprint_interaction_longpress">긴 언론</string>
-    <string name="pref_ao_swipe_notification_open">그것을 열도록 알림으로 스 와이프하십시오</string>
-    <string name="pref_ao_swipe_notification_open_summary">지문 아이콘에서 그들에게 스 와이프하여 알림을 열 수 있습니다.</string>
-    <string name="notification_dismiss">해고하다</string>
-    <string name="pref_look_and_feel_rules_pickup_mode">픽업 모드</string>
-    <string name="pref_look_and_feel_rules_pickup_mode_summary">전화를 집어들 때만 표시하십시오</string>
-    <string name="pref_pickup_sensitivity">픽업 감도</string>
-    <string name="pref_pickup_sensitivity_summary">픽업 감지의 감도를 조정하십시오</string>
+    <string name="pref_ao_fingerprint_interaction">지문 상호작용 모드</string>
+    <string name="pref_ao_fingerprint_interaction_summary">지문 아이콘과 상호작용하는 방식</string>
+    <string name="pref_ao_fingerprint_interaction_swipe">아이콘에서 스와이프</string>
+    <string name="pref_ao_fingerprint_interaction_longpress">길게 누르기</string>
+    <string name="pref_ao_swipe_notification_open">알림 열기 위해 스와이프</string>
+    <string name="pref_ao_swipe_notification_open_summary">지문 아이콘에서 알림 방향으로 스와이프하여 알림을 엽니다.</string>
+    <string name="notification_dismiss">닫기</string>
+    <string name="pref_look_and_feel_rules_pickup_mode">들어 올려서 확인</string>
+    <string name="pref_look_and_feel_rules_pickup_mode_summary">전화를 집어 올릴 때만 표시합니다</string>
+    <string name="pref_pickup_sensitivity">인식 감도</string>
+    <string name="pref_pickup_sensitivity_summary">들어 올림 감지의 민감도를 조정합니다</string>
     <string-array name="pref_pickup_sensitivity_display">
-        <item>높은</item>
+        <item>높음</item>
         <item>중간</item>
-        <item>낮은</item>
+        <item>낮음</item>
     </string-array>
-    <string name="pref_ao_lock_icon">잠금 아이콘을 사용하십시오</string>
-    <string name="pref_ao_lock_icon_summary">지문 아이콘을 잠금 아이콘으로 바꾸십시오</string>
+    <string name="pref_ao_lock_icon">잠금 아이콘 사용</string>
+    <string name="pref_ao_lock_icon_summary">지문 아이콘을 잠금 아이콘으로 변경합니다</string>
     <string name="donate">기부</string>
-    <string name="donate_summary">엿보기 디스플레이의 개발을 지원하십시오</string>
-    <string name="pref_look_and_feel_weather_unit">제국 유닛을 사용하십시오</string>
-    <string name="pref_look_and_feel_weather_unit_summary">화씨의 온도를 표시하십시오</string>
-    <string name="colorpicker_opacity">불투명</string>
+    <string name="donate_summary">Peek Display 개발을 지원해 주세요</string>
+    <string name="pref_look_and_feel_weather_unit">화씨 사용</string>
+    <string name="pref_look_and_feel_weather_unit_summary">온도를 화씨(℉)로 표시합니다</string>
+    <string name="colorpicker_opacity">불투명도</string>
     <string name="colorpicker_color">색상</string>
-    <string name="colorpicker_custom">관습</string>
-    <string name="colorpicker_presets">사전 설정</string>
-    <string name="pref_look_and_feel_weather_refresh_interval">새로 고침 간격</string>
+    <string name="colorpicker_custom">사용자 정의</string>
+    <string name="colorpicker_presets">프리셋</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">새로고침 간격</string>
     <string name="pref_look_and_feel_weather_refresh_interval_label">분</string>
-    <string name="pref_look_and_feel_weather_refresh_interval_disabled">비활성화됨(시작 시 한 번 가져오기)</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">비활성화 (시작 시 1회 업데이트)</string>
 </resources>
