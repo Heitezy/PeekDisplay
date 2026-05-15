@@ -22,8 +22,8 @@
     <string name="dialog_device_admin_result">Hasil</string>
     <string name="dialog_device_admin_error">Hasil yang salah. Coba lagi.</string>
     <string name="app_description">Aplikasi Android yang menambahkan tampilan mengintip.</string>
-    <string name="charged">%1$d%% Dibebankan</string>
-    <string name="shortcut_disabled">Dengan disabilitas</string>
+    <string name="charged">%1$d%% Terisi</string>
+    <string name="shortcut_disabled">Dinonaktifkan</string>
     <string name="pref_int_failed">Nilai ini tidak dapat digunakan</string>
     <string name="pref_general">Pengaturan Umum</string>
     <string name="pref_enabled">Saat ini diaktifkan</string>
@@ -31,7 +31,7 @@
     <string name="pref_always_on">Tampilan mengintip</string>
     <string name="pref_charging">Pengisian Animasi</string>
     <string name="pref_look_and_feel">Lihat dan rasakan</string>
-    <string name="pref_ao_watch_face">Tonton wajah</string>
+    <string name="pref_ao_watch_face">Wajah jam</string>
     <string name="pref_ao_watch_face_summary">Pengaturan yang terkait dengan Watch Face of Peek Display</string>
     <string name="pref_ao_background">Latar belakang</string>
     <string name="pref_ao_background_summary">Pengaturan yang terkait dengan latar belakang tampilan Peek</string>
@@ -39,10 +39,10 @@
     <string name="pref_ao_behavior_summary">Pengaturan yang terkait dengan perilaku aplikasi</string>
     <string name="pref_ao_other">Pengaturan lainnya</string>
     <string name="pref_look_and_feel_hour">Gunakan jam 12 jam</string>
-    <string name="pref_look_and_feel_hour_summary_on">Saat ini digunakan: jam 12 jam</string>
-    <string name="pref_look_and_feel_hour_summary_off">Saat ini digunakan: jam 24 jam</string>
+    <string name="pref_look_and_feel_hour_summary_on">Saat ini digunakan: format 12 jam</string>
+    <string name="pref_look_and_feel_hour_summary_off">Saat ini digunakan: format 24 jam</string>
     <string name="pref_look_and_feel_am_pm">Tunjukkan AM / PM</string>
-    <string name="pref_look_and_feel_am_pm_summary">Tampilkan AM / PM saat menggunakan jam 12 jam</string>
+    <string name="pref_look_and_feel_am_pm_summary">Tampilkan AM / PM saat menggunakan format 12 jam</string>
     <string name="pref_look_and_feel_ao">Tampilan tampilan mengintip</string>
     <string name="pref_look_and_feel_ao_summary">Mengubah tampilan tampilan mengintip</string>
     <string name="pref_look_and_feel_colors">Warna</string>
@@ -70,9 +70,9 @@
     <string name="pref_ao_edgeGlow">Tepi cahaya</string>
     <string name="pref_ao_edgeGlow_summary">Tepi bersinar saat pemberitahuan diterima</string>
     <string name="pref_ao_glowDuration">Durasi bersinar (dalam milidetik)</string>
-    <string name="pref_ao_glowDuration_summary">Durasi tepi bersinar</string>
+    <string name="pref_ao_glowDuration_summary">Durasi pendaran tepi</string>
     <string name="pref_ao_glowDelay">Penundaan yang bersinar (dalam milidetik)</string>
-    <string name="pref_ao_glowDelay_summary">Interval antara cahaya</string>
+    <string name="pref_ao_glowDelay_summary">Jeda antar pendaran</string>
     <string name="pref_ao_glowStyle">Gaya cahaya tepi</string>
     <string name="pref_ao_glowStyle_summary">Mengubah tampilan tepi yang bersinar</string>
     <string name="pref_ao_glowColor">Warna Glow Tepi</string>
@@ -80,15 +80,15 @@
     <string name="pref_ao_vibration">Durasi getaran (dalam milidetik)</string>
     <string name="pref_ao_vibration_summary">Durasi telepon bergetar saat Anda mengetuk layar ganda</string>
     <string name="pref_ao_animation_delay">Penundaan gerakan (dalam hitungan menit)</string>
-    <string name="pref_ao_animation_delay_summary">Waktu antara berbagai posisi konten\nPeringatan: Nilai yang terlalu tinggi dapat menyebabkan luka bakar layar!</string>
+    <string name="pref_ao_animation_delay_summary">Waktu antara berbagai posisi konten\nPeringatan: Nilai yang terlalu tinggi dapat menyebabkan layar terbakar (burn-in)!</string>
     <string name="pref_ao_smooth_animation">Gerakan hidup</string>
     <string name="pref_ao_smooth_animation_summary">Menghidupkan perubahan posisi</string>
     <string name="pref_ao_refresh_rate_optimization">Optimalisasi kecepatan refresh</string>
-    <string name="pref_ao_refresh_rate_optimization_summary">Menggunakan kecepatan refresh terendah yang tersedia saat layar statis untuk menghemat baterai</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">Menggunakan laju penyegaran terendah yang tersedia saat layar statis untuk menghemat baterai</string>
     <string name="pref_ao_force_brightness">Memaksa kecerahan tertentu pada tampilan mengintip</string>
     <string name="pref_ao_force_brightness_summary">Ketuk untuk mengubah kecerahan paksa</string>
     <string name="pref_ao_force_brightness_title">Kecerahan</string>
-    <string name="pref_ao_force_brightness_example">Ini adalah seberapa terang teks pada tampilan mengintip Anda akan muncul.</string>
+    <string name="pref_ao_force_brightness_example">Ini adalah seberapa terang teks pada tampilan mengintip Anda akan terlihat.</string>
     <string name="pref_ao_pocket_mode">Mode saku</string>
     <string name="pref_ao_pocket_mode_summary">Menonaktifkan tampilan mengintip di saku Anda\nPERINGATAN: Penggunaan sensor dapat menyebabkan peningkatan penggunaan baterai!</string>
     <string name="pref_ao_dnd">Nyalakan jangan ganggu</string>
@@ -98,7 +98,7 @@
     <string name="pref_ao_power_saving">Mode penghematan daya (root)</string>
     <string name="pref_ao_power_saving_summary">Menyalakan mode penghemat daya saat tampilan mengintip diaktifkan</string>
     <string name="pref_ao_double_tap_speed">Kecepatan ketuk ganda</string>
-    <string name="pref_ao_double_tap_speed_summary">Waktu dua keran bisa terpisah (dalam milidetik)</string>
+    <string name="pref_ao_double_tap_speed_summary">Jeda waktu maksimal antar ketukan (dalam milidetik)</string>
     <string name="pref_ao_double_tap_disabled">Nonaktifkan ketuk ganda</string>
     <string name="pref_ao_double_tap_disabled_summary">Menonaktifkan double-tap untuk keluar dari tampilan mengintip (tidak disarankan)</string>
     <string name="pref_ao_message">Pesan</string>
@@ -110,7 +110,7 @@
     <string name="pref_ao_date_format_illegal">Format ilegal</string>
     <string name="pref_ao_calendar">Tampilkan acara</string>
     <string name="pref_ao_calendar_summary">Tampilkan acara dalam 24 jam ke depan pada tampilan Peek Anda</string>
-    <string name="pref_look_and_feel_charging">Menagih penampilan animasi</string>
+    <string name="pref_look_and_feel_charging">Tampilan animasi pengisian daya</string>
     <string name="pref_look_and_feel_charging_summary">Mengubah tampilan animasi pengisian</string>
     <string name="pref_ao_background_image">Gambar latar belakang</string>
     <string name="pref_ao_background_image_summary">Ubah gambar latar belakang tampilan Peek</string>
@@ -237,17 +237,17 @@
         <item>Tyler Lastovich</item>
         <item>Tyler Lastovich</item>
         <item>Tyler Lastovich</item>
-        <item>Kebiasaan</item>
+        <item>Kustom</item>
     </string-array>
     <string name="notification_action_reply">Balas</string>
     <string name="pref_ao_showAlbumArt">Tampilan Art Album</string>
     <string name="pref_ao_interactive_notification_icons">Ikon Pemberitahuan Interaktif</string>
-    <string name="pref_ao_interactive_notification_icons_summary">Tekan panjang pada ikon pemberitahuan untuk menampilkan pratinjau dan kemudian geser ke tindakan yang diinginkan untuk dieksekusi</string>
+    <string name="pref_ao_interactive_notification_icons_summary">Tekan lama pada ikon pemberitahuan untuk menampilkan pratinjau dan kemudian geser ke tindakan yang diinginkan untuk dijalankan</string>
     <string name="pref_ao_invert_interaction_highlight">Balikkan sorotan interaksi</string>
     <string name="pref_ao_invert_interaction_highlight_summary">Perubahan apakah ikon pemberitahuan disorot selama interaksi atau diam</string>
     <string name="pref_ao_notification_icon_size">Ukuran ikon pemberitahuan</string>
     <string name="pref_ao_notification_icon_size_summary">Mengubah ukuran ikon pemberitahuan</string>
-    <string name="pref_ao_notification_icon_top_padding">Ikon pemberitahuan atas bantalan</string>
+    <string name="pref_ao_notification_icon_top_padding">Padding atas ikon pemberitahuan</string>
     <string name="pref_ao_notification_icon_top_padding_summary">Sesuaikan ruang di atas ikon pemberitahuan</string>
     <string name="pref_ao_notification_preview_position">Posisi Pratinjau Pemberitahuan</string>
     <string name="pref_ao_notification_preview_position_summary">Posisi pratinjau pemberitahuan relatif terhadap ikon pemberitahuan</string>
@@ -265,10 +265,10 @@
     <string name="pref_ao_fingerprint_interaction">Mode interaksi sidik jari</string>
     <string name="pref_ao_fingerprint_interaction_summary">Cara berinteraksi dengan ikon sidik jari</string>
     <string name="pref_ao_fingerprint_interaction_swipe">Geser dari ikon</string>
-    <string name="pref_ao_fingerprint_interaction_longpress">Press panjang</string>
+    <string name="pref_ao_fingerprint_interaction_longpress">Tekan lama</string>
     <string name="pref_ao_swipe_notification_open">Gesek ke pemberitahuan untuk membukanya</string>
     <string name="pref_ao_swipe_notification_open_summary">Izinkan pemberitahuan pembukaan dengan menggesekkannya dari ikon sidik jari</string>
-    <string name="notification_dismiss">Membubarkan</string>
+    <string name="notification_dismiss">Tutup</string>
     <string name="pref_look_and_feel_rules_pickup_mode">Mode pickup</string>
     <string name="pref_look_and_feel_rules_pickup_mode_summary">Tampilkan hanya saat mengangkat telepon</string>
     <string name="pref_pickup_sensitivity">Sensitivitas pickup</string>
@@ -280,13 +280,13 @@
     </string-array>
     <string name="pref_ao_lock_icon">Gunakan ikon kunci</string>
     <string name="pref_ao_lock_icon_summary">Ganti ikon sidik jari dengan ikon kunci</string>
-    <string name="donate">Menyumbangkan</string>
+    <string name="donate">Donasi</string>
     <string name="donate_summary">Mendukung pengembangan tampilan mengintip</string>
     <string name="pref_look_and_feel_weather_unit">Gunakan unit kekaisaran</string>
     <string name="pref_look_and_feel_weather_unit_summary">Tampilkan suhu di Fahrenheit</string>
-    <string name="colorpicker_opacity">Kegelapan</string>
+    <string name="colorpicker_opacity">Opasitas</string>
     <string name="colorpicker_color">Warna</string>
-    <string name="colorpicker_custom">Kebiasaan</string>
+    <string name="colorpicker_custom">Kustom</string>
     <string name="colorpicker_presets">Pengaturan Awal</string>
     <string name="pref_look_and_feel_weather_refresh_interval">Interval penyegaran</string>
     <string name="pref_look_and_feel_weather_refresh_interval_label">Menit</string>
