@@ -2,7 +2,7 @@
 <resources>
     <plurals name="pref_look_and_feel_rules_timeout_summary">
         <item quantity="one">Detenerse %d segundo</item>
-        <item quantity="other">Detenerse %d artículos de segunda clase</item>
+        <item quantity="other">Detenerse %d segundos</item>
     </plurals>
     <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
         <item quantity="one">Cada %d minuto</item>
