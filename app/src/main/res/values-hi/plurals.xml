@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <plurals name="pref_look_and_feel_rules_timeout_summary">
-        <item quantity="one">रुकना %d दूसरा</item>
-        <item quantity="other">रुकना %d सेकंड</item>
+        <item quantity="one">%d सेकंड रुकें</item>
+        <item quantity="other">%d सेकंड रुकें</item>
     </plurals>
     <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
-        <item quantity="one">प्रत्येक %d मिनट</item>
-        <item quantity="other">प्रत्येक %d मिनट</item>
+        <item quantity="one">हर %d मिनट</item>
+        <item quantity="other">हर %d मिनट</item>
     </plurals>
 </resources>

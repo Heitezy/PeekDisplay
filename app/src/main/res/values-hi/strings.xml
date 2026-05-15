@@ -1,226 +1,226 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="device_admin_description">अपनी स्क्रीन को बंद करने के लिए पीक डिस्प्ले की अनुमति दें</string>
-    <string name="notification_listener_description">प्रदर्शन पर सूचनाएं दिखाएं</string>
-    <string name="service_text">पृष्ठभूमि में पीक डिस्प्ले चल रहा है</string>
-    <string name="service_channel">सेवा चैनल</string>
-    <string name="setup_root_failed">रूट अनुरोध विफल रहा! कृपया फिर से प्रयास करें या स्विच मोड!</string>
-    <string name="device_admin">युक्ति व्यवस्थापक</string>
-    <string name="device_admin_summary">आपको इस डिवाइस को सक्रिय करने या इस ऐप के लिए रूट मोड पर स्विच करने की आवश्यकता है।</string>
-    <string name="notification_listener_service">अधिसूचना अभिगम</string>
-    <string name="notification_listener_service_summary">आपको PEEK डिस्प्ले पर अपनी सूचनाओं को प्रदर्शित करने के लिए ऐप के लिए अधिसूचना एक्सेस को सक्षम करने की आवश्यकता है।</string>
-    <string name="setup_draw_over_other_apps">अन्य ऐप्स पर प्रदर्शित करें</string>
+    <string name="device_admin_description">अपनी स्क्रीन बंद करने के लिए पीक डिस्प्ले को अनुमति दें</string>
+    <string name="notification_listener_description">डिस्प्ले पर नोटिफिकेशन दिखाएं</string>
+    <string name="service_text">पीक डिस्प्ले बैकग्राउंड में चल रहा है</string>
+    <string name="service_channel">सर्विस चैनल</string>
+    <string name="setup_root_failed">रूट अनुरोध विफल रहा! कृपया फिर से प्रयास करें या मोड बदलें!</string>
+    <string name="device_admin">डिवाइस एडमिन</string>
+    <string name="device_admin_summary">आपको इस डिवाइस एडमिन को सक्रिय करने या इस ऐप के लिए रूट मोड पर स्विच करने की आवश्यकता है।</string>
+    <string name="notification_listener_service">नोटिफिकेशन एक्सेस</string>
+    <string name="notification_listener_service_summary">पीक डिस्प्ले पर अपनी नोटिफिकेशन दिखाने के लिए आपको ऐप के लिए नोटिफिकेशन एक्सेस सक्षम करना होगा।</string>
+    <string name="setup_draw_over_other_apps">अन्य ऐप्स के ऊपर दिखाएं</string>
     <string name="setup_draw_over_other_apps_summary">पीक डिस्प्ले दिखाने के लिए यह अनुमति आवश्यक है।</string>
-    <string name="setup_phone_state">फ़ोन स्टेट पढ़ें</string>
-    <string name="setup_phone_state_summary">आने वाली कॉल के लिए पीक डिस्प्ले को रोकने के लिए यह अनुमति आवश्यक है।</string>
+    <string name="setup_phone_state">फ़ोन की स्थिति पढ़ें</string>
+    <string name="setup_phone_state_summary">आने वाली कॉल के दौरान पीक डिस्प्ले को रोकने के लिए यह अनुमति आवश्यक है।</string>
     <string name="setup_calendar">कैलेंडर पढ़ें</string>
-    <string name="setup_calendar_summary">आपको अपने ईवेंट्स को PEEK डिस्प्ले पर प्रदर्शित करने के लिए ऐप के लिए कैलेंडर एक्सेस को सक्षम करना होगा।</string>
-    <string name="setup_skip">छोडना</string>
-    <string name="setup_continue">जारी रखना</string>
+    <string name="setup_calendar_summary">आपको अपने इवेंट्स को पीक डिस्प्ले पर दिखाने के लिए ऐप के लिए कैलेंडर एक्सेस सक्षम करना होगा।</string>
+    <string name="setup_skip">छोड़ें</string>
+    <string name="setup_continue">जारी रखें</string>
     <string name="setup_error">कुछ गलत हो गया! कृपया पुन: प्रयास करें!</string>
-    <string name="dialog_device_admin_text">कृपया ध्यान दें कि आपको इसे अनइंस्टॉल करने से पहले ऐप के डिवाइस एडमिन विशेषाधिकारों को निष्क्रिय करना होगा! यह सुनिश्चित करने के लिए कि आपने इसे समझा है कृपया निम्नलिखित ऑपरेशन करें:\n7 + 12</string>
+    <string name="dialog_device_admin_text">कृपया ध्यान दें कि अनइंस्टॉल करने से पहले आपको ऐप के डिवाइस एडमिन विशेषाधिकारों को निष्क्रिय करना होगा! यह सुनिश्चित करने के लिए कि आपने इसे समझ लिया है, कृपया निम्नलिखित गणना करें:\n7 + 12</string>
     <string name="dialog_device_admin_result">परिणाम</string>
     <string name="dialog_device_admin_error">गलत परिणाम। पुनः प्रयास करें।</string>
     <string name="app_description">एंड्रॉइड ऐप जो पीक डिस्प्ले जोड़ता है।</string>
-    <string name="charged">%1$d%% चार्ज किया गया</string>
+    <string name="charged">%1$d%% चार्ज हुआ</string>
     <string name="shortcut_disabled">अक्षम</string>
-    <string name="pref_int_failed">इस मान का उपयोग नहीं किया जा सकता है</string>
+    <string name="pref_int_failed">इस मान का उपयोग नहीं किया जा सकता</string>
     <string name="pref_general">सामान्य सेटिंग्स</string>
-    <string name="pref_enabled">वर्तमान में सक्षम</string>
-    <string name="pref_disabled">वर्तमान में अक्षम</string>
-    <string name="pref_always_on">झलक प्रदर्शन</string>
+    <string name="pref_enabled">अभी सक्षम है</string>
+    <string name="pref_disabled">अभी अक्षम है</string>
+    <string name="pref_always_on">पीक डिस्प्ले</string>
     <string name="pref_charging">चार्जिंग एनीमेशन</string>
-    <string name="pref_look_and_feel">अवलोकन</string>
-    <string name="pref_ao_watch_face">घड़ी का चेहरा</string>
+    <string name="pref_look_and_feel">लुक और फील</string>
+    <string name="pref_ao_watch_face">वॉच फेस</string>
     <string name="pref_ao_watch_face_summary">पीक डिस्प्ले के वॉच फेस से संबंधित सेटिंग्स</string>
-    <string name="pref_ao_background">पृष्ठभूमि</string>
-    <string name="pref_ao_background_summary">पीक डिस्प्ले की पृष्ठभूमि से संबंधित सेटिंग्स</string>
+    <string name="pref_ao_background">बैकग्राउंड</string>
+    <string name="pref_ao_background_summary">पीक डिस्प्ले के बैकग्राउंड से संबंधित सेटिंग्स</string>
     <string name="pref_ao_behavior">व्यवहार</string>
     <string name="pref_ao_behavior_summary">ऐप के व्यवहार से संबंधित सेटिंग्स</string>
     <string name="pref_ao_other">अन्य सेटिंग्स</string>
     <string name="pref_look_and_feel_hour">12-घंटे की घड़ी का उपयोग करें</string>
-    <string name="pref_look_and_feel_hour_summary_on">वर्तमान में उपयोग किया जाता है: 12-घंटे की घड़ी</string>
-    <string name="pref_look_and_feel_hour_summary_off">वर्तमान में उपयोग: 24-घंटे की घड़ी</string>
-    <string name="pref_look_and_feel_am_pm">दिखाएँ AM / PM</string>
+    <string name="pref_look_and_feel_hour_summary_on">अभी उपयोग में: 12-घंटे की घड़ी</string>
+    <string name="pref_look_and_feel_hour_summary_off">अभी उपयोग में: 24-घंटे की घड़ी</string>
+    <string name="pref_look_and_feel_am_pm">AM / PM दिखाएं</string>
     <string name="pref_look_and_feel_am_pm_summary">12-घंटे की घड़ी का उपयोग करते समय AM / PM दिखाएं</string>
-    <string name="pref_look_and_feel_ao">झलक प्रदर्शन देखो</string>
-    <string name="pref_look_and_feel_ao_summary">पीक डिस्प्ले के लुक को बदल देता है</string>
+    <string name="pref_look_and_feel_ao">पीक डिस्प्ले लुक</string>
+    <string name="pref_look_and_feel_ao_summary">पीक डिस्प्ले के लुक को बदलें</string>
     <string name="pref_look_and_feel_colors">रंग</string>
-    <string name="pref_look_and_feel_colors_summary">कुछ तत्वों के लिए रंगों का चयन करें</string>
-    <string name="pref_look_and_feel_colors_clock">घड़ी रंग</string>
-    <string name="pref_look_and_feel_colors_date">दिनांक रंग</string>
-    <string name="pref_look_and_feel_colors_battery">बैटरी रंग</string>
-    <string name="pref_look_and_feel_colors_battery_arc">बैटरी रंग (M-Style)</string>
-    <string name="pref_look_and_feel_colors_music_controls">संगीत रंग को नियंत्रित करता है</string>
-    <string name="pref_look_and_feel_colors_calendar">कैलेंडर इवेंट कलर</string>
-    <string name="pref_look_and_feel_colors_message">संदेश रंग</string>
+    <string name="pref_look_and_feel_colors_summary">विभिन्न तत्वों के लिए रंग चुनें</string>
+    <string name="pref_look_and_feel_colors_clock">घड़ी का रंग</string>
+    <string name="pref_look_and_feel_colors_date">तारीख का रंग</string>
+    <string name="pref_look_and_feel_colors_battery">बैटरी का रंग</string>
+    <string name="pref_look_and_feel_colors_battery_arc">बैटरी का रंग (M-Style)</string>
+    <string name="pref_look_and_feel_colors_music_controls">म्यूजिक कंट्रोल का रंग</string>
+    <string name="pref_look_and_feel_colors_calendar">कैलेंडर इवेंट का रंग</string>
+    <string name="pref_look_and_feel_colors_message">मैसेज का रंग</string>
     <string name="pref_look_and_feel_colors_weather">मौसम का रंग</string>
-    <string name="pref_look_and_feel_colors_notification">अधिसूचना रंग</string>
-    <string name="pref_look_and_feel_colors_fingerprint">फिंगरप्रिंट आइकन रंग</string>
-    <string name="pref_ao_showClock">समय प्रदर्शित करें</string>
-    <string name="pref_ao_showDate">तिथि प्रदर्शित करें</string>
-    <string name="pref_ao_showBatteryIcn">एक बैटरी आइकन प्रदर्शित करें</string>
-    <string name="pref_ao_showBattery">बैटरी प्रतिशत प्रदर्शित करें</string>
-    <string name="pref_ao_showMusicControls">संगीत नियंत्रण प्रदर्शित करें</string>
-    <string name="pref_ao_showNotifications">एक अधिसूचना गणना प्रदर्शित करें</string>
-    <string name="pref_ao_showNotificationIcons">अधिसूचना आइकन प्रदर्शित करें</string>
-    <string name="pref_ao_fingerprint">एक फिंगरप्रिंट आइकन प्रदर्शित करें</string>
+    <string name="pref_look_and_feel_colors_notification">नोटिफिकेशन का रंग</string>
+    <string name="pref_look_and_feel_colors_fingerprint">फिंगरप्रिंट आइकन का रंग</string>
+    <string name="pref_ao_showClock">समय दिखाएं</string>
+    <string name="pref_ao_showDate">तारीख दिखाएं</string>
+    <string name="pref_ao_showBatteryIcn">बैटरी आइकन दिखाएं</string>
+    <string name="pref_ao_showBattery">बैटरी प्रतिशत दिखाएं</string>
+    <string name="pref_ao_showMusicControls">म्यूजिक कंट्रोल दिखाएं</string>
+    <string name="pref_ao_showNotifications">नोटिफिकेशन की संख्या दिखाएं</string>
+    <string name="pref_ao_showNotificationIcons">नोटिफिकेशन आइकन दिखाएं</string>
+    <string name="pref_ao_fingerprint">फिंगरप्रिंट आइकन दिखाएं</string>
     <string name="pref_ao_fingerprint_margin">फिंगरप्रिंट मार्जिन</string>
-    <string name="pref_ao_fingerprint_margin_summary">फिंगरप्रिंट आइकन के नीचे का स्थान</string>
-    <string name="pref_ao_edgeGlow">बढ़त</string>
-    <string name="pref_ao_edgeGlow_summary">एक अधिसूचना प्राप्त होने पर चमकती किनारों</string>
-    <string name="pref_ao_glowDuration">चमक अवधि (मिलीसेकंड में)</string>
-    <string name="pref_ao_glowDuration_summary">अवधि किनारे चमक रहे हैं</string>
-    <string name="pref_ao_glowDelay">चमक देरी (मिलीसेकंड में)</string>
-    <string name="pref_ao_glowDelay_summary">चमक के बीच अंतराल</string>
-    <string name="pref_ao_glowStyle">धार चमक शैली</string>
-    <string name="pref_ao_glowStyle_summary">चमकते किनारों का रूप बदल देता है</string>
-    <string name="pref_ao_glowColor">बढ़तदार रंग</string>
-    <string name="pref_ao_glowColor_summary">चमकते किनारों का रंग बदल देता है</string>
-    <string name="pref_ao_vibration">कंपन अवधि (मिलीसेकंड में)</string>
-    <string name="pref_ao_vibration_summary">जब आप स्क्रीन को डबल-टैप करते हैं तो अवधि की अवधि कंपन करती है</string>
-    <string name="pref_ao_animation_delay">आंदोलन देरी (मिनटों में)</string>
-    <string name="pref_ao_animation_delay_summary">सामग्री के विभिन्न पदों के बीच का समय\nचेतावनी: बहुत अधिक मान स्क्रीन बर्न-इन का कारण बन सकते हैं!</string>
-    <string name="pref_ao_smooth_animation">चेतन प्रस्ताव</string>
-    <string name="pref_ao_smooth_animation_summary">स्थिति परिवर्तन को चेतन करें</string>
+    <string name="pref_ao_fingerprint_margin_summary">फिंगरप्रिंट आइकन के नीचे की जगह</string>
+    <string name="pref_ao_edgeGlow">एज ग्लो</string>
+    <string name="pref_ao_edgeGlow_summary">नोटिफिकेशन प्राप्त होने पर चमकते किनारे</string>
+    <string name="pref_ao_glowDuration">चमक की अवधि (मिलीसेकंड में)</string>
+    <string name="pref_ao_glowDuration_summary">किनारों के चमकने की अवधि</string>
+    <string name="pref_ao_glowDelay">चमक में देरी (मिलीसेकंड में)</string>
+    <string name="pref_ao_glowDelay_summary">चमक के बीच का अंतराल</string>
+    <string name="pref_ao_glowStyle">एज ग्लो स्टाइल</string>
+    <string name="pref_ao_glowStyle_summary">चमकते किनारों का लुक बदलें</string>
+    <string name="pref_ao_glowColor">एज ग्लो का रंग</string>
+    <string name="pref_ao_glowColor_summary">चमकते किनारों का रंग बदलें</string>
+    <string name="pref_ao_vibration">कंपन की अवधि (मिलीसेकंड में)</string>
+    <string name="pref_ao_vibration_summary">स्क्रीन पर डबल-टैप करने पर कंपन की अवधि</string>
+    <string name="pref_ao_animation_delay">मूवमेंट देरी (मिनटों में)</string>
+    <string name="pref_ao_animation_delay_summary">सामग्री की विभिन्न स्थितियों के बीच का समय\nचेतावनी: बहुत अधिक मान स्क्रीन बर्न-इन का कारण बन सकते हैं!</string>
+    <string name="pref_ao_smooth_animation">स्मूथ एनीमेशन</string>
+    <string name="pref_ao_smooth_animation_summary">स्थिति परिवर्तन को एनिमेट करें</string>
     <string name="pref_ao_refresh_rate_optimization">रिफ्रेश रेट ऑप्टिमाइजेशन</string>
     <string name="pref_ao_refresh_rate_optimization_summary">बैटरी बचाने के लिए डिस्प्ले के स्थिर होने पर उपलब्ध सबसे कम रिफ्रेश रेट का उपयोग करता है</string>
-    <string name="pref_ao_force_brightness">पीक डिस्प्ले पर एक निश्चित चमक को मजबूर करें</string>
-    <string name="pref_ao_force_brightness_summary">जबरन चमक को बदलने के लिए टैप करें</string>
-    <string name="pref_ao_force_brightness_title">चमक</string>
-    <string name="pref_ao_force_brightness_example">यह है कि आपकी पीक डिस्प्ले पर पाठ कितना उज्ज्वल दिखाई देगा।</string>
+    <string name="pref_ao_force_brightness">पीक डिस्प्ले पर एक निश्चित ब्राइटनेस सेट करें</string>
+    <string name="pref_ao_force_brightness_summary">जबरन ब्राइटनेस बदलने के लिए टैप करें</string>
+    <string name="pref_ao_force_brightness_title">ब्राइटनेस</string>
+    <string name="pref_ao_force_brightness_example">यह दिखाता है कि पीक डिस्प्ले पर टेक्स्ट कितना उज्ज्वल दिखाई देगा।</string>
     <string name="pref_ao_pocket_mode">पॉकेट मोड</string>
-    <string name="pref_ao_pocket_mode_summary">अपनी जेब में पीक डिस्प्ले को अक्षम करता है\nचेतावनी: सेंसर के उपयोग से बैटरी का उपयोग बढ़ सकता है!</string>
-    <string name="pref_ao_dnd">डू नॉट डिस्ट्रिक्ट डिस्टर्ब</string>
-    <string name="pref_ao_dnd_summary">पीक डिस्प्ले चल रहा है, जबकि डू नॉट डिस्टर्ब मोड</string>
+    <string name="pref_ao_pocket_mode_summary">जेब में होने पर पीक डिस्प्ले को अक्षम करता है\nचेतावनी: सेंसर के उपयोग से बैटरी की खपत बढ़ सकती है!</string>
+    <string name="pref_ao_dnd">डू नॉट डिस्टर्ब</string>
+    <string name="pref_ao_dnd_summary">डू नॉट डिस्टर्ब मोड के दौरान पीक डिस्प्ले का व्यवहार</string>
     <string name="pref_ao_disable_on_dnd">डू नॉट डिस्टर्ब मोड में अक्षम करें</string>
-    <string name="pref_ao_disable_on_dnd_summary">केवल दिखाएँ जब डिस्टर्ब मोड निष्क्रिय न हो</string>
+    <string name="pref_ao_disable_on_dnd_summary">केवल तभी दिखाएं जब डू नॉट डिस्टर्ब मोड सक्रिय न हो</string>
     <string name="pref_ao_power_saving">पावर सेविंग मोड (रूट)</string>
-    <string name="pref_ao_power_saving_summary">जब PEEK डिस्प्ले सक्षम होता है तो सिस्टम के पावर सेवर मोड को चालू करता है</string>
-    <string name="pref_ao_double_tap_speed">डबल टैप गति</string>
-    <string name="pref_ao_double_tap_speed_summary">समय दो नल अलग हो सकते हैं (मिलीसेकंड में)</string>
+    <string name="pref_ao_power_saving_summary">पीक डिस्प्ले सक्षम होने पर सिस्टम पावर सेवर मोड चालू करें</string>
+    <string name="pref_ao_double_tap_speed">डबल टैप की गति</string>
+    <string name="pref_ao_double_tap_speed_summary">दो टैप के बीच का समय (मिलीसेकंड में)</string>
     <string name="pref_ao_double_tap_disabled">डबल-टैप अक्षम करें</string>
     <string name="pref_ao_double_tap_disabled_summary">पीक डिस्प्ले से बाहर निकलने के लिए डबल-टैप को अक्षम करता है (अनुशंसित नहीं)</string>
-    <string name="pref_ao_message">संदेश</string>
-    <string name="pref_ao_message_summary">एक संदेश जो पीक डिस्प्ले पर प्रदर्शित होता है</string>
-    <string name="pref_ao_date_format">तारिख का प्रारूप</string>
-    <string name="pref_ao_date_format_summary">पीक डिस्प्ले पर उपयोग की जाने वाली दिनांक प्रारूप</string>
+    <string name="pref_ao_message">मैसेज</string>
+    <string name="pref_ao_message_summary">पीक डिस्प्ले पर दिखने वाला मैसेज</string>
+    <string name="pref_ao_date_format">तारीख का फॉर्मेट</string>
+    <string name="pref_ao_date_format_summary">पीक डिस्प्ले पर उपयोग किया जाने वाला तारीख फॉर्मेट</string>
     <string name="pref_ao_date_format_dialog_text">आपको एक विशिष्ट पैटर्न का पालन करना होगा</string>
-    <string name="pref_ao_date_format_dialog_neutral">और अधिक जानें</string>
-    <string name="pref_ao_date_format_illegal">अवैध प्रारूप</string>
+    <string name="pref_ao_date_format_dialog_neutral">और जानें</string>
+    <string name="pref_ao_date_format_illegal">अवैध फॉर्मेट</string>
     <string name="pref_ao_calendar">इवेंट्स दिखाएं</string>
-    <string name="pref_ao_calendar_summary">अपने पीक डिस्प्ले पर अगले 24h में इवेंट दिखाएं</string>
-    <string name="pref_look_and_feel_charging">चार्ज एनीमेशन लुक</string>
-    <string name="pref_look_and_feel_charging_summary">चार्जिंग एनीमेशन का लुक बदल देता है</string>
-    <string name="pref_ao_background_image">पृष्ठभूमि छवि</string>
-    <string name="pref_ao_background_image_summary">पीक डिस्प्ले की पृष्ठभूमि छवि बदलें</string>
-    <string name="pref_look_and_feel_hide_display_cutouts">डिस्प्ले कटआउट छिपाएं</string>
-    <string name="pref_look_and_feel_hide_display_cutouts_summary">फुलस्क्रीन सामग्री पर डिस्प्ले कटआउट छिपाएं</string>
-    <string name="pref_look_and_feel_orientation">अभिविन्यास</string>
-    <string name="pref_look_and_feel_orientation_summary">डिस्प्ले के ओरिएंटेशन को बदल देता है</string>
-    <string name="pref_look_and_feel_heads_up">हेड्स अप नोटिफिकेशन (रूट)</string>
-    <string name="pref_look_and_feel_heads_up_summary">हेड्स अप नोटिफिकेशन को दिखाने से रोकता है (प्रयोगात्मक)</string>
+    <string name="pref_ao_calendar_summary">पीक डिस्प्ले पर अगले 24 घंटों के इवेंट्स दिखाएं</string>
+    <string name="pref_look_and_feel_charging">चार्जिंग एनीमेशन लुक</string>
+    <string name="pref_look_and_feel_charging_summary">चार्जिंग एनीमेशन का लुक बदलें</string>
+    <string name="pref_ao_background_image">बैकग्राउंड इमेज</string>
+    <string name="pref_ao_background_image_summary">पीक डिस्प्ले की बैकग्राउंड इमेज बदलें</string>
+    <string name="pref_look_and_feel_hide_display_cutouts">डिस्प्ले कटआउट छुपाएं</string>
+    <string name="pref_look_and_feel_hide_display_cutouts_summary">फुलस्क्रीन सामग्री पर डिस्प्ले कटआउट छुपाएं</string>
+    <string name="pref_look_and_feel_orientation">ओरिएंटेशन</string>
+    <string name="pref_look_and_feel_orientation_summary">डिस्प्ले का ओरिएंटेशन बदलें</string>
+    <string name="pref_look_and_feel_heads_up">हेड्स-अप नोटिफिकेशन (रूट)</string>
+    <string name="pref_look_and_feel_heads_up_summary">हेड्स-अप नोटिफिकेशन दिखाने से रोकें (प्रयोगात्मक)</string>
     <string name="pref_look_and_feel_weather">मौसम</string>
     <string name="pref_look_and_feel_weather_info">मौसम की जानकारी दिखाएं</string>
-    <string name="pref_look_and_feel_weather_info_summary">अपने पीक डिस्प्ले पर मौसम की जानकारी कॉन्फ़िगर करें</string>
-    <string name="pref_look_and_feel_weather_show_summary">अपने झलक प्रदर्शन पर मौसम की जानकारी दिखाएं</string>
-    <string name="pref_look_and_feel_weather_provider">पीक डिस्प्ले मौसम के डेटा के लिए wttr.in का उपयोग करता है। मौसम को प्राप्त करने से पहचान योग्य डेटा स्थानांतरित हो सकता है।</string>
+    <string name="pref_look_and_feel_weather_info_summary">पीक डिस्प्ले पर मौसम की जानकारी कॉन्फ़िगर करें</string>
+    <string name="pref_look_and_feel_weather_show_summary">पीक डिस्प्ले पर मौसम की जानकारी दिखाएं</string>
+    <string name="pref_look_and_feel_weather_provider">पीक डिस्प्ले मौसम डेटा के लिए wttr.in का उपयोग करता है। मौसम प्राप्त करने से पहचान योग्य डेटा ट्रांसफर हो सकता है।</string>
     <string name="pref_look_and_feel_weather_location">मौसम का स्थान</string>
-    <string name="pref_look_and_feel_weather_location_summary">मौसम की रिपोर्ट के लिए स्थान। इसे ऑटो-लोकेशन के लिए खाली छोड़ दें।</string>
-    <string name="pref_look_and_feel_weather_format">मौसम का प्रारूप</string>
-    <string name="pref_look_and_feel_weather_format_summary">पीक डिस्प्ले पर इस्तेमाल किया जाने वाला मौसम प्रारूप</string>
-    <string name="pref_look_and_feel_filter_notifications">फ़िल्टर सूचनाएँ</string>
-    <string name="pref_look_and_feel_filter_notifications_summary">चुनें, जो सूचनाएं दिखाने के लिए नहीं हैं</string>
-    <string name="pref_look_and_feel_filter_notifications_explanation">उन्हें ब्लॉक करने या उन्हें अनब्लॉक करने के लिए प्रविष्टियों पर टैप करें</string>
-    <string name="pref_look_and_feel_filter_notifications_blocked">से नोटिफिकेशन ब्लॉक करें</string>
-    <string name="pref_look_and_feel_filter_notifications_shown">से सूचनाएँ उपलब्ध हैं</string>
-    <string name="pref_look_and_feel_filter_notifications_empty">कोई सूचना उपलब्ध नहीं है</string>
-    <string name="pref_look_and_feel_filter_notifications_empty_summary">ऐसा लगता है कि दिखाने के लिए कुछ भी नहीं है</string>
-    <string name="pref_look_and_feel_filter_notifications_unknown">अज्ञात अनुप्रयोग</string>
+    <string name="pref_look_and_feel_weather_location_summary">मौसम रिपोर्ट के लिए स्थान। ऑटो-लोकेशन के लिए इसे खाली छोड़ दें।</string>
+    <string name="pref_look_and_feel_weather_format">मौसम का फॉर्मेट</string>
+    <string name="pref_look_and_feel_weather_format_summary">पीक डिस्प्ले पर उपयोग किया जाने वाला मौसम फॉर्मेट</string>
+    <string name="pref_look_and_feel_filter_notifications">नोटिफिकेशन फ़िल्टर करें</string>
+    <string name="pref_look_and_feel_filter_notifications_summary">चुनें कि कौन सी नोटिफिकेशन नहीं दिखानी हैं</string>
+    <string name="pref_look_and_feel_filter_notifications_explanation">ब्लॉक या अनब्लॉक करने के लिए प्रविष्टियों पर टैप करें</string>
+    <string name="pref_look_and_feel_filter_notifications_blocked">इनसे नोटिफिकेशन ब्लॉक हैं</string>
+    <string name="pref_look_and_feel_filter_notifications_shown">इनसे नोटिफिकेशन उपलब्ध हैं</string>
+    <string name="pref_look_and_feel_filter_notifications_empty">कोई नोटिफिकेशन उपलब्ध नहीं है</string>
+    <string name="pref_look_and_feel_filter_notifications_empty_summary">दिखाने के लिए कुछ भी नहीं है</string>
+    <string name="pref_look_and_feel_filter_notifications_unknown">अज्ञात ऐप</string>
     <string name="pref_look_and_feel_tint_notifications">टिंट नोटिफिकेशन</string>
-    <string name="pref_look_and_feel_tint_notifications_summary">उनके ऐप रंगों में टिंट सूचनाएं</string>
-    <string name="pref_look_and_feel_display_size">प्रदर्शन आकार</string>
-    <string name="pref_look_and_feel_display_size_summary">पीक डिस्प्ले का प्रदर्शन आकार है %1$d%%</string>
+    <string name="pref_look_and_feel_tint_notifications_summary">नोटिफिकेशन को उनके ऐप के रंगों में रंगे</string>
+    <string name="pref_look_and_feel_display_size">डिस्प्ले साइज</string>
+    <string name="pref_look_and_feel_display_size_summary">पीक डिस्प्ले का साइज %1$d%% है</string>
     <string name="pref_look_and_feel_rules">नियम</string>
-    <string name="pref_look_and_feel_rules_summary">पीक डिस्प्ले दिखाने के लिए नियंत्रण करें</string>
-    <string name="pref_look_and_feel_rules_charging_state">चार्जिंग स्टेट</string>
-    <string name="pref_look_and_feel_rules_charger">चार्जिंग प्रकार</string>
-    <string name="pref_look_and_feel_rules_charger_summary">चार्जिंग के रूप में कौन से चार्जिंग प्रकार गिनती करें</string>
-    <string name="pref_look_and_feel_rules_battery_level">बैटरी स्तर</string>
-    <string name="pref_look_and_feel_rules_battery_level_summary">केवल ऊपर दिखाओ %1$d%%</string>
-    <string name="pref_look_and_feel_rules_battery_level_summary_zero">किसी भी बैटरी स्तर पर दिखाएं</string>
+    <string name="pref_look_and_feel_rules_summary">पीक डिस्प्ले कब दिखेगा, इसे नियंत्रित करें</string>
+    <string name="pref_look_and_feel_rules_charging_state">चार्जिंग स्थिति</string>
+    <string name="pref_look_and_feel_rules_charger">चार्जर का प्रकार</string>
+    <string name="pref_look_and_feel_rules_charger_summary">किन चार्जर को चार्जिंग माना जाए</string>
+    <string name="pref_look_and_feel_rules_battery_level">बैटरी लेवल</string>
+    <string name="pref_look_and_feel_rules_battery_level_summary">केवल %1$d%% से ऊपर दिखाएं</string>
+    <string name="pref_look_and_feel_rules_battery_level_summary_zero">किसी भी बैटरी लेवल पर दिखाएं</string>
     <string name="pref_look_and_feel_rules_time">समय सीमा</string>
-    <string name="pref_look_and_feel_rules_time_summary">दिखाना %1$s को %2$s</string>
+    <string name="pref_look_and_feel_rules_time_summary">%1$s से %2$s तक दिखाएं</string>
     <string name="pref_look_and_feel_rules_timeout">टाइमआउट</string>
-    <string name="pref_look_and_feel_rules_timeout_summary_zero">कोई टाइमआउट सेट नहीं किया गया है</string>
-    <string name="pref_look_and_feel_rules_ambient_mode">परिवेश विधा</string>
-    <string name="pref_look_and_feel_rules_ambient_mode_summary">केवल एक अधिसूचना प्राप्त होने के बाद शो</string>
+    <string name="pref_look_and_feel_rules_timeout_summary_zero">कोई टाइमआउट सेट नहीं है</string>
+    <string name="pref_look_and_feel_rules_ambient_mode">एम्बिएंट मोड</string>
+    <string name="pref_look_and_feel_rules_ambient_mode_summary">केवल नोटिफिकेशन प्राप्त होने के बाद दिखाएं</string>
     <string name="pref_permissions">अनुमतियां</string>
     <string name="pref_permissions_summary">अनुमतियों से संबंधित सेटिंग्स</string>
-    <string name="pref_ignore_battery_optimizations">बैटरी अनुकूलन को अनदेखा करें</string>
+    <string name="pref_ignore_battery_optimizations">बैटरी ऑप्टिमाइजेशन अनदेखा करें</string>
     <string name="pref_ignore_battery_optimizations_summary">सिस्टम के कारण होने वाली देरी को रोकता है</string>
-    <string name="pref_notification">अधिसूचना अभिगम</string>
-    <string name="pref_notification_summary">अधिसूचना पहुंच को सक्षम या अक्षम करें</string>
-    <string name="pref_draw_over_other_apps">अन्य ऐप्स पर प्रदर्शित करें</string>
+    <string name="pref_notification">नोटिफिकेशन एक्सेस</string>
+    <string name="pref_notification_summary">नोटिफिकेशन एक्सेस सक्षम या अक्षम करें</string>
+    <string name="pref_draw_over_other_apps">अन्य ऐप्स के ऊपर दिखाएं</string>
     <string name="pref_draw_over_other_apps_summary">इस अनुमति को सक्षम या अक्षम करें</string>
-    <string name="pref_admin">युक्ति व्यवस्थापक</string>
-    <string name="pref_admin_summary">सामान्य मोड के लिए इस डिवाइस एडमिन को सक्रिय करें\nकृपया ध्यान दें कि आपको इसे अनइंस्टॉल करने से पहले ऐप के डिवाइस एडमिन विशेषाधिकारों को निष्क्रिय करना होगा!</string>
-    <string name="pref_root_mode">जड़ विधा</string>
-    <string name="pref_root_mode_summary">मूल कार्यक्षमता को सक्षम करता है</string>
+    <string name="pref_admin">डिवाइस एडमिन</string>
+    <string name="pref_admin_summary">नॉर्मल मोड के लिए डिवाइस एडमिन को सक्रिय करें\nकृपया ध्यान दें कि अनइंस्टॉल करने से पहले आपको ऐप के डिवाइस एडमिन विशेषाधिकारों को निष्क्रिय करना होगा!</string>
+    <string name="pref_root_mode">रूट मोड</string>
+    <string name="pref_root_mode_summary">रूट कार्यक्षमता को सक्षम करता है</string>
     <string name="help_center">सहायता केंद्र</string>
-    <string name="help_center_summary">अनइंस्टॉलिंग, अनपेक्षित, बैटरी ड्रेन</string>
-    <string name="help_center_missing_permissions_text">जब एक सेटिंग ग्रे हो जाती है और आपको पहले कुछ सक्षम करने के लिए कहती है, तो आपने अभी तक आवश्यक अनुमतियों को सक्षम नहीं किया है। लापता अनुमतियों को देने के लिए मुख्य पृष्ठ पर "अनुमतियाँ" पृष्ठ खोलें और आवश्यक अनुमतियों का उपयोग करने के लिए सहमति दें। अब आप उन सेटिंग्स को सक्षम कर सकते हैं जिन्हें उन अनुमतियों की आवश्यकता है।</string>
-    <string name="help_center_uninstall">कैसे अनइंस्टॉल करें</string>
-    <string name="help_center_uninstall_text">Android ऑपरेटिंग सिस्टम में डिज़ाइन दोष के कारण अनइंस्टॉल प्रक्रिया विफल हो सकती है। यदि प्रक्रिया को अनइंस्टॉल करने से पहले डिवाइस एडमिन की अनुमति अक्षम नहीं थी, तो विफल हो जाएगी। आपको अनइंस्टॉल करने से पहले डिवाइस एडमिन की अनुमति को अक्षम करना होगा।</string>
-    <string name="help_center_uninstall_button">अब अनइंस्टॉल करें</string>
+    <string name="help_center_summary">अनइंस्टॉल, देरी, बैटरी की खपत</string>
+    <string name="help_center_missing_permissions_text">जब कोई सेटिंग ग्रे हो जाती है और आपसे कुछ सक्षम करने को कहती है, तो इसका मतलब है कि आपने आवश्यक अनुमति नहीं दी है। अनुमति देने के लिए मुख्य पृष्ठ पर "अनुमतियां" खोलें और आवश्यक अनुमति दें। इसके बाद आप उन सेटिंग्स को सक्षम कर पाएंगे।</string>
+    <string name="help_center_uninstall">अनइंस्टॉल कैसे करें</string>
+    <string name="help_center_uninstall_text">एंड्रॉइड की वजह से अनइंस्टॉल विफल हो सकता है यदि डिवाइस एडमिन अनुमति पहले निष्क्रिय नहीं की गई थी। आपको अनइंस्टॉल करने से पहले डिवाइस एडमिन अनुमति को निष्क्रिय करना होगा।</string>
+    <string name="help_center_uninstall_button">अभी अनइंस्टॉल करें</string>
     <string name="help_center_delays">देरी को कैसे ठीक करें</string>
-    <string name="help_center_delays_text">कुछ निर्माता ऐप की कार्यक्षमता पर बैटरी लाइफ पसंद करते हैं, यही वजह है कि यह ऐप केवल कुछ उपकरणों पर देरी के साथ काम कर सकता है या नहीं। यदि आप देरी का अनुभव कर रहे हैं, तो ऐप के लिए बैटरी अनुकूलन को अक्षम करने का प्रयास करें या अन्य निर्माता-विशिष्ट सेटिंग्स की जांच करें।</string>
+    <string name="help_center_delays_text">कुछ निर्माता बैटरी लाइफ को प्राथमिकता देते हैं, जिससे ऐप कुछ डिवाइस पर देरी से काम कर सकता है। यदि आप देरी का अनुभव कर रहे हैं, तो ऐप के लिए बैटरी ऑप्टिमाइजेशन अक्षम करें या अन्य निर्माता-विशिष्ट सेटिंग्स देखें।</string>
     <string name="help_center_delays_button_one">बैटरी सेटिंग्स</string>
     <string name="help_center_delays_button_two">निर्माता-विशिष्ट</string>
-    <string name="help_center_battery_drain">बैटरी नाली के स्रोत का पता लगाना</string>
-    <string name="help_center_battery_drain_text">बैटरी नाली का एक कारण यह हो सकता है कि आप एलसीडी डिस्प्ले के साथ फोन का उपयोग कर रहे हैं। यह ऐप एक OLED डिस्प्ले वाले फोन के लिए डिज़ाइन किया गया है जो ऊर्जा को बचाने के लिए काले पिक्सेल को बंद कर सकता है। एलसीडी डिस्प्ले काले पिक्सेल को बंद नहीं कर सकते हैं, जिसके परिणामस्वरूप पीक डिस्प्ले सक्षम होने पर बहुत अधिक ऊर्जा का उपयोग करके डिस्प्ले का परिणाम होगा। एक कारण यह हो सकता है कि अन्य ऐप पृष्ठभूमि में चल रहे हैं जबकि पीक डिस्प्ले चल रहा है। एंड्रॉइड पीक डिस्प्ले की बैटरी की खपत के हिस्से के रूप में अपनी बैटरी की खपत को प्रदर्शित करेगा।</string>
-    <string name="loading">लोड करना</string>
-    <string name="missing_permissions">अनुमतियाँ गुम</string>
-    <string name="permissions_notification_access">इस सुविधा के लिए अधिसूचना पहुंच चालू करें</string>
-    <string name="permissions_device_admin_or_root">इस सुविधा के लिए डिवाइस व्यवस्थापक या रूट चालू करें</string>
+    <string name="help_center_battery_drain">बैटरी खपत के स्रोत का पता लगाना</string>
+    <string name="help_center_battery_drain_text">एक कारण यह हो सकता है कि आप LCD डिस्प्ले वाले फोन का उपयोग कर रहे हैं। यह ऐप OLED डिस्प्ले के लिए है जो काले पिक्सेल बंद कर सकता है। LCD डिस्प्ले काले पिक्सेल बंद नहीं कर सकते, जिससे अधिक बैटरी खर्च होती है। दूसरा कारण बैकग्राउंड में चल रहे अन्य ऐप हो सकते हैं।</string>
+    <string name="loading">लोड हो रहा है&#8230;</string>
+    <string name="missing_permissions">अनुमतियां नहीं मिलीं</string>
+    <string name="permissions_notification_access">इस फीचर के लिए नोटिफिकेशन एक्सेस चालू करें</string>
+    <string name="permissions_device_admin_or_root">इस फीचर के लिए डिवाइस एडमिन या रूट चालू करें</string>
     <string name="about">के बारे में</string>
-    <string name="about_summary">ऐप के बारे में</string>
-    <string name="about_app_version">एप्लिकेशन वेरीज़न</string>
-    <string name="about_privacy">बाह्य सामग्री</string>
-    <string name="about_privacy_desc">बाहरी सामग्री को GitHub से लोड किया जाएगा। अधिक जानकारी के लिए उनकी गोपनीयता नीति पढ़ें।</string>
-    <string name="about_privacy_policy">गोपनीयता नीति</string>
-    <string name="about_contributors">योगदानकर्ताओं</string>
-    <string name="about_contributors_desc">योगदानकर्ताओं की एक सूची</string>
+    <string name="about_summary">ऐप के बारे में जानकारी</string>
+    <string name="about_app_version">ऐप वर्जन</string>
+    <string name="about_privacy">बाहरी सामग्री</string>
+    <string name="about_privacy_desc">बाहरी सामग्री GitHub से लोड की जाएगी। अधिक जानकारी के लिए उनकी प्राइवेसी पॉलिसी पढ़ें।</string>
+    <string name="about_privacy_policy">प्राइवेसी पॉलिसी</string>
+    <string name="about_contributors">योगदानकर्ता</string>
+    <string name="about_contributors_desc">योगदानकर्ताओं की सूची</string>
     <string name="about_general">सामान्य</string>
-    <string name="about_github">जीथब रिपॉजिटरी</string>
+    <string name="about_github">GitHub रिपॉजिटरी</string>
     <string name="about_license">लाइसेंस</string>
-    <string name="about_icons">माउस</string>
-    <string name="about_icons_desc">ICons8 और Google द्वारा आइकन</string>
-    <string name="about_libraries">पुस्तकालय</string>
-    <string name="about_libraries_desc">सभी उपयोग किए गए पुस्तकालयों की एक सूची</string>
+    <string name="about_icons">आइकन</string>
+    <string name="about_icons_desc">Icons8 और Google द्वारा आइकन</string>
+    <string name="about_libraries">लाइब्रेरी</string>
+    <string name="about_libraries_desc">उपयोग की गई सभी लाइब्रेरी की सूची</string>
 
     <string-array name="pref_look_and_feel_rules_charging_state_display">
-        <item>किसी भी चार्जिंग स्टेट में दिखाएं</item>
+        <item>किसी भी स्थिति में दिखाएं</item>
         <item>केवल चार्ज करते समय दिखाएं</item>
         <item>केवल डिस्चार्ज करते समय दिखाएं</item>
     </string-array>
 
     <string-array name="pref_look_and_feel_rules_charger_display">
         <item>एसी</item>
-        <item>USB</item>
+        <item>यूएसबी</item>
         <item>वायरलेस</item>
     </string-array>
 
     <string-array name="pref_look_and_feel_orientation_display">
-        <item>स्वत ताला लगना</item>
-        <item>चित्र</item>
-        <item>परिदृश्य</item>
+        <item>ऑटो</item>
+        <item>पोर्ट्रेट</item>
+        <item>लैंडस्केप</item>
     </string-array>
 
     <string-array name="pref_ao_glowStyle_display">
         <item>सभी दिशाएं</item>
-        <item>बाएं और दाएं पक्ष</item>
-        <item>ऊपर और नीचे की ओर</item>
+        <item>बाएं और दाएं</item>
+        <item>ऊपर और नीचे</item>
     </string-array>
 
     <string-array name="pref_ao_background_image_array_display">
@@ -237,58 +237,58 @@
         <item>Tyler Lastovich</item>
         <item>Tyler Lastovich</item>
         <item>Tyler Lastovich</item>
-        <item>रिवाज़</item>
+        <item>कस्टम</item>
     </string-array>
     <string name="notification_action_reply">जवाब दें</string>
-    <string name="pref_ao_showAlbumArt">प्रदर्शन एल्बम कला</string>
-    <string name="pref_ao_interactive_notification_icons">इंटरैक्टिव अधिसूचना आइकन</string>
-    <string name="pref_ao_interactive_notification_icons_summary">पूर्वावलोकन दिखाने के लिए अधिसूचना आइकन पर लॉन्ग प्रेस और फिर निष्पादित करने के लिए वांछित कार्रवाई के लिए स्वाइप करें</string>
-    <string name="pref_ao_invert_interaction_highlight">उलटा बातचीत हाइलाइट</string>
-    <string name="pref_ao_invert_interaction_highlight_summary">परिवर्तन के दौरान या निष्क्रिय होने के दौरान अधिसूचना आइकन हाइलाइट किए गए हैं या नहीं</string>
-    <string name="pref_ao_notification_icon_size">अधिसूचना आइकन आकार</string>
-    <string name="pref_ao_notification_icon_size_summary">अधिसूचना आइकन के आकार को बदल देता है</string>
-    <string name="pref_ao_notification_icon_top_padding">अधिसूचना आइकन शीर्ष पैडिंग</string>
-    <string name="pref_ao_notification_icon_top_padding_summary">अधिसूचना आइकन के ऊपर स्थान समायोजित करें</string>
-    <string name="pref_ao_notification_preview_position">अधिसूचना पूर्वावलोकन स्थिति</string>
-    <string name="pref_ao_notification_preview_position_summary">अधिसूचना आइकन के सापेक्ष अधिसूचना पूर्वावलोकन की स्थिति</string>
+    <string name="pref_ao_showAlbumArt">एल्बम आर्ट दिखाएं</string>
+    <string name="pref_ao_interactive_notification_icons">इंटरैक्टिव नोटिफिकेशन आइकन</string>
+    <string name="pref_ao_interactive_notification_icons_summary">प्रिव्यू देखने के लिए नोटिफिकेशन आइकन पर लॉन्ग प्रेस करें और फिर एक्शन के लिए स्वाइप करें</string>
+    <string name="pref_ao_invert_interaction_highlight">इंटरैक्शन हाईलाइट उलटें</string>
+    <string name="pref_ao_invert_interaction_highlight_summary">हाईलाइट करने का व्यवहार बदलें</string>
+    <string name="pref_ao_notification_icon_size">नोटिफिकेशन आइकन साइज</string>
+    <string name="pref_ao_notification_icon_size_summary">नोटिफिकेशन आइकन का साइज बदलें</string>
+    <string name="pref_ao_notification_icon_top_padding">नोटिफिकेशन आइकन टॉप पैडिंग</string>
+    <string name="pref_ao_notification_icon_top_padding_summary">नोटिफिकेशन आइकन के ऊपर की जगह बदलें</string>
+    <string name="pref_ao_notification_preview_position">नोटिफिकेशन प्रिव्यू स्थिति</string>
+    <string name="pref_ao_notification_preview_position_summary">आइकन के सापेक्ष प्रिव्यू की स्थिति</string>
     <string name="pref_ao_top_padding">टॉप पैडिंग</string>
-    <string name="pref_ao_top_padding_summary">प्रदर्शन तत्वों की ऊर्ध्वाधर स्थिति को समायोजित करें</string>
+    <string name="pref_ao_top_padding_summary">डिस्प्ले तत्वों की लंबवत स्थिति बदलें</string>
     <string-array name="pref_ao_notification_preview_position_display">
-        <item>उपरोक्त आइकन</item>
-        <item>नीचे आइकन</item>
+        <item>आइकन के ऊपर</item>
+        <item>आइकन के नीचे</item>
     </string-array>
     <string-array name="pref_ao_notification_icon_size_display">
         <item>छोटा</item>
         <item>मानक</item>
-        <item>बढ़ा हुआ</item>
+        <item>बड़ा</item>
     </string-array>
-    <string name="pref_ao_fingerprint_interaction">फिंगरप्रिंट इंटरेक्शन मोड</string>
-    <string name="pref_ao_fingerprint_interaction_summary">फिंगरप्रिंट आइकन के साथ कैसे बातचीत करें</string>
+    <string name="pref_ao_fingerprint_interaction">फिंगरप्रिंट इंटरैक्शन मोड</string>
+    <string name="pref_ao_fingerprint_interaction_summary">फिंगरप्रिंट आइकन के साथ कैसे इंटरैक्ट करें</string>
     <string name="pref_ao_fingerprint_interaction_swipe">आइकन से स्वाइप करें</string>
-    <string name="pref_ao_fingerprint_interaction_longpress">लम्बी प्रेस</string>
-    <string name="pref_ao_swipe_notification_open">इसे खोलने के लिए अधिसूचना के लिए स्वाइप करें</string>
-    <string name="pref_ao_swipe_notification_open_summary">फिंगरप्रिंट आइकन से उन्हें स्वाइप करके खोलने की सूचना दें</string>
-    <string name="notification_dismiss">नकार देना</string>
+    <string name="pref_ao_fingerprint_interaction_longpress">लॉन्ग प्रेस</string>
+    <string name="pref_ao_swipe_notification_open">नोटिफिकेशन खोलने के लिए स्वाइप करें</string>
+    <string name="pref_ao_swipe_notification_open_summary">नोटिफिकेशन को स्वाइप करके खोलने की अनुमति दें</string>
+    <string name="notification_dismiss">हटाएं</string>
     <string name="pref_look_and_feel_rules_pickup_mode">पिकअप मोड</string>
     <string name="pref_look_and_feel_rules_pickup_mode_summary">केवल फोन उठाते समय दिखाएं</string>
     <string name="pref_pickup_sensitivity">पिकअप संवेदनशीलता</string>
-    <string name="pref_pickup_sensitivity_summary">पिक अप डिटेक्शन की संवेदनशीलता को समायोजित करें</string>
+    <string name="pref_pickup_sensitivity_summary">पिकअप डिटेक्शन की संवेदनशीलता बदलें</string>
     <string-array name="pref_pickup_sensitivity_display">
         <item>उच्च</item>
         <item>मध्यम</item>
         <item>कम</item>
     </string-array>
     <string name="pref_ao_lock_icon">लॉक आइकन का उपयोग करें</string>
-    <string name="pref_ao_lock_icon_summary">फिंगरप्रिंट आइकन को लॉक आइकन के साथ बदलें</string>
-    <string name="donate">दान करें</string>
-    <string name="donate_summary">पीक डिस्प्ले के विकास का समर्थन करें</string>
-    <string name="pref_look_and_feel_weather_unit">शाही इकाइयों का उपयोग करें</string>
-    <string name="pref_look_and_feel_weather_unit_summary">फ़ारेनहाइट में तापमान प्रदर्शित करें</string>
-    <string name="colorpicker_opacity">अस्पष्टता</string>
+    <string name="pref_ao_lock_icon_summary">फिंगरप्रिंट आइकन को लॉक आइकन से बदलें</string>
+    <string name="donate">डोनेट करें</string>
+    <string name="donate_summary">पीक डिस्प्ले के विकास में सहायता करें</string>
+    <string name="pref_look_and_feel_weather_unit">इंपीरियल यूनिट का उपयोग करें</string>
+    <string name="pref_look_and_feel_weather_unit_summary">तापमान फारेनहाइट में दिखाएं</string>
+    <string name="colorpicker_opacity">ओपेसिटी</string>
     <string name="colorpicker_color">रंग</string>
-    <string name="colorpicker_custom">रिवाज़</string>
+    <string name="colorpicker_custom">कस्टम</string>
     <string name="colorpicker_presets">प्रीसेट</string>
-    <string name="pref_look_and_feel_weather_refresh_interval">ताजा अंतराल</string>
+    <string name="pref_look_and_feel_weather_refresh_interval">रिफ्रेश अंतराल</string>
     <string name="pref_look_and_feel_weather_refresh_interval_label">मिनट</string>
-    <string name="pref_look_and_feel_weather_refresh_interval_disabled">अक्षम (प्रारंभ में एक बार फ़ेच करें)</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">अक्षम (शुरुआत में केवल एक बार)</string>
 </resources>
