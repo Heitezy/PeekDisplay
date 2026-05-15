@@ -281,7 +281,7 @@
     <string name="pref_ao_lock_icon_summary">Vervang het vingerafdrukpictogram door een slotpictogram</string>
     <string name="donate">Doneren</string>
     <string name="donate_summary">Ondersteun de ontwikkeling van Peek Display</string>
-    <string name="notification_action_reply">Beantwoorden</string>
+    <string name="notification_action_reply">Antwoord</string>
     <string name="pref_look_and_feel_weather_unit">Imperiale eenheden gebruiken</string>
     <string name="pref_look_and_feel_weather_unit_summary">Temperatuur weergeven in Fahrenheit</string>
     <string name="colorpicker_opacity">Ondoorzichtigheid</string>
