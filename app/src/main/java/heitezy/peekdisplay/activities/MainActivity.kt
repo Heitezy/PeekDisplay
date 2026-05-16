@@ -21,6 +21,7 @@ import heitezy.peekdisplay.helpers.Global
 import heitezy.peekdisplay.helpers.P
 import heitezy.peekdisplay.helpers.Permissions
 import heitezy.peekdisplay.services.ForegroundService
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
@@ -43,12 +44,14 @@ class MainActivity : BaseActivity() {
             ContextCompat.startForegroundService(this, Intent(this, ForegroundService::class.java))
         }
 
-        onBackPressedDispatcher.addCallback {
-            startActivity(
-                Intent(Intent.ACTION_MAIN)
-                    .addCategory(Intent.CATEGORY_HOME)
-                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
-            )
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+            onBackPressedDispatcher.addCallback {
+                startActivity(
+                    Intent(Intent.ACTION_MAIN)
+                        .addCategory(Intent.CATEGORY_HOME)
+                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
+                )
+            }
         }
 
         setContent {
