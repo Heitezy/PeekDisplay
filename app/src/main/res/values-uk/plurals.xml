@@ -3,11 +3,13 @@
     <plurals name="pref_look_and_feel_rules_timeout_summary">
         <item quantity="one">Зупинити через %d секунду</item>
         <item quantity="few">Зупинити через %d секунди</item>
+        <item quantity="many">Зупинити через %d секунд</item>
         <item quantity="other">Зупинити через %d секунд</item>
     </plurals>
     <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
         <item quantity="one">Кожну %d хвилину</item>
         <item quantity="few">Кожні %d хвилини</item>
+        <item quantity="many">Кожні %d хвилин</item>
         <item quantity="other">Кожні %d хвилин</item>
     </plurals>
 </resources>

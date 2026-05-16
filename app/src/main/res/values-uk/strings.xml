@@ -1,203 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="device_admin_description">Дозволити Peek Display вимикати екран</string>
-    <string name="notification_listener_description">Показувати кількість сповіщень на екрані</string>
+    <string name="notification_listener_description">Показувати сповіщення на екрані</string>
     <string name="service_text">Peek Display працює у фоновому режимі</string>
     <string name="service_channel">Сервісний канал</string>
-    <string name="setup_root_failed">Не вдалося отримати root-доступ! Спробуйте ще раз або перемкніть режим!</string>
-    <string name="device_admin">Адміністратор Пристрою</string>
-    <string name="device_admin_summary">Вам необхідно активувати права адміністратора або перемикнутись в root, щоб це додаток працював.</string>
-    <string name="notification_listener_service">Служба перевірки сповіщень</string>
-    <string name="notification_listener_service_summary">Вам необхідно ввімкнути службу перевірки сповіщень для додатку, щоб відображати лічильник сповіщень на екрані Peek Display.</string>
-    <string name="setup_draw_over_other_apps">Показувати поверх інших додатків</string>
-    <string name="setup_draw_over_other_apps_summary">Цей дозвіл потрібен для відображення Peek Display</string>
+    <string name="setup_root_failed">Не вдалося отримати root-доступ! Спробуйте ще раз або змініть режим!</string>
+    <string name="device_admin">Адміністратор пристрою</string>
+    <string name="device_admin_summary">Для роботи цієї програми необхідно активувати права адміністратора пристрою або перейти в root-режим.</string>
+    <string name="notification_listener_service">Доступ до сповіщень</string>
+    <string name="notification_listener_service_summary">Щоб відображати сповіщення на екрані Peek Display, необхідно надати програмі доступ до сповіщень.</string>
+    <string name="setup_draw_over_other_apps">Відображення поверх інших програм</string>
+    <string name="setup_draw_over_other_apps_summary">Цей дозвіл потрібен для відображення Peek Display.</string>
     <string name="setup_skip">Пропустити</string>
     <string name="setup_continue">Продовжити</string>
-    <string name="setup_error">Щось пішло не так! Будь ласка, спробуйте ще раз!</string>
-    <string name="charged">%1$d%% Заряджений</string>
-    <string name="shortcut_disabled">Відключено</string>
-    <string name="setup_phone_state">Зчитувати стан телефону</string>
-    <string name="setup_phone_state_summary">Цей дозвіл потрібен, щоб зупиняти Peek Display для вхідних дзвінків.</string>
-    <string name="setup_calendar">Зчитувати календар</string>
-    <string name="setup_calendar_summary">Щоб програма відображала ваші події на екрані, потрібно ввімкнути доступ до календаря.</string>
-    <string name="dialog_device_admin_text">Зверніть увагу, що перед видаленням додатку вам потрібно деактивувати права адміністратора пристрою! Щоб переконатися, що ви це зрозуміли, виконайте таку операцію: 7 + 12</string>
+    <string name="setup_error">Виникла помилка! Будь ласка, спробуйте ще раз!</string>
+    <string name="charged">%1$d%% заряджено</string>
+    <string name="shortcut_disabled">Вимкнено</string>
+    <string name="setup_phone_state">Стан телефону</string>
+    <string name="setup_phone_state_summary">Цей дозвіл потрібен для автоматичної зупинки Peek Display під час вхідних дзвінків.</string>
+    <string name="setup_calendar">Доступ до календаря</string>
+    <string name="setup_calendar_summary">Щоб програма відображала ваші події на екрані, потрібно надати доступ до календаря.</string>
+    <string name="dialog_device_admin_text">Зверніть увагу: перед видаленням програми необхідно деактивувати права адміністратора пристрою! Щоб підтвердити, що ви це зрозуміли, виконайте обчислення: 7 + 12</string>
     <string name="dialog_device_admin_result">Результат</string>
     <string name="dialog_device_admin_error">Неправильний результат. Спробуйте ще раз.</string>
-    <string name="app_description">Додаток для Android, який додає Peek Display з функцією AOD.</string>
+    <string name="app_description">Програма для Android, що додає функцію Peek Display (AOD).</string>
     <string name="pref_int_failed">Це значення не можна використовувати</string>
     <string name="pref_general">Загальні налаштування</string>
-    <string name="pref_enabled">Наразі ввімкнено</string>
-    <string name="pref_disabled">Наразі вимкнено</string>
+    <string name="pref_enabled">Увімкнено</string>
+    <string name="pref_disabled">Вимкнено</string>
     <string name="pref_always_on">Peek Display</string>
     <string name="pref_charging">Анімація заряджання</string>
-    <string name="pref_look_and_feel">Зовнішній вигляд і відчуття</string>
-    <string name="pref_ao_watch_face">Циферблат годинника</string>
-    <string name="pref_ao_watch_face_summary">Налаштування, пов’язані з циферблатом Peek Display</string>
+    <string name="pref_look_and_feel">Зовнішній вигляд</string>
+    <string name="pref_ao_watch_face">Циферблат</string>
+    <string name="pref_ao_watch_face_summary">Налаштування циферблата Peek Display</string>
     <string name="pref_ao_background">Фон</string>
-    <string name="pref_ao_background_summary">Налаштування, пов’язані з фоном Peek Display</string>
+    <string name="pref_ao_background_summary">Налаштування фону Peek Display</string>
     <string name="pref_ao_behavior">Поведінка</string>
-    <string name="pref_ao_behavior_summary">Налаштування, пов\'язані з поведінкою програми</string>
+    <string name="pref_ao_behavior_summary">Налаштування поведінки програми</string>
     <string name="pref_ao_other">Інші налаштування</string>
-    <string name="pref_look_and_feel_hour">Використовувати 12-годинний формат часу</string>
-    <string name="pref_look_and_feel_hour_summary_on">Наразі використовується: 12-годинний формат часу</string>
-    <string name="pref_look_and_feel_hour_summary_off">Наразі використовується: 24-годинний формат годинника</string>
-    <string name="pref_look_and_feel_am_pm">Показати AM/PM</string>
-    <string name="pref_look_and_feel_am_pm_summary">Показувати AM/PM у 12-годинному форматі часу</string>
-    <string name="pref_look_and_feel_ao">Зовнішній вигляд Peek Display</string>
-    <string name="about_icons">Іконки</string>
-    <string name="about_icons_desc">Іконки від Icons8 та Google</string>
+    <string name="pref_look_and_feel_hour">12-годинний формат часу</string>
+    <string name="pref_look_and_feel_hour_summary_on">Використовується: 12-годинний формат</string>
+    <string name="pref_look_and_feel_hour_summary_off">Використовується: 24-годинний формат</string>
+    <string name="pref_look_and_feel_am_pm">Показувати AM/PM</string>
+    <string name="pref_look_and_feel_am_pm_summary">Відображати AM/PM у 12-годинному форматі часу</string>
+    <string name="pref_look_and_feel_ao">Вигляд Peek Display</string>
+    <string name="about_icons">Значки</string>
+    <string name="about_icons_desc">Значки від Icons8 та Google</string>
     <string name="about_libraries">Бібліотеки</string>
     <string name="about_libraries_desc">Список усіх використаних бібліотек</string>
-    <string name="about_privacy">Зовнішній контент</string>
-    <string name="about_privacy_desc">Зовнішній контент буде завантажено з GitHub. Для отримання додаткової інформації ознайомтеся з їхньою політикою конфіденційності.</string>
+    <string name="about_privacy">Зовнішній вміст</string>
+    <string name="about_privacy_desc">Зовнішній вміст завантажується з GitHub. Ознайомтеся з їхньою політикою конфіденційності для отримання додаткової інформації.</string>
     <string name="about_privacy_policy">Політика конфіденційності</string>
     <string name="about_contributors">Учасники</string>
-    <string name="about_contributors_desc">Список учасників</string>
+    <string name="about_contributors_desc">Список учасників розробки</string>
     <string name="about_general">Загальне</string>
     <string name="about_github">Репозиторій GitHub</string>
     <string name="about_license">Ліцензія</string>
-    <string name="pref_look_and_feel_weather_location">Розташування погоди</string>
-    <string name="pref_look_and_feel_weather_location_summary">Місцезнаходження для звіту про погоду. Залиште це поле порожнім для автоматичного визначення місцезнаходження.</string>
+    <string name="pref_look_and_feel_weather_location">Місце розташування</string>
+    <string name="pref_look_and_feel_weather_location_summary">Місце для прогнозу погоди. Залиште порожнім для автоматичного визначення.</string>
     <string name="pref_look_and_feel_weather_format">Формат погоди</string>
-    <string name="pref_look_and_feel_weather_format_summary">Формат погоди, що використовується на Peek Display</string>
-    <string name="pref_look_and_feel_filter_notifications">Фільтрувати сповіщення</string>
-    <string name="pref_look_and_feel_filter_notifications_summary">Виберіть, які сповіщення не показувати</string>
-    <string name="pref_look_and_feel_filter_notifications_explanation">Натисніть на елементи, щоб заблокувати або розблокувати їх</string>
-    <string name="pref_look_and_feel_filter_notifications_blocked">Блокувати сповіщення від</string>
-    <string name="pref_look_and_feel_filter_notifications_shown">Сповіщення доступні з</string>
+    <string name="pref_look_and_feel_weather_format_summary">Формат відображення погоди на Peek Display</string>
+    <string name="pref_look_and_feel_filter_notifications">Фільтр сповіщень</string>
+    <string name="pref_look_and_feel_filter_notifications_summary">Виберіть, які сповіщення приховати</string>
+    <string name="pref_look_and_feel_filter_notifications_explanation">Натисніть, щоб заблокувати або розблокувати сповіщення від програми</string>
+    <string name="pref_look_and_feel_filter_notifications_blocked">Заблоковані сповіщення від:</string>
+    <string name="pref_look_and_feel_filter_notifications_shown">Дозволені сповіщення від:</string>
     <string name="pref_look_and_feel_filter_notifications_empty">Немає доступних сповіщень</string>
-    <string name="pref_look_and_feel_filter_notifications_empty_summary">Здається, що немає чого показувати</string>
-    <string name="pref_look_and_feel_filter_notifications_unknown">Невідомий додаток</string>
-    <string name="pref_look_and_feel_tint_notifications">Тонувати сповіщення</string>
-    <string name="pref_look_and_feel_tint_notifications_summary">Тонувати сповіщення в кольорах їх програм</string>
+    <string name="pref_look_and_feel_filter_notifications_empty_summary">Схоже, тут нічого показувати</string>
+    <string name="pref_look_and_feel_filter_notifications_unknown">Невідома програма</string>
+    <string name="pref_look_and_feel_tint_notifications">Колір сповіщень</string>
+    <string name="pref_look_and_feel_tint_notifications_summary">Фарбувати сповіщення у кольори їхніх програм</string>
     <string name="pref_look_and_feel_display_size">Розмір відображення</string>
-    <string name="pref_look_and_feel_display_size_summary">Розмір відображення Peek Display становить %1$d%%</string>
+    <string name="pref_look_and_feel_display_size_summary">Розмір Peek Display: %1$d%%</string>
     <string name="pref_look_and_feel_rules">Правила</string>
-    <string name="pref_look_and_feel_rules_summary">Контролюйте, коли показувати Peek Display</string>
+    <string name="pref_look_and_feel_rules_summary">Керуйте умовами показу Peek Display</string>
     <string name="pref_look_and_feel_rules_charging_state">Стан заряджання</string>
     <string name="pref_look_and_feel_rules_charger">Тип заряджання</string>
-    <string name="pref_look_and_feel_rules_charger_summary">Виберіть, які типи заряджання враховуються як заряджання</string>
-    <string name="pref_look_and_feel_rules_battery_level">Рівень заряду батареї</string>
-    <string name="pref_look_and_feel_rules_battery_level_summary">Показувати лише вище %1$d%%</string>
-    <string name="pref_look_and_feel_rules_battery_level_summary_zero">Показувати за будь-якого рівня заряду батареї</string>
+    <string name="pref_look_and_feel_rules_charger_summary">Виберіть типи живлення, які вважатимуться заряджанням</string>
+    <string name="pref_look_and_feel_rules_battery_level">Рівень заряду</string>
+    <string name="pref_look_and_feel_rules_battery_level_summary">Показувати лише при заряді вище %1$d%%</string>
+    <string name="pref_look_and_feel_rules_battery_level_summary_zero">Показувати при будь-якому рівні заряду</string>
     <string name="pref_look_and_feel_rules_time">Період часу</string>
     <string name="pref_look_and_feel_rules_time_summary">Показувати з %1$s до %2$s</string>
     <string name="pref_look_and_feel_rules_timeout">Тайм-аут</string>
     <string name="pref_look_and_feel_rules_timeout_summary_zero">Тайм-аут не встановлено</string>
-    <string name="pref_look_and_feel_rules_ambient_mode">Режим Ambient</string>
+    <string name="pref_look_and_feel_rules_ambient_mode">Режим спокою</string>
     <string name="pref_look_and_feel_rules_ambient_mode_summary">Показувати лише після отримання сповіщення</string>
     <string name="pref_permissions">Дозволи</string>
-    <string name="pref_permissions_summary">Налаштування, пов\'язані з дозволами</string>
+    <string name="pref_permissions_summary">Налаштування дозволів програми</string>
     <string name="pref_ignore_battery_optimizations">Ігнорувати оптимізацію батареї</string>
-    <string name="pref_ignore_battery_optimizations_summary">Запобігає затримкам, спричиненим системою</string>
+    <string name="pref_ignore_battery_optimizations_summary">Запобігає затримкам роботи через систему енергозбереження</string>
     <string name="pref_notification">Доступ до сповіщень</string>
     <string name="pref_notification_summary">Увімкнути або вимкнути доступ до сповіщень</string>
-    <string name="pref_draw_over_other_apps">Відображати поверх інших програм</string>
-    <string name="pref_draw_over_other_apps_summary">Увімкнути або вимкнути цей дозвіл</string>
+    <string name="pref_draw_over_other_apps">Відображення поверх інших програм</string>
+    <string name="pref_draw_over_other_apps_summary">Увімкнути або вимкнути дозвіл на накладання</string>
     <string name="pref_admin">Адміністратор пристрою</string>
-    <string name="pref_admin_summary">Активує адміністратора цього пристрою для звичайного режиму\nЗверніть увагу, що перед видаленням програми потрібно деактивувати права адміністратора пристрою!</string>
+    <string name="pref_admin_summary">Активувати права адміністратора для звичайного режиму.\nПеред видаленням програми їх потрібно деактивувати!</string>
     <string name="pref_root_mode">Root-режим</string>
-    <string name="pref_root_mode_summary">Активує root-функції</string>
+    <string name="pref_root_mode_summary">Активувати root-функції</string>
     <string name="help_center">Довідковий центр</string>
-    <string name="help_center_summary">Видалення, зависання, розрядка батареї</string>
-    <string name="help_center_missing_permissions_text">Коли налаштування неактивне та пропонує спочатку щось увімкнути, це означає, що ви ще не ввімкнули необхідні дозволи. Щоб надати відсутні дозволи, відкрийте сторінку «Дозволи» на головній сторінці та погодьтеся на використання необхідних дозволів. Тепер ви можете ввімкнути налаштування, які потребують цих дозволів.</string>
-    <string name="help_center_uninstall">Як видалити</string>
-    <string name="help_center_uninstall_text">Процес видалення може завершитися невдачею через недоліки в операційній системі Android. Якщо дозвіл адміністратора пристрою не було вимкнено перед видаленням, процес завершиться невдачею. Перед видаленням потрібно вимкнути дозвіл адміністратора пристрою.</string>
+    <string name="help_center_summary">Видалення, затримки, розряджання батареї</string>
+    <string name="help_center_missing_permissions_text">Якщо налаштування неактивне, це означає, що ви ще не надали необхідні дозволи. Відкрийте сторінку «Дозволи» на головному екрані та надайте відповідні права. Після цього налаштування стануть доступними.</string>
+    <string name="help_center_uninstall">Як видалити програму</string>
+    <string name="help_center_uninstall_text">Процес видалення може бути заблокований системою Android, якщо дозвіл адміністратора пристрою не вимкнено. Вимкніть права адміністратора перед видаленням.</string>
     <string name="help_center_uninstall_button">Видалити зараз</string>
     <string name="help_center_delays">Як виправити затримки</string>
-    <string name="help_center_delays_text">Деякі виробники надають перевагу тривалості роботи батареї над функціональністю програми, тому ця програма може працювати лише із затримками або взагалі не працювати на деяких пристроях. Якщо у вас виникають затримки, спробуйте вимкнути оптимізацію роботи батареї для програми або перевірте інші налаштування, специфічні для виробника.</string>
+    <string name="help_center_delays_text">Деякі виробники обмежують роботу програм для заощадження заряду. Якщо програма працює із затримками, спробуйте вимкнути оптимізацію батареї або перевірте специфічні налаштування вашого пристрою.</string>
     <string name="help_center_delays_button_one">Налаштування батареї</string>
-    <string name="help_center_delays_button_two">Специфічні для виробника</string>
-    <string name="help_center_battery_drain">Виявлення причини розрядки акумулятора</string>
-    <string name="help_center_battery_drain_text">Однією з причин розрядки акумулятора може бути використання телефону з LCD-дисплеєм. Цей додаток розроблено для телефонів з OLED-дисплеєм, який може вимикати чорні пікселі для економії енергії. LCD-дисплеї не можуть вимикати чорні пікселі, що призведе до значно більшого споживання енергії дисплеєм, коли ввімкнено Peek Display. Іншою причиною може бути те, що інші програми працюють у фоновому режимі під час роботи Peek Display. Android відображатиме споживання енергії акумулятора як частину споживання енергії Peek Display.</string>
-    <string name="loading">Завантаження</string>
+    <string name="help_center_delays_button_two">Налаштування виробника</string>
+    <string name="help_center_battery_drain">Причини розряджання батареї</string>
+    <string name="help_center_battery_drain_text">Одна з причин — використання LCD-екрана. Ця програма створена для OLED-дисплеїв, де чорні пікселі вимикаються для економії енергії. LCD-екрани не можуть вимикати окремі пікселі, що призводить до значного споживання заряду. Також причиною можуть бути інші фонові процеси, споживання яких Android приписує Peek Display.</string>
+    <string name="loading">Завантаження…</string>
     <string name="missing_permissions">Відсутні дозволи</string>
     <string name="permissions_notification_access">Увімкніть доступ до сповіщень для цієї функції</string>
-    <string name="permissions_device_admin_or_root">Увімкніть адміністратора пристрою або root-доступ для цієї функції</string>
-    <string name="about">Відомості</string>
-    <string name="about_summary">Про додаток</string>
-    <string name="about_app_version">Версія додатку</string>
-    <string name="pref_look_and_feel_hide_display_cutouts">Приховати вирізи на дисплеї</string>
-    <string name="pref_look_and_feel_hide_display_cutouts_summary">Приховати вирізи дисплея для повноекранного контенту</string>
+    <string name="permissions_device_admin_or_root">Увімкніть права адміністратора або root-доступ для цієї функції</string>
+    <string name="about">Про програму</string>
+    <string name="about_summary">Інформація про додаток</string>
+    <string name="about_app_version">Версія програми</string>
+    <string name="pref_look_and_feel_hide_display_cutouts">Приховати вирізи екрана</string>
+    <string name="pref_look_and_feel_hide_display_cutouts_summary">Приховувати вирізи дисплея для повноекранного вмісту</string>
     <string name="pref_look_and_feel_orientation">Орієнтація</string>
-    <string name="pref_look_and_feel_orientation_summary">Змінює орієнтацію дисплея</string>
-    <string name="pref_look_and_feel_heads_up">Приховати спливаючі сповіщення (root)</string>
-    <string name="pref_look_and_feel_heads_up_summary">Запобігає показу спливаючих сповіщень вгорі екрану (експериментально)</string>
+    <string name="pref_look_and_feel_orientation_summary">Змінити орієнтацію дисплея</string>
+    <string name="pref_look_and_feel_heads_up">Приховати спливні сповіщення (root)</string>
+    <string name="pref_look_and_feel_heads_up_summary">Запобігає показу спливних сповіщень вгорі екрана (експериментально)</string>
     <string name="pref_look_and_feel_weather">Погода</string>
-    <string name="pref_look_and_feel_weather_info">Показати інформацію про погоду</string>
-    <string name="pref_look_and_feel_weather_info_summary">Налаштувати інформацію про погоду на своєму Peek Display</string>
-    <string name="pref_look_and_feel_weather_show_summary">Відображати інформацію про погоду на своєму Peek Display</string>
-    <string name="pref_look_and_feel_weather_provider">Peek Display використовує wttr.in для отримання даних про погоду. Отримання інформації про погоду може передавати ідентифіковані дані.</string>
+    <string name="pref_look_and_feel_weather_info">Інформація про погоду</string>
+    <string name="pref_look_and_feel_weather_info_summary">Налаштувати відображення погоди на Peek Display</string>
+    <string name="pref_look_and_feel_weather_show_summary">Відображати інформацію про погоду на екрані Peek Display</string>
+    <string name="pref_look_and_feel_weather_provider">Peek Display використовує wttr.in для отримання даних. Отримання погоди може передбачати передачу ідентифікаційних даних.</string>
     <string name="pref_ao_background_image">Фонове зображення</string>
-    <string name="pref_ao_dnd">Увімкнути режим «Не турбувати»</string>
-    <string name="pref_ao_dnd_summary">Вмикає режим «Не турбувати», коли працює Peek Display</string>
+    <string name="pref_ao_dnd">Вмикати режим «Не турбувати»</string>
+    <string name="pref_ao_dnd_summary">Вмикати режим «Не турбувати» під час роботи Peek Display</string>
     <string name="pref_ao_disable_on_dnd">Вимкнути в режимі «Не турбувати»</string>
-    <string name="pref_ao_disable_on_dnd_summary">Показувати лише тоді, коли режим \"Не турбувати\" неактивний</string>
-    <string name="pref_ao_power_saving">Режим енергозбереження (root)</string>
-    <string name="pref_ao_power_saving_summary">Вмикає режим енергозбереження системи, коли ввімкнено Peek Display</string>
+    <string name="pref_ao_disable_on_dnd_summary">Показувати Peek Display лише тоді, коли режим «Не турбувати» вимкнено</string>
+    <string name="pref_ao_power_saving">Енергозбереження (root)</string>
+    <string name="pref_ao_power_saving_summary">Вмикати системний режим енергозбереження під час роботи Peek Display</string>
     <string name="pref_ao_double_tap_speed">Швидкість подвійного натискання</string>
-    <string name="pref_ao_double_tap_speed_summary">Затримка між натисканнями (у мілісекундах)</string>
-    <string name="pref_ao_double_tap_disabled">Вимкнути подвійне торкання</string>
-    <string name="pref_ao_double_tap_disabled_summary">Вимикає подвійне натискання для виходу з Peek Display (не рекомендується)</string>
+    <string name="pref_ao_double_tap_speed_summary">Максимальний інтервал між натисканнями (у мс)</string>
+    <string name="pref_ao_double_tap_disabled">Вимкнути подвійне натискання</string>
+    <string name="pref_ao_double_tap_disabled_summary">Вимикає вихід з Peek Display подвійним натисканням (не рекомендовано)</string>
     <string name="pref_ao_message">Повідомлення</string>
-    <string name="pref_ao_message_summary">Повідомлення, яке відображається на Peek Display</string>
+    <string name="pref_ao_message_summary">Повідомлення, що відображається на Peek Display</string>
     <string name="pref_ao_date_format">Формат дати</string>
-    <string name="pref_ao_date_format_summary">Формат дати, що використовується на Peek Display</string>
-    <string name="pref_ao_date_format_dialog_text">Ви повинні дотримуватися певного патерну</string>
+    <string name="pref_ao_date_format_summary">Формат дати на екрані Peek Display</string>
+    <string name="pref_ao_date_format_dialog_text">Необхідно дотримуватися спеціального шаблону</string>
     <string name="pref_ao_date_format_dialog_neutral">Дізнатися більше</string>
     <string name="pref_ao_date_format_illegal">Неправильний формат</string>
-    <string name="pref_ao_calendar">Показати події</string>
-    <string name="pref_ao_calendar_summary">Відображати події на наступні 24 години на вашому Peek Display</string>
-    <string name="pref_look_and_feel_charging">Вигляд анімації зарядки</string>
-    <string name="pref_ao_smooth_animation">Анімація руху</string>
-    <string name="pref_ao_smooth_animation_summary">Анімуйте зміни положення</string>
+    <string name="pref_ao_calendar">Показувати події</string>
+    <string name="pref_ao_calendar_summary">Відображати події на наступні 24 години на екрані Peek Display</string>
+    <string name="pref_look_and_feel_charging">Вигляд анімації заряджання</string>
+    <string name="pref_ao_smooth_animation">Плавна анімація</string>
+    <string name="pref_ao_smooth_animation_summary">Анімувати зміну положення елементів</string>
     <string name="pref_ao_refresh_rate_optimization">Оптимізація частоти оновлення</string>
-    <string name="pref_ao_refresh_rate_optimization_summary">Використовує найнижчу доступну частоту оновлення, коли екран статичний, щоб заощадити заряд акумулятора</string>
-    <string name="pref_ao_force_brightness">Примусове встановлення певної яскравості на Peek Display</string>
-    <string name="pref_ao_force_brightness_summary">Натисніть, щоб змінити примусову яскравість</string>
+    <string name="pref_ao_refresh_rate_optimization_summary">Використовувати мінімальну частоту оновлення для статичного екрана для заощадження заряду</string>
+    <string name="pref_ao_force_brightness">Примусова яскравість</string>
+    <string name="pref_ao_force_brightness_summary">Встановити фіксовану яскравість для Peek Display</string>
     <string name="pref_ao_force_brightness_title">Яскравість</string>
-    <string name="pref_ao_force_brightness_example">Наскільки яскравим буде текст на вашому Peek Display.</string>
-    <string name="pref_ao_pocket_mode">Режим \"У кишені\"</string>
+    <string name="pref_ao_force_brightness_example">Це яскравість тексту на екрані Peek Display.</string>
+    <string name="pref_ao_pocket_mode">Режим «У кишені»</string>
     <string name="pref_look_and_feel_colors">Кольори</string>
-    <string name="pref_look_and_feel_colors_summary">Вибрати кольори для певних елементів</string>
+    <string name="pref_look_and_feel_colors_summary">Вибрати кольори для елементів</string>
     <string name="pref_look_and_feel_colors_clock">Колір годинника</string>
     <string name="pref_look_and_feel_colors_date">Колір дати</string>
     <string name="pref_look_and_feel_colors_battery">Колір батареї</string>
     <string name="pref_look_and_feel_colors_battery_arc">Колір батареї (M-Style)</string>
     <string name="pref_look_and_feel_colors_music_controls">Колір керування музикою</string>
-    <string name="pref_look_and_feel_colors_calendar">Колір події календаря</string>
+    <string name="pref_look_and_feel_colors_calendar">Колір подій календаря</string>
     <string name="pref_look_and_feel_colors_message">Колір повідомлення</string>
     <string name="pref_look_and_feel_colors_weather">Колір погоди</string>
     <string name="pref_look_and_feel_colors_notification">Колір сповіщень</string>
-    <string name="pref_look_and_feel_colors_fingerprint">Колір значка відбитка пальця</string>
+    <string name="pref_look_and_feel_colors_fingerprint">Колір відбитка пальця</string>
     <string name="pref_ao_showClock">Відображати час</string>
     <string name="pref_ao_showDate">Відображати дату</string>
-    <string name="pref_ao_showBatteryIcn">Відображати значок батареї</string>
-    <string name="pref_ao_showBattery">Відображати відсоток заряду батареї</string>
-    <string name="pref_ao_showMusicControls">Відображати елементи керування музикою</string>
-    <string name="pref_ao_showNotifications">Відображати кількість сповіщень</string>
-    <string name="pref_ao_showNotificationIcons">Відображати значки сповіщень</string>
-    <string name="pref_ao_fingerprint">Відображати значок відбитка пальця</string>
-    <string name="pref_ao_fingerprint_margin">Грань відбитка пальця</string>
+    <string name="pref_ao_showBatteryIcn">Показувати значок батареї</string>
+    <string name="pref_ao_showBattery">Показувати відсоток заряду</string>
+    <string name="pref_ao_showMusicControls">Керування музикою</string>
+    <string name="pref_ao_showNotifications">Кількість сповіщень</string>
+    <string name="pref_ao_showNotificationIcons">Значки сповіщень</string>
+    <string name="pref_ao_fingerprint">Значок відбитка пальця</string>
+    <string name="pref_ao_fingerprint_margin">Відступ відбитка пальця</string>
     <string name="pref_ao_fingerprint_margin_summary">Простір під значком відбитка пальця</string>
-    <string name="pref_ao_edgeGlow">Сяючі краї</string>
-    <string name="pref_ao_edgeGlow_summary">Краї екрану світяться, коли надходить сповіщення</string>
-    <string name="pref_ao_glowDuration">Тривалість світіння (у мілісекундах)</string>
-    <string name="pref_ao_glowDuration_summary">Тривалість, протягом якої краї світяться</string>
-    <string name="pref_ao_glowDelay">Затримка світіння (у мілісекундах)</string>
-    <string name="pref_ao_glowDelay_summary">Інтервал між світіннями</string>
-    <string name="pref_ao_glowStyle">Стиль світіння країв</string>
+    <string name="pref_ao_edgeGlow">Сяйво країв</string>
+    <string name="pref_ao_edgeGlow_summary">Краї екрана світяться при отриманні сповіщення</string>
+    <string name="pref_ao_glowDuration">Тривалість сяйва (у мс)</string>
+    <string name="pref_ao_glowDuration_summary">Як довго світитимуться краї екрана</string>
+    <string name="pref_ao_glowDelay">Затримка сяйва (у мс)</string>
+    <string name="pref_ao_glowDelay_summary">Інтервал між спалахами сяйва</string>
+    <string name="pref_ao_glowStyle">Стиль сяйва країв</string>
     <string name="pref_ao_glowStyle_summary">Змінює вигляд сяючих країв</string>
-    <string name="pref_ao_glowColor">Колір світіння країв</string>
-    <string name="pref_ao_glowColor_summary">Змінює колір сяючих країв</string>
-    <string name="pref_ao_vibration">Тривалість вібрації (у мілісекундах)</string>
-    <string name="pref_ao_vibration_summary">Тривалість вібрації телефону при подвійному торканні екрана</string>
+    <string name="pref_ao_glowColor">Колір сяйва країв</string>
+    <string name="pref_ao_glowColor_summary">Змінює колір сяйва країв</string>
+    <string name="pref_ao_vibration">Тривалість вібрації (у мс)</string>
+    <string name="pref_ao_vibration_summary">Тривалість вібрації при подвійному натисканні</string>
     <string name="pref_ao_animation_delay">Затримка руху (у хвилинах)</string>
-    <string name="pref_look_and_feel_ao_summary">Змінює вигляд Peek Display</string>
-    <string name="pref_ao_background_image_summary">Зміна фонового зображення Peek Display</string>
-    <string name="pref_look_and_feel_charging_summary">Змінює вигляд анімації заряджання</string>
-    <string name="pref_ao_pocket_mode_summary">Вимикає Peek Display у кишені\nПопередження: Використання датчика може призвести до збільшення використання заряду батареї!</string>
-    <string name="pref_ao_animation_delay_summary">Час між різними позиціями вмісту\nПопередження: Занадто високі значення можуть спричинити вигорання екрана!</string>
+    <string name="pref_look_and_feel_ao_summary">Налаштувати зовнішній вигляд Peek Display</string>
+    <string name="pref_ao_background_image_summary">Змінити фонове зображення Peek Display</string>
+    <string name="pref_look_and_feel_charging_summary">Виберіть стиль анімації заряджання</string>
+    <string name="pref_ao_pocket_mode_summary">Вимикає Peek Display у кишені.\nУвага: використання датчика може підвищити розряджання батареї!</string>
+    <string name="pref_ao_animation_delay_summary">Час між змінами положення вмісту.\nУвага: занадто великі значення можуть спричинити вигорання екрана!</string>
 
     <string-array name="pref_ao_glowStyle_display">
         <item>Усі сторони</item>
@@ -206,25 +206,25 @@
     </string-array>
 
     <string-array name="pref_look_and_feel_orientation_display">
-        <item>Автоматичне блокування</item>
+        <item>Автоблокування</item>
         <item>Портретна</item>
         <item>Ландшафтна</item>
     </string-array>
 
     <string-array name="pref_look_and_feel_rules_charger_display">
-        <item>Від розетки</item>
+        <item>Від мережі</item>
         <item>USB</item>
         <item>Бездротова</item>
     </string-array>
 
     <string-array name="pref_look_and_feel_rules_charging_state_display">
-        <item>Показувати за будь-якого стану заряджання</item>
-        <item>Показувати лише під час заряджання</item>
-        <item>Показувати лише під час розряджання</item>
+        <item>За будь-якого стану заряджання</item>
+        <item>Лише під час заряджання</item>
+        <item>Лише під час розряджання</item>
     </string-array>
 
     <string-array name="pref_ao_background_image_array_display">
-        <item>Жодного</item>
+        <item>Немає</item>
         <item>Daniel Olah</item>
         <item>Daniel Olah</item>
         <item>Daniel Olah</item>
@@ -237,58 +237,58 @@
         <item>Tyler Lastovich</item>
         <item>Tyler Lastovich</item>
         <item>Tyler Lastovich</item>
-        <item>Користувацьке</item>
+        <item>Власне</item>
     </string-array>
     <string name="notification_action_reply">Відповісти</string>
-    <string name="pref_ao_showAlbumArt">Відображати обкладинку альбому</string>
-    <string name="pref_ao_interactive_notification_icons">Інтерактивні іконки сповіщень</string>
-    <string name="pref_ao_interactive_notification_icons_summary">Довге натискання на іконках сповіщень, щоб показати попередній перегляд, а потім провести пальцем до бажаної дії для виконання</string>
-    <string name="pref_ao_invert_interaction_highlight">Інвертувати підсвічування взаємодії</string>
-    <string name="pref_ao_invert_interaction_highlight_summary">Підсвічувати іконки сповіщень під час взаємодії чи в режимі очікування</string>
-    <string name="pref_ao_notification_icon_size">Розмір іконок сповіщень</string>
-    <string name="pref_ao_notification_icon_size_summary">Змінити розмір іконок сповіщень</string>
-    <string name="pref_ao_notification_icon_top_padding">Верхній відступ для іконок сповіщень</string>
-    <string name="pref_ao_notification_icon_top_padding_summary">Відрегулюйте розмір простору вище іконок сповіщень</string>
-    <string name="pref_ao_notification_preview_position">Позиція попереднього перегляду сповіщення</string>
-    <string name="pref_ao_notification_preview_position_summary">Позиція попереднього перегляду відносно іконки сповіщення</string>
+    <string name="pref_ao_showAlbumArt">Обкладинка альбому</string>
+    <string name="pref_ao_interactive_notification_icons">Інтерактивні значки сповіщень</string>
+    <string name="pref_ao_interactive_notification_icons_summary">Тривале натискання на значок сповіщення показує попередній перегляд; проведіть до дії для виконання.</string>
+    <string name="pref_ao_invert_interaction_highlight">Інвертувати підсвічування</string>
+    <string name="pref_ao_invert_interaction_highlight_summary">Змінює режим підсвічування значків сповіщень при взаємодії</string>
+    <string name="pref_ao_notification_icon_size">Розмір значків сповіщень</string>
+    <string name="pref_ao_notification_icon_size_summary">Змінити розмір значків сповіщень</string>
+    <string name="pref_ao_notification_icon_top_padding">Верхній відступ значків сповіщень</string>
+    <string name="pref_ao_notification_icon_top_padding_summary">Відрегулюйте простір над значками сповіщень</string>
+    <string name="pref_ao_notification_preview_position">Позиція перегляду сповіщення</string>
+    <string name="pref_ao_notification_preview_position_summary">Позиція попереднього перегляду відносно значка сповіщення</string>
     <string name="pref_ao_top_padding">Верхній відступ</string>
-    <string name="pref_ao_top_padding_summary">Відрегулюйте розмір простору вище елементів відображення</string>
+    <string name="pref_ao_top_padding_summary">Відрегулюйте вертикальне положення елементів відображення</string>
     <string-array name="pref_ao_notification_preview_position_display">
-        <item>Вище іконки</item>
-        <item>Нижче іконки</item>
+        <item>Над значком</item>
+        <item>Під значком</item>
     </string-array>
     <string-array name="pref_ao_notification_icon_size_display">
         <item>Маленькі</item>
         <item>Стандартні</item>
         <item>Збільшені</item>
     </string-array>
-    <string name="pref_ao_fingerprint_interaction">Режим взаємодії з іконкою відбитку пальця</string>
-    <string name="pref_ao_fingerprint_interaction_summary">Як взаємодіяти з іконкою відбитку пальця</string>
-    <string name="pref_ao_fingerprint_interaction_swipe">Провести від іконки</string>
-    <string name="pref_ao_fingerprint_interaction_longpress">Довге натискання</string>
-    <string name="pref_ao_swipe_notification_open">Провести до сповіщення, щоб відкрити його</string>
-    <string name="pref_ao_swipe_notification_open_summary">Дозволити відкривати сповіщення, проводячи до них пальцем від іконки відбитку пальця</string>
+    <string name="pref_ao_fingerprint_interaction">Взаємодія з відбитком пальця</string>
+    <string name="pref_ao_fingerprint_interaction_summary">Спосіб взаємодії зі значком відбитка пальця</string>
+    <string name="pref_ao_fingerprint_interaction_swipe">Провести від значка</string>
+    <string name="pref_ao_fingerprint_interaction_longpress">Тривале натискання</string>
+    <string name="pref_ao_swipe_notification_open">Відкривати проведенням</string>
+    <string name="pref_ao_swipe_notification_open_summary">Дозволити відкривати сповіщення проведенням від значка відбитка пальця</string>
     <string name="notification_dismiss">Відхилити</string>
     <string name="pref_look_and_feel_rules_pickup_mode">Режим PickUp</string>
-    <string name="pref_look_and_feel_rules_pickup_mode_summary">Показати лише під час піднімання пристрою</string>
+    <string name="pref_look_and_feel_rules_pickup_mode_summary">Показувати лише при піднятті пристрою</string>
     <string name="pref_pickup_sensitivity">Чутливість PickUp</string>
-    <string name="pref_pickup_sensitivity_summary">Відрегулюйте чутливість виявлення піднімання</string>
+    <string name="pref_pickup_sensitivity_summary">Налаштувати чутливість виявлення підняття пристрою</string>
     <string-array name="pref_pickup_sensitivity_display">
         <item>Висока</item>
         <item>Середня</item>
         <item>Низька</item>
     </string-array>
-    <string name="pref_ao_lock_icon">Використовувати іконку блокування</string>
-    <string name="pref_ao_lock_icon_summary">Замінити іконку відбитку пальця на іконку блокування</string>
-    <string name="donate">Підтримати</string>
+    <string name="pref_ao_lock_icon">Значок блокування</string>
+    <string name="pref_ao_lock_icon_summary">Замінити значок відбитка пальця на значок замка</string>
+    <string name="donate">Підтримати проект</string>
     <string name="donate_summary">Підтримайте розробку Peek Display</string>
-    <string name="pref_look_and_feel_weather_unit">Використовувати імперські одиниці</string>
+    <string name="pref_look_and_feel_weather_unit">Імперські одиниці</string>
     <string name="pref_look_and_feel_weather_unit_summary">Відображати температуру у градусах Фаренгейта</string>
     <string name="colorpicker_opacity">Непрозорість</string>
     <string name="colorpicker_color">Колір</string>
     <string name="colorpicker_custom">Власний</string>
-    <string name="colorpicker_presets">Пресети</string>
+    <string name="colorpicker_presets">Шаблони</string>
     <string name="pref_look_and_feel_weather_refresh_interval">Інтервал оновлення</string>
     <string name="pref_look_and_feel_weather_refresh_interval_label">Хвилин</string>
-    <string name="pref_look_and_feel_weather_refresh_interval_disabled">Вимкнено (одноразове отримання при запуску)</string>
+    <string name="pref_look_and_feel_weather_refresh_interval_disabled">Вимкнено (оновити один раз при запуску)</string>
 </resources>
