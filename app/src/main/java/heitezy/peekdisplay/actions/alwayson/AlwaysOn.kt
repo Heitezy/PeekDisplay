@@ -224,6 +224,7 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
             edgeGlowDelay = prefs.get(P.EDGE_GLOW_DELAY, P.EDGE_GLOW_DELAY_DEFAULT),
             edgeGlowStyle = prefs.get(P.EDGE_GLOW_STYLE, P.EDGE_GLOW_STYLE_DEFAULT),
             disableDoubleTap = prefs.get(P.DISABLE_DOUBLE_TAP, P.DISABLE_DOUBLE_TAP_DEFAULT),
+            doubleTapSpeed = prefs.get(P.DOUBLE_TAP_SPEED, P.DOUBLE_TAP_SPEED_DEFAULT).toLong(),
             backgroundImageRes = prefs.backgroundImage(),
             customBackground = customBgBitmap,
             notificationIconSize = prefs.get(P.NOTIFICATION_ICON_SIZE, P.NOTIFICATION_ICON_SIZE_DEFAULT),
@@ -559,12 +560,18 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
                 },
                 onDoubleTap = {
                     onInteractionStarted()
-                    if (!peekState.disableDoubleTap) {
-                        val duration = prefs.get(P.VIBRATION_DURATION, P.VIBRATION_DURATION_DEFAULT).toLong()
+                    if (!peekState.disableDoubleTap && peekState.touchedNotificationIndex == null) {
+                        val duration =
+                            prefs.get(P.VIBRATION_DURATION, P.VIBRATION_DURATION_DEFAULT).toLong()
                         if (duration > 0) {
                             val vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                vibrator.vibrate(VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE))
+                                vibrator.vibrate(
+                                    VibrationEffect.createOneShot(
+                                        duration,
+                                        VibrationEffect.DEFAULT_AMPLITUDE
+                                    )
+                                )
                             } else {
                                 @Suppress("DEPRECATION")
                                 vibrator.vibrate(duration)

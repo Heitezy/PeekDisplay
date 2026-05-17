@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
@@ -44,6 +45,8 @@ import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalViewConfiguration
+import androidx.compose.ui.platform.ViewConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
@@ -113,419 +116,429 @@ fun Content(
         actionBoundsMap.clear()
     }
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .pointerInput(Unit) {
-                awaitPointerEventScope {
-                    var currentActionIndex: Int? = null
-                    var isOverPreview = false
-                    var previewActive = false
+    val currentViewConfiguration = LocalViewConfiguration.current
+    val customViewConfiguration = remember(state.doubleTapSpeed) {
+        object : ViewConfiguration by currentViewConfiguration {
+            override val doubleTapTimeoutMillis: Long
+                get() = state.doubleTapSpeed
+        }
+    }
 
-                    while (true) {
-                        val event = awaitPointerEvent()
-                        val position = event.changes.first().position
+    CompositionLocalProvider(LocalViewConfiguration provides customViewConfiguration) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .pointerInput(state.doubleTapSpeed) {
+                    awaitPointerEventScope {
+                        var currentActionIndex: Int? = null
+                        var isOverPreview = false
+                        var previewActive = false
 
-                        when (event.type) {
-                            PointerEventType.Press -> {
-                                currentActionIndex = null
-                                isOverPreview = false
-                                previewActive = false
-                                onNotificationHovered(null)
+                        while (true) {
+                            val event = awaitPointerEvent()
+                            val position = event.changes.first().position
 
-                                if (currentInteractive.value) {
-                                    iconBoundsMap.forEach { (index, bounds) ->
-                                        if (bounds.contains(position)) {
-                                            previewActive = true
-                                            actionBoundsMap.clear()
-                                            onNotificationHoldStarted(index)
-                                        }
-                                    }
-                                }
-                            }
+                            when (event.type) {
+                                PointerEventType.Press -> {
+                                    currentActionIndex = null
+                                    isOverPreview = false
+                                    previewActive = false
+                                    onNotificationHovered(null)
 
-                            PointerEventType.Move -> {
-                                if (previewActive) {
-                                    var foundIcon = false
-                                    iconBoundsMap.forEach { (index, bounds) ->
-                                        if (bounds.contains(position)) {
-                                            foundIcon = true
-                                            if (currentTouchedIndex.value != index) {
-                                                currentActionIndex = null
-                                                isOverPreview = false
+                                    if (currentInteractive.value) {
+                                        iconBoundsMap.forEach { (index, bounds) ->
+                                            if (bounds.contains(position)) {
+                                                previewActive = true
                                                 actionBoundsMap.clear()
                                                 onNotificationHoldStarted(index)
                                             }
                                         }
                                     }
+                                }
 
-                                    if (!foundIcon) {
-                                        var foundAction = false
-                                        actionBoundsMap.forEach { (actionIndex, bounds) ->
+                                PointerEventType.Move -> {
+                                    if (previewActive) {
+                                        var foundIcon = false
+                                        iconBoundsMap.forEach { (index, bounds) ->
                                             if (bounds.contains(position)) {
-                                                currentActionIndex = actionIndex
-                                                isOverPreview = false
-                                                foundAction = true
+                                                foundIcon = true
+                                                if (currentTouchedIndex.value != index) {
+                                                    currentActionIndex = null
+                                                    isOverPreview = false
+                                                    actionBoundsMap.clear()
+                                                    onNotificationHoldStarted(index)
+                                                }
                                             }
                                         }
 
-                                        if (!foundAction) {
-                                            isOverPreview =
-                                                previewBoundsRef.value?.contains(position) == true
-                                            currentActionIndex = null
+                                        if (!foundIcon) {
+                                            var foundAction = false
+                                            actionBoundsMap.forEach { (actionIndex, bounds) ->
+                                                if (bounds.contains(position)) {
+                                                    currentActionIndex = actionIndex
+                                                    isOverPreview = false
+                                                    foundAction = true
+                                                }
+                                            }
+
+                                            if (!foundAction) {
+                                                isOverPreview =
+                                                    previewBoundsRef.value?.contains(position) == true
+                                                currentActionIndex = null
+                                            }
                                         }
+                                    }
+
+                                    if (currentIsFpTouched.value && state.swipeNotificationOpen) {
+                                        var hoveredIndex: Int? = null
+                                        iconBoundsMap.forEach { (index, bounds) ->
+                                            if (bounds.contains(position)) {
+                                                hoveredIndex = index
+                                            }
+                                        }
+                                        onNotificationHovered(hoveredIndex)
                                     }
                                 }
 
-                                if (currentIsFpTouched.value && state.swipeNotificationOpen) {
-                                    var hoveredIndex: Int? = null
-                                    iconBoundsMap.forEach { (index, bounds) ->
-                                        if (bounds.contains(position)) {
-                                            hoveredIndex = index
-                                        }
-                                    }
-                                    onNotificationHovered(hoveredIndex)
-                                }
-                            }
-
-                            PointerEventType.Release -> {
-                                val touchedIndex = currentTouchedIndex.value
-                                when {
-                                    previewActive && touchedIndex != null -> {
-                                        if (currentActionIndex != null) {
-                                            if (currentActionIndex == -1) {
-                                                onDismissNotification(touchedIndex)
-                                                onNotificationHoldFinished()
-                                            } else {
-                                                val sbn =
-                                                    currentDetailedNotifications.value.getOrNull(
-                                                        touchedIndex
-                                                    )
-                                                val action = sbn?.notification?.actions?.getOrNull(
-                                                    currentActionIndex
-                                                )
-
-                                                val isReply =
-                                                    action?.remoteInputs?.any { it.allowFreeFormInput } == true ||
-                                                            (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P &&
-                                                                    action?.semanticAction == Notification.Action.SEMANTIC_ACTION_REPLY)
-
-                                                if (isReply) {
-                                                    onReplyActionClick(
-                                                        touchedIndex,
+                                PointerEventType.Release -> {
+                                    val touchedIndex = currentTouchedIndex.value
+                                    when {
+                                        previewActive && touchedIndex != null -> {
+                                            if (currentActionIndex != null) {
+                                                if (currentActionIndex == -1) {
+                                                    onDismissNotification(touchedIndex)
+                                                    onNotificationHoldFinished()
+                                                } else {
+                                                    val sbn =
+                                                        currentDetailedNotifications.value.getOrNull(
+                                                            touchedIndex
+                                                        )
+                                                    val action = sbn?.notification?.actions?.getOrNull(
                                                         currentActionIndex
                                                     )
-                                                } else {
-                                                    onActionClick(touchedIndex, currentActionIndex)
-                                                    onNotificationHoldFinished()
+
+                                                    val isReply =
+                                                        action?.remoteInputs?.any { it.allowFreeFormInput } == true ||
+                                                                (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P &&
+                                                                        action?.semanticAction == Notification.Action.SEMANTIC_ACTION_REPLY)
+
+                                                    if (isReply) {
+                                                        onReplyActionClick(
+                                                            touchedIndex,
+                                                            currentActionIndex
+                                                        )
+                                                    } else {
+                                                        onActionClick(touchedIndex, currentActionIndex)
+                                                        onNotificationHoldFinished()
+                                                    }
+                                                }
+                                            } else {
+                                                if (isOverPreview) {
+                                                    onOpenNotification(touchedIndex)
+                                                }
+                                                onNotificationHoldFinished()
+                                            }
+                                        }
+
+                                        currentIsFpTouched.value -> {
+                                            iconBoundsMap.forEach { (index, bounds) ->
+                                                if (state.swipeNotificationOpen) {
+                                                    if (bounds.contains(position)) {
+                                                        onOpenNotification(index)
+                                                    }
                                                 }
                                             }
-                                        } else {
-                                            if (isOverPreview) {
-                                                onOpenNotification(touchedIndex)
+                                            onFingerprintTouch(false, 0f, 0f)
+                                        }
+
+                                        else -> {
+                                            if (currentTouchedIndex.value != null) {
+                                                onNotificationHoldFinished()
                                             }
-                                            onNotificationHoldFinished()
                                         }
                                     }
 
-                                    currentIsFpTouched.value -> {
-                                        iconBoundsMap.forEach { (index, bounds) ->
-                                            if (state.swipeNotificationOpen) {
-                                                if (bounds.contains(position)) {
-                                                    onOpenNotification(index)
-                                                }
-                                            }
-                                        }
-                                        onFingerprintTouch(false, 0f, 0f)
-                                    }
-
-                                    else -> {
-                                        if (currentTouchedIndex.value != null) {
-                                            onNotificationHoldFinished()
-                                        }
-                                    }
+                                    currentActionIndex = null
+                                    isOverPreview = false
+                                    previewActive = false
+                                    onNotificationHovered(null)
                                 }
-
-                                currentActionIndex = null
-                                isOverPreview = false
-                                previewActive = false
-                                onNotificationHovered(null)
                             }
                         }
                     }
                 }
-            }
-    ) {
-        if ((state.albumArt == null || !state.showAlbumArt) && state.backgroundImageRes != null) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(
-                        top = if (isLandscape) 0.dp else state.topPadding.dp,
-                        start = 16.dp,
-                        end = 16.dp
-                    ),
-                contentAlignment = if (isLandscape) Alignment.CenterStart else Alignment.TopCenter
-            ) {
-                if (state.backgroundImageRes == -1) {
-                    state.customBackground?.let { bitmap ->
+        ) {
+            if ((state.albumArt == null || !state.showAlbumArt) && state.backgroundImageRes != null) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(
+                            top = if (isLandscape) 0.dp else state.topPadding.dp,
+                            start = 16.dp,
+                            end = 16.dp
+                        ),
+                    contentAlignment = if (isLandscape) Alignment.CenterStart else Alignment.TopCenter
+                ) {
+                    if (state.backgroundImageRes == -1) {
+                        state.customBackground?.let { bitmap ->
+                            Image(
+                                bitmap = bitmap.asImageBitmap(),
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .alpha(0.5f),
+                                contentScale = ContentScale.None
+                            )
+                        }
+                    } else {
                         Image(
-                            bitmap = bitmap.asImageBitmap(),
+                            painter = painterResource(id = state.backgroundImageRes),
                             contentDescription = null,
                             modifier = Modifier
                                 .alpha(0.5f),
                             contentScale = ContentScale.None
                         )
                     }
-                } else {
-                    Image(
-                        painter = painterResource(id = state.backgroundImageRes),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .alpha(0.5f),
-                        contentScale = ContentScale.None
-                    )
-                }
-            }
-        }
-
-        EdgeGlow(state)
-
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .offset { IntOffset(0, state.driftY.dp.roundToPx()) }) {
-            if (state.showAlbumArt) {
-                state.albumArt?.let { bitmap ->
-                    Box(
-                        modifier = Modifier
-                            .then(
-                                if (isLandscape) Modifier
-                                    .fillMaxHeight()
-                                    .aspectRatio(1f)
-                                    .align(Alignment.CenterStart)
-                                else Modifier
-                                    .fillMaxWidth()
-                                    .aspectRatio(1f)
-                                    .align(Alignment.TopCenter)
-                            )
-                    ) {
-                        Image(
-                            bitmap = bitmap.asImageBitmap(),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .alpha(0.6f),
-                            contentScale = ContentScale.Crop
-                        )
-                        Box(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .background(
-                                    Brush.verticalGradient(
-                                        colors = listOf(Color.Transparent, Color.Black),
-                                        startY = 0f,
-                                        endY = Float.POSITIVE_INFINITY
-                                    )
-                                )
-                        )
-                    }
                 }
             }
 
-            Column(
+            EdgeGlow(state)
+
+            Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = state.topPadding.dp, start = 16.dp, end = 16.dp)
-                    .scale(state.scale)
-                    .pointerInput(Unit) {
-                        detectTapGestures(
-                            onDoubleTap = { onDoubleTap() },
-                            onPress = { onDown() }
-                        )
-                    },
-                horizontalAlignment = if (state.theme == P.USER_THEME_SAMSUNG2 || isLandscape) Alignment.Start else state.textAlign.toAlignment(),
-                verticalArrangement = Arrangement.Top
-            ) {
-                val themeSettings = getThemeSettings(state.theme)
-
-                if (state.theme == P.USER_THEME_MOTO) {
-                    MStyle(state)
-                } else if (state.isSamsung3) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center,
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Clock(state)
-                        if (state.showClock || state.showDate) {
+                    .offset { IntOffset(0, state.driftY.dp.roundToPx()) }) {
+                if (state.showAlbumArt) {
+                    state.albumArt?.let { bitmap ->
+                        Box(
+                            modifier = Modifier
+                                .then(
+                                    if (isLandscape) Modifier
+                                        .fillMaxHeight()
+                                        .aspectRatio(1f)
+                                        .align(Alignment.CenterStart)
+                                    else Modifier
+                                        .fillMaxWidth()
+                                        .aspectRatio(1f)
+                                        .align(Alignment.TopCenter)
+                                )
+                        ) {
+                            Image(
+                                bitmap = bitmap.asImageBitmap(),
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .alpha(0.6f),
+                                contentScale = ContentScale.Crop
+                            )
                             Box(
                                 modifier = Modifier
-                                    .padding(horizontal = 16.dp)
-                                    .width(2.dp)
-                                    .height(with(density) { themeSettings.bigTextSize.toDp() * 1.5f })
-                                    .background(Color.White)
+                                    .fillMaxSize()
+                                    .background(
+                                        Brush.verticalGradient(
+                                            colors = listOf(Color.Transparent, Color.Black),
+                                            startY = 0f,
+                                            endY = Float.POSITIVE_INFINITY
+                                        )
+                                    )
                             )
                         }
+                    }
+                }
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(top = state.topPadding.dp, start = 16.dp, end = 16.dp)
+                        .scale(state.scale)
+                        .pointerInput(Unit) {
+                            detectTapGestures(
+                                onDoubleTap = { onDoubleTap() },
+                                onPress = { onDown() }
+                            )
+                        },
+                    horizontalAlignment = if (state.theme == P.USER_THEME_SAMSUNG2 || isLandscape) Alignment.Start else state.textAlign.toAlignment(),
+                    verticalArrangement = Arrangement.Top
+                ) {
+                    val themeSettings = getThemeSettings(state.theme)
+
+                    if (state.theme == P.USER_THEME_MOTO) {
+                        MStyle(state)
+                    } else if (state.isSamsung3) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center,
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Clock(state)
+                            if (state.showClock || state.showDate) {
+                                Box(
+                                    modifier = Modifier
+                                        .padding(horizontal = 16.dp)
+                                        .width(2.dp)
+                                        .height(with(density) { themeSettings.bigTextSize.toDp() * 1.5f })
+                                        .background(Color.White)
+                                )
+                            }
+                            Date(state)
+                        }
+                    } else {
+                        Clock(state)
                         Date(state)
                     }
-                } else {
-                    Clock(state)
-                    Date(state)
-                }
 
-                if (state.theme != P.USER_THEME_MOTO) {
-                    Battery(state)
-                }
+                    if (state.theme != P.USER_THEME_MOTO) {
+                        Battery(state)
+                    }
 
-                Music(state, onSkipPrevious, onSkipNext, onTitleClick)
-                Calendar(state)
-                Message(state)
-                Weather(state)
-                NotificationCount(state)
+                    Music(state, onSkipPrevious, onSkipNext, onTitleClick)
+                    Calendar(state)
+                    Message(state)
+                    Weather(state)
+                    NotificationCount(state)
 
-                if (!isLandscape) {
-                    Notifications(
-                        state = state,
-                        onPositioned = { index, bounds ->
-                            iconBoundsMap[index] = bounds
-                            onBoundsUpdated(
-                                iconBoundsMap.toMap(),
-                                actionBoundsMap.toMap(),
-                                fpBoundsRef.value,
-                                previewBoundsRef.value
-                            )
-                        }
-                    )
+                    if (!isLandscape) {
+                        Notifications(
+                            state = state,
+                            onPositioned = { index, bounds ->
+                                iconBoundsMap[index] = bounds
+                                onBoundsUpdated(
+                                    iconBoundsMap.toMap(),
+                                    actionBoundsMap.toMap(),
+                                    fpBoundsRef.value,
+                                    previewBoundsRef.value
+                                )
+                            }
+                        )
+                    }
                 }
             }
-        }
 
-        if (isLandscape) {
-            Notifications(
+            if (isLandscape) {
+                Notifications(
+                    state = state,
+                    onPositioned = { index, bounds ->
+                        iconBoundsMap[index] = bounds
+                        onBoundsUpdated(
+                            iconBoundsMap.toMap(),
+                            actionBoundsMap.toMap(),
+                            fpBoundsRef.value,
+                            previewBoundsRef.value
+                        )
+                    }
+                )
+            }
+
+            Fingerprint(
                 state = state,
-                onPositioned = { index, bounds ->
-                    iconBoundsMap[index] = bounds
+                onTouchStateChanged = onFingerprintTouch,
+                onLongPress = onFingerprintLongPress,
+                onPositioned = { bounds ->
+                    fpBoundsRef.value = bounds
                     onBoundsUpdated(
                         iconBoundsMap.toMap(),
                         actionBoundsMap.toMap(),
-                        fpBoundsRef.value,
+                        bounds,
                         previewBoundsRef.value
                     )
                 }
             )
-        }
 
-        Fingerprint(
-            state = state,
-            onTouchStateChanged = onFingerprintTouch,
-            onLongPress = onFingerprintLongPress,
-            onPositioned = { bounds ->
-                fpBoundsRef.value = bounds
-                onBoundsUpdated(
-                    iconBoundsMap.toMap(),
-                    actionBoundsMap.toMap(),
-                    bounds,
-                    previewBoundsRef.value
-                )
-            }
-        )
+            val iconBounds = state.touchedNotificationIndex?.let { iconBoundsMap[it] }
+            if (state.touchedNotificationIndex != null && iconBounds != null) {
+                val above = state.notificationPreviewPosition == "above"
 
-        val iconBounds = state.touchedNotificationIndex?.let { iconBoundsMap[it] }
-        if (state.touchedNotificationIndex != null && iconBounds != null) {
-            val above = state.notificationPreviewPosition == "above"
+                SubcomposeLayout(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .zIndex(10f)
+                ) { constraints ->
+                    val sidePaddingPx = with(density) { 16.dp.roundToPx() }
+                    val gapPx = with(density) { 8.dp.roundToPx() }
 
-            SubcomposeLayout(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .zIndex(10f)
-            ) { constraints ->
-                val sidePaddingPx = with(density) { 16.dp.roundToPx() }
-                val gapPx = with(density) { 8.dp.roundToPx() }
+                    var previewMaxWidth = if (isLandscape) (constraints.maxWidth / 3)
+                    else (constraints.maxWidth * 0.9f).toInt()
 
-                var previewMaxWidth = if (isLandscape) (constraints.maxWidth / 3)
-                else (constraints.maxWidth * 0.9f).toInt()
-
-                if (isLandscape) {
-                    val availableWidth = if (above) {
-                        (iconBounds.left - sidePaddingPx - gapPx).toInt()
-                    } else {
-                        (constraints.maxWidth - iconBounds.right - sidePaddingPx - gapPx).toInt()
-                    }
-                    previewMaxWidth = previewMaxWidth.coerceAtMost(availableWidth.coerceAtLeast(0))
-                }
-
-                val previewConstraints = Constraints(
-                    minWidth = 0,
-                    maxWidth = previewMaxWidth,
-                    minHeight = 0,
-                    maxHeight = constraints.maxHeight
-                )
-
-                val previewPlaceable = subcompose("preview") {
-                    NotificationPreview(
-                        state = state,
-                        onActionClick = onActionClick,
-                        onReplyActionClick = onReplyActionClick,
-                        onDismissNotification = onDismissNotification,
-                        onReplyTextChange = onReplyTextChange,
-                        onSendReply = onSendReply,
-                        onPositioned = { bounds ->
-                            previewBoundsRef.value = bounds
-                            onBoundsUpdated(
-                                iconBoundsMap.toMap(),
-                                actionBoundsMap.toMap(),
-                                fpBoundsRef.value,
-                                bounds
-                            )
-                        },
-                        onActionPositioned = { actionIndex, bounds ->
-                            actionBoundsMap[actionIndex] = bounds
-                            onBoundsUpdated(
-                                iconBoundsMap.toMap(),
-                                actionBoundsMap.toMap(),
-                                fpBoundsRef.value,
-                                previewBoundsRef.value
-                            )
+                    if (isLandscape) {
+                        val availableWidth = if (above) {
+                            (iconBounds.left - sidePaddingPx - gapPx).toInt()
+                        } else {
+                            (constraints.maxWidth - iconBounds.right - sidePaddingPx - gapPx).toInt()
                         }
+                        previewMaxWidth = previewMaxWidth.coerceAtMost(availableWidth.coerceAtLeast(0))
+                    }
+
+                    val previewConstraints = Constraints(
+                        minWidth = 0,
+                        maxWidth = previewMaxWidth,
+                        minHeight = 0,
+                        maxHeight = constraints.maxHeight
                     )
-                }.first().measure(previewConstraints)
 
-                val previewW = previewPlaceable.width
-                val previewH = previewPlaceable.height
-
-                val previewX: Int
-                val previewY: Int
-
-                if (isLandscape) {
-                    val iconCenterY = ((iconBounds.top + iconBounds.bottom) / 2f).toInt()
-                    previewY = (iconCenterY - previewH / 2)
-                        .coerceIn(
-                            sidePaddingPx,
-                            constraints.maxHeight - previewH - sidePaddingPx
+                    val previewPlaceable = subcompose("preview") {
+                        NotificationPreview(
+                            state = state,
+                            onActionClick = onActionClick,
+                            onReplyActionClick = onReplyActionClick,
+                            onDismissNotification = onDismissNotification,
+                            onReplyTextChange = onReplyTextChange,
+                            onSendReply = onSendReply,
+                            onPositioned = { bounds ->
+                                previewBoundsRef.value = bounds
+                                onBoundsUpdated(
+                                    iconBoundsMap.toMap(),
+                                    actionBoundsMap.toMap(),
+                                    fpBoundsRef.value,
+                                    bounds
+                                )
+                            },
+                            onActionPositioned = { actionIndex, bounds ->
+                                actionBoundsMap[actionIndex] = bounds
+                                onBoundsUpdated(
+                                    iconBoundsMap.toMap(),
+                                    actionBoundsMap.toMap(),
+                                    fpBoundsRef.value,
+                                    previewBoundsRef.value
+                                )
+                            }
                         )
+                    }.first().measure(previewConstraints)
 
-                    if (above) {
-                        previewX = (iconBounds.left - previewW - gapPx).toInt()
-                            .coerceAtLeast(sidePaddingPx)
+                    val previewW = previewPlaceable.width
+                    val previewH = previewPlaceable.height
+
+                    val previewX: Int
+                    val previewY: Int
+
+                    if (isLandscape) {
+                        val iconCenterY = ((iconBounds.top + iconBounds.bottom) / 2f).toInt()
+                        previewY = (iconCenterY - previewH / 2)
+                            .coerceIn(
+                                sidePaddingPx,
+                                constraints.maxHeight - previewH - sidePaddingPx
+                            )
+
+                        if (above) {
+                            previewX = (iconBounds.left - previewW - gapPx).toInt()
+                                .coerceAtLeast(sidePaddingPx)
+                        } else {
+                            previewX = (iconBounds.right + gapPx).toInt()
+                                .coerceAtMost(constraints.maxWidth - previewW - sidePaddingPx)
+                        }
                     } else {
-                        previewX = (iconBounds.right + gapPx).toInt()
-                            .coerceAtMost(constraints.maxWidth - previewW - sidePaddingPx)
-                    }
-                } else {
-                    previewY = if (above) {
-                        (iconBounds.top - previewH - gapPx).toInt()
-                            .coerceAtLeast(sidePaddingPx)
-                    } else {
-                        (iconBounds.bottom + gapPx).toInt()
-                            .coerceAtMost(constraints.maxHeight - previewH - sidePaddingPx)
+                        previewY = if (above) {
+                            (iconBounds.top - previewH - gapPx).toInt()
+                                .coerceAtLeast(sidePaddingPx)
+                        } else {
+                            (iconBounds.bottom + gapPx).toInt()
+                                .coerceAtMost(constraints.maxHeight - previewH - sidePaddingPx)
+                        }
+
+                        previewX = (constraints.maxWidth - previewW) / 2
                     }
 
-                    previewX = (constraints.maxWidth - previewW) / 2
-                }
-
-                layout(constraints.maxWidth, constraints.maxHeight) {
-                    previewPlaceable.placeRelative(previewX, previewY)
+                    layout(constraints.maxWidth, constraints.maxHeight) {
+                        previewPlaceable.placeRelative(previewX, previewY)
+                    }
                 }
             }
         }

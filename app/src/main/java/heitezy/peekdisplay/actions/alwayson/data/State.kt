@@ -69,6 +69,7 @@ data class State(
     val edgeGlowDelay: Int = 2000,
     val edgeGlowStyle: String = "all",
     val disableDoubleTap: Boolean = false,
+    val doubleTapSpeed: Long = 300L,
     val hasNewNotifications: Boolean = false,
     val backgroundImageRes: Int? = null,
     val customBackground: Bitmap? = null,
