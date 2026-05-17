@@ -77,6 +77,7 @@ private fun BrightnessScreen(onBack: () -> Unit) {
         ) {
             Box(
                 modifier = Modifier
+                    .fillMaxWidth()
                     .weight(1f)
                     .background(Color.Black),
                 contentAlignment = Alignment.Center
