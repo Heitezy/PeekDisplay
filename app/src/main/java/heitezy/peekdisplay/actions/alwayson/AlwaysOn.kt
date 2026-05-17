@@ -1075,13 +1075,34 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
     override fun onNotificationsChanged() {
         if (!servicesRunning) return
         
-        // Update peekState with new notifications
+        val oldTouchedIndex = peekState.touchedNotificationIndex
+        val oldSbn = if (oldTouchedIndex != null) peekState.detailedNotifications.getOrNull(oldTouchedIndex) else null
+
+        val newNotifications = NotificationService.notifications.toList()
+        val newDetailed = NotificationService.detailed.toList()
+
+        var newTouchedIndex: Int? = null
+        if (oldSbn != null) {
+            newTouchedIndex = newDetailed.indexOfFirst { it.key == oldSbn.key }
+            if (newTouchedIndex == -1) newTouchedIndex = null
+        }
+
         peekState = peekState.copy(
-            notifications = NotificationService.notifications.toList(),
-            detailedNotifications = NotificationService.detailed.toList(),
-            hasNewNotifications = NotificationService.count > lastNotificationCount
+            notifications = newNotifications,
+            detailedNotifications = newDetailed,
+            touchedNotificationIndex = newTouchedIndex,
+            hasNewNotifications = NotificationService.count > lastNotificationCount,
+            isReplyMode = if (newTouchedIndex == null) false else peekState.isReplyMode,
+            replyText = if (newTouchedIndex == null) TextFieldValue("") else peekState.replyText,
+            replyActionIndex = if (newTouchedIndex == null) null else peekState.replyActionIndex
         )
         
+        if (oldTouchedIndex != null && newTouchedIndex == null) {
+            onInteractionEnded()
+            resumeTimeout()
+            resetTimeout()
+        }
+
         // Update the last count for next comparison
         lastNotificationCount = NotificationService.count
         updateRefreshRate()

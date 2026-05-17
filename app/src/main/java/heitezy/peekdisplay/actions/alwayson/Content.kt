@@ -1,5 +1,6 @@
 package heitezy.peekdisplay.actions.alwayson
 
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.os.Build
 import androidx.compose.foundation.Canvas
@@ -21,7 +22,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
@@ -71,6 +71,7 @@ import heitezy.peekdisplay.actions.alwayson.styles.getThemeSettings
 import heitezy.peekdisplay.actions.alwayson.styles.toAlignment
 import heitezy.peekdisplay.helpers.P
 
+@SuppressLint("RememberReturnType")
 @Composable
 fun Content(
     state: State,
@@ -106,7 +107,7 @@ fun Content(
     val currentIsFpTouched = rememberUpdatedState(state.isFingerprintTouched)
     val currentTouchedIndex = rememberUpdatedState(state.touchedNotificationIndex)
 
-    LaunchedEffect(state.notifications) {
+    remember(state.notifications) {
         iconBoundsMap.clear()
         actionBoundsMap.clear()
     }
