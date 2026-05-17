@@ -511,11 +511,10 @@ fun Content(
 
                     if (isLandscape) {
                         val iconCenterY = ((iconBounds.top + iconBounds.bottom) / 2f).toInt()
-                        previewY = (iconCenterY - previewH / 2)
-                            .coerceIn(
-                                sidePaddingPx,
-                                constraints.maxHeight - previewH - sidePaddingPx
-                            )
+                        val maxY = (constraints.maxHeight - previewH - sidePaddingPx).coerceAtLeast(
+                            sidePaddingPx
+                        )
+                        previewY = (iconCenterY - previewH / 2).coerceIn(sidePaddingPx, maxY)
 
                         if (above) {
                             previewX = (iconBounds.left - previewW - gapPx).toInt()
