@@ -51,7 +51,10 @@ fun FormatDialog(
         onDismissRequest = onDismiss,
         title = { Text(title) },
         text = {
-            Column {
+            Column(
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState())
+            ) {
                 OutlinedTextField(
                     value = text,
                     onValueChange = {
@@ -251,7 +254,9 @@ fun RadioButtonDialog(
         title = { Text(title) },
         text = {
             Column(
-                modifier = Modifier.selectableGroup()
+                modifier = Modifier
+                    .selectableGroup()
+                    .verticalScroll(rememberScrollState())
             ) {
                 entries.forEachIndexed { index, label ->
                     val value = entryValues[index]
@@ -305,7 +310,9 @@ fun ColorPickerDialog(
         title = { Text(text = title) },
         text = {
             Column(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
@@ -489,7 +496,11 @@ fun MultiSelectDialog(
         onDismissRequest = onDismiss,
         title = { Text(title) },
         text = {
-            Column(modifier = Modifier.selectableGroup()) {
+            Column(
+                modifier = Modifier
+                    .selectableGroup()
+                    .verticalScroll(rememberScrollState())
+            ) {
                 entries.forEachIndexed { index, label ->
                     val value = entryValues[index]
                     Row(
