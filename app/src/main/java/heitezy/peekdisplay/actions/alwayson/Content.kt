@@ -106,6 +106,7 @@ fun Content(
     val currentInteractive = rememberUpdatedState(state.interactiveNotifications)
     val currentIsFpTouched = rememberUpdatedState(state.isFingerprintTouched)
     val currentTouchedIndex = rememberUpdatedState(state.touchedNotificationIndex)
+    val currentDetailedNotifications = rememberUpdatedState(state.detailedNotifications)
 
     remember(state.notifications) {
         iconBoundsMap.clear()
@@ -197,7 +198,7 @@ fun Content(
                                                 onNotificationHoldFinished()
                                             } else {
                                                 val sbn =
-                                                    state.detailedNotifications.getOrNull(
+                                                    currentDetailedNotifications.value.getOrNull(
                                                         touchedIndex
                                                     )
                                                 val action = sbn?.notification?.actions?.getOrNull(
