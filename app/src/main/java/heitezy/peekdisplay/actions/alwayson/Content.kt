@@ -205,11 +205,9 @@ fun Content(
                                                 )
 
                                                 val isReply =
-                                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                                                        action?.semanticAction == Notification.Action.SEMANTIC_ACTION_REPLY
-                                                    } else {
-                                                        action?.remoteInputs?.any { it.allowFreeFormInput } == true
-                                                    }
+                                                    action?.remoteInputs?.any { it.allowFreeFormInput } == true ||
+                                                            (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P &&
+                                                                    action?.semanticAction == Notification.Action.SEMANTIC_ACTION_REPLY)
 
                                                 if (isReply) {
                                                     onReplyActionClick(

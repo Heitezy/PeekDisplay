@@ -221,7 +221,8 @@ fun NotificationPreview(
     fun actionHasReplyInput(action: Notification.Action): Boolean =
         action.remoteInputs?.any { ri ->
             ri.allowFreeFormInput
-        } == true
+        } == true || (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P &&
+                action.semanticAction == Notification.Action.SEMANTIC_ACTION_REPLY)
 
     val focusRequester = FocusRequester()
     val keyboardController = LocalSoftwareKeyboardController.current
