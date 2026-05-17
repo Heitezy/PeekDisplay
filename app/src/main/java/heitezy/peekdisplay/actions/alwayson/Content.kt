@@ -271,13 +271,17 @@ fun Content(
             if ((state.albumArt == null || !state.showAlbumArt) && state.backgroundImageRes != null) {
                 Box(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .padding(
-                            top = if (isLandscape) 0.dp else state.topPadding.dp,
-                            start = 16.dp,
-                            end = 16.dp
+                        .then(
+                            if (isLandscape) Modifier
+                                .fillMaxHeight()
+                                .fillMaxWidth(0.5f)
+                                .align(Alignment.CenterStart)
+                                .padding(start = 16.dp, end = 16.dp)
+                            else Modifier
+                                .fillMaxSize()
+                                .padding(top = state.topPadding.dp, start = 16.dp, end = 16.dp)
                         ),
-                    contentAlignment = if (isLandscape) Alignment.CenterStart else Alignment.TopCenter
+                    contentAlignment = if (isLandscape) Alignment.Center else Alignment.TopCenter
                 ) {
                     if (state.backgroundImageRes == -1) {
                         state.customBackground?.let { bitmap ->
@@ -334,81 +338,102 @@ fun Content(
                                 modifier = Modifier
                                     .fillMaxSize()
                                     .background(
-                                        Brush.verticalGradient(
-                                            colors = listOf(Color.Transparent, Color.Black),
-                                            startY = 0f,
-                                            endY = Float.POSITIVE_INFINITY
-                                        )
+                                        if (isLandscape) {
+                                            Brush.horizontalGradient(
+                                                colors = listOf(Color.Transparent, Color.Black),
+                                                startX = 0f,
+                                                endX = Float.POSITIVE_INFINITY
+                                            )
+                                        } else {
+                                            Brush.verticalGradient(
+                                                colors = listOf(Color.Transparent, Color.Black),
+                                                startY = 0f,
+                                                endY = Float.POSITIVE_INFINITY
+                                            )
+                                        }
                                     )
                             )
                         }
                     }
                 }
 
-                Column(
+                Box(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .padding(top = state.topPadding.dp, start = 16.dp, end = 16.dp)
-                        .scale(state.scale)
-                        .pointerInput(Unit) {
-                            detectTapGestures(
-                                onDoubleTap = { onDoubleTap() },
-                                onPress = { onDown() }
-                            )
-                        },
-                    horizontalAlignment = if (state.theme == P.USER_THEME_SAMSUNG2 || isLandscape) Alignment.Start else state.textAlign.toAlignment(),
-                    verticalArrangement = Arrangement.Top
+                        .then(
+                            if (isLandscape) Modifier
+                                .fillMaxHeight()
+                                .fillMaxWidth(0.5f)
+                                .align(Alignment.CenterStart)
+                            else Modifier.fillMaxSize()
+                        )
                 ) {
-                    val themeSettings = getThemeSettings(state.theme)
-
-                    if (state.theme == P.USER_THEME_MOTO) {
-                        MStyle(state)
-                    } else if (state.isSamsung3) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.Center,
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            Clock(state)
-                            if (state.showClock || state.showDate) {
-                                Box(
-                                    modifier = Modifier
-                                        .padding(horizontal = 16.dp)
-                                        .width(2.dp)
-                                        .height(with(density) { themeSettings.bigTextSize.toDp() * 1.5f })
-                                        .background(Color.White)
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(top = state.topPadding.dp, start = 16.dp, end = 16.dp)
+                            .scale(state.scale)
+                            .pointerInput(Unit) {
+                                detectTapGestures(
+                                    onDoubleTap = { onDoubleTap() },
+                                    onPress = { onDown() }
                                 )
+                            },
+                        horizontalAlignment = if (state.theme == P.USER_THEME_SAMSUNG2) Alignment.Start
+                        else if (isLandscape) state.textAlign.toAlignment()
+                        else state.textAlign.toAlignment(),
+                        verticalArrangement = Arrangement.Top
+                    ) {
+                        val themeSettings = getThemeSettings(state.theme)
+
+                        if (state.theme == P.USER_THEME_MOTO) {
+                            MStyle(state)
+                        } else if (state.isSamsung3) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.Center,
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                Clock(state)
+                                if (state.showClock || state.showDate) {
+                                    Box(
+                                        modifier = Modifier
+                                            .padding(horizontal = 16.dp)
+                                            .width(2.dp)
+                                            .height(with(density) { themeSettings.bigTextSize.toDp() * 1.5f })
+                                            .background(Color.White)
+                                    )
+                                }
+                                Date(state)
                             }
+                        } else {
+                            Clock(state)
                             Date(state)
                         }
-                    } else {
-                        Clock(state)
-                        Date(state)
-                    }
 
-                    if (state.theme != P.USER_THEME_MOTO) {
-                        Battery(state)
-                    }
+                        if (state.theme != P.USER_THEME_MOTO) {
+                            Battery(state)
+                        }
 
-                    Music(state, onSkipPrevious, onSkipNext, onTitleClick)
-                    Calendar(state)
-                    Message(state)
-                    Weather(state)
-                    NotificationCount(state)
+                        Music(state, onSkipPrevious, onSkipNext, onTitleClick)
+                        Calendar(state)
+                        Message(state)
+                        Weather(state)
+                        NotificationCount(state)
 
-                    if (!isLandscape) {
-                        Notifications(
-                            state = state,
-                            onPositioned = { index, bounds ->
-                                iconBoundsMap[index] = bounds
-                                onBoundsUpdated(
-                                    iconBoundsMap.toMap(),
-                                    actionBoundsMap.toMap(),
-                                    fpBoundsRef.value,
-                                    previewBoundsRef.value
-                                )
-                            }
-                        )
+                        if (!isLandscape) {
+                            Notifications(
+                                state = state,
+                                onPositioned = { index, bounds ->
+                                    iconBoundsMap[index] = bounds
+                                    onBoundsUpdated(
+                                        iconBoundsMap.toMap(),
+                                        actionBoundsMap.toMap(),
+                                        fpBoundsRef.value,
+                                        previewBoundsRef.value
+                                    )
+                                }
+                            )
+                        }
                     }
                 }
             }
