@@ -2,6 +2,7 @@ package heitezy.peekdisplay.actions.alwayson.components
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -49,18 +50,22 @@ private fun AnalogClock(state: State, clockSize: TextUnit) {
     val density = LocalDensity.current
     val circleSize = with(density) { (clockSize.toPx() * 1.5f).toDp() }
 
-    Box(contentAlignment = Alignment.Center, modifier = Modifier.size(circleSize * 2)) {
+    Box(
+        contentAlignment = Alignment.Center, modifier = Modifier
+            .size(circleSize * 2)
+            .padding(bottom = 16.dp)
+    ) {
         Canvas(modifier = Modifier.size(circleSize * 2)) {
             val center = Offset(size.width / 2, size.height / 2)
             val radius = circleSize.toPx()
-            
+
             drawCircle(
                 color = state.clockColor,
                 center = center,
                 radius = radius,
                 style = Stroke(width = 4.dp.toPx())
             )
-            
+
             // Hour hand
             val hourAngle = (Math.PI * (hours * 5 + minutes / 12f) / 30.0 - Math.PI / 2.0).toFloat()
             val hourHandLen = radius * 0.5f
@@ -74,7 +79,7 @@ private fun AnalogClock(state: State, clockSize: TextUnit) {
                 strokeWidth = 4.dp.toPx(),
                 cap = StrokeCap.Round
             )
-            
+
             // Minute hand
             val minuteAngle = (Math.PI * minutes / 30.0 - Math.PI / 2.0).toFloat()
             val minuteHandLen = radius * 0.9f
