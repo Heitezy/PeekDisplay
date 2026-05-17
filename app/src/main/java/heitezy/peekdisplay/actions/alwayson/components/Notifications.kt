@@ -432,7 +432,11 @@ fun NotificationPreview(
                             )
                         }
                     ) {
-                        Text(text = "Dismiss", color = Color.White, fontSize = 12.sp)
+                        Text(
+                            text = stringResource(R.string.notification_dismiss),
+                            color = Color.White,
+                            fontSize = 12.sp
+                        )
                     }
                 }
             }
