@@ -62,7 +62,7 @@ internal class P(private val prefs: SharedPreferences) {
 
     fun getMultiLineTimeFormat(): String {
         val singleLineFormat = getSingleLineTimeFormat()
-        return singleLineFormat
+        return singleLineFormat[0] + singleLineFormat
             .replace(':', '\n')
             .replace(' ', '\n')
     }
