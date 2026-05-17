@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.content.ContextCompat
 import heitezy.peekdisplay.helpers.Global
-import heitezy.peekdisplay.helpers.Rules
 import heitezy.peekdisplay.services.ForegroundService
 
 class BootCompletedReceiver : BroadcastReceiver() {
@@ -22,10 +21,6 @@ class BootCompletedReceiver : BroadcastReceiver() {
                     context,
                     Intent(context, ForegroundService::class.java),
                 )
-            }
-
-            if (Rules.isPickUpMode(context)) {
-                heitezy.peekdisplay.services.PickUpService.startService(context)
             }
         }
     }

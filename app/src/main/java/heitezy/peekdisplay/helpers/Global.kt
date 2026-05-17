@@ -51,10 +51,6 @@ internal object Global {
                 putBoolean("rules_ambient_mode", previousAmbientModeState)
                 putBoolean("rules_pickup_mode", previousPickupModeState)
             }
-
-            if (previousPickupModeState) {
-                PickUpService.startService(context)
-            }
         } else {
             previousAmbientModeState = prefs.getBoolean("rules_ambient_mode", false)
             previousPickupModeState = prefs.getBoolean("rules_pickup_mode", false)

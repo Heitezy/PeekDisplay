@@ -301,8 +301,7 @@ private fun LAFRulesScreen(onBack: () -> Unit) {
                 onCheckedChange = { checked ->
                     pickupMode = checked
                     prefs.edit { putBoolean("rules_pickup_mode", checked) }
-                    if (checked) PickUpService.startService(context)
-                    else PickUpService.stopService(context)
+                    if (!checked) PickUpService.stopService(context)
                 },
             )
 
