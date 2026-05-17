@@ -386,6 +386,8 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                 summaryOn = stringResource(R.string.pref_enabled),
                 summaryOff = stringResource(R.string.pref_disabled),
                 enabled = musicControls,
+                hasPermission = hasNotificationPermission,
+                permissionDeniedSummary = stringResource(R.string.permissions_notification_access),
                 onCheckedChange = {
                     albumArt = it
                     persistBoolean(P.SHOW_ALBUM_ART, it)

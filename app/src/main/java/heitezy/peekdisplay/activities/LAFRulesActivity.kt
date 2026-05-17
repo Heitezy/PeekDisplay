@@ -285,6 +285,8 @@ private fun LAFRulesScreen(onBack: () -> Unit) {
                 summary = stringResource(R.string.pref_look_and_feel_rules_ambient_mode_summary),
                 checked = ambientMode,
                 enabled = alwaysOnEnabled,
+                hasPermission = hasNotificationPermission,
+                permissionDeniedSummary = stringResource(R.string.permissions_notification_access),
                 onCheckedChange = { checked ->
                     ambientMode = checked
                     prefs.edit { putBoolean("rules_ambient_mode", checked) }
