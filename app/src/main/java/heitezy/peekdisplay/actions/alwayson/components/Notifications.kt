@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowColumn
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -245,7 +244,7 @@ fun NotificationPreview(
             .pointerInput(Unit) { detectTapGestures { } }
     ) {
         Column {
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            FlowRow(itemVerticalAlignment = Alignment.CenterVertically) {
                 val icon = state.notifications.getOrNull(index)?.icon?.loadDrawable(context)
                 val color = state.notifications.getOrNull(index)?.color
                 if (icon != null && color != null) {
