@@ -91,18 +91,18 @@ fun Notifications(
         }
 
     val notificationIcons = @Composable {
-        state.notifications.forEachIndexed { itemIndex, entry ->
+        state.notifications.forEach { entry ->
             val shouldHighlight = if (!state.invertInteractionHighlight) {
                 if (state.isFingerprintTouched && state.swipeNotificationOpen) {
-                    state.hoveredNotificationIndex == itemIndex
+                    state.hoveredNotificationIndex == entry.detailedIndex
                 } else {
-                    state.touchedNotificationIndex == itemIndex
+                    state.touchedNotificationIndex == entry.detailedIndex
                 }
             } else {
                 if (state.isFingerprintTouched && state.swipeNotificationOpen) {
-                    state.hoveredNotificationIndex != itemIndex
+                    state.hoveredNotificationIndex != entry.detailedIndex
                 } else {
-                    state.touchedNotificationIndex != itemIndex
+                    state.touchedNotificationIndex != entry.detailedIndex
                 }
             }
 
@@ -114,7 +114,7 @@ fun Notifications(
                         val position = coordinates.positionInRoot()
                         val size = coordinates.size
                         onPositioned(
-                            itemIndex, Rect(
+                            entry.detailedIndex, Rect(
                                 position.x,
                                 position.y,
                                 position.x + size.width,

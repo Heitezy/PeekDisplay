@@ -28,7 +28,8 @@ class NotificationService : NotificationListenerService() {
         val contentIntent: PendingIntent?,
         val packageName: String,
         val id: Int,
-        val tag: String?
+         val tag: String?,
+        val detailedIndex: Int
     )
 
     interface OnNotificationsChangedListener {
@@ -124,7 +125,7 @@ class NotificationService : NotificationListenerService() {
             detailed = activeNotifications
             notifications = ArrayList(detailed.size)
             count = 0
-            for (notification in detailed) {
+            for ((detailedIndex, notification) in detailed.withIndex()) {
                 if (!isValidNotification(notification)) continue
                 if (
                     notification.notification.flags and Notification.FLAG_GROUP_SUMMARY == 0
@@ -140,7 +141,8 @@ class NotificationService : NotificationListenerService() {
                             contentIntent = notification.notification.contentIntent,
                             packageName = notification.packageName,
                             id = notification.id,
-                            tag = notification.tag
+                            tag = notification.tag,
+                            detailedIndex = detailedIndex
                         )
                     )
                 }
