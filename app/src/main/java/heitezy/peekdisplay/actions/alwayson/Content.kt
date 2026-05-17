@@ -93,156 +93,164 @@ fun Content(
 ) {
     val density = LocalDensity.current
     val configuration = LocalConfiguration.current
-    val isLandscape = configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
+    val isLandscape =
+        configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
 
-    val iconBoundsMap    = remember { SnapshotStateMap<Int, Rect>() }
-    val actionBoundsMap  = remember { SnapshotStateMap<Int, Rect>() }
-    val fpBoundsRef      = remember { mutableStateOf<Rect?>(null) }
+    val iconBoundsMap = remember { SnapshotStateMap<Int, Rect>() }
+    val actionBoundsMap = remember { SnapshotStateMap<Int, Rect>() }
+    val fpBoundsRef = remember { mutableStateOf<Rect?>(null) }
     val previewBoundsRef = remember { mutableStateOf<Rect?>(null) }
 
-    val currentInteractive        = rememberUpdatedState(state.interactiveNotifications)
-    val currentIsFpTouched        = rememberUpdatedState(state.isFingerprintTouched)
-    val currentTouchedIndex       = rememberUpdatedState(state.touchedNotificationIndex)
+    val currentInteractive = rememberUpdatedState(state.interactiveNotifications)
+    val currentIsFpTouched = rememberUpdatedState(state.isFingerprintTouched)
+    val currentTouchedIndex = rememberUpdatedState(state.touchedNotificationIndex)
 
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .pointerInput(Unit) {
-            awaitPointerEventScope {
-                var currentActionIndex: Int? = null
-                var isOverPreview = false
-                var previewActive = false
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .pointerInput(Unit) {
+                awaitPointerEventScope {
+                    var currentActionIndex: Int? = null
+                    var isOverPreview = false
+                    var previewActive = false
 
-                while (true) {
-                    val event = awaitPointerEvent()
-                    val position = event.changes.first().position
+                    while (true) {
+                        val event = awaitPointerEvent()
+                        val position = event.changes.first().position
 
-                    when (event.type) {
-                        PointerEventType.Press -> {
-                            currentActionIndex = null
-                            isOverPreview = false
-                            previewActive = false
-                            onNotificationHovered(null)
+                        when (event.type) {
+                            PointerEventType.Press -> {
+                                currentActionIndex = null
+                                isOverPreview = false
+                                previewActive = false
+                                onNotificationHovered(null)
 
-                            if (currentInteractive.value) {
-                                iconBoundsMap.forEach { (index, bounds) ->
-                                    if (bounds.contains(position)) {
-                                        previewActive = true
-                                        actionBoundsMap.clear()
-                                        onNotificationHoldStarted(index)
-                                    }
-                                }
-                            }
-                        }
-
-                        PointerEventType.Move -> {
-                            if (previewActive) {
-                                var foundIcon = false
-                                iconBoundsMap.forEach { (index, bounds) ->
-                                    if (bounds.contains(position)) {
-                                        foundIcon = true
-                                        if (currentTouchedIndex.value != index) {
-                                            currentActionIndex = null
-                                            isOverPreview = false
+                                if (currentInteractive.value) {
+                                    iconBoundsMap.forEach { (index, bounds) ->
+                                        if (bounds.contains(position)) {
+                                            previewActive = true
                                             actionBoundsMap.clear()
                                             onNotificationHoldStarted(index)
                                         }
                                     }
                                 }
-
-                                if (!foundIcon) {
-                                    var foundAction = false
-                                    actionBoundsMap.forEach { (actionIndex, bounds) ->
-                                        if (bounds.contains(position)) {
-                                            currentActionIndex = actionIndex
-                                            isOverPreview = false
-                                            foundAction = true
-                                        }
-                                    }
-
-                                    if (!foundAction) {
-                                        isOverPreview =
-                                            previewBoundsRef.value?.contains(position) == true
-                                        currentActionIndex = null
-                                    }
-                                }
                             }
 
-                            if (currentIsFpTouched.value && state.swipeNotificationOpen) {
-                                var hoveredIndex: Int? = null
-                                iconBoundsMap.forEach { (index, bounds) ->
-                                    if (bounds.contains(position)) {
-                                        hoveredIndex = index
-                                    }
-                                }
-                                onNotificationHovered(hoveredIndex)
-                            }
-                        }
-
-                        PointerEventType.Release -> {
-                            val touchedIndex = currentTouchedIndex.value
-                            when {
-                                previewActive && touchedIndex != null -> {
-                                    if (currentActionIndex != null) {
-                                        if (currentActionIndex == -1) {
-                                            onDismissNotification(touchedIndex)
-                                            onNotificationHoldFinished()
-                                        } else {
-                                            val sbn =
-                                                state.detailedNotifications.getOrNull(touchedIndex)
-                                            val action = sbn?.notification?.actions?.getOrNull(
-                                                currentActionIndex
-                                            )
-
-                                            val isReply = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                                                action?.semanticAction == Notification.Action.SEMANTIC_ACTION_REPLY
-                                            } else {
-                                                action?.remoteInputs?.any { it.allowFreeFormInput } == true
-                                            }
-
-                                            if (isReply) {
-                                                onReplyActionClick(touchedIndex, currentActionIndex)
-                                            } else {
-                                                onActionClick(touchedIndex, currentActionIndex)
-                                                onNotificationHoldFinished()
-                                            }
-                                        }
-                                    } else {
-                                        if (isOverPreview) {
-                                            onOpenNotification(touchedIndex)
-                                        }
-                                        onNotificationHoldFinished()
-                                    }
-                                }
-
-                                currentIsFpTouched.value -> {
+                            PointerEventType.Move -> {
+                                if (previewActive) {
+                                    var foundIcon = false
                                     iconBoundsMap.forEach { (index, bounds) ->
-                                        if (state.swipeNotificationOpen) {
-                                            if (bounds.contains(position)) {
-                                                onOpenNotification(index)
+                                        if (bounds.contains(position)) {
+                                            foundIcon = true
+                                            if (currentTouchedIndex.value != index) {
+                                                currentActionIndex = null
+                                                isOverPreview = false
+                                                actionBoundsMap.clear()
+                                                onNotificationHoldStarted(index)
                                             }
                                         }
                                     }
-                                    onFingerprintTouch(false, 0f, 0f)
+
+                                    if (!foundIcon) {
+                                        var foundAction = false
+                                        actionBoundsMap.forEach { (actionIndex, bounds) ->
+                                            if (bounds.contains(position)) {
+                                                currentActionIndex = actionIndex
+                                                isOverPreview = false
+                                                foundAction = true
+                                            }
+                                        }
+
+                                        if (!foundAction) {
+                                            isOverPreview =
+                                                previewBoundsRef.value?.contains(position) == true
+                                            currentActionIndex = null
+                                        }
+                                    }
                                 }
 
-                                else -> {
-                                    if (currentTouchedIndex.value != null) {
-                                        onNotificationHoldFinished()
+                                if (currentIsFpTouched.value && state.swipeNotificationOpen) {
+                                    var hoveredIndex: Int? = null
+                                    iconBoundsMap.forEach { (index, bounds) ->
+                                        if (bounds.contains(position)) {
+                                            hoveredIndex = index
+                                        }
                                     }
+                                    onNotificationHovered(hoveredIndex)
                                 }
                             }
 
-                            currentActionIndex = null
-                            isOverPreview = false
-                            previewActive = false
-                            onNotificationHovered(null)
+                            PointerEventType.Release -> {
+                                val touchedIndex = currentTouchedIndex.value
+                                when {
+                                    previewActive && touchedIndex != null -> {
+                                        if (currentActionIndex != null) {
+                                            if (currentActionIndex == -1) {
+                                                onDismissNotification(touchedIndex)
+                                                onNotificationHoldFinished()
+                                            } else {
+                                                val sbn =
+                                                    state.detailedNotifications.getOrNull(
+                                                        touchedIndex
+                                                    )
+                                                val action = sbn?.notification?.actions?.getOrNull(
+                                                    currentActionIndex
+                                                )
+
+                                                val isReply =
+                                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                                                        action?.semanticAction == Notification.Action.SEMANTIC_ACTION_REPLY
+                                                    } else {
+                                                        action?.remoteInputs?.any { it.allowFreeFormInput } == true
+                                                    }
+
+                                                if (isReply) {
+                                                    onReplyActionClick(
+                                                        touchedIndex,
+                                                        currentActionIndex
+                                                    )
+                                                } else {
+                                                    onActionClick(touchedIndex, currentActionIndex)
+                                                    onNotificationHoldFinished()
+                                                }
+                                            }
+                                        } else {
+                                            if (isOverPreview) {
+                                                onOpenNotification(touchedIndex)
+                                            }
+                                            onNotificationHoldFinished()
+                                        }
+                                    }
+
+                                    currentIsFpTouched.value -> {
+                                        iconBoundsMap.forEach { (index, bounds) ->
+                                            if (state.swipeNotificationOpen) {
+                                                if (bounds.contains(position)) {
+                                                    onOpenNotification(index)
+                                                }
+                                            }
+                                        }
+                                        onFingerprintTouch(false, 0f, 0f)
+                                    }
+
+                                    else -> {
+                                        if (currentTouchedIndex.value != null) {
+                                            onNotificationHoldFinished()
+                                        }
+                                    }
+                                }
+
+                                currentActionIndex = null
+                                isOverPreview = false
+                                previewActive = false
+                                onNotificationHovered(null)
+                            }
                         }
                     }
                 }
             }
-        }
     ) {
-        if (state.albumArt == null && state.backgroundImageRes != null) {
+        if ((state.albumArt == null || !state.showAlbumArt) && state.backgroundImageRes != null) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -277,47 +285,45 @@ fun Content(
 
         EdgeGlow(state)
 
-        Box(modifier = Modifier
-            .fillMaxSize()
-            .offset { IntOffset(0, state.driftY.dp.roundToPx()) }) {
-            state.albumArt?.let { bitmap ->
-                Box(
-                    modifier = Modifier
-                        .then(
-                            if (isLandscape) Modifier
-                                .fillMaxHeight()
-                                .aspectRatio(1f)
-                                .align(Alignment.CenterStart)
-                            else Modifier
-                                .fillMaxWidth()
-                                .aspectRatio(1f)
-                                .align(Alignment.TopCenter)
-                        )
-                ) {
-                    Image(
-                        bitmap = bitmap.asImageBitmap(),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .alpha(0.5f),
-                        contentScale = ContentScale.Crop
-                    )
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .offset { IntOffset(0, state.driftY.dp.roundToPx()) }) {
+            if (state.showAlbumArt) {
+                state.albumArt?.let { bitmap ->
                     Box(
                         modifier = Modifier
-                            .fillMaxSize()
-                            .background(
-                                Brush.verticalGradient(
-                                    colors = listOf(Color.Transparent, Color.Black),
-                                    startY = 0f,
-                                    endY = Float.POSITIVE_INFINITY
-                                )
+                            .then(
+                                if (isLandscape) Modifier
+                                    .fillMaxHeight()
+                                    .aspectRatio(1f)
+                                    .align(Alignment.CenterStart)
+                                else Modifier
+                                    .fillMaxWidth()
+                                    .aspectRatio(1f)
+                                    .align(Alignment.TopCenter)
                             )
-                    )
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(Color.Black.copy(alpha = 0.4f))
-                    )
+                    ) {
+                        Image(
+                            bitmap = bitmap.asImageBitmap(),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .alpha(0.6f),
+                            contentScale = ContentScale.Crop
+                        )
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(
+                                    Brush.verticalGradient(
+                                        colors = listOf(Color.Transparent, Color.Black),
+                                        startY = 0f,
+                                        endY = Float.POSITIVE_INFINITY
+                                    )
+                                )
+                        )
+                    }
                 }
             }
 
@@ -429,7 +435,7 @@ fun Content(
                     .zIndex(10f)
             ) { constraints ->
                 val sidePaddingPx = with(density) { 16.dp.roundToPx() }
-                val gapPx        = with(density) { 8.dp.roundToPx() }
+                val gapPx = with(density) { 8.dp.roundToPx() }
 
                 var previewMaxWidth = if (isLandscape) (constraints.maxWidth / 3)
                 else (constraints.maxWidth * 0.9f).toInt()
@@ -444,8 +450,8 @@ fun Content(
                 }
 
                 val previewConstraints = Constraints(
-                    minWidth  = 0,
-                    maxWidth  = previewMaxWidth,
+                    minWidth = 0,
+                    maxWidth = previewMaxWidth,
                     minHeight = 0,
                     maxHeight = constraints.maxHeight
                 )
@@ -489,7 +495,10 @@ fun Content(
                     if (iconBounds != null) {
                         val iconCenterY = ((iconBounds.top + iconBounds.bottom) / 2f).toInt()
                         previewY = (iconCenterY - previewH / 2)
-                            .coerceIn(sidePaddingPx, constraints.maxHeight - previewH - sidePaddingPx)
+                            .coerceIn(
+                                sidePaddingPx,
+                                constraints.maxHeight - previewH - sidePaddingPx
+                            )
 
                         if (above) {
                             previewX = (iconBounds.left - previewW - gapPx).toInt()
@@ -567,13 +576,28 @@ private fun MStyle(state: State) {
     val batteryLabel = "${state.batteryLevel}%"
 
     val timeContent: @Composable () -> Unit = {
-        Text(state.time, color = state.clockColor, style = timeTextStyle, textAlign = TextAlign.Center)
+        Text(
+            state.time,
+            color = state.clockColor,
+            style = timeTextStyle,
+            textAlign = TextAlign.Center
+        )
     }
     val dateContent: @Composable () -> Unit = {
-        Text(displayedDate, color = state.dateColor, style = dateTextStyle, textAlign = TextAlign.Center)
+        Text(
+            displayedDate,
+            color = state.dateColor,
+            style = dateTextStyle,
+            textAlign = TextAlign.Center
+        )
     }
     val battContent: @Composable () -> Unit = {
-        Text(batteryLabel, color = state.batteryColor, style = batteryTextStyle, textAlign = TextAlign.Center)
+        Text(
+            batteryLabel,
+            color = state.batteryColor,
+            style = batteryTextStyle,
+            textAlign = TextAlign.Center
+        )
     }
 
     val startAngle = if (state.batteryIsCharging) -260f else -270f
@@ -615,10 +639,10 @@ private fun MStyle(state: State) {
 
             if (dateIsLongerThanClock) {
                 centerPlaceable = datePlaceable; centerW = dateW; centerH = dateH
-                topPlaceable    = timePlaceable; topW    = timeW; topH    = timeH
+                topPlaceable = timePlaceable; topW = timeW; topH = timeH
             } else {
                 centerPlaceable = timePlaceable; centerW = timeW; centerH = timeH
-                topPlaceable    = datePlaceable; topW    = dateW; topH    = dateH
+                topPlaceable = datePlaceable; topW = dateW; topH = dateH
             }
 
             val radiusPx: Float = if (!showClock && !showDate && !showBatteryPercentage) {
@@ -673,7 +697,9 @@ private fun MStyle(state: State) {
                 if (isOutsideCircle(topY, halfW, halfH)) {
                     while (isOutsideCircle(topY, halfW, halfH) &&
                         topY + halfH < centerTextTop - clampGuardPx
-                    ) { topY += stepPx }
+                    ) {
+                        topY += stepPx
+                    }
                 }
             }
 
@@ -683,7 +709,9 @@ private fun MStyle(state: State) {
                 if (isOutsideCircle(bottomY, halfW, halfH)) {
                     while (isOutsideCircle(bottomY, halfW, halfH) &&
                         bottomY - halfH > centerTextBottom + smallGapPx
-                    ) { bottomY -= stepPx }
+                    ) {
+                        bottomY -= stepPx
+                    }
                 }
             }
 
