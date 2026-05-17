@@ -553,6 +553,7 @@ private fun MStyle(state: State) {
     val configuration = LocalConfiguration.current
 
     val screenWidthPx = with(density) { configuration.screenWidthDp.dp.toPx() }
+    val screenHeightPx = with(density) { configuration.screenHeightDp.dp.toPx() }
     val isLandscape =
         configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
 
@@ -654,7 +655,7 @@ private fun MStyle(state: State) {
                 topPlaceable = datePlaceable; topW = dateW; topH = dateH
             }
 
-            val radiusPx: Float = if (!showClock && !showDate && !showBatteryPercentage) {
+            val calculatedRadius: Float = if (!showClock && !showDate && !showBatteryPercentage) {
                 defaultRadius
             } else {
                 val sideH = maxOf(topH, battH)
@@ -666,14 +667,18 @@ private fun MStyle(state: State) {
                 maxOf(defaultRadius, neededForHeight, neededForWidth)
             }
 
+            val maxAllowedRadius = (if (isLandscape) screenHeightPx else screenWidthPx) / 2f - 10.dp.toPx()
+            val radiusPx = calculatedRadius.coerceAtMost(maxAllowedRadius)
+            val shrinkRatio = if (calculatedRadius > maxAllowedRadius) maxAllowedRadius / calculatedRadius else 1f
+
             val diameter = (radiusPx * 2 + strokeWidthPx).toInt()
 
             val innerRadiusPx = radiusPx - strokeWidthPx
             val centerTextTop = -centerH / 2f
             val centerTextBottom = centerH / 2f
 
-            var topY = -(innerRadiusPx / 2f + centerH / 4f)
-            var bottomY = innerRadiusPx / 2f + centerH / 4f
+            var topY = -(innerRadiusPx / 2f + centerH / 4f) * shrinkRatio
+            var bottomY = (innerRadiusPx / 2f + centerH / 4f) * shrinkRatio
 
             val topVisible = topPlaceable != null
             val centerShow = centerPlaceable != null
