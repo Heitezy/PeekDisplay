@@ -53,6 +53,11 @@ class NotificationService : NotificationListenerService() {
     override fun onNotificationPosted(notification: StatusBarNotification) {
         updateValues()
 
+        if (notification.notification.category == Notification.CATEGORY_CALL) {
+            AlwaysOn.finish()
+            return
+        }
+
         val rules = Rules(this)
         @Suppress("ComplexCondition")
         if (
@@ -74,6 +79,25 @@ class NotificationService : NotificationListenerService() {
 
     override fun onNotificationRemoved(notification: StatusBarNotification) {
         updateValues()
+
+        if (notification.notification.category == Notification.CATEGORY_CALL) {
+            Handler(Looper.getMainLooper()).postDelayed({
+                refreshNotifications()
+                if (
+                    Rules.isAmbientMode(this) &&
+                    !CombinedServiceReceiver.isAlwaysOnRunning
+                ) {
+                    val rules = Rules(this)
+                    if (rules.canShow(this)) {
+                        startActivity(
+                            Intent(this, AlwaysOn::class.java)
+                                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        )
+                    }
+                }
+            }, 1500L)
+            return
+        }
 
         if (
             CombinedServiceReceiver.isAlwaysOnRunning &&

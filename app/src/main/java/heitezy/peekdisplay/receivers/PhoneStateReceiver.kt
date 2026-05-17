@@ -35,10 +35,13 @@ class PhoneStateReceiver : BroadcastReceiver() {
                         Handler(Looper.getMainLooper()).postDelayed({
                             NotificationService.activeService?.refreshNotifications()
                             if (Rules.isAmbientMode(context)) {
-                                context.startActivity(
-                                    Intent(context, AlwaysOn::class.java)
-                                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                )
+                                val rules = Rules(context)
+                                if (rules.canShow(context)) {
+                                    context.startActivity(
+                                        Intent(context, AlwaysOn::class.java)
+                                            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                    )
+                                }
                             }
                         }, 1500L) // give system time to post missed call notification
                     }
