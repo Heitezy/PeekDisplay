@@ -431,8 +431,8 @@ fun Content(
             }
         )
 
-        if (state.touchedNotificationIndex != null) {
-            val iconBounds = iconBoundsMap[state.touchedNotificationIndex]
+        val iconBounds = state.touchedNotificationIndex?.let { iconBoundsMap[it] }
+        if (state.touchedNotificationIndex != null && iconBounds != null) {
             val above = state.notificationPreviewPosition == "above"
 
             SubcomposeLayout(
@@ -446,7 +446,7 @@ fun Content(
                 var previewMaxWidth = if (isLandscape) (constraints.maxWidth / 3)
                 else (constraints.maxWidth * 0.9f).toInt()
 
-                if (isLandscape && iconBounds != null) {
+                if (isLandscape) {
                     val availableWidth = if (above) {
                         (iconBounds.left - sidePaddingPx - gapPx).toInt()
                     } else {
@@ -498,37 +498,27 @@ fun Content(
                 val previewY: Int
 
                 if (isLandscape) {
-                    if (iconBounds != null) {
-                        val iconCenterY = ((iconBounds.top + iconBounds.bottom) / 2f).toInt()
-                        previewY = (iconCenterY - previewH / 2)
-                            .coerceIn(
-                                sidePaddingPx,
-                                constraints.maxHeight - previewH - sidePaddingPx
-                            )
+                    val iconCenterY = ((iconBounds.top + iconBounds.bottom) / 2f).toInt()
+                    previewY = (iconCenterY - previewH / 2)
+                        .coerceIn(
+                            sidePaddingPx,
+                            constraints.maxHeight - previewH - sidePaddingPx
+                        )
 
-                        if (above) {
-                            previewX = (iconBounds.left - previewW - gapPx).toInt()
-                                .coerceAtLeast(sidePaddingPx)
-                        } else {
-                            previewX = (iconBounds.right + gapPx).toInt()
-                                .coerceAtMost(constraints.maxWidth - previewW - sidePaddingPx)
-                        }
+                    if (above) {
+                        previewX = (iconBounds.left - previewW - gapPx).toInt()
+                            .coerceAtLeast(sidePaddingPx)
                     } else {
-                        previewX = (constraints.maxWidth - previewW) / 2
-                        previewY = (constraints.maxHeight - previewH) / 2
+                        previewX = (iconBounds.right + gapPx).toInt()
+                            .coerceAtMost(constraints.maxWidth - previewW - sidePaddingPx)
                     }
                 } else {
-                    previewY = if (iconBounds != null) {
-                        if (above) {
-                            (iconBounds.top - previewH - gapPx).toInt()
-                                .coerceAtLeast(sidePaddingPx)
-                        } else {
-                            (iconBounds.bottom + gapPx).toInt()
-                                .coerceAtMost(constraints.maxHeight - previewH - sidePaddingPx)
-                        }
+                    previewY = if (above) {
+                        (iconBounds.top - previewH - gapPx).toInt()
+                            .coerceAtLeast(sidePaddingPx)
                     } else {
-                        if (above) sidePaddingPx
-                        else (constraints.maxHeight - previewH - sidePaddingPx)
+                        (iconBounds.bottom + gapPx).toInt()
+                            .coerceAtMost(constraints.maxHeight - previewH - sidePaddingPx)
                     }
 
                     previewX = (constraints.maxWidth - previewW) / 2
