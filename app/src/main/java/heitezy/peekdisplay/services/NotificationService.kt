@@ -86,10 +86,10 @@ class NotificationService : NotificationListenerService() {
                 refreshNotifications()
                 if (
                     Rules.isAmbientMode(this) &&
-                    !CombinedServiceReceiver.isAlwaysOnRunning
+                    !CombinedServiceReceiver.isAlwaysOnRunning &&
+                    count > 0
                 ) {
-                    val rules = Rules(this)
-                    if (rules.canShow(this)) {
+                    if (Rules(this).canShow(this)) {
                         startActivity(
                             Intent(this, AlwaysOn::class.java)
                                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

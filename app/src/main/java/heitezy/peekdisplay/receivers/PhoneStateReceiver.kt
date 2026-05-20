@@ -10,6 +10,7 @@ import heitezy.peekdisplay.actions.alwayson.AlwaysOn
 import heitezy.peekdisplay.helpers.Rules
 import heitezy.peekdisplay.receivers.CombinedServiceReceiver.Companion.isAlwaysOnRunning
 import heitezy.peekdisplay.services.NotificationService
+import heitezy.peekdisplay.services.NotificationService.Companion.count
 
 class PhoneStateReceiver : BroadcastReceiver() {
     override fun onReceive(
@@ -34,9 +35,8 @@ class PhoneStateReceiver : BroadcastReceiver() {
                     if (!isAlwaysOnRunning) {
                         Handler(Looper.getMainLooper()).postDelayed({
                             NotificationService.activeService?.refreshNotifications()
-                            if (Rules.isAmbientMode(context)) {
-                                val rules = Rules(context)
-                                if (rules.canShow(context)) {
+                            if (Rules.isAmbientMode(context) && count > 0) {
+                                if (Rules(context).canShow(context)) {
                                     context.startActivity(
                                         Intent(context, AlwaysOn::class.java)
                                             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
