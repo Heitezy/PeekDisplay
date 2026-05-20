@@ -765,12 +765,48 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
     }
 
     private fun setRefreshRate(low: Boolean) {
-        val modeId = if (low) getLowestRefreshRateMode() else 0
-        if (window.attributes.preferredDisplayModeId != modeId) {
-            val params = window.attributes
-            params.preferredDisplayModeId = modeId
-            window.attributes = params
+        val params = window.attributes
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val rate = if (low) getLowestRefreshRate() else 0f
+            if (params.preferredRefreshRate != rate) {
+                params.preferredRefreshRate = rate
+                window.attributes = params
+            }
+        } else {
+            val modeId = if (low) getLowestRefreshRateMode() else 0
+            if (params.preferredDisplayModeId != modeId) {
+                params.preferredDisplayModeId = modeId
+                window.attributes = params
+            }
         }
+    }
+
+    private fun getLowestRefreshRate(): Float {
+        val display = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            display
+        } else {
+            @Suppress("DEPRECATION")
+            (getSystemService(DISPLAY_SERVICE) as DisplayManager)
+                .getDisplay(Display.DEFAULT_DISPLAY)
+        }
+
+        val modes = display?.supportedModes
+        if (!modes.isNullOrEmpty()) {
+            val currentMode = display.mode
+            var lowestRate = currentMode.refreshRate
+
+            for (mode in modes) {
+                if (mode.physicalWidth == currentMode.physicalWidth &&
+                    mode.physicalHeight == currentMode.physicalHeight
+                ) {
+                    if (mode.refreshRate < lowestRate) {
+                        lowestRate = mode.refreshRate
+                    }
+                }
+            }
+            return lowestRate
+        }
+        return 0f
     }
 
     private fun getLowestRefreshRateMode(): Int {
