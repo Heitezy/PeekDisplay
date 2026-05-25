@@ -2,7 +2,6 @@ package heitezy.peekdisplay.actions.alwayson.data
 
 import android.graphics.Bitmap
 import android.service.notification.StatusBarNotification
-import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.TextFieldValue
@@ -83,10 +82,6 @@ data class State(
     val topPadding: Int = 0,
     val notificationTopPadding: Int = 680,
     val scale: Float = 1f,
-    val notificationIconBounds: Map<Int, Rect> = emptyMap(),
-    val touchedNotificationActionBounds: Map<Int, Rect> = emptyMap(),
-    val fingerprintIconBounds: Rect? = null,
-    val previewBounds: Rect? = null,
     val driftY: Float = 0f,
     val fpDriftY: Float = 0f,
     val isInteracting: Boolean = false,
