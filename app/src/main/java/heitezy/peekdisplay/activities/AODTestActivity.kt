@@ -58,8 +58,7 @@ class AODTestActivity : BaseActivity() {
                 onFingerprintTouch = { _, _, _ -> },
                 onFingerprintLongPress = { },
                 onOpenNotification = { },
-                onNotificationHovered = { _ -> },
-                onBoundsUpdated = { _, _, _, _ -> }
+                onNotificationHovered = { _ -> }
             )
         }
     }

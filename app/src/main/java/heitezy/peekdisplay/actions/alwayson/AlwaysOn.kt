@@ -11,7 +11,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.Configuration
 import android.graphics.BitmapFactory
-import android.graphics.Point
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -45,10 +44,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.core.view.WindowInsetsCompat
@@ -69,6 +68,7 @@ import heitezy.peekdisplay.helpers.Root
 import heitezy.peekdisplay.helpers.Rules
 import heitezy.peekdisplay.receivers.CombinedServiceReceiver
 import heitezy.peekdisplay.services.NotificationService
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.delay
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -105,15 +105,13 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
     // Call recognition
     private var onModeChangedListener: AudioManager.OnModeChangedListener? = null
 
+    private val mainHandler = Handler(Looper.getMainLooper())
+    
     // Keyboard/Reply timeout
     private var replyTimeoutRunnable: Runnable? = null
     private val REPLY_TIMEOUT_DELAY = 60000L
 
-    // Rules
-    private val rulesHandler: Handler = Handler(Looper.getMainLooper())
-    
     // Interaction cooldown
-    private val interactionCooldownHandler: Handler = Handler(Looper.getMainLooper())
     private val interactionCooldownRunnable = Runnable {
         peekState = peekState.copy(isInteracting = false)
         updateRefreshRate()
@@ -242,12 +240,6 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
         peekState = peekState.copy(
             fingerprintIconRes = if (peekState.useLockIcon) R.drawable.ic_lock else R.drawable.ic_fingerprint_white,
         )
-        
-        if (theme == P.USER_THEME_SAMSUNG2) {
-            val size = Point()
-            (getSystemService(DISPLAY_SERVICE) as DisplayManager).getDisplay(Display.DEFAULT_DISPLAY).getSize(size)
-            peekState = peekState.copy(scale = prefs.displayScale())
-        }
     }
 
     private fun fetchWeather() {
@@ -268,12 +260,11 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
         
         val interval = prefs.get(P.WEATHER_REFRESH_INTERVAL, P.WEATHER_REFRESH_INTERVAL_DEFAULT)
         if (interval > 0) {
-            rulesHandler.postDelayed({ fetchWeather() }, interval * 60 * 1000L)
+            mainHandler.postDelayed({ fetchWeather() }, interval * 60 * 1000L)
         }
     }
 
     private fun startAODUpdateLoop() {
-        val handler = Handler(Looper.getMainLooper())
         val runnable = object : Runnable {
             override fun run() {
                 if (servicesRunning) {
@@ -291,11 +282,11 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
                     )
                     
                     val hasSeconds = timeFormatString.contains("s", ignoreCase = true)
-                    handler.postDelayed(this, if (hasSeconds) 1000 else 60000)
+                    mainHandler.postDelayed(this, if (hasSeconds) 1000 else 60000)
                 }
             }
         }
-        handler.post(runnable)
+        mainHandler.post(runnable)
     }
 
     // BroadcastReceiver
@@ -400,31 +391,31 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
             label = "fpDriftY"
         )
         
-        val context = LocalContext.current
         val burnInDelay = remember { prefs.get("ao_animation_delay", 2) * 60000L }
         
         LaunchedEffect(Unit) {
-            val size = Point()
-            (context.getSystemService(DISPLAY_SERVICE) as DisplayManager).getDisplay(Display.DEFAULT_DISPLAY).getSize(size)
-            
             while (true) {
                 delay(burnInDelay)
-                if (!peekState.isInteracting) {
-                    peekState = peekState.copy(driftY = 32f, fpDriftY = 64f, isDrifting = true)
-                    updateRefreshRate()
-                    delay(2000)
-                    peekState = peekState.copy(isDrifting = false)
-                    updateRefreshRate()
-                }
+
+                // Wait until interaction ends
+                snapshotFlow { peekState.isInteracting }.first { !it }
+
+                peekState = peekState.copy(driftY = 32f, fpDriftY = 64f, isDrifting = true)
+                updateRefreshRate()
+                delay(2000)
+                peekState = peekState.copy(isDrifting = false)
+                updateRefreshRate()
 
                 delay(burnInDelay)
-                if (!peekState.isInteracting) {
-                    peekState = peekState.copy(driftY = 0f, fpDriftY = 0f, isDrifting = true)
-                    updateRefreshRate()
-                    delay(2000)
-                    peekState = peekState.copy(isDrifting = false)
-                    updateRefreshRate()
-                }
+
+                // Wait until interaction ends
+                snapshotFlow { peekState.isInteracting }.first { !it }
+
+                peekState = peekState.copy(driftY = 0f, fpDriftY = 0f, isDrifting = true)
+                updateRefreshRate()
+                delay(2000)
+                peekState = peekState.copy(isDrifting = false)
+                updateRefreshRate()
             }
         }
 
@@ -649,14 +640,6 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
                     if (peekState.hoveredNotificationIndex != index) {
                         peekState = peekState.copy(hoveredNotificationIndex = index)
                     }
-                },
-                onBoundsUpdated = { iconBounds, actionBounds, fpBounds, previewBounds ->
-                    peekState = peekState.copy(
-                        notificationIconBounds = iconBounds,
-                        touchedNotificationActionBounds = actionBounds,
-                        fingerprintIconBounds = fpBounds,
-                        previewBounds = previewBounds
-                    )
                 }
             )
         }
@@ -840,7 +823,7 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
     }
 
     private fun onInteractionStarted() {
-        interactionCooldownHandler.removeCallbacks(interactionCooldownRunnable)
+        mainHandler.removeCallbacks(interactionCooldownRunnable)
         if (!peekState.isInteracting) {
             peekState = peekState.copy(isInteracting = true)
             updateRefreshRate()
@@ -848,8 +831,8 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
     }
 
     private fun onInteractionEnded() {
-        interactionCooldownHandler.removeCallbacks(interactionCooldownRunnable)
-        interactionCooldownHandler.postDelayed(interactionCooldownRunnable, 1500)
+        mainHandler.removeCallbacks(interactionCooldownRunnable)
+        mainHandler.postDelayed(interactionCooldownRunnable, 1500)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -911,10 +894,6 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
         // Call recognition
         prepareCallRecognition()
 
-        // Update loop for clock
-        startAODUpdateLoop()
-        fetchWeather()
-
         // Broadcast Receivers
         if (Build.VERSION.SDK_INT >= 34) { // Android 14 (UPSIDE_DOWN_CAKE)
             registerReceiver(systemReceiver, systemFilter, RECEIVER_NOT_EXPORTED)
@@ -944,8 +923,13 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
             NotificationService.activeService?.refreshNotifications()
             onNotificationsChanged()
         }
+        
+        // Update loop for clock and weather
+        startAODUpdateLoop()
+        fetchWeather()
+        
         val millisTillEnd: Long = Rules(this).millisTillEnd()
-        if (millisTillEnd > -1L) rulesHandler.postDelayed({ finishAndOff() }, millisTillEnd)
+        if (millisTillEnd > -1L) mainHandler.postDelayed({ finishAndOff() }, millisTillEnd)
 
         val timeoutSetting = prefs.get(P.RULES_TIMEOUT, P.RULES_TIMEOUT_DEFAULT)
         if (timeoutSetting != 0) {
@@ -992,20 +976,20 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
         lastTimeoutResetTime = System.currentTimeMillis()
         isTimeoutPaused = false
         remainingTimeoutTime = timeoutDuration
-        rulesHandler.postDelayed(timeoutRunnable!!, timeoutDuration)
+        mainHandler.postDelayed(timeoutRunnable!!, timeoutDuration)
     }
     
     fun resetTimeout() {
         if (timeoutRunnable != null && timeoutDuration > 0 && !isTimeoutPaused) {
-            rulesHandler.removeCallbacks(timeoutRunnable!!)
+            mainHandler.removeCallbacks(timeoutRunnable!!)
             lastTimeoutResetTime = System.currentTimeMillis()
-            rulesHandler.postDelayed(timeoutRunnable!!, timeoutDuration)
+            mainHandler.postDelayed(timeoutRunnable!!, timeoutDuration)
         }
     }
     
     fun pauseTimeout() {
         if (timeoutRunnable != null && timeoutDuration > 0 && !isTimeoutPaused) {
-            rulesHandler.removeCallbacks(timeoutRunnable!!)
+            mainHandler.removeCallbacks(timeoutRunnable!!)
             isTimeoutPaused = true
             remainingTimeoutTime = timeoutDuration - (System.currentTimeMillis() - lastTimeoutResetTime)
             if (remainingTimeoutTime < 0) remainingTimeoutTime = 0
@@ -1016,7 +1000,7 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
         if (timeoutRunnable != null && timeoutDuration > 0 && isTimeoutPaused) {
             lastTimeoutResetTime = System.currentTimeMillis()
             isTimeoutPaused = false
-            rulesHandler.postDelayed(timeoutRunnable!!, remainingTimeoutTime)
+            mainHandler.postDelayed(timeoutRunnable!!, remainingTimeoutTime)
         }
     }
 
@@ -1032,17 +1016,17 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
             resumeTimeout()
             resetTimeout()
         }
-        rulesHandler.postDelayed(replyTimeoutRunnable!!, REPLY_TIMEOUT_DELAY)
+        mainHandler.postDelayed(replyTimeoutRunnable!!, REPLY_TIMEOUT_DELAY)
     }
 
     private fun cancelReplyTimeout() {
-        replyTimeoutRunnable?.let { rulesHandler.removeCallbacks(it) }
+        replyTimeoutRunnable?.let { mainHandler.removeCallbacks(it) }
     }
 
     override fun onStop() {
         super.onStop()
         servicesRunning = false
-        rulesHandler.removeCallbacksAndMessages(null)
+        mainHandler.removeCallbacksAndMessages(null)
         if (prefs.get(
                 P.DO_NOT_DISTURB,
                 P.DO_NOT_DISTURB_DEFAULT,

@@ -93,8 +93,7 @@ fun Content(
     onFingerprintTouch: (Boolean, Float, Float) -> Unit,
     onFingerprintLongPress: () -> Unit,
     onOpenNotification: (Int) -> Unit,
-    onNotificationHovered: (Int?) -> Unit,
-    onBoundsUpdated: (Map<Int, Rect>, Map<Int, Rect>, Rect?, Rect?) -> Unit
+    onNotificationHovered: (Int?) -> Unit
 ) {
     val density = LocalDensity.current
     val configuration = LocalConfiguration.current
@@ -425,12 +424,6 @@ fun Content(
                                 state = state,
                                 onPositioned = { index, bounds ->
                                     iconBoundsMap[index] = bounds
-                                    onBoundsUpdated(
-                                        iconBoundsMap.toMap(),
-                                        actionBoundsMap.toMap(),
-                                        fpBoundsRef.value,
-                                        previewBoundsRef.value
-                                    )
                                 }
                             )
                         }
@@ -443,12 +436,6 @@ fun Content(
                     state = state,
                     onPositioned = { index, bounds ->
                         iconBoundsMap[index] = bounds
-                        onBoundsUpdated(
-                            iconBoundsMap.toMap(),
-                            actionBoundsMap.toMap(),
-                            fpBoundsRef.value,
-                            previewBoundsRef.value
-                        )
                     }
                 )
             }
@@ -459,12 +446,6 @@ fun Content(
                 onLongPress = onFingerprintLongPress,
                 onPositioned = { bounds ->
                     fpBoundsRef.value = bounds
-                    onBoundsUpdated(
-                        iconBoundsMap.toMap(),
-                        actionBoundsMap.toMap(),
-                        bounds,
-                        previewBoundsRef.value
-                    )
                 }
             )
 
@@ -509,21 +490,9 @@ fun Content(
                             onSendReply = onSendReply,
                             onPositioned = { bounds ->
                                 previewBoundsRef.value = bounds
-                                onBoundsUpdated(
-                                    iconBoundsMap.toMap(),
-                                    actionBoundsMap.toMap(),
-                                    fpBoundsRef.value,
-                                    bounds
-                                )
                             },
                             onActionPositioned = { actionIndex, bounds ->
                                 actionBoundsMap[actionIndex] = bounds
-                                onBoundsUpdated(
-                                    iconBoundsMap.toMap(),
-                                    actionBoundsMap.toMap(),
-                                    fpBoundsRef.value,
-                                    previewBoundsRef.value
-                                )
                             }
                         )
                     }.first().measure(previewConstraints)
