@@ -107,6 +107,7 @@
 
         <activity
             android:name="heitezy.peekdisplay.actions.alwayson.AlwaysOn"
+            android:enableOnBackInvokedCallback="false"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance"
