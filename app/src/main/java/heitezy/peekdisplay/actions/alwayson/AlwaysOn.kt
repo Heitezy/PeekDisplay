@@ -31,6 +31,7 @@ import android.util.Base64
 import android.util.Log
 import android.view.Display
 import android.view.KeyEvent
+import android.view.MotionEvent
 import android.view.WindowManager
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -1092,6 +1093,11 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
             )
         }
         unregisterReceiver(systemReceiver)
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        if (isProximate) return true // consume silently, do nothing
+        return super.dispatchTouchEvent(ev)
     }
 
     override fun finishAndOff() {
