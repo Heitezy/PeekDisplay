@@ -105,7 +105,7 @@ class NotificationService : NotificationListenerService() {
             Rules.isAmbientMode(this) &&
             count < 1
         ) {
-            AlwaysOn.finish()
+            AlwaysOn.finishAndOff()
         }
     }
 

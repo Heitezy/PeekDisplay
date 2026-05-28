@@ -1149,5 +1149,9 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
             instance?.finish()
         }
 
+        fun finishAndOff() {
+            instance?.finishAndOff()
+        }
+
     }
 }
