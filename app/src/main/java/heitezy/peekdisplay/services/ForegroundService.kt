@@ -6,6 +6,7 @@ import android.app.Service
 import android.content.ComponentName
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.ServiceInfo
 import android.os.Build
 import android.os.IBinder
 import android.service.quicksettings.TileService
@@ -39,20 +40,19 @@ class ForegroundService : Service() {
         unregisterReceiver(combinedServiceReceiver)
     }
 
-    override fun onStartCommand(
-        intent: Intent,
-        flags: Int,
-        startId: Int,
-    ): Int {
+    override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         createNotificationChannel()
-        startForeground(
-            1,
-            NotificationCompat.Builder(this, CHANNEL_ID)
-                .setContentText(resources.getString(R.string.service_text))
-                .setSmallIcon(R.drawable.ic_always_on_black)
-                .setShowWhen(false)
-                .build(),
-        )
+        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setContentText(resources.getString(R.string.service_text))
+            .setSmallIcon(R.drawable.ic_always_on_black)
+            .setShowWhen(false)
+            .build()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            startForeground(1, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE)
+        } else {
+            startForeground(1, notification)
+        }
         return START_REDELIVER_INTENT
     }
 
