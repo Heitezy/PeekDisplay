@@ -19,8 +19,7 @@ class CombinedServiceReceiver : BroadcastReceiver() {
 
     private fun getChargingActivity(context: Context) =
         when (
-            P.getPreferences(context).getString(P.CHARGING_STYLE, P.CHARGING_STYLE_DEFAULT)
-                ?: P.CHARGING_STYLE_DEFAULT
+            P.getP(context).getString(P.CHARGING_STYLE, P.CHARGING_STYLE_DEFAULT)
         ) {
             P.CHARGING_STYLE_CIRCLE -> ChargingCircleActivity::class.java
             P.CHARGING_STYLE_FLASH -> ChargingFlashActivity::class.java
@@ -32,7 +31,7 @@ class CombinedServiceReceiver : BroadcastReceiver() {
         val rules = Rules(context)
         isCharging = true
 
-        if (P.getPreferences(context).getBoolean(
+        if (P.getP(context).getBoolean(
                 "charging_animation",
                 false,
             ) && (!isScreenOn || isAlwaysOnRunning)
@@ -129,7 +128,7 @@ class CombinedServiceReceiver : BroadcastReceiver() {
         isScreenOn = true
 
         if (Rules.isPickUpMode(context)) {
-            val timeout = P.getPreferences(context).getInt(P.RULES_TIMEOUT, P.RULES_TIMEOUT_DEFAULT)
+            val timeout = P.getP(context).getInt(P.RULES_TIMEOUT, P.RULES_TIMEOUT_DEFAULT)
             stopServiceRunnable = Runnable {
                 heitezy.peekdisplay.services.PickUpService.stopService(context)
                 stopServiceRunnable = null

@@ -9,8 +9,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -26,7 +26,6 @@ import heitezy.peekdisplay.ui.PreferenceItem
 import heitezy.peekdisplay.ui.RadioButtonDialog
 import heitezy.peekdisplay.ui.SwitchPreferenceItem
 import heitezy.peekdisplay.helpers.P
-import androidx.core.content.edit
 
 class LAFBehaviorActivity : BaseActivity() {
 
@@ -43,65 +42,51 @@ class LAFBehaviorActivity : BaseActivity() {
 @Composable
 private fun LAFBehaviorScreen(onBack: () -> Unit) {
     val context = LocalContext.current
-    val prefs = remember { P.getPreferences(context) }
-    val isRootMode = remember { prefs.getBoolean(P.ROOT_MODE, P.ROOT_MODE_DEFAULT) }
+    val prefs = remember { P.getP(context) }
+    
+    val isRootMode by prefs.getBooleanFlow(P.ROOT_MODE, P.ROOT_MODE_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.ROOT_MODE, P.ROOT_MODE_DEFAULT))
 
-    var orientation by remember {
-        mutableStateOf(prefs.getString("orientation", "locked") ?: "locked")
-    }
+    val orientation by prefs.getStringFlow("orientation", "locked")
+        .collectAsState(initial = prefs.getString("orientation", "locked"))
+
     var showOrientationDialog by remember { mutableStateOf(false) }
 
-    var vibration by remember { mutableIntStateOf(prefs.getInt(P.VIBRATION_DURATION, 64)) }
+    val vibration by prefs.getIntFlow(P.VIBRATION_DURATION, 64)
+        .collectAsState(initial = prefs.getInt(P.VIBRATION_DURATION, 64))
+
     var showVibrationDialog by remember { mutableStateOf(false) }
 
-    var animationDelay by remember { mutableIntStateOf(prefs.getInt("ao_animation_delay", 2)) }
+    val animationDelay by prefs.getIntFlow("ao_animation_delay", 2)
+        .collectAsState(initial = prefs.getInt("ao_animation_delay", 2))
+
     var showAnimationDelayDialog by remember { mutableStateOf(false) }
 
-    var doubleTapSpeed by remember { mutableIntStateOf(prefs.getInt(P.DOUBLE_TAP_SPEED, 300)) }
+    val doubleTapSpeed by prefs.getIntFlow(P.DOUBLE_TAP_SPEED, 300)
+        .collectAsState(initial = prefs.getInt(P.DOUBLE_TAP_SPEED, 300))
+
     var showDoubleTapSpeedDialog by remember { mutableStateOf(false) }
 
-    var smoothAnimation by remember {
-        mutableStateOf(
-            prefs.getBoolean(
-                P.ANIMATE_MOTION,
-                P.ANIMATE_MOTION_DEFAULT
-            )
-        )
-    }
-    var refreshRateOptimization by remember {
-        mutableStateOf(
-            prefs.getBoolean(
-                P.REFRESH_RATE_OPTIMIZATION,
-                P.REFRESH_RATE_OPTIMIZATION_DEFAULT
-            )
-        )
-    }
-    var doubleTapDisabled by remember {
-        mutableStateOf(
-            prefs.getBoolean(
-                P.DISABLE_DOUBLE_TAP,
-                false
-            )
-        )
-    }
-    var pocketMode by remember { mutableStateOf(prefs.getBoolean(P.POCKET_MODE, false)) }
-    var dnd by remember { mutableStateOf(prefs.getBoolean(P.DO_NOT_DISTURB, false)) }
-    var powerSaving by remember {
-        mutableStateOf(
-            prefs.getBoolean(
-                P.POWER_SAVING_MODE,
-                P.POWER_SAVING_MODE_DEFAULT
-            )
-        )
-    }
-    var headsUp by remember {
-        mutableStateOf(
-            prefs.getBoolean(
-                P.DISABLE_HEADS_UP_NOTIFICATIONS,
-                P.DISABLE_HEADS_UP_NOTIFICATIONS_DEFAULT
-            )
-        )
-    }
+    val smoothAnimation by prefs.getBooleanFlow(P.ANIMATE_MOTION, P.ANIMATE_MOTION_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.ANIMATE_MOTION, P.ANIMATE_MOTION_DEFAULT))
+
+    val refreshRateOptimization by prefs.getBooleanFlow(P.REFRESH_RATE_OPTIMIZATION, P.REFRESH_RATE_OPTIMIZATION_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.REFRESH_RATE_OPTIMIZATION, P.REFRESH_RATE_OPTIMIZATION_DEFAULT))
+
+    val doubleTapDisabled by prefs.getBooleanFlow(P.DISABLE_DOUBLE_TAP, false)
+        .collectAsState(initial = prefs.getBoolean(P.DISABLE_DOUBLE_TAP, false))
+
+    val pocketMode by prefs.getBooleanFlow(P.POCKET_MODE, false)
+        .collectAsState(initial = prefs.getBoolean(P.POCKET_MODE, false))
+
+    val dnd by prefs.getBooleanFlow(P.DO_NOT_DISTURB, false)
+        .collectAsState(initial = prefs.getBoolean(P.DO_NOT_DISTURB, false))
+
+    val powerSaving by prefs.getBooleanFlow(P.POWER_SAVING_MODE, P.POWER_SAVING_MODE_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.POWER_SAVING_MODE, P.POWER_SAVING_MODE_DEFAULT))
+
+    val headsUp by prefs.getBooleanFlow(P.DISABLE_HEADS_UP_NOTIFICATIONS, P.DISABLE_HEADS_UP_NOTIFICATIONS_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.DISABLE_HEADS_UP_NOTIFICATIONS, P.DISABLE_HEADS_UP_NOTIFICATIONS_DEFAULT))
 
     val orientationEntries =
         stringArrayResource(R.array.pref_look_and_feel_orientation_display).toList()
@@ -115,7 +100,6 @@ private fun LAFBehaviorScreen(onBack: () -> Unit) {
             entryValues = orientationValues,
             selectedValue = orientation,
             onValueSelected = { value ->
-                orientation = value
                 prefs.edit { putString("orientation", value) }
             },
             onDismiss = { showOrientationDialog = false },
@@ -129,7 +113,6 @@ private fun LAFBehaviorScreen(onBack: () -> Unit) {
             keyboardType = KeyboardType.Number,
             onConfirm = { raw ->
                 raw.toIntOrNull()?.let { newValue ->
-                    vibration = newValue
                     prefs.edit { putInt(P.VIBRATION_DURATION, newValue) }
                 }
                 showVibrationDialog = false
@@ -146,7 +129,6 @@ private fun LAFBehaviorScreen(onBack: () -> Unit) {
             keyboardType = KeyboardType.Number,
             onConfirm = { raw ->
                 raw.toIntOrNull()?.let { newValue ->
-                    animationDelay = newValue
                     prefs.edit { putInt("ao_animation_delay", newValue) }
                 }
                 showAnimationDelayDialog = false
@@ -163,7 +145,6 @@ private fun LAFBehaviorScreen(onBack: () -> Unit) {
             keyboardType = KeyboardType.Number,
             onConfirm = { raw ->
                 raw.toIntOrNull()?.let { newValue ->
-                    doubleTapSpeed = newValue
                     prefs.edit { putInt(P.DOUBLE_TAP_SPEED, newValue) }
                 }
                 showDoubleTapSpeedDialog = false
@@ -216,7 +197,6 @@ private fun LAFBehaviorScreen(onBack: () -> Unit) {
                 summary = stringResource(R.string.pref_ao_smooth_animation_summary),
                 checked = smoothAnimation,
                 onCheckedChange = { checked ->
-                    smoothAnimation = checked
                     prefs.edit { putBoolean(P.ANIMATE_MOTION, checked) }
                 },
             )
@@ -228,7 +208,6 @@ private fun LAFBehaviorScreen(onBack: () -> Unit) {
                 summary = stringResource(R.string.pref_ao_refresh_rate_optimization_summary),
                 checked = refreshRateOptimization,
                 onCheckedChange = { checked ->
-                    refreshRateOptimization = checked
                     prefs.edit { putBoolean(P.REFRESH_RATE_OPTIMIZATION, checked) }
                 },
             )
@@ -263,7 +242,6 @@ private fun LAFBehaviorScreen(onBack: () -> Unit) {
                 summary = stringResource(R.string.pref_ao_double_tap_disabled_summary),
                 checked = doubleTapDisabled,
                 onCheckedChange = { checked ->
-                    doubleTapDisabled = checked
                     prefs.edit { putBoolean(P.DISABLE_DOUBLE_TAP, checked) }
                 },
             )
@@ -275,7 +253,6 @@ private fun LAFBehaviorScreen(onBack: () -> Unit) {
                 summary = stringResource(R.string.pref_ao_pocket_mode_summary),
                 checked = pocketMode,
                 onCheckedChange = { checked ->
-                    pocketMode = checked
                     prefs.edit { putBoolean(P.POCKET_MODE, checked) }
                 },
             )
@@ -287,7 +264,6 @@ private fun LAFBehaviorScreen(onBack: () -> Unit) {
                 summary = stringResource(R.string.pref_ao_dnd_summary),
                 checked = dnd,
                 onCheckedChange = { checked ->
-                    dnd = checked
                     prefs.edit { putBoolean(P.DO_NOT_DISTURB, checked) }
                 },
             )
@@ -300,7 +276,6 @@ private fun LAFBehaviorScreen(onBack: () -> Unit) {
                 checked = powerSaving,
                 enabled = isRootMode,
                 onCheckedChange = { checked ->
-                    powerSaving = checked
                     prefs.edit { putBoolean(P.POWER_SAVING_MODE, checked) }
                 },
             )
@@ -313,7 +288,6 @@ private fun LAFBehaviorScreen(onBack: () -> Unit) {
                 checked = headsUp,
                 enabled = isRootMode,
                 onCheckedChange = { checked ->
-                    headsUp = checked
                     prefs.edit { putBoolean(P.DISABLE_HEADS_UP_NOTIFICATIONS, checked) }
                 },
             )

@@ -54,7 +54,7 @@ object Permissions {
     }
 
     fun needsNotificationPermissions(context: Context): Boolean {
-        val prefs = P.getPreferences(context).all
+        val prefs = P.getP(context).getAll()
         for (i in NOTIFICATION_PERMISSION_PREFS) {
             if (prefs.containsKey(i) && prefs[i] is Boolean && prefs[i] == true) {
                 return !isNotificationServiceEnabled(context)
@@ -65,7 +65,7 @@ object Permissions {
 
     fun isDeviceAdminOrRoot(context: Context): Boolean =
         if (
-            P.getPreferences(context).getBoolean("root_mode", false)
+            P.getP(context).getBoolean("root_mode", false)
         ) {
             true
         } else {
@@ -74,7 +74,7 @@ object Permissions {
         }
 
     fun needsDeviceAdminOrRoot(context: Context): Boolean {
-        val prefs = P.getPreferences(context).all
+        val prefs = P.getP(context).getAll()
         for (i in DEVICE_ADMIN_OR_ROOT_PERMISSION_PREFS) {
             if (prefs.containsKey(i) && prefs[i] is Boolean && prefs[i] == true) {
                 return !isDeviceAdminOrRoot(context)
@@ -96,7 +96,7 @@ object Permissions {
                 .PERMISSION_GRANTED
 
     fun needsCalendarPermission(context: Context): Boolean {
-        val prefs = P.getPreferences(context).all
+        val prefs = P.getP(context).getAll()
         for (i in CALENDAR_PERMISSION_PREFS) {
             if (prefs.containsKey(i) && prefs[i] is Boolean && prefs[i] == true) {
                 return !hasCalendarPermission(context)

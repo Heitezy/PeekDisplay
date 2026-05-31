@@ -14,7 +14,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import heitezy.peekdisplay.R
 import heitezy.peekdisplay.helpers.P
-import androidx.core.content.edit
 import heitezy.peekdisplay.ui.PeekScaffold
 import heitezy.peekdisplay.ui.PreferenceDivider
 import heitezy.peekdisplay.ui.HorizontalLayoutPicker
@@ -49,19 +48,21 @@ private fun ChargingLookScreen(onBack: () -> Unit) {
     val labels = context.resources
         .getStringArray(R.array.pref_look_and_feel_charging_array_display)
 
-    val savedStyle = remember {
-        P.getPreferences(context)
-            .getString(P.CHARGING_STYLE, P.CHARGING_STYLE_DEFAULT)
-            ?: P.CHARGING_STYLE_DEFAULT
-    }
+    val prefs = remember { P.getP(context) }
+    val savedStyle by prefs.getStringFlow(P.CHARGING_STYLE, P.CHARGING_STYLE_DEFAULT)
+        .collectAsState(initial = prefs.getString(P.CHARGING_STYLE, P.CHARGING_STYLE_DEFAULT))
+
     var selectedIndex by remember { mutableIntStateOf(styleToIndex(savedStyle)) }
+
+    LaunchedEffect(savedStyle) {
+        selectedIndex = styleToIndex(savedStyle)
+    }
 
     DisposableEffect(Unit) {
         onDispose {
-            P.getPreferences(context)
-                .edit {
-                    putString(P.CHARGING_STYLE, indexToStyle(selectedIndex))
-                }
+            prefs.edit {
+                putString(P.CHARGING_STYLE, indexToStyle(selectedIndex))
+            }
         }
     }
 

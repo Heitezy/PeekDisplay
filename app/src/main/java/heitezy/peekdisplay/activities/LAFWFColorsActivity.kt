@@ -7,15 +7,12 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.*
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import heitezy.peekdisplay.R
 import heitezy.peekdisplay.helpers.P
-import androidx.core.content.edit
 import heitezy.peekdisplay.ui.ColorPickerDialog
 import heitezy.peekdisplay.ui.ColorPreferenceItem
 import heitezy.peekdisplay.ui.PeekScaffold
@@ -35,13 +32,22 @@ class LAFWFColorsActivity : BaseActivity() {
 @Composable
 private fun LAFWFColorsScreen(onBack: () -> Unit) {
     val context = LocalContext.current
-    val prefs = remember { P.getPreferences(context) }
+    val prefs = remember { P.getP(context) }
 
     val colorStates = remember {
         mutableStateMapOf<String, Int>().apply {
             COLOR_PREFS.forEach { spec ->
                 put(spec.key, prefs.getInt(spec.key, spec.defaultColor))
             }
+        }
+    }
+
+    COLOR_PREFS.forEach { spec ->
+        val color by prefs.getIntFlow(spec.key, spec.defaultColor)
+            .collectAsState(initial = prefs.getInt(spec.key, spec.defaultColor))
+        
+        LaunchedEffect(color) {
+            colorStates[spec.key] = color
         }
     }
 
@@ -75,7 +81,6 @@ private fun LAFWFColorsScreen(onBack: () -> Unit) {
             title = stringResource(spec.titleRes),
             onColorSelected = { picked ->
                 prefs.edit { putInt(spec.key, picked) }
-                colorStates[spec.key] = picked
                 activeSpec = null
             },
             onDismiss = { activeSpec = null },

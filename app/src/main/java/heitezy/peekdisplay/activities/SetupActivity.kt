@@ -31,10 +31,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.preference.PreferenceManager
 import heitezy.peekdisplay.R
 import heitezy.peekdisplay.helpers.P
-import androidx.core.content.edit
 import heitezy.peekdisplay.ui.SetupScreenContent
 
 class SetupActivity : BaseActivity() {
@@ -52,11 +50,12 @@ class SetupActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val prefsEditor = PreferenceManager.getDefaultSharedPreferences(this).edit()
+        val prefs = P.getP(this)
 
-        prefsEditor.putBoolean(P.USE_12_HOUR_CLOCK, !DateFormat.is24HourFormat(this))
-        prefsEditor.putInt(P.DOUBLE_TAP_SPEED, P.DOUBLE_TAP_SPEED_DEFAULT)
-        prefsEditor.apply()
+        prefs.edit {
+            putBoolean(P.USE_12_HOUR_CLOCK, !DateFormat.is24HourFormat(this@SetupActivity))
+            putInt(P.DOUBLE_TAP_SPEED, P.DOUBLE_TAP_SPEED_DEFAULT)
+        }
 
         setContent {
             BaseContent {
@@ -108,7 +107,7 @@ class SetupActivity : BaseActivity() {
                             TextButton(onClick = {
                                 when (step) {
                                     0 -> onContinueDrawOverOtherApps { step = 1 }
-                                    1 -> onContinuePhoneState(prefsEditor)
+                                    1 -> onContinuePhoneState(prefs)
                                 }
                             }) {
                                 Text(stringResource(R.string.setup_continue))
@@ -140,23 +139,22 @@ class SetupActivity : BaseActivity() {
     }
 
     private fun onContinuePhoneState(
-        prefsEditor: android.content.SharedPreferences.Editor,
+        prefs: P,
     ) {
         if (applicationContext.checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
             != PackageManager.PERMISSION_GRANTED
         ) {
             phoneStatePermissionLauncher.launch(Manifest.permission.READ_PHONE_STATE)
         } else {
-            prefsEditor.putBoolean("setup_complete", true).apply()
+            prefs.edit { putBoolean("setup_complete", true) }
             finishSetup()
         }
     }
 
     private fun finishSetup() {
-        PreferenceManager.getDefaultSharedPreferences(this)
-            .edit {
-                putBoolean("setup_complete", true)
-            }
+        P.getP(this).edit {
+            putBoolean("setup_complete", true)
+        }
         navigateToMain()
     }
 

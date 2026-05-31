@@ -11,7 +11,6 @@ import android.os.IBinder
 import android.os.PowerManager
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import androidx.preference.PreferenceManager.getDefaultSharedPreferences
 import heitezy.peekdisplay.R
 import heitezy.peekdisplay.actions.alwayson.AlwaysOn
 import heitezy.peekdisplay.helpers.P
@@ -73,7 +72,7 @@ class PickUpService : Service(), SensorEventListener {
     }
     
     private fun loadSettings() {
-        val prefs = P(getDefaultSharedPreferences(this))
+        val prefs = P.getP(this)
         when (prefs.get(P.PICKUP_SENSITIVITY, P.PICKUP_SENSITIVITY_DEFAULT)) {
             "1" -> pickUpThreshold = 1.5
             "2" -> pickUpThreshold = 2.0
@@ -165,7 +164,7 @@ class PickUpService : Service(), SensorEventListener {
                 return
             }
 
-            val timeout = P(getDefaultSharedPreferences(this)).get(P.RULES_TIMEOUT, P.RULES_TIMEOUT_DEFAULT)
+            val timeout = P.getP(this).get(P.RULES_TIMEOUT, P.RULES_TIMEOUT_DEFAULT)
             val acquireDuration = if (timeout > 0) timeout * 1000L else 5000L
 
             screenOffWakeLock?.acquire(acquireDuration)

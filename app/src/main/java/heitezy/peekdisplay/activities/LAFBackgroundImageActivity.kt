@@ -28,7 +28,6 @@ import heitezy.peekdisplay.actions.alwayson.AlwaysOn
 import heitezy.peekdisplay.helpers.P
 import java.io.ByteArrayOutputStream
 import java.lang.Integer.min
-import androidx.core.content.edit
 import heitezy.peekdisplay.ui.HorizontalLayoutPicker
 import heitezy.peekdisplay.ui.PeekScaffold
 import heitezy.peekdisplay.ui.PreferenceDivider
@@ -82,17 +81,20 @@ private fun BackgroundImageScreen(onBack: () -> Unit) {
     val labels = context.resources
         .getStringArray(R.array.pref_ao_background_image_array_display)
 
-    val savedKey = remember {
-        P.getPreferences(context)
-            .getString(P.BACKGROUND_IMAGE, P.BACKGROUND_IMAGE_DEFAULT)
-            ?: P.BACKGROUND_IMAGE_DEFAULT
-    }
+    val prefs = remember { P.getP(context) }
+    val savedKey by prefs.getStringFlow(P.BACKGROUND_IMAGE, P.BACKGROUND_IMAGE_DEFAULT)
+        .collectAsState(initial = prefs.getString(P.BACKGROUND_IMAGE, P.BACKGROUND_IMAGE_DEFAULT))
+    
     var selectedIndex by remember { mutableIntStateOf(keyToIndex(savedKey)) }
+
+    LaunchedEffect(savedKey) {
+        selectedIndex = keyToIndex(savedKey)
+    }
 
     var customBitmap by remember { mutableStateOf<ImageBitmap?>(null) }
 
     LaunchedEffect(Unit) {
-        val encoded = P.getPreferences(context).getString(P.CUSTOM_BACKGROUND, "") ?: ""
+        val encoded = prefs.getString(P.CUSTOM_BACKGROUND, "")
         if (encoded.isNotEmpty()) {
             val bytes = Base64.decode(encoded, 0)
             customBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)?.asImageBitmap()
@@ -120,7 +122,7 @@ private fun BackgroundImageScreen(onBack: () -> Unit) {
                 val os = ByteArrayOutputStream()
                 bitmap.compress(Bitmap.CompressFormat.JPEG, BACKGROUND_QUALITY, os)
                 val encoded = Base64.encodeToString(os.toByteArray(), Base64.DEFAULT)
-                P.getPreferences(context).edit { putString(P.CUSTOM_BACKGROUND, encoded) }
+                prefs.edit { putString(P.CUSTOM_BACKGROUND, encoded) }
 
                 val ib = bitmap.asImageBitmap()
                 Handler(Looper.getMainLooper()).post {
@@ -133,10 +135,9 @@ private fun BackgroundImageScreen(onBack: () -> Unit) {
 
     DisposableEffect(Unit) {
         onDispose {
-            P.getPreferences(context)
-                .edit {
-                    putString(P.BACKGROUND_IMAGE, indexToKey(selectedIndex))
-                }
+            prefs.edit {
+                putString(P.BACKGROUND_IMAGE, indexToKey(selectedIndex))
+            }
         }
     }
 

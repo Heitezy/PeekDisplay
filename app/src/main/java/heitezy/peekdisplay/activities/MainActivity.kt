@@ -25,7 +25,6 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
-import androidx.core.content.edit
 import heitezy.peekdisplay.ui.PeekScaffold
 import heitezy.peekdisplay.ui.PreferenceDivider
 import heitezy.peekdisplay.ui.PreferenceItem
@@ -95,23 +94,15 @@ private fun MainScreen(
     onNavigate: (Intent) -> Unit,
 ) {
     val context = LocalContext.current
-    val prefs = remember { P.getPreferences(context) }
+    val prefs = remember { P.getP(context) }
 
-    var alwaysOnChecked by remember {
-        mutableStateOf(prefs.getBoolean(P.ALWAYS_ON, P.ALWAYS_ON_DEFAULT))
-    }
-    var chargingChecked by remember {
-        mutableStateOf(prefs.getBoolean("charging_animation", false))
-    }
+    val alwaysOnChecked by prefs.getBooleanFlow(P.ALWAYS_ON, P.ALWAYS_ON_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.ALWAYS_ON, P.ALWAYS_ON_DEFAULT))
+    
+    val chargingChecked by prefs.getBooleanFlow("charging_animation", false)
+        .collectAsState(initial = prefs.getBoolean("charging_animation", false))
 
     val lifecycle = LocalLifecycleOwner.current.lifecycle
-    LaunchedEffect(lifecycle) {
-        lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-            alwaysOnChecked = prefs.getBoolean(P.ALWAYS_ON, P.ALWAYS_ON_DEFAULT)
-            chargingChecked = prefs.getBoolean("charging_animation", false)
-        }
-    }
-
     var pendingDialog by remember { mutableStateOf<PermissionDialog?>(null) }
 
     LaunchedEffect(lifecycle) {
@@ -178,7 +169,7 @@ private fun MainScreen(
                 summaryOff = stringResource(R.string.pref_disabled),
                 checked = alwaysOnChecked,
                 onCheckedChange = {
-                    alwaysOnChecked = onAlwaysOnToggled()
+                    onAlwaysOnToggled()
                 },
             )
 
@@ -191,7 +182,6 @@ private fun MainScreen(
                 summaryOff = stringResource(R.string.pref_disabled),
                 checked = chargingChecked,
                 onCheckedChange = { checked ->
-                    chargingChecked = checked
                     prefs.edit { putBoolean("charging_animation", checked) }
                 },
             )

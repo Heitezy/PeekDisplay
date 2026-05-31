@@ -8,18 +8,13 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import android.os.Bundle
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.core.content.edit
 import heitezy.peekdisplay.R
 import heitezy.peekdisplay.helpers.P
 import heitezy.peekdisplay.helpers.Root
@@ -42,11 +37,11 @@ class PermissionsActivity : BaseActivity() {
 @Composable
 private fun PermissionsScreen(onBack: () -> Unit) {
     val context = LocalContext.current
-    val prefs = remember { P.getPreferences(context) }
+    val prefs = remember { P.getP(context) }
     var showDeviceAdminDialog by remember { mutableStateOf(false) }
-    var rootChecked by remember {
-        mutableStateOf(prefs.getBoolean(P.ROOT_MODE, P.ROOT_MODE_DEFAULT))
-    }
+
+    val rootChecked by prefs.getBooleanFlow(P.ROOT_MODE, P.ROOT_MODE_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.ROOT_MODE, P.ROOT_MODE_DEFAULT))
 
     PeekScaffold(
         title = stringResource(R.string.pref_permissions),
@@ -126,7 +121,6 @@ private fun PermissionsScreen(onBack: () -> Unit) {
                             Toast.LENGTH_LONG,
                         ).show()
                     } else {
-                        rootChecked = checked
                         prefs.edit { putBoolean(P.ROOT_MODE, checked) }
                     }
                 },

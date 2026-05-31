@@ -102,6 +102,6 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.activity:activity-compose:1.13.0")
     implementation("com.google.android.material:material:1.13.0")
-    implementation("androidx.preference:preference-ktx:1.2.1")
     implementation("com.android.volley:volley:1.2.1")
+    implementation("androidx.datastore:datastore-preferences:1.2.1")
 }

@@ -9,12 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
@@ -32,7 +27,6 @@ import heitezy.peekdisplay.ui.PreferenceItem
 import heitezy.peekdisplay.ui.RadioButtonDialog
 import heitezy.peekdisplay.ui.SwitchPreferenceItem
 import heitezy.peekdisplay.helpers.P
-import androidx.core.content.edit
 import heitezy.peekdisplay.helpers.Permissions
 
 class LAFBackgroundActivity : BaseActivity() {
@@ -59,28 +53,27 @@ private fun BackgroundSettingsScreen(
 ) {
     val context = LocalContext.current
 
-    val prefs = remember { P.getPreferences(context) }
+    val prefs = remember { P.getP(context) }
 
     val hasNotificationPermission = Permissions.isNotificationServiceEnabled(context)
 
-    var hideDisplayCutouts by remember {
-        mutableStateOf(prefs.getBoolean("hide_display_cutouts", false))
-    }
-    var edgeGlowEnabled by remember {
-        mutableStateOf(prefs.getBoolean(P.EDGE_GLOW, false))
-    }
-    var glowDuration by remember {
-        mutableIntStateOf(prefs.getInt(P.EDGE_GLOW_DURATION, 2000))
-    }
-    var glowDelay by remember {
-        mutableIntStateOf(prefs.getInt(P.EDGE_GLOW_DELAY, 4000))
-    }
-    var glowStyle by remember {
-        mutableStateOf(prefs.getString(P.EDGE_GLOW_STYLE, "all") ?: "all")
-    }
-    var glowColor by remember {
-        mutableIntStateOf(prefs.getInt(P.DISPLAY_COLOR_EDGE_GLOW, Color.White.toArgb()))
-    }
+    val hideDisplayCutouts by prefs.getBooleanFlow("hide_display_cutouts", false)
+        .collectAsState(initial = prefs.getBoolean("hide_display_cutouts", false))
+    
+    val edgeGlowEnabled by prefs.getBooleanFlow(P.EDGE_GLOW, false)
+        .collectAsState(initial = prefs.getBoolean(P.EDGE_GLOW, false))
+    
+    val glowDuration by prefs.getIntFlow(P.EDGE_GLOW_DURATION, 2000)
+        .collectAsState(initial = prefs.getInt(P.EDGE_GLOW_DURATION, 2000))
+    
+    val glowDelay by prefs.getIntFlow(P.EDGE_GLOW_DELAY, 4000)
+        .collectAsState(initial = prefs.getInt(P.EDGE_GLOW_DELAY, 4000))
+    
+    val glowStyle by prefs.getStringFlow(P.EDGE_GLOW_STYLE, "all")
+        .collectAsState(initial = prefs.getString(P.EDGE_GLOW_STYLE, "all"))
+    
+    val glowColor by prefs.getIntFlow(P.DISPLAY_COLOR_EDGE_GLOW, Color.White.toArgb())
+        .collectAsState(initial = prefs.getInt(P.DISPLAY_COLOR_EDGE_GLOW, Color.White.toArgb()))
 
     var showDurationDialog by remember { mutableStateOf(false) }
     var showDelayDialog    by remember { mutableStateOf(false) }
@@ -96,7 +89,6 @@ private fun BackgroundSettingsScreen(
             validate = { it.toIntOrNull() != null },
             onConfirm = { value ->
                 val ms = value.toIntOrNull() ?: glowDuration
-                glowDuration = ms
                 prefs.edit { putInt(P.EDGE_GLOW_DURATION, ms) }
                 showDurationDialog = false
             },
@@ -113,7 +105,6 @@ private fun BackgroundSettingsScreen(
             validate = { it.toIntOrNull() != null },
             onConfirm = { value ->
                 val ms = value.toIntOrNull() ?: glowDelay
-                glowDelay = ms
                 prefs.edit { putInt(P.EDGE_GLOW_DELAY, ms) }
                 showDelayDialog = false
             },
@@ -130,7 +121,6 @@ private fun BackgroundSettingsScreen(
             entryValues = entryValues,
             selectedValue = glowStyle,
             onValueSelected = { value ->
-                glowStyle = value
                 prefs.edit { putString(P.EDGE_GLOW_STYLE, value) }
                 showStyleDialog = false
             },
@@ -144,7 +134,6 @@ private fun BackgroundSettingsScreen(
             showAlpha = true,
             title = stringResource(R.string.pref_ao_glowColor),
             onColorSelected = { color ->
-                glowColor = color
                 prefs.edit { putInt(P.DISPLAY_COLOR_EDGE_GLOW, color) }
                 showColorDialog = false
             },
@@ -178,7 +167,6 @@ private fun BackgroundSettingsScreen(
                     summary = stringResource(R.string.pref_look_and_feel_hide_display_cutouts_summary),
                     checked = hideDisplayCutouts,
                     onCheckedChange = { checked ->
-                        hideDisplayCutouts = checked
                         prefs.edit { putBoolean("hide_display_cutouts", checked) }
                     },
                 )
@@ -195,7 +183,6 @@ private fun BackgroundSettingsScreen(
                 hasPermission = hasNotificationPermission,
                 permissionDeniedSummary = stringResource(R.string.permissions_notification_access),
                 onCheckedChange = { checked ->
-                    edgeGlowEnabled = checked
                     prefs.edit { putBoolean(P.EDGE_GLOW, checked) }
                 },
             )

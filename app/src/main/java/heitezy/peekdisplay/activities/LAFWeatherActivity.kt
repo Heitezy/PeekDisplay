@@ -8,11 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.pluralStringResource
@@ -20,7 +16,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.core.net.toUri
 import heitezy.peekdisplay.R
 import heitezy.peekdisplay.helpers.P
-import androidx.core.content.edit
 import heitezy.peekdisplay.ui.EditTextDialog
 import heitezy.peekdisplay.ui.FormatDialog
 import heitezy.peekdisplay.ui.PeekScaffold
@@ -45,43 +40,34 @@ class LAFWeatherActivity : BaseActivity() {
 @Composable
 private fun WeatherSettingsScreen(onBack: () -> Unit) {
     val context = LocalContext.current
-    val prefs = remember { P.getPreferences(context) }
+    val prefs = remember { P.getP(context) }
 
     var showPrivacyDialog by remember { mutableStateOf(true) }
     var showFormatDialog by remember { mutableStateOf(false) }
     var showLocationDialog by remember { mutableStateOf(false) }
     var showIntervalDialog by remember { mutableStateOf(false) }
 
-    var weatherEnabled by remember {
-        mutableStateOf(prefs.getBoolean(P.SHOW_WEATHER, P.SHOW_WEATHER_DEFAULT))
-    }
-    var imperialEnabled by remember {
-        mutableStateOf(prefs.getBoolean(P.WEATHER_IMPERIAL, P.WEATHER_IMPERIAL_DEFAULT))
-    }
-    var weatherLocation by remember {
-        mutableStateOf(
-            prefs.getString(P.WEATHER_LOCATION, P.WEATHER_LOCATION_DEFAULT)
-                ?: P.WEATHER_LOCATION_DEFAULT
-        )
-    }
-    var weatherFormat by remember {
-        mutableStateOf(
-            prefs.getString(P.WEATHER_FORMAT, P.WEATHER_FORMAT_DEFAULT) ?: P.WEATHER_FORMAT_DEFAULT
-        )
-    }
-    var weatherRefreshInterval by remember {
-        mutableStateOf(
-            prefs.getInt(P.WEATHER_REFRESH_INTERVAL, P.WEATHER_REFRESH_INTERVAL_DEFAULT).toString()
-        )
-    }
+    val weatherEnabled by prefs.getBooleanFlow(P.SHOW_WEATHER, P.SHOW_WEATHER_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.SHOW_WEATHER, P.SHOW_WEATHER_DEFAULT))
 
-    val intervalMinutes = weatherRefreshInterval.toIntOrNull() ?: P.WEATHER_REFRESH_INTERVAL_DEFAULT
+    val imperialEnabled by prefs.getBooleanFlow(P.WEATHER_IMPERIAL, P.WEATHER_IMPERIAL_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.WEATHER_IMPERIAL, P.WEATHER_IMPERIAL_DEFAULT))
+
+    val weatherLocation by prefs.getStringFlow(P.WEATHER_LOCATION, P.WEATHER_LOCATION_DEFAULT)
+        .collectAsState(initial = prefs.getString(P.WEATHER_LOCATION, P.WEATHER_LOCATION_DEFAULT))
+
+    val weatherFormat by prefs.getStringFlow(P.WEATHER_FORMAT, P.WEATHER_FORMAT_DEFAULT)
+        .collectAsState(initial = prefs.getString(P.WEATHER_FORMAT, P.WEATHER_FORMAT_DEFAULT))
+
+    val weatherRefreshInterval by prefs.getIntFlow(P.WEATHER_REFRESH_INTERVAL, P.WEATHER_REFRESH_INTERVAL_DEFAULT)
+        .collectAsState(initial = prefs.getInt(P.WEATHER_REFRESH_INTERVAL, P.WEATHER_REFRESH_INTERVAL_DEFAULT))
+
     val intervalSummary = when {
-        intervalMinutes <= 0 -> stringResource(R.string.pref_look_and_feel_weather_refresh_interval_disabled)
+        weatherRefreshInterval <= 0 -> stringResource(R.string.pref_look_and_feel_weather_refresh_interval_disabled)
         else -> pluralStringResource(
             R.plurals.pref_look_and_feel_weather_refresh_interval_summary,
-            intervalMinutes,
-            intervalMinutes
+            weatherRefreshInterval,
+            weatherRefreshInterval
         )
     }
 
@@ -102,7 +88,6 @@ private fun WeatherSettingsScreen(onBack: () -> Unit) {
             title = stringResource(R.string.pref_look_and_feel_weather_format),
             current = weatherFormat,
             onConfirm = { newFormat ->
-                weatherFormat = newFormat
                 prefs.edit { putString(P.WEATHER_FORMAT, newFormat) }
                 showFormatDialog = false
             },
@@ -123,7 +108,6 @@ private fun WeatherSettingsScreen(onBack: () -> Unit) {
             title = stringResource(R.string.pref_look_and_feel_weather_location),
             current = weatherLocation,
             onConfirm = { newLocation ->
-                weatherLocation = newLocation
                 prefs.edit { putString(P.WEATHER_LOCATION, newLocation) }
                 showLocationDialog = false
             },
@@ -134,12 +118,11 @@ private fun WeatherSettingsScreen(onBack: () -> Unit) {
     if (showIntervalDialog) {
         EditTextDialog(
             title = stringResource(R.string.pref_look_and_feel_weather_refresh_interval),
-            current = weatherRefreshInterval,
+            current = weatherRefreshInterval.toString(),
             label = stringResource(R.string.pref_look_and_feel_weather_refresh_interval_label),
             keyboardType = androidx.compose.ui.text.input.KeyboardType.Number,
             validate = { it.toIntOrNull() != null },
             onConfirm = { newInterval ->
-                weatherRefreshInterval = newInterval
                 prefs.edit { putInt(P.WEATHER_REFRESH_INTERVAL, newInterval.toIntOrNull() ?: P.WEATHER_REFRESH_INTERVAL_DEFAULT) }
                 showIntervalDialog = false
             },
@@ -172,7 +155,6 @@ private fun WeatherSettingsScreen(onBack: () -> Unit) {
                 summary = stringResource(R.string.pref_look_and_feel_weather_show_summary),
                 checked = weatherEnabled,
                 onCheckedChange = { checked ->
-                    weatherEnabled = checked
                     prefs.edit { putBoolean(P.SHOW_WEATHER, checked) }
                 },
             )
@@ -196,7 +178,6 @@ private fun WeatherSettingsScreen(onBack: () -> Unit) {
                 summary = stringResource(R.string.pref_look_and_feel_weather_unit_summary),
                 checked = imperialEnabled,
                 onCheckedChange = { checked ->
-                    imperialEnabled = checked
                     prefs.edit { putBoolean(P.WEATHER_IMPERIAL, checked) }
                 },
             )

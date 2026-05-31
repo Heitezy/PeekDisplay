@@ -304,9 +304,9 @@
     <string name="about_libraries_desc">A list of all used libraries</string>
 
     <string-array name="about_libraries" translatable="false">
-        <item>Android Preferences KTX</item>
+        <item>Android Preferences DataStore</item>
         <item>Activity Compose</item>
-        <item>Jetpack Compose</item>
+        <item>Compose UI</item>
         <item>Material Components For Android</item>
         <item>Volley</item>
     </string-array>

@@ -13,8 +13,9 @@ class Rules(context: Context) {
     private var endMinutes = 0
 
     init {
-        val startString = P.getPreferences(context).getString("rules_time_start", "0:00") ?: "0:00"
-        val endString = P.getPreferences(context).getString("rules_time_end", "0:00") ?: "0:00"
+        val prefs = P.getP(context)
+        val startString = prefs.getString("rules_time_start", "0:00")
+        val endString = prefs.getString("rules_time_end", "0:00")
         startMinutes =
             startString.substringBefore(":").toInt() * 60 +
                     startString.substringAfter(":").toInt()
@@ -76,18 +77,18 @@ class Rules(context: Context) {
                     ?.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1)
                     ?: return true
             return if (chargingState > 0) {
-                P.getPreferences(context).getStringSet(
+                P.getP(context).getStringSet(
                     "rules_charger_type",
                     context.resources.getStringArray(R.array.pref_look_and_feel_rules_charger_values)
                         .toSet(),
-                )?.contains(
+                ).contains(
                     when (chargingState) {
                         BatteryManager.BATTERY_PLUGGED_AC -> "ac"
                         BatteryManager.BATTERY_PLUGGED_USB -> "usb"
                         BatteryManager.BATTERY_PLUGGED_WIRELESS -> "wireless"
                         else -> ""
                     },
-                ) ?: false
+                )
             } else {
                 false
             }
@@ -95,7 +96,7 @@ class Rules(context: Context) {
 
         fun matchesDoNotDisturbState(context: Context): Boolean {
             val ruleDisableInDoNotDisturb =
-                P.getPreferences(context).getBoolean(
+                P.getP(context).getBoolean(
                     P.RULES_DISABLE_IN_DO_NOT_DISTURB,
                     P.RULES_DISABLE_IN_DO_NOT_DISTURB_DEFAULT,
                 )
@@ -106,7 +107,7 @@ class Rules(context: Context) {
 
         fun matchesChargingState(context: Context): Boolean {
             val ruleChargingState =
-                P.getPreferences(context).getString(
+                P.getP(context).getString(
                     P.RULES_CHARGING_STATE,
                     P.RULES_CHARGING_STATE_DEFAULT,
                 )
@@ -117,19 +118,19 @@ class Rules(context: Context) {
         }
 
         fun isAlwaysOnDisplayEnabled(context: Context): Boolean =
-            P.getPreferences(context).getBoolean(
+            P.getP(context).getBoolean(
                 P.ALWAYS_ON,
                 P.ALWAYS_ON_DEFAULT,
             )
 
         fun isAmbientMode(context: Context): Boolean =
-            P.getPreferences(context).getBoolean(
+            P.getP(context).getBoolean(
                 "rules_ambient_mode",
                 false,
             )
 
         fun isPickUpMode(context: Context): Boolean =
-            P.getPreferences(context).getBoolean(
+            P.getP(context).getBoolean(
                 "rules_pickup_mode",
                 false
             )
@@ -140,6 +141,6 @@ class Rules(context: Context) {
                     BatteryManager.EXTRA_LEVEL,
                     0,
                 ) ?: BATTERY_FULL
-            ) > P.getPreferences(context).getInt(P.RULES_BATTERY, P.RULES_BATTERY_DEFAULT)
+            ) > P.getP(context).getInt(P.RULES_BATTERY, P.RULES_BATTERY_DEFAULT)
     }
 }

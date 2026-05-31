@@ -17,8 +17,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import androidx.preference.PreferenceManager
 import heitezy.peekdisplay.R
+import heitezy.peekdisplay.helpers.P
 import heitezy.peekdisplay.helpers.Root
 import heitezy.peekdisplay.receivers.AdminReceiver
 
@@ -28,8 +28,7 @@ open class OffActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         requestedOrientation =
             when (
-                PreferenceManager.getDefaultSharedPreferences(this)
-                    .getString("orientation", "locked")
+                P.getP(this).getString("orientation", "locked")
             ) {
                 "portrait" -> ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
                 "landscape" -> ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
@@ -85,7 +84,7 @@ open class OffActivity : ComponentActivity() {
     }
 
     protected open fun finishAndOff() {
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("root_mode", false)) {
+        if (P.getP(this).getBoolean("root_mode", false)) {
             Root.shell("input keyevent KEYCODE_POWER")
         } else {
             val policyManager =

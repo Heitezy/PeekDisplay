@@ -53,7 +53,6 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.preference.PreferenceManager.getDefaultSharedPreferences
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import heitezy.peekdisplay.Application
@@ -854,7 +853,7 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
 
         instance = this
 
-        prefs = P(getDefaultSharedPreferences(this))
+        prefs = P.getP(this)
         userPowerSaving = (getSystemService(POWER_SERVICE) as PowerManager).isPowerSaveMode
 
         updateInitialAODState()

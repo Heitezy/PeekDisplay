@@ -2,7 +2,6 @@ package heitezy.peekdisplay.activities
 
 import android.Manifest
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -13,9 +12,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -32,7 +31,6 @@ import heitezy.peekdisplay.helpers.Permissions
 import java.text.SimpleDateFormat
 import java.util.Locale
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.core.content.edit
 import heitezy.peekdisplay.ui.EditTextDialog
 import heitezy.peekdisplay.ui.FormatDialog
 import heitezy.peekdisplay.ui.PeekScaffold
@@ -56,138 +54,87 @@ class LAFWatchFaceActivity : BaseActivity() {
 @Composable
 private fun LAFWatchFaceScreen(onBack: () -> Unit) {
     val context = LocalContext.current
-    val prefs = remember { P.getPreferences(context) }
+    val prefs = remember { P.getP(context) }
 
     val hasNotificationPermission = Permissions.isNotificationServiceEnabled(context)
 
-    var clockEnabled by remember {
-        mutableStateOf(prefs.getBoolean(P.SHOW_CLOCK, P.SHOW_CLOCK_DEFAULT))
-    }
-    var use12Hour by remember {
-        mutableStateOf(prefs.getBoolean(P.USE_12_HOUR_CLOCK, P.USE_12_HOUR_CLOCK_DEFAULT))
-    }
-    var showAmPm by remember {
-        mutableStateOf(prefs.getBoolean(P.SHOW_AM_PM, P.SHOW_AM_PM_DEFAULT))
-    }
-    var dateEnabled by remember {
-        mutableStateOf(prefs.getBoolean(P.SHOW_DATE, P.SHOW_DATE_DEFAULT))
-    }
-    var dateFormat by remember {
-        mutableStateOf(
-            prefs.getString(P.DATE_FORMAT, P.DATE_FORMAT_DEFAULT) ?: P.DATE_FORMAT_DEFAULT
-        )
-    }
-    var batteryIcon by remember {
-        mutableStateOf(prefs.getBoolean(P.SHOW_BATTERY_ICON, P.SHOW_BATTERY_ICON_DEFAULT))
-    }
-    var batteryPercentage by remember {
-        mutableStateOf(
-            prefs.getBoolean(
-                P.SHOW_BATTERY_PERCENTAGE,
-                P.SHOW_BATTERY_PERCENTAGE_DEFAULT
-            )
-        )
-    }
-    var musicControls by remember {
-        mutableStateOf(prefs.getBoolean(P.SHOW_MUSIC_CONTROLS, P.SHOW_MUSIC_CONTROLS_DEFAULT))
-    }
-    var albumArt by remember {
-        mutableStateOf(prefs.getBoolean(P.SHOW_ALBUM_ART, P.SHOW_ALBUM_ART_DEFAULT))
-    }
-    var calendar by remember {
-        mutableStateOf(prefs.getBoolean(P.SHOW_CALENDAR, P.SHOW_CALENDAR_DEFAULT))
-    }
-    var message by remember {
-        mutableStateOf(prefs.getString(P.MESSAGE, P.MESSAGE_DEFAULT) ?: P.MESSAGE_DEFAULT)
-    }
-    var notifications by remember {
-        mutableStateOf(
-            prefs.getBoolean(
-                P.SHOW_NOTIFICATION_COUNT,
-                P.SHOW_NOTIFICATION_COUNT_DEFAULT
-            )
-        )
-    }
-    var notificationIcons by remember {
-        mutableStateOf(
-            prefs.getBoolean(
-                P.SHOW_NOTIFICATION_ICONS,
-                P.SHOW_NOTIFICATION_ICONS_DEFAULT
-            )
-        )
-    }
-    var interactiveIcons by remember {
-        mutableStateOf(
-            prefs.getBoolean(
-                P.INTERACTIVE_NOTIFICATION_ICONS,
-                P.INTERACTIVE_NOTIFICATION_ICONS_DEFAULT
-            )
-        )
-    }
-    var invertHighlight by remember {
-        mutableStateOf(
-            prefs.getBoolean(
-                P.INVERT_INTERACTION_HIGHLIGHT,
-                P.INVERT_INTERACTION_HIGHLIGHT_DEFAULT
-            )
-        )
-    }
-    var tintNotifications by remember {
-        mutableStateOf(prefs.getBoolean(P.TINT_NOTIFICATIONS, P.TINT_NOTIFICATIONS_DEFAULT))
-    }
-    var notificationIconSize by remember {
-        mutableStateOf(
-            prefs.getString(P.NOTIFICATION_ICON_SIZE, P.NOTIFICATION_ICON_SIZE_DEFAULT)
-                ?: P.NOTIFICATION_ICON_SIZE_DEFAULT
-        )
-    }
-    var notificationTopPadding by remember {
-        mutableIntStateOf(
-            prefs.getInt(
-                P.NOTIFICATION_ICON_TOP_PADDING,
-                P.NOTIFICATION_ICON_TOP_PADDING_DEFAULT
-            )
-        )
-    }
-    var notificationPreviewPosition by remember {
-        mutableStateOf(
-            prefs.getString(
-                P.NOTIFICATION_PREVIEW_POSITION,
-                P.NOTIFICATION_PREVIEW_POSITION_DEFAULT
-            ) ?: P.NOTIFICATION_PREVIEW_POSITION_DEFAULT
-        )
-    }
-    var fingerprintIcon by remember {
-        mutableStateOf(prefs.getBoolean(P.SHOW_FINGERPRINT_ICON, P.SHOW_FINGERPRINT_ICON_DEFAULT))
-    }
-    var lockIcon by remember {
-        mutableStateOf(prefs.getBoolean(P.LOCK_ICON, P.LOCK_ICON_DEFAULT))
-    }
-    var fingerprintMargin by remember {
-        mutableIntStateOf(prefs.getInt(P.FINGERPRINT_MARGIN, P.FINGERPRINT_MARGIN_DEFAULT))
-    }
-    var fingerprintInteractionMode by remember {
-        mutableStateOf(
-            prefs.getString(
-                P.FINGERPRINT_INTERACTION_MODE,
-                P.FINGERPRINT_INTERACTION_MODE_DEFAULT
-            ) ?: P.FINGERPRINT_INTERACTION_MODE_DEFAULT
-        )
-    }
-    var swipeNotificationOpen by remember {
-        mutableStateOf(
-            prefs.getBoolean(
-                P.SWIPE_NOTIFICATION_OPEN,
-                P.SWIPE_NOTIFICATION_OPEN_DEFAULT
-            )
-        )
-    }
-    var displayScale by remember {
-        mutableIntStateOf(prefs.getInt("pref_aod_scale_2", 100))
-    }
-    var topPadding by remember {
-        mutableIntStateOf(prefs.getInt(P.TOP_PADDING, P.TOP_PADDING_DEFAULT))
-    }
+    val clockEnabled by prefs.getBooleanFlow(P.SHOW_CLOCK, P.SHOW_CLOCK_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.SHOW_CLOCK, P.SHOW_CLOCK_DEFAULT))
+
+    val use12Hour by prefs.getBooleanFlow(P.USE_12_HOUR_CLOCK, P.USE_12_HOUR_CLOCK_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.USE_12_HOUR_CLOCK, P.USE_12_HOUR_CLOCK_DEFAULT))
+
+    val showAmPm by prefs.getBooleanFlow(P.SHOW_AM_PM, P.SHOW_AM_PM_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.SHOW_AM_PM, P.SHOW_AM_PM_DEFAULT))
+
+    val dateEnabled by prefs.getBooleanFlow(P.SHOW_DATE, P.SHOW_DATE_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.SHOW_DATE, P.SHOW_DATE_DEFAULT))
+
+    val dateFormat by prefs.getStringFlow(P.DATE_FORMAT, P.DATE_FORMAT_DEFAULT)
+        .collectAsState(initial = prefs.getString(P.DATE_FORMAT, P.DATE_FORMAT_DEFAULT))
+
+    val batteryIcon by prefs.getBooleanFlow(P.SHOW_BATTERY_ICON, P.SHOW_BATTERY_ICON_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.SHOW_BATTERY_ICON, P.SHOW_BATTERY_ICON_DEFAULT))
+
+    val batteryPercentage by prefs.getBooleanFlow(P.SHOW_BATTERY_PERCENTAGE, P.SHOW_BATTERY_PERCENTAGE_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.SHOW_BATTERY_PERCENTAGE, P.SHOW_BATTERY_PERCENTAGE_DEFAULT))
+
+    val musicControls by prefs.getBooleanFlow(P.SHOW_MUSIC_CONTROLS, P.SHOW_MUSIC_CONTROLS_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.SHOW_MUSIC_CONTROLS, P.SHOW_MUSIC_CONTROLS_DEFAULT))
+
+    val albumArt by prefs.getBooleanFlow(P.SHOW_ALBUM_ART, P.SHOW_ALBUM_ART_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.SHOW_ALBUM_ART, P.SHOW_ALBUM_ART_DEFAULT))
+
+    val calendar by prefs.getBooleanFlow(P.SHOW_CALENDAR, P.SHOW_CALENDAR_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.SHOW_CALENDAR, P.SHOW_CALENDAR_DEFAULT))
+
+    val message by prefs.getStringFlow(P.MESSAGE, P.MESSAGE_DEFAULT)
+        .collectAsState(initial = prefs.getString(P.MESSAGE, P.MESSAGE_DEFAULT))
+
+    val notifications by prefs.getBooleanFlow(P.SHOW_NOTIFICATION_COUNT, P.SHOW_NOTIFICATION_COUNT_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.SHOW_NOTIFICATION_COUNT, P.SHOW_NOTIFICATION_COUNT_DEFAULT))
+
+    val notificationIcons by prefs.getBooleanFlow(P.SHOW_NOTIFICATION_ICONS, P.SHOW_NOTIFICATION_ICONS_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.SHOW_NOTIFICATION_ICONS, P.SHOW_NOTIFICATION_ICONS_DEFAULT))
+
+    val interactiveIcons by prefs.getBooleanFlow(P.INTERACTIVE_NOTIFICATION_ICONS, P.INTERACTIVE_NOTIFICATION_ICONS_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.INTERACTIVE_NOTIFICATION_ICONS, P.INTERACTIVE_NOTIFICATION_ICONS_DEFAULT))
+
+    val invertHighlight by prefs.getBooleanFlow(P.INVERT_INTERACTION_HIGHLIGHT, P.INVERT_INTERACTION_HIGHLIGHT_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.INVERT_INTERACTION_HIGHLIGHT, P.INVERT_INTERACTION_HIGHLIGHT_DEFAULT))
+
+    val tintNotifications by prefs.getBooleanFlow(P.TINT_NOTIFICATIONS, P.TINT_NOTIFICATIONS_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.TINT_NOTIFICATIONS, P.TINT_NOTIFICATIONS_DEFAULT))
+
+    val notificationIconSize by prefs.getStringFlow(P.NOTIFICATION_ICON_SIZE, P.NOTIFICATION_ICON_SIZE_DEFAULT)
+        .collectAsState(initial = prefs.getString(P.NOTIFICATION_ICON_SIZE, P.NOTIFICATION_ICON_SIZE_DEFAULT))
+
+    val notificationTopPadding by prefs.getIntFlow(P.NOTIFICATION_ICON_TOP_PADDING, P.NOTIFICATION_ICON_TOP_PADDING_DEFAULT)
+        .collectAsState(initial = prefs.getInt(P.NOTIFICATION_ICON_TOP_PADDING, P.NOTIFICATION_ICON_TOP_PADDING_DEFAULT))
+
+    val notificationPreviewPosition by prefs.getStringFlow(P.NOTIFICATION_PREVIEW_POSITION, P.NOTIFICATION_PREVIEW_POSITION_DEFAULT)
+        .collectAsState(initial = prefs.getString(P.NOTIFICATION_PREVIEW_POSITION, P.NOTIFICATION_PREVIEW_POSITION_DEFAULT))
+
+    val fingerprintIcon by prefs.getBooleanFlow(P.SHOW_FINGERPRINT_ICON, P.SHOW_FINGERPRINT_ICON_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.SHOW_FINGERPRINT_ICON, P.SHOW_FINGERPRINT_ICON_DEFAULT))
+
+    val lockIcon by prefs.getBooleanFlow(P.LOCK_ICON, P.LOCK_ICON_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.LOCK_ICON, P.LOCK_ICON_DEFAULT))
+
+    val fingerprintMargin by prefs.getIntFlow(P.FINGERPRINT_MARGIN, P.FINGERPRINT_MARGIN_DEFAULT)
+        .collectAsState(initial = prefs.getInt(P.FINGERPRINT_MARGIN, P.FINGERPRINT_MARGIN_DEFAULT))
+
+    val fingerprintInteractionMode by prefs.getStringFlow(P.FINGERPRINT_INTERACTION_MODE, P.FINGERPRINT_INTERACTION_MODE_DEFAULT)
+        .collectAsState(initial = prefs.getString(P.FINGERPRINT_INTERACTION_MODE, P.FINGERPRINT_INTERACTION_MODE_DEFAULT))
+
+    val swipeNotificationOpen by prefs.getBooleanFlow(P.SWIPE_NOTIFICATION_OPEN, P.SWIPE_NOTIFICATION_OPEN_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.SWIPE_NOTIFICATION_OPEN, P.SWIPE_NOTIFICATION_OPEN_DEFAULT))
+
+    val displayScale by prefs.getIntFlow("pref_aod_scale_2", 100)
+        .collectAsState(initial = prefs.getInt("pref_aod_scale_2", 100))
+
+    val topPadding by prefs.getIntFlow(P.TOP_PADDING, P.TOP_PADDING_DEFAULT)
+        .collectAsState(initial = prefs.getInt(P.TOP_PADDING, P.TOP_PADDING_DEFAULT))
 
     var showDateFormatDialog by remember { mutableStateOf(false) }
     var showMessageDialog by remember { mutableStateOf(false) }
@@ -196,12 +143,10 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
     var showFingerprintMarginDialog by remember { mutableStateOf(false) }
     var showFingerprintInteractionModeDialog by remember { mutableStateOf(false) }
 
-    DisposableEffect(Unit) {
-        val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, _ ->
+    LaunchedEffect(Unit) {
+        prefs.getChangeFlow().collect {
             AlwaysOn.finish()
         }
-        prefs.registerOnSharedPreferenceChangeListener(listener)
-        onDispose { prefs.unregisterOnSharedPreferenceChangeListener(listener) }
     }
 
     val notificationIconSizeEntries =
@@ -282,7 +227,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                 summaryOn = stringResource(R.string.pref_enabled),
                 summaryOff = stringResource(R.string.pref_disabled),
                 onCheckedChange = {
-                    clockEnabled = it
                     persistBoolean(P.SHOW_CLOCK, it)
                 },
             )
@@ -295,7 +239,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                 summaryOff = stringResource(R.string.pref_look_and_feel_hour_summary_off),
                 enabled = clockEnabled,
                 onCheckedChange = {
-                    use12Hour = it
                     persistBoolean(P.USE_12_HOUR_CLOCK, it)
                 },
             )
@@ -307,7 +250,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                 checked = showAmPm,
                 enabled = use12Hour && clockEnabled,
                 onCheckedChange = {
-                    showAmPm = it
                     persistBoolean(P.SHOW_AM_PM, it)
                 },
             )
@@ -322,7 +264,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                 summaryOn = stringResource(R.string.pref_enabled),
                 summaryOff = stringResource(R.string.pref_disabled),
                 onCheckedChange = {
-                    dateEnabled = it
                     persistBoolean(P.SHOW_DATE, it)
                 },
             )
@@ -345,7 +286,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                 summaryOn = stringResource(R.string.pref_enabled),
                 summaryOff = stringResource(R.string.pref_disabled),
                 onCheckedChange = {
-                    batteryIcon = it
                     persistBoolean(P.SHOW_BATTERY_ICON, it)
                 },
             )
@@ -357,7 +297,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                 summaryOn = stringResource(R.string.pref_enabled),
                 summaryOff = stringResource(R.string.pref_disabled),
                 onCheckedChange = {
-                    batteryPercentage = it
                     persistBoolean(P.SHOW_BATTERY_PERCENTAGE, it)
                 },
             )
@@ -374,7 +313,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                 hasPermission = hasNotificationPermission,
                 permissionDeniedSummary = stringResource(R.string.permissions_notification_access),
                 onCheckedChange = {
-                    musicControls = it
                     persistBoolean(P.SHOW_MUSIC_CONTROLS, it)
                 },
             )
@@ -389,7 +327,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                 hasPermission = hasNotificationPermission,
                 permissionDeniedSummary = stringResource(R.string.permissions_notification_access),
                 onCheckedChange = {
-                    albumArt = it
                     persistBoolean(P.SHOW_ALBUM_ART, it)
                 },
             )
@@ -403,7 +340,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                 summary = stringResource(R.string.pref_ao_calendar_summary),
                 checked = calendar,
                 onCheckedChange = { newValue ->
-                    calendar = newValue
                     persistBoolean(P.SHOW_CALENDAR, newValue)
                     if (newValue) {
                         ActivityCompat.requestPermissions(
@@ -450,7 +386,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                 hasPermission = hasNotificationPermission,
                 permissionDeniedSummary = stringResource(R.string.permissions_notification_access),
                 onCheckedChange = {
-                    notifications = it
                     persistBoolean(P.SHOW_NOTIFICATION_COUNT, it)
                 },
             )
@@ -464,7 +399,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                 hasPermission = hasNotificationPermission,
                 permissionDeniedSummary = stringResource(R.string.permissions_notification_access),
                 onCheckedChange = {
-                    notificationIcons = it
                     persistBoolean(P.SHOW_NOTIFICATION_ICONS, it)
                 },
             )
@@ -478,7 +412,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                 hasPermission = hasNotificationPermission,
                 permissionDeniedSummary = stringResource(R.string.permissions_notification_access),
                 onCheckedChange = {
-                    interactiveIcons = it
                     persistBoolean(P.INTERACTIVE_NOTIFICATION_ICONS, it)
                 },
             )
@@ -492,7 +425,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                 hasPermission = hasNotificationPermission,
                 permissionDeniedSummary = stringResource(R.string.permissions_notification_access),
                 onCheckedChange = {
-                    invertHighlight = it
                     persistBoolean(P.INVERT_INTERACTION_HIGHLIGHT, it)
                 },
             )
@@ -506,7 +438,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                 hasPermission = hasNotificationPermission,
                 permissionDeniedSummary = stringResource(R.string.permissions_notification_access),
                 onCheckedChange = {
-                    tintNotifications = it
                     persistBoolean(P.TINT_NOTIFICATIONS, it)
                 },
             )
@@ -533,7 +464,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                 permissionDeniedSummary = stringResource(R.string.permissions_notification_access),
                 enabled = notificationIcons,
                 onValueChange = { v ->
-                    notificationTopPadding = v
                     persistInt(P.NOTIFICATION_ICON_TOP_PADDING, v)
                 },
             )
@@ -559,7 +489,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                 summaryOn = stringResource(R.string.pref_enabled),
                 summaryOff = stringResource(R.string.pref_disabled),
                 onCheckedChange = {
-                    fingerprintIcon = it
                     persistBoolean(P.SHOW_FINGERPRINT_ICON, it)
                 },
             )
@@ -571,7 +500,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                 checked = lockIcon,
                 enabled = fingerprintIcon,
                 onCheckedChange = {
-                    lockIcon = it
                     persistBoolean(P.LOCK_ICON, it)
                 },
             )
@@ -601,7 +529,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                 checked = swipeNotificationOpen,
                 enabled = fingerprintIcon,
                 onCheckedChange = {
-                    swipeNotificationOpen = it
                     persistBoolean(P.SWIPE_NOTIFICATION_OPEN, it)
                 },
             )
@@ -618,7 +545,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                     stringResource(R.string.pref_look_and_feel_display_size_summary, v)
                 },
                 onValueChange = { v ->
-                    displayScale = v
                     persistInt("pref_aod_scale_2", v)
                 },
             )
@@ -631,7 +557,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
                 valueRange = 0f..100f,
                 summaryProvider = { stringResource(R.string.pref_ao_top_padding_summary) },
                 onValueChange = { v ->
-                    topPadding = v
                     persistInt(P.TOP_PADDING, v)
                 },
             )
@@ -643,7 +568,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
             title = stringResource(R.string.pref_ao_date_format),
             current = dateFormat,
             onConfirm = { newFormat ->
-                dateFormat = newFormat
                 persistString(P.DATE_FORMAT, newFormat)
                 showDateFormatDialog = false
             },
@@ -675,7 +599,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
             current = message,
             keyboardType = KeyboardType.Text,
             onConfirm = { newMessage ->
-                message = newMessage
                 persistString(P.MESSAGE, newMessage)
                 showMessageDialog = false
             },
@@ -690,7 +613,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
             entryValues = notificationIconSizeValues,
             selectedValue = notificationIconSize,
             onValueSelected = { v ->
-                notificationIconSize = v
                 persistString(P.NOTIFICATION_ICON_SIZE, v)
             },
             onDismiss = { showNotificationIconSizeDialog = false },
@@ -704,7 +626,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
             entryValues = notificationPreviewValues,
             selectedValue = notificationPreviewPosition,
             onValueSelected = { v ->
-                notificationPreviewPosition = v
                 persistString(P.NOTIFICATION_PREVIEW_POSITION, v)
             },
             onDismiss = { showNotificationPreviewPositionDialog = false },
@@ -719,7 +640,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
             onConfirm = { raw ->
                 val parsed = raw.toIntOrNull()
                 if (parsed != null) {
-                    fingerprintMargin = parsed
                     persistInt(P.FINGERPRINT_MARGIN, parsed)
                 } else {
                     Toast.makeText(context, R.string.pref_int_failed, Toast.LENGTH_LONG).show()
@@ -737,7 +657,6 @@ private fun LAFWatchFaceScreen(onBack: () -> Unit) {
             entryValues = fingerprintInteractionValues,
             selectedValue = fingerprintInteractionMode,
             onValueSelected = { v ->
-                fingerprintInteractionMode = v
                 persistString(P.FINGERPRINT_INTERACTION_MODE, v)
             },
             onDismiss = { showFingerprintInteractionModeDialog = false },

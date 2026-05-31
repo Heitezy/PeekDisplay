@@ -19,7 +19,6 @@ import androidx.compose.ui.unit.dp
 import heitezy.peekdisplay.R
 import heitezy.peekdisplay.actions.alwayson.AlwaysOn
 import heitezy.peekdisplay.helpers.P
-import androidx.core.content.edit
 import heitezy.peekdisplay.ui.PeekScaffold
 import heitezy.peekdisplay.ui.SwitchPreferenceItem
 
@@ -45,20 +44,25 @@ private fun BrightnessScreen(onBack: () -> Unit) {
     val context = LocalContext.current
     val activity = context as? Activity
     val window = activity?.window
-    val prefs = remember { P.getPreferences(context) }
+    val prefs = remember { P.getP(context) }
 
-    var forceBrightness by remember {
-        mutableStateOf(prefs.getBoolean(P.FORCE_BRIGHTNESS, P.FORCE_BRIGHTNESS_DEFAULT))
-    }
-    var brightnessValue by remember {
-        mutableFloatStateOf(
-            prefs.getInt(P.FORCE_BRIGHTNESS_VALUE, P.FORCE_BRIGHTNESS_VALUE_DEFAULT).toFloat()
-        )
+    val forceBrightnessFlow by prefs.getBooleanFlow(P.FORCE_BRIGHTNESS, P.FORCE_BRIGHTNESS_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.FORCE_BRIGHTNESS, P.FORCE_BRIGHTNESS_DEFAULT))
+    
+    val brightnessValueFlow by prefs.getIntFlow(P.FORCE_BRIGHTNESS_VALUE, P.FORCE_BRIGHTNESS_VALUE_DEFAULT)
+        .collectAsState(initial = prefs.getInt(P.FORCE_BRIGHTNESS_VALUE, P.FORCE_BRIGHTNESS_VALUE_DEFAULT))
+
+    var forceBrightness by remember { mutableStateOf(forceBrightnessFlow) }
+    var brightnessValue by remember { mutableFloatStateOf(brightnessValueFlow.toFloat()) }
+
+    LaunchedEffect(forceBrightnessFlow, brightnessValueFlow) {
+        forceBrightness = forceBrightnessFlow
+        brightnessValue = brightnessValueFlow.toFloat()
     }
 
     DisposableEffect(Unit) {
         onDispose {
-            P.getPreferences(context).edit {
+            prefs.edit {
                 putBoolean(P.FORCE_BRIGHTNESS, forceBrightness)
                     .putInt(P.FORCE_BRIGHTNESS_VALUE, brightnessValue.toInt())
             }

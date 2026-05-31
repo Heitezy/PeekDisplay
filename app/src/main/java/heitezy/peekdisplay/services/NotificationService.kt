@@ -9,7 +9,7 @@ import android.os.Looper
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
 import android.util.Log
-import androidx.preference.PreferenceManager
+import heitezy.peekdisplay.helpers.P
 import heitezy.peekdisplay.actions.alwayson.AlwaysOn
 import heitezy.peekdisplay.helpers.ColorHelper
 import heitezy.peekdisplay.helpers.Global
@@ -163,7 +163,7 @@ class NotificationService : NotificationListenerService() {
         !notification.isOngoing &&
             !JSON.contains(
                 JSONArray(
-                    PreferenceManager.getDefaultSharedPreferences(this)
+                    P.getP(this)
                         .getString("blocked_notifications", "[]"),
                 ),
                 notification.packageName,

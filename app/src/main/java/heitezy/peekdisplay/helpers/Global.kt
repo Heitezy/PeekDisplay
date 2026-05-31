@@ -5,8 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.service.quicksettings.TileService
 import androidx.core.content.ContextCompat
-import androidx.core.content.edit
-import androidx.preference.PreferenceManager.getDefaultSharedPreferences
 import heitezy.peekdisplay.actions.alwayson.AlwaysOn
 import heitezy.peekdisplay.receivers.AlwaysOnAppWidgetProvider
 import heitezy.peekdisplay.services.AlwaysOnTileService
@@ -23,11 +21,10 @@ internal object Global {
         "heitezy.peekdisplay.ALWAYS_ON_STATE_CHANGED"
 
     fun currentAlwaysOnState(context: Context): Boolean =
-        getDefaultSharedPreferences(context)
-            .getBoolean(P.ALWAYS_ON, P.ALWAYS_ON_DEFAULT)
+        P.getP(context).getBoolean(P.ALWAYS_ON, P.ALWAYS_ON_DEFAULT)
 
     fun changeAlwaysOnState(context: Context): Boolean {
-        val prefs = getDefaultSharedPreferences(context)
+        val prefs = P.getP(context)
         val value = !prefs.getBoolean(P.ALWAYS_ON, P.ALWAYS_ON_DEFAULT)
 
         prefs.edit { putBoolean(P.ALWAYS_ON, value) }

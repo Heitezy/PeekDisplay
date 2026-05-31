@@ -3,29 +3,45 @@
 package heitezy.peekdisplay.helpers
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.view.ViewConfiguration
-import androidx.preference.PreferenceManager
 import heitezy.peekdisplay.R
+import kotlinx.coroutines.flow.Flow
 import java.net.URLEncoder
 
-internal class P(private val prefs: SharedPreferences) {
+internal class P(private val dataStore: PreferenceDataStore) {
     fun get(
         key: String,
         default: Boolean,
-    ): Boolean = prefs.getBoolean(key, default)
+    ): Boolean = dataStore.getBoolean(key, default)
 
     fun get(
         key: String,
         default: String,
-    ): String = prefs.getString(key, default) ?: default
+    ): String = dataStore.getString(key, default)
 
     fun get(
         key: String,
         default: Int,
-    ): Int = prefs.getInt(key, default)
+    ): Int = dataStore.getInt(key, default)
 
-    fun displayScale(): Float = prefs.getInt("pref_aod_scale_2", DISPLAY_SCALE_DEFAULT) / NUMBER_TO_PERCENT
+    fun getBoolean(key: String, default: Boolean): Boolean = get(key, default)
+    fun getString(key: String, default: String): String = get(key, default)
+    fun getInt(key: String, default: Int): Int = get(key, default)
+    fun getStringSet(key: String, default: Set<String>): Set<String> = dataStore.getStringSet(key, default)
+    fun getAll(): Map<String, Any?> = dataStore.getAll()
+
+    fun getBooleanFlow(key: String, default: Boolean): Flow<Boolean> = dataStore.getBooleanFlow(key, default)
+    fun getStringFlow(key: String, default: String): Flow<String> = dataStore.getStringFlow(key, default)
+    fun getIntFlow(key: String, default: Int): Flow<Int> = dataStore.getIntFlow(key, default)
+    fun getStringSetFlow(key: String, default: Set<String>): Flow<Set<String>> = dataStore.getStringSetFlow(key, default)
+
+    fun edit(block: PreferenceDataStore.Editor.() -> Unit) {
+        dataStore.edit(block)
+    }
+
+    fun getChangeFlow(): Flow<Unit> = dataStore.getChangeFlow()
+
+    fun displayScale(): Float = get("pref_aod_scale_2", DISPLAY_SCALE_DEFAULT) / NUMBER_TO_PERCENT
 
     fun backgroundImage(): Int? =
         when (get(BACKGROUND_IMAGE, BACKGROUND_IMAGE_DEFAULT)) {
@@ -276,9 +292,6 @@ internal class P(private val prefs: SharedPreferences) {
         private const val NUMBER_TO_PERCENT = 100f
 
         @Suppress("NOTHING_TO_INLINE")
-        inline fun getPreferences(context: Context): SharedPreferences =
-            PreferenceManager.getDefaultSharedPreferences(
-                context,
-            )
+        inline fun getP(context: Context): P = P(PreferenceDataStore(context))
     }
 }

@@ -9,12 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.pluralStringResource
@@ -30,7 +25,6 @@ import heitezy.peekdisplay.ui.SwitchPreferenceItem
 import heitezy.peekdisplay.helpers.P
 import heitezy.peekdisplay.helpers.Rules
 import heitezy.peekdisplay.services.PickUpService
-import androidx.core.content.edit
 import heitezy.peekdisplay.ui.ChainedTimePickerDialog
 import heitezy.peekdisplay.ui.MultiSelectDialog
 import heitezy.peekdisplay.helpers.Permissions
@@ -55,39 +49,32 @@ private fun LAFRulesScreen(onBack: () -> Unit) {
 
     val hasNotificationPermission = Permissions.isNotificationServiceEnabled(context)
 
-    val prefs = remember { P.getPreferences(context) }
+    val prefs = remember { P.getP(context) }
     val is24Hour = remember { DateFormat.is24HourFormat(context) }
-    val alwaysOnEnabled = remember { prefs.getBoolean(P.ALWAYS_ON, P.ALWAYS_ON_DEFAULT) }
+    val alwaysOnEnabled by prefs.getBooleanFlow(P.ALWAYS_ON, P.ALWAYS_ON_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.ALWAYS_ON, P.ALWAYS_ON_DEFAULT))
 
-    var disableInDnd by remember {
-        mutableStateOf(
-            prefs.getBoolean(
-                P.RULES_DISABLE_IN_DO_NOT_DISTURB,
-                P.RULES_DISABLE_IN_DO_NOT_DISTURB_DEFAULT
-            )
-        )
-    }
-    var ambientMode by remember { mutableStateOf(prefs.getBoolean("rules_ambient_mode", false)) }
-    var pickupMode by remember { mutableStateOf(prefs.getBoolean("rules_pickup_mode", false)) }
+    val disableInDnd by prefs.getBooleanFlow(P.RULES_DISABLE_IN_DO_NOT_DISTURB, P.RULES_DISABLE_IN_DO_NOT_DISTURB_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.RULES_DISABLE_IN_DO_NOT_DISTURB, P.RULES_DISABLE_IN_DO_NOT_DISTURB_DEFAULT))
 
-    var pickupSensitivity by remember {
-        mutableStateOf(
-            prefs.getString(P.PICKUP_SENSITIVITY, P.PICKUP_SENSITIVITY_DEFAULT)
-                ?: P.PICKUP_SENSITIVITY_DEFAULT
-        )
-    }
+    val ambientMode by prefs.getBooleanFlow("rules_ambient_mode", false)
+        .collectAsState(initial = prefs.getBoolean("rules_ambient_mode", false))
+
+    val pickupMode by prefs.getBooleanFlow("rules_pickup_mode", false)
+        .collectAsState(initial = prefs.getBoolean("rules_pickup_mode", false))
+
+    val pickupSensitivity by prefs.getStringFlow(P.PICKUP_SENSITIVITY, P.PICKUP_SENSITIVITY_DEFAULT)
+        .collectAsState(initial = prefs.getString(P.PICKUP_SENSITIVITY, P.PICKUP_SENSITIVITY_DEFAULT))
+
     var showPickupSensitivityDialog by remember { mutableStateOf(false) }
     val pickupSensitivityEntries =
         stringArrayResource(R.array.pref_pickup_sensitivity_display).toList()
     val pickupSensitivityValues =
         stringArrayResource(R.array.pref_pickup_sensitivity_values).toList()
 
-    var chargingState by remember {
-        mutableStateOf(
-            prefs.getString(P.RULES_CHARGING_STATE, P.RULES_CHARGING_STATE_DEFAULT)
-                ?: P.RULES_CHARGING_STATE_DEFAULT
-        )
-    }
+    val chargingState by prefs.getStringFlow(P.RULES_CHARGING_STATE, P.RULES_CHARGING_STATE_DEFAULT)
+        .collectAsState(initial = prefs.getString(P.RULES_CHARGING_STATE, P.RULES_CHARGING_STATE_DEFAULT))
+
     var showChargingStateDialog by remember { mutableStateOf(false) }
     val chargingStateEntries =
         stringArrayResource(R.array.pref_look_and_feel_rules_charging_state_display).toList()
@@ -96,47 +83,32 @@ private fun LAFRulesScreen(onBack: () -> Unit) {
 
     val chargerDefaultValues =
         stringArrayResource(R.array.pref_look_and_feel_rules_charger_values).toSet()
-    var chargerTypes by remember {
-        mutableStateOf(
-            prefs.getStringSet("rules_charger_type", chargerDefaultValues) ?: chargerDefaultValues
-        )
-    }
+
+    val chargerTypes by prefs.getStringSetFlow("rules_charger_type", chargerDefaultValues)
+        .collectAsState(initial = prefs.getStringSet("rules_charger_type", chargerDefaultValues))
+
     var showChargerTypeDialog by remember { mutableStateOf(false) }
     val chargerTypeEntries =
         stringArrayResource(R.array.pref_look_and_feel_rules_charger_display).toList()
     val chargerTypeValues =
         stringArrayResource(R.array.pref_look_and_feel_rules_charger_values).toList()
 
-    var batteryLevel by remember {
-        mutableIntStateOf(
-            prefs.getInt(P.RULES_BATTERY, P.RULES_BATTERY_DEFAULT).coerceAtMost(Rules.BATTERY_FULL)
-        )
-    }
+    val batteryLevel by prefs.getIntFlow(P.RULES_BATTERY, P.RULES_BATTERY_DEFAULT)
+        .collectAsState(initial = prefs.getInt(P.RULES_BATTERY, P.RULES_BATTERY_DEFAULT))
+
     var showBatteryDialog by remember { mutableStateOf(false) }
 
-    var timeStart by remember {
-        mutableStateOf(
-            prefs.getString(
-                "rules_time_start",
-                DEFAULT_START_TIME
-            ) ?: DEFAULT_START_TIME
-        )
-    }
-    var timeEnd by remember {
-        mutableStateOf(
-            prefs.getString("rules_time_end", DEFAULT_END_TIME) ?: DEFAULT_END_TIME
-        )
-    }
+    val timeStart by prefs.getStringFlow("rules_time_start", DEFAULT_START_TIME)
+        .collectAsState(initial = prefs.getString("rules_time_start", DEFAULT_START_TIME))
+
+    val timeEnd by prefs.getStringFlow("rules_time_end", DEFAULT_END_TIME)
+        .collectAsState(initial = prefs.getString("rules_time_end", DEFAULT_END_TIME))
+
     var showTimePicker by remember { mutableStateOf(false) }
 
-    var timeout by remember {
-        mutableIntStateOf(
-            prefs.getInt(
-                P.RULES_TIMEOUT,
-                P.RULES_TIMEOUT_DEFAULT
-            )
-        )
-    }
+    val timeout by prefs.getIntFlow(P.RULES_TIMEOUT, P.RULES_TIMEOUT_DEFAULT)
+        .collectAsState(initial = prefs.getInt(P.RULES_TIMEOUT, P.RULES_TIMEOUT_DEFAULT))
+
     var showTimeoutDialog by remember { mutableStateOf(false) }
 
     val batterySummary = if (batteryLevel > 0)
@@ -169,7 +141,6 @@ private fun LAFRulesScreen(onBack: () -> Unit) {
             entryValues = pickupSensitivityValues,
             selectedValue = pickupSensitivity,
             onValueSelected = { value ->
-                pickupSensitivity = value
                 prefs.edit { putString(P.PICKUP_SENSITIVITY, value) }
             },
             onDismiss = { showPickupSensitivityDialog = false },
@@ -183,7 +154,6 @@ private fun LAFRulesScreen(onBack: () -> Unit) {
             entryValues = chargingStateValues,
             selectedValue = chargingState,
             onValueSelected = { value ->
-                chargingState = value
                 prefs.edit { putString(P.RULES_CHARGING_STATE, value) }
             },
             onDismiss = { showChargingStateDialog = false },
@@ -197,7 +167,6 @@ private fun LAFRulesScreen(onBack: () -> Unit) {
             entryValues = chargerTypeValues,
             selectedValues = chargerTypes,
             onConfirm = { selected ->
-                chargerTypes = selected
                 prefs.edit { putStringSet("rules_charger_type", selected) }
             },
             onDismiss = { showChargerTypeDialog = false },
@@ -212,7 +181,6 @@ private fun LAFRulesScreen(onBack: () -> Unit) {
             onConfirm = { raw ->
                 val newValue = (raw.toIntOrNull() ?: P.RULES_BATTERY_DEFAULT)
                     .coerceAtMost(Rules.BATTERY_FULL)
-                batteryLevel = newValue
                 prefs.edit { putInt(P.RULES_BATTERY, newValue) }
                 showBatteryDialog = false
             },
@@ -227,8 +195,6 @@ private fun LAFRulesScreen(onBack: () -> Unit) {
             endTime = timeEnd,
             is24Hour = is24Hour,
             onConfirm = { start, end ->
-                timeStart = start
-                timeEnd = end
                 prefs.edit {
                     putString("rules_time_start", start)
                         .putString("rules_time_end", end)
@@ -246,7 +212,6 @@ private fun LAFRulesScreen(onBack: () -> Unit) {
             keyboardType = KeyboardType.Number,
             onConfirm = { raw ->
                 val newValue = raw.toIntOrNull() ?: P.RULES_TIMEOUT_DEFAULT
-                timeout = newValue
                 prefs.edit { putInt(P.RULES_TIMEOUT, newValue) }
                 showTimeoutDialog = false
             },
@@ -273,7 +238,6 @@ private fun LAFRulesScreen(onBack: () -> Unit) {
                 summary = stringResource(R.string.pref_ao_disable_on_dnd_summary),
                 checked = disableInDnd,
                 onCheckedChange = { checked ->
-                    disableInDnd = checked
                     prefs.edit { putBoolean(P.RULES_DISABLE_IN_DO_NOT_DISTURB, checked) }
                 },
             )
@@ -288,7 +252,6 @@ private fun LAFRulesScreen(onBack: () -> Unit) {
                 hasPermission = hasNotificationPermission,
                 permissionDeniedSummary = stringResource(R.string.permissions_notification_access),
                 onCheckedChange = { checked ->
-                    ambientMode = checked
                     prefs.edit { putBoolean("rules_ambient_mode", checked) }
                 },
             )
@@ -301,7 +264,6 @@ private fun LAFRulesScreen(onBack: () -> Unit) {
                 checked = pickupMode,
                 enabled = alwaysOnEnabled,
                 onCheckedChange = { checked ->
-                    pickupMode = checked
                     prefs.edit { putBoolean("rules_pickup_mode", checked) }
                     if (!checked) PickUpService.stopService(context)
                 },

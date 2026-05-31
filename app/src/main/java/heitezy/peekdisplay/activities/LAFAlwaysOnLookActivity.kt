@@ -13,7 +13,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.core.content.edit
 import heitezy.peekdisplay.R
 import heitezy.peekdisplay.actions.alwayson.AlwaysOn
 import heitezy.peekdisplay.helpers.P
@@ -62,16 +61,19 @@ private fun AlwaysOnLookScreen(onBack: () -> Unit) {
     val labels = context.resources
         .getStringArray(R.array.pref_look_and_feel_ao_array_display)
 
-    val savedTheme = remember {
-        P.getPreferences(context)
-            .getString(P.USER_THEME, P.USER_THEME_DEFAULT)
-            ?: P.USER_THEME_DEFAULT
-    }
+    val prefs = remember { P.getP(context) }
+    val savedTheme by prefs.getStringFlow(P.USER_THEME, P.USER_THEME_DEFAULT)
+        .collectAsState(initial = prefs.getString(P.USER_THEME, P.USER_THEME_DEFAULT))
+
     var selectedIndex by remember { mutableIntStateOf(themeToIndex(savedTheme)) }
+
+    LaunchedEffect(savedTheme) {
+        selectedIndex = themeToIndex(savedTheme)
+    }
 
     DisposableEffect(Unit) {
         onDispose {
-            P.getPreferences(context).edit {
+            prefs.edit {
                 putString(P.USER_THEME, indexToTheme(selectedIndex))
             }
         }

@@ -19,7 +19,6 @@ import heitezy.peekdisplay.actions.alwayson.AlwaysOn
 import heitezy.peekdisplay.helpers.Global
 import heitezy.peekdisplay.services.NotificationService
 import org.json.JSONArray
-import androidx.core.content.edit
 import heitezy.peekdisplay.helpers.P
 import heitezy.peekdisplay.ui.PeekScaffold
 import heitezy.peekdisplay.ui.PreferenceDivider
@@ -63,13 +62,23 @@ private fun resolveAppLabel(pm: PackageManager, pkg: String): String =
 private fun FilterNotificationsScreen(onBack: () -> Unit) {
     val context = LocalContext.current
     val pm = remember { context.packageManager }
-    val prefs = remember { P.getPreferences(context) }
+    val prefs = remember { P.getP(context) }
+
+    val blockedNotificationsFlow by prefs.getStringFlow("blocked_notifications", "[]")
+        .collectAsState(initial = prefs.getString("blocked_notifications", "[]"))
 
     var blockedList by remember {
-        val arr = JSONArray(prefs.getString("blocked_notifications", "[]"))
+        val arr = JSONArray(blockedNotificationsFlow)
         val list = mutableListOf<String>()
         for (i in 0 until arr.length()) list.add(arr.getString(i))
         mutableStateOf(list.toList())
+    }
+
+    LaunchedEffect(blockedNotificationsFlow) {
+        val arr = JSONArray(blockedNotificationsFlow)
+        val list = mutableListOf<String>()
+        for (i in 0 until arr.length()) list.add(arr.getString(i))
+        blockedList = list.toList()
     }
 
     val activePackages = remember {
@@ -83,10 +92,6 @@ private fun FilterNotificationsScreen(onBack: () -> Unit) {
         val arr = JSONArray().apply { list.forEach { put(it) } }
         prefs.edit { putString("blocked_notifications", arr.toString()) }
         NotificationService.activeService?.refreshNotifications()
-    }
-
-    DisposableEffect(Unit) {
-        onDispose { persist(blockedList) }
     }
 
     PeekScaffold(
@@ -124,8 +129,9 @@ private fun FilterNotificationsScreen(onBack: () -> Unit) {
                         summary = pkg,
                         widget = {
                             IconButton(onClick = {
-                                blockedList = blockedList - pkg
-                                persist(blockedList)
+                                val newList = blockedList - pkg
+                                blockedList = newList
+                                persist(newList)
                             }) {
                                 Icon(
                                     painter = painterResource(R.drawable.ic_delete),
@@ -164,8 +170,9 @@ private fun FilterNotificationsScreen(onBack: () -> Unit) {
                                 enabled = !isAlreadyBlocked,
                                 onClick = {
                                     if (!isAlreadyBlocked) {
-                                        blockedList = blockedList + pkg
-                                        persist(blockedList)
+                                        val newList = blockedList + pkg
+                                        blockedList = newList
+                                        persist(newList)
                                     }
                                 },
                             ) {
