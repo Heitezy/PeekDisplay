@@ -19,6 +19,8 @@ data class State(
     val batteryIconRes: Int = R.drawable.ic_battery_unknown,
     val musicString: String = "",
     val albumArt: Bitmap? = null,
+    val isMediaPlaying: Boolean = false,
+    val wasMediaPlaying: Boolean = false,
     val weather: String = "",
     val message: String = "",
     val calendarEvents: List<String> = emptyList(),

@@ -267,7 +267,7 @@ fun Content(
                     }
                 }
         ) {
-            if ((state.albumArt == null || !state.showAlbumArt) && state.backgroundImageRes != null) {
+            if ((state.albumArt == null || !state.showAlbumArt || (!state.isMediaPlaying && !state.wasMediaPlaying)) && state.backgroundImageRes != null) {
                 Box(
                     modifier = Modifier
                         .then(
@@ -310,7 +310,7 @@ fun Content(
                 modifier = Modifier
                     .fillMaxSize()
                     .offset { IntOffset(0, state.driftY.dp.roundToPx()) }) {
-                if (state.showAlbumArt) {
+                if (state.showAlbumArt && (state.isMediaPlaying || state.wasMediaPlaying)) {
                     state.albumArt?.let { bitmap ->
                         Box(
                             modifier = Modifier

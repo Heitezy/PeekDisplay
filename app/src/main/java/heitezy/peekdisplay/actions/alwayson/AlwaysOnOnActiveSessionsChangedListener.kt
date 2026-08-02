@@ -9,7 +9,7 @@ import android.util.Log
 import heitezy.peekdisplay.helpers.Global
 
 class AlwaysOnOnActiveSessionsChangedListener(
-    var onMediaStateChanged: ((String, Bitmap?) -> Unit)? = null
+    var onMediaStateChanged: ((String, Bitmap?, Int) -> Unit)? = null
 ) : MediaSessionManager.OnActiveSessionsChangedListener {
     @JvmField
     internal var controller: MediaController? = null
@@ -27,6 +27,7 @@ class AlwaysOnOnActiveSessionsChangedListener(
                     override fun onPlaybackStateChanged(playbackState: PlaybackState?) {
                         super.onPlaybackStateChanged(playbackState)
                         state = playbackState?.state ?: 0
+                        updateMediaState()
                     }
 
                     override fun onMetadataChanged(metadata: MediaMetadata?) {
@@ -61,9 +62,9 @@ class AlwaysOnOnActiveSessionsChangedListener(
                 title == "" -> musicString = artist
                 else -> musicString = "$artist - $title"
             }
-            onMediaStateChanged?.invoke(musicString, albumArt)
+            onMediaStateChanged?.invoke(musicString, albumArt, state)
         } else {
-            onMediaStateChanged?.invoke("", null)
+            onMediaStateChanged?.invoke("", null, 0)
         }
     }
 

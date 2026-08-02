@@ -101,7 +101,7 @@ fun Battery(state: State, modifier: Modifier = Modifier) {
 
 @Composable
 fun Music(state: State, onSkipPrevious: () -> Unit, onSkipNext: () -> Unit, onTitleClick: () -> Unit) {
-    if (!state.showMusicControls || state.musicString.isEmpty()) return
+    if (!state.showMusicControls || state.musicString.isEmpty() || (!state.isMediaPlaying && !state.wasMediaPlaying)) return
     
     val themeSettings = getThemeSettings(state.theme)
     

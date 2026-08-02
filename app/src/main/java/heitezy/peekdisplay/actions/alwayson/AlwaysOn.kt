@@ -668,11 +668,30 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
             ComponentName(applicationContext, NotificationService::class.java.name)
         onActiveSessionsChangedListener =
             AlwaysOnOnActiveSessionsChangedListener().apply {
-                onMediaStateChanged = { musicString, albumArt ->
-                    peekState = peekState.copy(
-                        musicString = musicString,
-                        albumArt = albumArt
-                    )
+                onMediaStateChanged = { musicString, albumArt, state ->
+                    val isPlaying = state == PlaybackState.STATE_PLAYING
+                    val wasPlaying = peekState.wasMediaPlaying || isPlaying
+
+                    if (musicString.isNotEmpty()) {
+                        peekState = peekState.copy(
+                            musicString = musicString,
+                            albumArt = albumArt ?: peekState.albumArt,
+                            isMediaPlaying = isPlaying,
+                            wasMediaPlaying = wasPlaying
+                        )
+                    } else if (!wasPlaying) {
+                        peekState = peekState.copy(
+                            musicString = "",
+                            albumArt = null,
+                            isMediaPlaying = false,
+                            wasMediaPlaying = false
+                        )
+                    } else {
+                        peekState = peekState.copy(
+                            isMediaPlaying = isPlaying,
+                            wasMediaPlaying = wasPlaying
+                        )
+                    }
                 }
             }
         try {
