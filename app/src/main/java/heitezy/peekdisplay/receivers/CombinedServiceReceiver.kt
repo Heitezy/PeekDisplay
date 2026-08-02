@@ -129,6 +129,9 @@ class CombinedServiceReceiver : BroadcastReceiver() {
 
         if (Rules.isPickUpMode(context)) {
             val timeout = P.getP(context).getInt(P.RULES_TIMEOUT, P.RULES_TIMEOUT_DEFAULT)
+            stopServiceRunnable?.let {
+                handler.removeCallbacks(it)
+            }
             stopServiceRunnable = Runnable {
                 heitezy.peekdisplay.services.PickUpService.stopService(context)
                 stopServiceRunnable = null

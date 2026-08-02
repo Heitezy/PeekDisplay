@@ -34,7 +34,7 @@ class PickUpService : Service(), SensorEventListener {
     private val linearAcceleration = FloatArray(3)
 
     private var pickUpThreshold = 2.0
-    private var proximityNear = 0
+    private var proximityNear = 1.0f
 
     private var hasProximitySensor = false
     
@@ -151,13 +151,14 @@ class PickUpService : Service(), SensorEventListener {
             }
             
             Sensor.TYPE_PROXIMITY -> {
-                proximityNear = event.values[0].toInt()
+                proximityNear = event.values[0]
             }
         }
     }
     
     private fun detectPickUp(acceleration: Float) {
-        if (!powerManager.isInteractive && proximityNear > 0) {
+        val isFar = if (hasProximitySensor) proximityNear > 0 else true
+        if (!powerManager.isInteractive && isFar) {
             if (acceleration >= pickUpThreshold) {
                 wakeUpScreen()
             }
@@ -165,7 +166,7 @@ class PickUpService : Service(), SensorEventListener {
     }
     
     private fun wakeUpScreen() {
-        if (screenOffWakeLock?.isHeld == false) {
+        if (screenOffWakeLock != null) {
             if (heitezy.peekdisplay.receivers.CombinedServiceReceiver.isAlwaysOnRunning) {
                 return
             }
