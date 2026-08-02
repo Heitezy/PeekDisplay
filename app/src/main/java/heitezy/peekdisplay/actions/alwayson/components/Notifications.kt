@@ -199,7 +199,9 @@ fun NotificationPreview(
     val extras = notification.extras
 
     val title = extras.getCharSequence(Notification.EXTRA_TITLE)?.toString() ?: ""
-    val body = extras.getCharSequence(Notification.EXTRA_TEXT)?.toString() ?: ""
+    val body = (extras.getCharSequence(Notification.EXTRA_TEXT)
+        ?: extras.getCharSequence(Notification.EXTRA_BIG_TEXT)
+        ?: extras.getCharSequence(Notification.EXTRA_SUMMARY_TEXT))?.toString() ?: ""
 
     val context = LocalContext.current
     val appName = try {

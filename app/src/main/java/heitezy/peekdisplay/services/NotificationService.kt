@@ -132,8 +132,12 @@ class NotificationService : NotificationListenerService() {
                 ) {
                     count++
                 }
-                if (!apps.contains(notification.packageName)) {
-                    apps += notification.packageName
+                if (!apps.contains(notification.packageName) || (notification.notification.flags and Notification.FLAG_GROUP_SUMMARY == 0)) {
+                    if (apps.contains(notification.packageName)) {
+                        notifications.removeIf { it.packageName == notification.packageName }
+                    } else {
+                        apps += notification.packageName
+                    }
                     notifications.add(
                         NotificationEntry(
                             icon = notification.notification.smallIcon,
