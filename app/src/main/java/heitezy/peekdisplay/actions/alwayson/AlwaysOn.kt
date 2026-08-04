@@ -107,6 +107,7 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
     // Edge glow tracking
     private var initialNotificationCount: Int = 0
     private var lastNotificationCount: Int = 0
+    private var isOpeningNotification: Boolean = false
 
     // Battery saver
     private var userPowerSaving: Boolean = false
@@ -679,10 +680,12 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
                     val sbn = notificationState.detailed.getOrNull(index)
                     if (sbn != null) {
                         try {
+                            isOpeningNotification = true
                             sbn.notification.contentIntent?.send(this@AlwaysOn, 0, null, null, null, null, getActivityOptionsBundle())
                             KeyguardHelper.dismissKeyguard(this@AlwaysOn)
                             finish()
                         } catch (_: Exception) {
+                            isOpeningNotification = false
                             Log.e(Global.LOG_TAG, "Notification open failed")
                         }
                     }
@@ -1171,6 +1174,7 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
     }
 
     override fun finishAndOff() {
+        if (isOpeningNotification) return
         CombinedServiceReceiver.hasRequestedStop = true
         super.finishAndOff()
     }
