@@ -19,16 +19,20 @@ import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import heitezy.peekdisplay.actions.alwayson.data.State
+import heitezy.peekdisplay.actions.alwayson.data.FingerprintState
+import heitezy.peekdisplay.actions.alwayson.data.AppearanceState
+import heitezy.peekdisplay.actions.alwayson.data.InteractionState
 
 @Composable
 fun Fingerprint(
-    state: State,
+    fingerprintState: FingerprintState,
+    appearanceState: AppearanceState,
+    interactionState: InteractionState,
     onTouchStateChanged: (Boolean, Float, Float) -> Unit,
     onLongPress: () -> Unit,
     onPositioned: (Rect) -> Unit
 ) {
-    if (!state.showFingerprint) return
+    if (!appearanceState.showFingerprint) return
 
     val configuration = LocalConfiguration.current
     val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
@@ -37,16 +41,16 @@ fun Fingerprint(
         modifier = Modifier
             .fillMaxSize()
             .padding(
-                bottom = if (isLandscape) 0.dp else state.fingerprintMargin.dp,
-                end = if (isLandscape) state.fingerprintMargin.dp else 0.dp
+                bottom = if (isLandscape) 0.dp else appearanceState.fingerprintMargin.dp,
+                end = if (isLandscape) appearanceState.fingerprintMargin.dp else 0.dp
             )
-            .offset(y = state.fpDriftY.dp),
+            .offset(y = interactionState.fpDriftY.dp),
         contentAlignment = if (isLandscape) Alignment.CenterEnd else Alignment.BottomCenter
     ) {
         Icon(
-            painter = painterResource(id = state.fingerprintIconRes),
+            painter = painterResource(id = fingerprintState.iconRes),
             contentDescription = null,
-            tint = state.fingerprintColor,
+            tint = appearanceState.fingerprintColor,
             modifier = Modifier
                 .size(64.dp)
                 .onGloballyPositioned { coordinates ->
@@ -59,8 +63,8 @@ fun Fingerprint(
                         )
                     )
                 }
-                .pointerInput(state.fingerprintInteractionMode) {
-                    if (state.fingerprintInteractionMode == "longpress") {
+                .pointerInput(appearanceState.fingerprintInteractionMode) {
+                    if (appearanceState.fingerprintInteractionMode == "longpress") {
                         detectTapGestures(
                             onLongPress = { onLongPress() },
                             onPress = {

@@ -12,7 +12,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import heitezy.peekdisplay.actions.alwayson.Content
-import heitezy.peekdisplay.actions.alwayson.data.State
+import heitezy.peekdisplay.actions.alwayson.data.BatteryState
+import heitezy.peekdisplay.actions.alwayson.data.CalendarState
+import heitezy.peekdisplay.actions.alwayson.data.ClockState
+import heitezy.peekdisplay.actions.alwayson.data.FingerprintState
+import heitezy.peekdisplay.actions.alwayson.data.InteractionState
+import heitezy.peekdisplay.actions.alwayson.data.MessageState
+import heitezy.peekdisplay.actions.alwayson.data.MusicState
+import heitezy.peekdisplay.actions.alwayson.data.NotificationState
+import heitezy.peekdisplay.actions.alwayson.data.AppearanceState
+import heitezy.peekdisplay.actions.alwayson.data.WeatherState
 
 class AODTestActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,20 +38,29 @@ class AODTestActivity : BaseActivity() {
 
     @Composable
     private fun AODTestScreen() {
-        var state by remember {
-            mutableStateOf(
-                State(
-                    time = "12:00",
-                    date = "Monday, Jan 1",
-                    batteryLevel = 100,
-                    musicString = "Artist - Song"
-                )
-            )
-        }
+        var clockState by remember { mutableStateOf(ClockState(time = "12:00", date = "Monday, Jan 1")) }
+        var batteryState by remember { mutableStateOf(BatteryState(level = 100)) }
+        var musicState by remember { mutableStateOf(MusicState(text = "Artist - Song")) }
+        var weatherState by remember { mutableStateOf(WeatherState()) }
+        var calendarState by remember { mutableStateOf(CalendarState()) }
+        var messageState by remember { mutableStateOf(MessageState()) }
+        var notificationState by remember { mutableStateOf(NotificationState()) }
+        var fingerprintState by remember { mutableStateOf(FingerprintState()) }
+        var appearanceState by remember { mutableStateOf(AppearanceState()) }
+        var interactionState by remember { mutableStateOf(InteractionState()) }
 
         Box(modifier = Modifier.fillMaxSize()) {
             Content(
-                state = state,
+                clockState = clockState,
+                batteryState = batteryState,
+                musicState = musicState,
+                weatherState = weatherState,
+                calendarState = calendarState,
+                messageState = messageState,
+                notificationState = notificationState,
+                fingerprintState = fingerprintState,
+                appearanceState = appearanceState,
+                interactionState = interactionState,
                 onSkipPrevious = { Toast.makeText(this@AODTestActivity, "left", Toast.LENGTH_SHORT).show() },
                 onSkipNext = { Toast.makeText(this@AODTestActivity, "right", Toast.LENGTH_SHORT).show() },
                 onTitleClick = { Toast.makeText(this@AODTestActivity, "center", Toast.LENGTH_SHORT).show() },

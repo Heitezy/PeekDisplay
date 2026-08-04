@@ -69,7 +69,16 @@ import heitezy.peekdisplay.actions.alwayson.components.NotificationCount
 import heitezy.peekdisplay.actions.alwayson.components.NotificationPreview
 import heitezy.peekdisplay.actions.alwayson.components.Notifications
 import heitezy.peekdisplay.actions.alwayson.components.Weather
-import heitezy.peekdisplay.actions.alwayson.data.State
+import heitezy.peekdisplay.actions.alwayson.data.BatteryState
+import heitezy.peekdisplay.actions.alwayson.data.CalendarState
+import heitezy.peekdisplay.actions.alwayson.data.ClockState
+import heitezy.peekdisplay.actions.alwayson.data.FingerprintState
+import heitezy.peekdisplay.actions.alwayson.data.InteractionState
+import heitezy.peekdisplay.actions.alwayson.data.MessageState
+import heitezy.peekdisplay.actions.alwayson.data.MusicState
+import heitezy.peekdisplay.actions.alwayson.data.NotificationState
+import heitezy.peekdisplay.actions.alwayson.data.AppearanceState
+import heitezy.peekdisplay.actions.alwayson.data.WeatherState
 import heitezy.peekdisplay.actions.alwayson.styles.getThemeSettings
 import heitezy.peekdisplay.actions.alwayson.styles.toAlignment
 import heitezy.peekdisplay.helpers.P
@@ -77,7 +86,16 @@ import heitezy.peekdisplay.helpers.P
 @SuppressLint("RememberReturnType")
 @Composable
 fun Content(
-    state: State,
+    clockState: ClockState,
+    batteryState: BatteryState,
+    musicState: MusicState,
+    weatherState: WeatherState,
+    calendarState: CalendarState,
+    messageState: MessageState,
+    notificationState: NotificationState,
+    fingerprintState: FingerprintState,
+    appearanceState: AppearanceState,
+    interactionState: InteractionState,
     onSkipPrevious: () -> Unit,
     onSkipNext: () -> Unit,
     onTitleClick: () -> Unit,
@@ -105,21 +123,21 @@ fun Content(
     val fpBoundsRef = remember { mutableStateOf<Rect?>(null) }
     val previewBoundsRef = remember { mutableStateOf<Rect?>(null) }
 
-    val currentInteractive = rememberUpdatedState(state.interactiveNotifications)
-    val currentIsFpTouched = rememberUpdatedState(state.isFingerprintTouched)
-    val currentTouchedIndex = rememberUpdatedState(state.touchedNotificationIndex)
-    val currentDetailedNotifications = rememberUpdatedState(state.detailedNotifications)
+    val currentInteractive = rememberUpdatedState(appearanceState.interactiveNotifications)
+    val currentIsFpTouched = rememberUpdatedState(fingerprintState.isTouched)
+    val currentTouchedIndex = rememberUpdatedState(notificationState.touchedIndex)
+    val currentDetailedNotifications = rememberUpdatedState(notificationState.detailed)
 
-    remember(state.notifications) {
+    remember(notificationState.entries) {
         iconBoundsMap.clear()
         actionBoundsMap.clear()
     }
 
     val currentViewConfiguration = LocalViewConfiguration.current
-    val customViewConfiguration = remember(state.doubleTapSpeed) {
+    val customViewConfiguration = remember(appearanceState.doubleTapSpeed) {
         object : ViewConfiguration by currentViewConfiguration {
             override val doubleTapTimeoutMillis: Long
-                get() = state.doubleTapSpeed
+                get() = appearanceState.doubleTapSpeed
         }
     }
 
@@ -127,7 +145,7 @@ fun Content(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .pointerInput(state.doubleTapSpeed) {
+                .pointerInput(appearanceState.doubleTapSpeed) {
                     awaitPointerEventScope {
                         var currentActionIndex: Int? = null
                         var isOverPreview = false
@@ -188,7 +206,7 @@ fun Content(
                                         }
                                     }
 
-                                    if (currentIsFpTouched.value && state.swipeNotificationOpen) {
+                                    if (currentIsFpTouched.value && appearanceState.swipeNotificationOpen) {
                                         var hoveredIndex: Int? = null
                                         iconBoundsMap.forEach { (index, bounds) ->
                                             if (bounds.contains(position)) {
@@ -241,7 +259,7 @@ fun Content(
 
                                         currentIsFpTouched.value -> {
                                             iconBoundsMap.forEach { (index, bounds) ->
-                                                if (state.swipeNotificationOpen) {
+                                                if (appearanceState.swipeNotificationOpen) {
                                                     if (bounds.contains(position)) {
                                                         onOpenNotification(index)
                                                     }
@@ -267,7 +285,7 @@ fun Content(
                     }
                 }
         ) {
-            if ((state.albumArt == null || !state.showAlbumArt || (!state.isMediaPlaying && !state.wasMediaPlaying)) && state.backgroundImageRes != null) {
+            if ((musicState.albumArt == null || !appearanceState.showAlbumArt || (!musicState.isPlaying && !musicState.wasPlaying)) && appearanceState.backgroundImageRes != null) {
                 Box(
                     modifier = Modifier
                         .then(
@@ -278,12 +296,12 @@ fun Content(
                                 .padding(start = 16.dp, end = 16.dp)
                             else Modifier
                                 .fillMaxSize()
-                                .padding(top = state.topPadding.dp, start = 16.dp, end = 16.dp)
+                                .padding(top = appearanceState.topPadding.dp, start = 16.dp, end = 16.dp)
                         ),
                     contentAlignment = if (isLandscape) Alignment.Center else Alignment.TopCenter
                 ) {
-                    if (state.backgroundImageRes == -1) {
-                        state.customBackground?.let { bitmap ->
+                    if (appearanceState.backgroundImageRes == -1) {
+                        appearanceState.customBackground?.let { bitmap ->
                             Image(
                                 bitmap = bitmap.asImageBitmap(),
                                 contentDescription = null,
@@ -294,7 +312,7 @@ fun Content(
                         }
                     } else {
                         Image(
-                            painter = painterResource(id = state.backgroundImageRes),
+                            painter = painterResource(id = appearanceState.backgroundImageRes),
                             contentDescription = null,
                             modifier = Modifier
                                 .alpha(0.5f),
@@ -304,14 +322,14 @@ fun Content(
                 }
             }
 
-            EdgeGlow(state)
+            EdgeGlow(appearanceState, notificationState)
 
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .offset { IntOffset(0, state.driftY.dp.roundToPx()) }) {
-                if (state.showAlbumArt && (state.isMediaPlaying || state.wasMediaPlaying)) {
-                    state.albumArt?.let { bitmap ->
+                    .offset { IntOffset(0, interactionState.driftY.dp.roundToPx()) }) {
+                if (appearanceState.showAlbumArt && (musicState.isPlaying || musicState.wasPlaying)) {
+                    musicState.albumArt?.let { bitmap ->
                         Box(
                             modifier = Modifier
                                 .then(
@@ -369,31 +387,31 @@ fun Content(
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
-                            .padding(top = state.topPadding.dp, start = 16.dp, end = 16.dp)
-                            .scale(state.scale)
+                            .padding(top = appearanceState.topPadding.dp, start = 16.dp, end = 16.dp)
+                            .scale(appearanceState.scale)
                             .pointerInput(Unit) {
                                 detectTapGestures(
                                     onDoubleTap = { onDoubleTap() },
                                     onPress = { onDown() }
                                 )
                             },
-                        horizontalAlignment = if (state.theme == P.USER_THEME_SAMSUNG2) Alignment.Start
-                        else if (isLandscape) state.textAlign.toAlignment()
-                        else state.textAlign.toAlignment(),
+                        horizontalAlignment = if (appearanceState.theme == P.USER_THEME_SAMSUNG2) Alignment.Start
+                        else if (isLandscape) appearanceState.textAlign.toAlignment()
+                        else appearanceState.textAlign.toAlignment(),
                         verticalArrangement = Arrangement.Top
                     ) {
-                        val themeSettings = getThemeSettings(state.theme)
+                        val themeSettings = getThemeSettings(appearanceState.theme)
 
-                        if (state.theme == P.USER_THEME_MOTO) {
-                            MStyle(state)
-                        } else if (state.isSamsung3) {
+                        if (appearanceState.theme == P.USER_THEME_MOTO) {
+                            MStyle(clockState, batteryState, appearanceState)
+                        } else if (appearanceState.isSamsung3) {
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.Center,
                                 modifier = Modifier.fillMaxWidth()
                             ) {
-                                Clock(state)
-                                if (state.showClock || state.showDate) {
+                                Clock(clockState, appearanceState)
+                                if (appearanceState.showClock || appearanceState.showDate) {
                                     Box(
                                         modifier = Modifier
                                             .padding(horizontal = 16.dp)
@@ -402,26 +420,28 @@ fun Content(
                                             .background(Color.White)
                                     )
                                 }
-                                Date(state)
+                                Date(clockState, appearanceState)
                             }
                         } else {
-                            Clock(state)
-                            Date(state)
+                            Clock(clockState, appearanceState)
+                            Date(clockState, appearanceState)
                         }
 
-                        if (state.theme != P.USER_THEME_MOTO) {
-                            Battery(state)
+                        if (appearanceState.theme != P.USER_THEME_MOTO) {
+                            Battery(batteryState, appearanceState)
                         }
 
-                        Music(state, onSkipPrevious, onSkipNext, onTitleClick)
-                        Calendar(state)
-                        Message(state)
-                        Weather(state)
-                        NotificationCount(state)
+                        Music(musicState, appearanceState, onSkipPrevious, onSkipNext, onTitleClick)
+                        Calendar(calendarState, appearanceState)
+                        Message(messageState, appearanceState)
+                        Weather(weatherState, appearanceState)
+                        NotificationCount(notificationState, appearanceState)
 
                         if (!isLandscape) {
                             Notifications(
-                                state = state,
+                                notificationState = notificationState,
+                                appearanceState = appearanceState,
+                                fingerprintState = fingerprintState,
                                 onPositioned = { index, bounds ->
                                     iconBoundsMap[index] = bounds
                                 }
@@ -433,7 +453,9 @@ fun Content(
 
             if (isLandscape) {
                 Notifications(
-                    state = state,
+                    notificationState = notificationState,
+                    appearanceState = appearanceState,
+                    fingerprintState = fingerprintState,
                     onPositioned = { index, bounds ->
                         iconBoundsMap[index] = bounds
                     }
@@ -441,7 +463,9 @@ fun Content(
             }
 
             Fingerprint(
-                state = state,
+                fingerprintState = fingerprintState,
+                appearanceState = appearanceState,
+                interactionState = interactionState,
                 onTouchStateChanged = onFingerprintTouch,
                 onLongPress = onFingerprintLongPress,
                 onPositioned = { bounds ->
@@ -449,9 +473,9 @@ fun Content(
                 }
             )
 
-            val iconBounds = state.touchedNotificationIndex?.let { iconBoundsMap[it] }
-            if (state.touchedNotificationIndex != null && iconBounds != null) {
-                val above = state.notificationPreviewPosition == "above"
+            val iconBounds = notificationState.touchedIndex?.let { iconBoundsMap[it] }
+            if (notificationState.touchedIndex != null && iconBounds != null) {
+                val above = appearanceState.notificationPreviewPosition == "above"
 
                 SubcomposeLayout(
                     modifier = Modifier
@@ -482,7 +506,7 @@ fun Content(
 
                     val previewPlaceable = subcompose("preview") {
                         NotificationPreview(
-                            state = state,
+                            notificationState = notificationState,
                             onActionClick = onActionClick,
                             onReplyActionClick = onReplyActionClick,
                             onDismissNotification = onDismissNotification,
@@ -539,9 +563,13 @@ fun Content(
 }
 
 @Composable
-private fun MStyle(state: State) {
+private fun MStyle(
+    clockState: ClockState,
+    batteryState: BatteryState,
+    appearanceState: AppearanceState
+) {
 
-    val themeSettings = getThemeSettings(state.theme)
+    val themeSettings = getThemeSettings(appearanceState.theme)
     val density = LocalDensity.current
     val configuration = LocalConfiguration.current
 
@@ -559,10 +587,10 @@ private fun MStyle(state: State) {
     val clampGuardPx = with(density) { 8.dp.toPx() }
     val defaultRadius = (if (isLandscape) 0.12f else 0.3f) * screenWidthPx
 
-    val showClock = state.showClock
-    val showDate = state.showDate
-    val showBatteryPercentage = state.showBatteryPercentage
-    val showBatteryCircle = state.showBatteryIcon
+    val showClock = appearanceState.showClock
+    val showDate = appearanceState.showDate
+    val showBatteryPercentage = appearanceState.showBatteryPercentage
+    val showBatteryCircle = appearanceState.showBatteryIcon
 
     fun makeTextStyle(fontSize: TextUnit) = TextStyle(
         fontSize = fontSize,
@@ -575,13 +603,13 @@ private fun MStyle(state: State) {
     val dateTextStyle = makeTextStyle(themeSettings.smallTextSize)
     val batteryTextStyle = makeTextStyle(themeSettings.mediumTextSize)
 
-    val displayedDate = if (state.isCapsDate) state.date.uppercase() else state.date
-    val batteryLabel = "${state.batteryLevel}%"
+    val displayedDate = if (appearanceState.isCapsDate) clockState.date.uppercase() else clockState.date
+    val batteryLabel = "${batteryState.level}%"
 
     val timeContent: @Composable () -> Unit = {
         Text(
-            state.time,
-            color = state.clockColor,
+            clockState.time,
+            color = appearanceState.clockColor,
             style = timeTextStyle,
             textAlign = TextAlign.Center
         )
@@ -589,7 +617,7 @@ private fun MStyle(state: State) {
     val dateContent: @Composable () -> Unit = {
         Text(
             displayedDate,
-            color = state.dateColor,
+            color = appearanceState.dateColor,
             style = dateTextStyle,
             textAlign = TextAlign.Center
         )
@@ -597,15 +625,15 @@ private fun MStyle(state: State) {
     val battContent: @Composable () -> Unit = {
         Text(
             batteryLabel,
-            color = state.batteryColor,
+            color = appearanceState.batteryColor,
             style = batteryTextStyle,
             textAlign = TextAlign.Center
         )
     }
 
-    val startAngle = if (state.batteryIsCharging) -260f else -270f
-    val sweepAngle = if (state.batteryIsCharging) 340f else 360f
-    val progressAngle = sweepAngle * state.batteryLevel / 100f
+    val startAngle = if (batteryState.isCharging) -260f else -270f
+    val sweepAngle = if (batteryState.isCharging) 340f else 360f
+    val progressAngle = sweepAngle * batteryState.level / 100f
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -736,7 +764,7 @@ private fun MStyle(state: State) {
                             style = Stroke(width = strokeWidthPx, cap = StrokeCap.Round),
                         )
                         drawArc(
-                            color = state.batteryArcColor,
+                            color = appearanceState.batteryArcColor,
                             startAngle = startAngle,
                             sweepAngle = progressAngle,
                             useCenter = false,
@@ -746,7 +774,7 @@ private fun MStyle(state: State) {
                 }.first().measure(ringConstraints)
             } else null
 
-            val chargingPlaceable = if (state.batteryIsCharging) {
+            val chargingPlaceable = if (batteryState.isCharging) {
                 subcompose(Slot.CHARGING) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_charging_white),

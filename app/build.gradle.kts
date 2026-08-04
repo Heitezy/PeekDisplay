@@ -104,4 +104,5 @@ dependencies {
     implementation("com.google.android.material:material:1.14.0")
     implementation("com.android.volley:volley:1.2.1")
     implementation("androidx.datastore:datastore-preferences:1.2.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.5.1")
 }

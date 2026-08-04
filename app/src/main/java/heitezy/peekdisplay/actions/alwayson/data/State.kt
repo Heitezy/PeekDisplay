@@ -2,6 +2,7 @@ package heitezy.peekdisplay.actions.alwayson.data
 
 import android.graphics.Bitmap
 import android.service.notification.StatusBarNotification
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.TextFieldValue
@@ -10,20 +11,76 @@ import androidx.compose.ui.unit.TextUnit
 import heitezy.peekdisplay.R
 import heitezy.peekdisplay.helpers.P
 import heitezy.peekdisplay.services.NotificationService
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 
-data class State(
+@Immutable
+data class ClockState(
     val time: String = "",
     val date: String = "",
-    val batteryLevel: Int = 0,
-    val batteryIsCharging: Boolean = false,
-    val batteryIconRes: Int = R.drawable.ic_battery_unknown,
-    val musicString: String = "",
+    val hour: Int = 0,
+    val minute: Int = 0,
+    val second: Int = 0
+)
+
+@Immutable
+data class BatteryState(
+    val level: Int = 0,
+    val isCharging: Boolean = false,
+    val iconRes: Int = R.drawable.ic_battery_unknown
+)
+
+@Immutable
+data class MusicState(
+    val text: String = "",
     val albumArt: Bitmap? = null,
-    val isMediaPlaying: Boolean = false,
-    val wasMediaPlaying: Boolean = false,
-    val weather: String = "",
-    val message: String = "",
-    val calendarEvents: List<String> = emptyList(),
+    val isPlaying: Boolean = false,
+    val wasPlaying: Boolean = false
+)
+
+@Immutable
+data class WeatherState(
+    val weather: String = ""
+)
+
+@Immutable
+data class CalendarState(
+    val events: ImmutableList<String> = persistentListOf()
+)
+
+@Immutable
+data class MessageState(
+    val message: String = ""
+)
+
+@Immutable
+data class NotificationState(
+    val entries: ImmutableList<NotificationService.NotificationEntry> = persistentListOf(),
+    val detailed: ImmutableList<StatusBarNotification> = persistentListOf(),
+    val touchedIndex: Int? = null,
+    val hoveredIndex: Int? = null,
+    val isReplyMode: Boolean = false,
+    val replyText: TextFieldValue = TextFieldValue(""),
+    val replyActionIndex: Int? = null,
+    val hasNew: Boolean = false
+)
+
+@Immutable
+data class FingerprintState(
+    val isTouched: Boolean = false,
+    val iconRes: Int = R.drawable.ic_fingerprint_white
+)
+
+@Immutable
+data class InteractionState(
+    val driftY: Float = 0f,
+    val fpDriftY: Float = 0f,
+    val isInteracting: Boolean = false,
+    val isDrifting: Boolean = false
+)
+
+@Immutable
+data class AppearanceState(
     val theme: String = P.USER_THEME_DEFAULT,
     val clockColor: Color = Color.White,
     val dateColor: Color = Color.White,
@@ -50,17 +107,8 @@ data class State(
     val isMultiline: Boolean = false,
     val isBigDate: Boolean = false,
     val isCapsDate: Boolean = false,
-    val notifications: List<NotificationService.NotificationEntry> = emptyList(),
-    val detailedNotifications: List<StatusBarNotification> = emptyList(),
-    val touchedNotificationIndex: Int? = null,
-    val hoveredNotificationIndex: Int? = null,
-    val isReplyMode: Boolean = false,
-    val replyText: TextFieldValue = TextFieldValue(""),
-    val replyActionIndex: Int? = null,
-    val isFingerprintTouched: Boolean = false,
     val showFingerprint: Boolean = false,
     val useLockIcon: Boolean = false,
-    val fingerprintIconRes: Int = R.drawable.ic_fingerprint_white,
     val fingerprintColor: Color = Color.White,
     val fingerprintMargin: Int = 200,
     val fingerprintInteractionMode: String = "swipe",
@@ -71,7 +119,6 @@ data class State(
     val edgeGlowStyle: String = "all",
     val disableDoubleTap: Boolean = false,
     val doubleTapSpeed: Long = 300L,
-    val hasNewNotifications: Boolean = false,
     val backgroundImageRes: Int? = null,
     val customBackground: Bitmap? = null,
     val notificationIconSize: String = "standart",
@@ -83,11 +130,7 @@ data class State(
     val animateMotion: Boolean = false,
     val topPadding: Int = 0,
     val notificationTopPadding: Int = 680,
-    val scale: Float = 1f,
-    val driftY: Float = 0f,
-    val fpDriftY: Float = 0f,
-    val isInteracting: Boolean = false,
-    val isDrifting: Boolean = false
+    val scale: Float = 1f
 )
 
 data class ThemeSettings(

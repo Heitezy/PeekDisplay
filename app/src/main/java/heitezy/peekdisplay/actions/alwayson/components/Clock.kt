@@ -14,27 +14,27 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import heitezy.peekdisplay.actions.alwayson.data.State
+import heitezy.peekdisplay.actions.alwayson.data.ClockState
+import heitezy.peekdisplay.actions.alwayson.data.AppearanceState
 import heitezy.peekdisplay.actions.alwayson.styles.getThemeSettings
-import java.util.Calendar
 import kotlin.math.cos
 import kotlin.math.sin
 
 @Composable
-fun Clock(state: State, modifier: Modifier = Modifier) {
-    if (!state.showClock) return
-    val themeSettings = getThemeSettings(state.theme)
+fun Clock(clockState: ClockState, appearanceState: AppearanceState, modifier: Modifier = Modifier) {
+    if (!appearanceState.showClock) return
+    val themeSettings = getThemeSettings(appearanceState.theme)
     
     Box(modifier = modifier) {
-        if (state.isAnalog) {
-            AnalogClock(state, themeSettings.bigTextSize)
+        if (appearanceState.isAnalog) {
+            AnalogClock(clockState, appearanceState, themeSettings.bigTextSize)
         } else {
             Text(
-                text = state.time,
-                color = state.clockColor,
+                text = clockState.time,
+                color = appearanceState.clockColor,
                 fontSize = themeSettings.bigTextSize,
                 fontFamily = themeSettings.fontFamily,
-                textAlign = state.textAlign,
+                textAlign = appearanceState.textAlign,
                 lineHeight = themeSettings.bigTextSize
             )
         }
@@ -42,10 +42,9 @@ fun Clock(state: State, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun AnalogClock(state: State, clockSize: TextUnit) {
-    val calendar = Calendar.getInstance()
-    val hours = calendar.get(Calendar.HOUR_OF_DAY) % 12
-    val minutes = calendar.get(Calendar.MINUTE)
+private fun AnalogClock(clockState: ClockState, appearanceState: AppearanceState, clockSize: TextUnit) {
+    val hours = clockState.hour % 12
+    val minutes = clockState.minute
     
     val density = LocalDensity.current
     val circleSize = with(density) { (clockSize.toPx() * 1.5f).toDp() }
@@ -60,7 +59,7 @@ private fun AnalogClock(state: State, clockSize: TextUnit) {
             val radius = circleSize.toPx()
 
             drawCircle(
-                color = state.clockColor,
+                color = appearanceState.clockColor,
                 center = center,
                 radius = radius,
                 style = Stroke(width = 4.dp.toPx())
@@ -70,7 +69,7 @@ private fun AnalogClock(state: State, clockSize: TextUnit) {
             val hourAngle = (Math.PI * (hours * 5 + minutes / 12f) / 30.0 - Math.PI / 2.0).toFloat()
             val hourHandLen = radius * 0.5f
             drawLine(
-                color = state.clockColor,
+                color = appearanceState.clockColor,
                 start = center,
                 end = Offset(
                     center.x + cos(hourAngle) * hourHandLen,
@@ -84,7 +83,7 @@ private fun AnalogClock(state: State, clockSize: TextUnit) {
             val minuteAngle = (Math.PI * minutes / 30.0 - Math.PI / 2.0).toFloat()
             val minuteHandLen = radius * 0.9f
             drawLine(
-                color = state.clockColor,
+                color = appearanceState.clockColor,
                 start = center,
                 end = Offset(
                     center.x + cos(minuteAngle) * minuteHandLen,

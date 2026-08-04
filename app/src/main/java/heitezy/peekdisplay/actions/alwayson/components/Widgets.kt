@@ -24,73 +24,80 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import heitezy.peekdisplay.R
-import heitezy.peekdisplay.actions.alwayson.data.State
+import heitezy.peekdisplay.actions.alwayson.data.BatteryState
+import heitezy.peekdisplay.actions.alwayson.data.CalendarState
+import heitezy.peekdisplay.actions.alwayson.data.ClockState
+import heitezy.peekdisplay.actions.alwayson.data.MessageState
+import heitezy.peekdisplay.actions.alwayson.data.MusicState
+import heitezy.peekdisplay.actions.alwayson.data.NotificationState
+import heitezy.peekdisplay.actions.alwayson.data.AppearanceState
+import heitezy.peekdisplay.actions.alwayson.data.WeatherState
 import heitezy.peekdisplay.actions.alwayson.styles.getThemeSettings
 import heitezy.peekdisplay.actions.alwayson.styles.toAlignment
 import heitezy.peekdisplay.helpers.P
 import kotlinx.coroutines.delay
 
 @Composable
-fun Date(state: State, modifier: Modifier = Modifier) {
-    if (!state.showDate) return
-    val themeSettings = getThemeSettings(state.theme)
-    val fontSize = if (state.isBigDate) themeSettings.bigTextSize else themeSettings.mediumTextSize
-    val dateText = if (state.isCapsDate) state.date.uppercase() else state.date
+fun Date(clockState: ClockState, appearanceState: AppearanceState, modifier: Modifier = Modifier) {
+    if (!appearanceState.showDate) return
+    val themeSettings = getThemeSettings(appearanceState.theme)
+    val fontSize = if (appearanceState.isBigDate) themeSettings.bigTextSize else themeSettings.mediumTextSize
+    val dateText = if (appearanceState.isCapsDate) clockState.date.uppercase() else clockState.date
 
     Text(
         text = dateText,
-        color = state.dateColor,
+        color = appearanceState.dateColor,
         fontSize = fontSize,
         fontFamily = themeSettings.fontFamily,
-        textAlign = state.textAlign,
+        textAlign = appearanceState.textAlign,
         lineHeight = fontSize,
         modifier = modifier
     )
 }
 
 @Composable
-fun Battery(state: State, modifier: Modifier = Modifier) {
-    if (!state.showBatteryIcon && !state.showBatteryPercentage) return
-    val themeSettings = getThemeSettings(state.theme)
+fun Battery(batteryState: BatteryState, appearanceState: AppearanceState, modifier: Modifier = Modifier) {
+    if (!appearanceState.showBatteryIcon && !appearanceState.showBatteryPercentage) return
+    val themeSettings = getThemeSettings(appearanceState.theme)
     
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier.padding(top = 16.dp, bottom = 16.dp)
     ) {
-        if (state.theme == P.USER_THEME_ONEPLUS || state.isCapsDate || state.isBigDate ||
-            state.isSamsung3 || state.isAnalog
+        if (appearanceState.theme == P.USER_THEME_ONEPLUS || appearanceState.isCapsDate || appearanceState.isBigDate ||
+            appearanceState.isSamsung3 || appearanceState.isAnalog
         ) {
-            if (state.showBatteryPercentage) {
+            if (appearanceState.showBatteryPercentage) {
                 Text(
-                    text = "${state.batteryLevel}%",
-                    color = state.batteryColor,
+                    text = "${batteryState.level}%",
+                    color = appearanceState.batteryColor,
                     fontSize = themeSettings.mediumTextSize,
                     fontFamily = themeSettings.fontFamily
                 )
                 Spacer(modifier = Modifier.width(4.dp))
             }
-            if (state.showBatteryIcon) {
+            if (appearanceState.showBatteryIcon) {
                 Icon(
-                    painter = painterResource(id = state.batteryIconRes),
+                    painter = painterResource(id = batteryState.iconRes),
                     contentDescription = null,
-                    tint = if (state.batteryIsCharging) colorResource(id = R.color.charging) else state.batteryColor,
+                    tint = if (batteryState.isCharging) colorResource(id = R.color.charging) else appearanceState.batteryColor,
                     modifier = Modifier.size(24.dp)
                 )
             }
         } else {
-            if (state.showBatteryIcon) {
+            if (appearanceState.showBatteryIcon) {
                 Icon(
-                    painter = painterResource(id = state.batteryIconRes),
+                    painter = painterResource(id = batteryState.iconRes),
                     contentDescription = null,
-                    tint = if (state.batteryIsCharging) colorResource(id = R.color.charging) else state.batteryColor,
+                    tint = if (batteryState.isCharging) colorResource(id = R.color.charging) else appearanceState.batteryColor,
                     modifier = Modifier.size(24.dp)
                 )
                 Spacer(modifier = Modifier.width(4.dp))
             }
-            if (state.showBatteryPercentage) {
+            if (appearanceState.showBatteryPercentage) {
                 Text(
-                    text = "${state.batteryLevel}%",
-                    color = state.batteryColor,
+                    text = "${batteryState.level}%",
+                    color = appearanceState.batteryColor,
                     fontSize = themeSettings.mediumTextSize,
                     fontFamily = themeSettings.fontFamily
                 )
@@ -100,10 +107,10 @@ fun Battery(state: State, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun Music(state: State, onSkipPrevious: () -> Unit, onSkipNext: () -> Unit, onTitleClick: () -> Unit) {
-    if (!state.showMusicControls || state.musicString.isEmpty() || (!state.isMediaPlaying && !state.wasMediaPlaying)) return
+fun Music(musicState: MusicState, appearanceState: AppearanceState, onSkipPrevious: () -> Unit, onSkipNext: () -> Unit, onTitleClick: () -> Unit) {
+    if (!appearanceState.showMusicControls || musicState.text.isEmpty() || (!musicState.isPlaying && !musicState.wasPlaying)) return
     
-    val themeSettings = getThemeSettings(state.theme)
+    val themeSettings = getThemeSettings(appearanceState.theme)
     
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -113,17 +120,17 @@ fun Music(state: State, onSkipPrevious: () -> Unit, onSkipNext: () -> Unit, onTi
             Icon(
                 painter = painterResource(id = R.drawable.ic_skip_previous_white),
                 contentDescription = null,
-                tint = state.musicColor,
+                tint = appearanceState.musicColor,
                 modifier = Modifier.size(24.dp)
             )
         }
         
         Text(
-            text = state.musicString,
-            color = state.musicColor,
+            text = musicState.text,
+            color = appearanceState.musicColor,
             fontSize = themeSettings.smallTextSize,
             fontFamily = themeSettings.fontFamily,
-            textAlign = state.textAlign,
+            textAlign = appearanceState.textAlign,
             modifier = Modifier
                 .padding(horizontal = 8.dp)
                 .clickable { onTitleClick() }
@@ -134,7 +141,7 @@ fun Music(state: State, onSkipPrevious: () -> Unit, onSkipNext: () -> Unit, onTi
             Icon(
                 painter = painterResource(id = R.drawable.ic_skip_next_white),
                 contentDescription = null,
-                tint = state.musicColor,
+                tint = appearanceState.musicColor,
                 modifier = Modifier.size(24.dp)
             )
         }
@@ -142,83 +149,83 @@ fun Music(state: State, onSkipPrevious: () -> Unit, onSkipNext: () -> Unit, onTi
 }
 
 @Composable
-fun Weather(state: State) {
-    if (!state.showWeather || state.weather.isEmpty()) return
+fun Weather(weatherState: WeatherState, appearanceState: AppearanceState) {
+    if (!appearanceState.showWeather || weatherState.weather.isEmpty()) return
     
-    val themeSettings = getThemeSettings(state.theme)
+    val themeSettings = getThemeSettings(appearanceState.theme)
     
     Text(
-        text = state.weather,
-        color = state.weatherColor,
+        text = weatherState.weather,
+        color = appearanceState.weatherColor,
         fontSize = themeSettings.smallTextSize,
         fontFamily = themeSettings.fontFamily,
-        textAlign = state.textAlign,
+        textAlign = appearanceState.textAlign,
         modifier = Modifier.padding(top = 2.dp, bottom = 2.dp)
     )
 }
 
 @Composable
-fun Message(state: State) {
-    if (state.message.isEmpty()) return
+fun Message(messageState: MessageState, appearanceState: AppearanceState) {
+    if (messageState.message.isEmpty()) return
     
-    val themeSettings = getThemeSettings(state.theme)
+    val themeSettings = getThemeSettings(appearanceState.theme)
     
     Text(
-        text = state.message,
-        color = state.messageColor,
+        text = messageState.message,
+        color = appearanceState.messageColor,
         fontSize = themeSettings.smallTextSize,
         fontFamily = themeSettings.fontFamily,
-        textAlign = state.textAlign,
+        textAlign = appearanceState.textAlign,
         modifier = Modifier.padding(top = 2.dp, bottom = 2.dp)
     )
 }
 
 @Composable
-fun Calendar(state: State) {
-    if (!state.showCalendar || state.calendarEvents.isEmpty()) return
+fun Calendar(calendarState: CalendarState, appearanceState: AppearanceState) {
+    if (!appearanceState.showCalendar || calendarState.events.isEmpty()) return
     
-    val themeSettings = getThemeSettings(state.theme)
+    val themeSettings = getThemeSettings(appearanceState.theme)
     
-    Column(horizontalAlignment = state.textAlign.toAlignment(), modifier = Modifier.padding(top = 2.dp, bottom = 2.dp)) {
-        state.calendarEvents.forEach { event ->
+    Column(horizontalAlignment = appearanceState.textAlign.toAlignment(), modifier = Modifier.padding(top = 2.dp, bottom = 2.dp)) {
+        calendarState.events.forEach { event ->
             Text(
                 text = event,
-                color = state.calendarColor,
+                color = appearanceState.calendarColor,
                 fontSize = themeSettings.smallTextSize,
                 fontFamily = themeSettings.fontFamily,
-                textAlign = state.textAlign
+                textAlign = appearanceState.textAlign
             )
         }
     }
 }
 
 @Composable
-fun NotificationCount(state: State) {
-    if (!state.showNotificationCount || state.notifications.isEmpty()) return
+fun NotificationCount(notificationState: NotificationState, appearanceState: AppearanceState) {
+    if (!appearanceState.showNotificationCount || notificationState.entries.isEmpty()) return
     
-    val themeSettings = getThemeSettings(state.theme)
+    val themeSettings = getThemeSettings(appearanceState.theme)
     
     Text(
-        text = state.notifications.size.toString(),
-        color = state.notificationColor,
+        text = notificationState.entries.size.toString(),
+        color = appearanceState.notificationColor,
         fontSize = themeSettings.mediumTextSize,
         fontFamily = themeSettings.fontFamily,
-        textAlign = state.textAlign,
+        textAlign = appearanceState.textAlign,
         modifier = Modifier.padding(top = 16.dp, bottom = 16.dp)
     )
 }
 
 @Composable
-fun EdgeGlow(state: State) {
-    if (!state.edgeGlowEnabled || !state.hasNewNotifications) return
+fun EdgeGlow(appearanceState: AppearanceState, notificationState: NotificationState) {
+    if (!appearanceState.edgeGlowEnabled || !notificationState.hasNew) return
 
     val alpha = remember { Animatable(0f) }
 
-    LaunchedEffect(state.edgeGlowDuration, state.edgeGlowDelay) {
+    LaunchedEffect(appearanceState.edgeGlowDuration, appearanceState.edgeGlowDelay) {
         while (true) {
-            alpha.animateTo(0.5f, animationSpec = tween(state.edgeGlowDuration))
-            alpha.animateTo(0f, animationSpec = tween(state.edgeGlowDuration))
-            delay(state.edgeGlowDelay.toLong())
+            alpha.animateTo(0.5f, animationSpec = tween(appearanceState.edgeGlowDuration))
+            alpha.animateTo(0f, animationSpec = tween(appearanceState.edgeGlowDuration))
+            delay(appearanceState.edgeGlowDelay.toLong())
         }
     }
 
@@ -227,9 +234,9 @@ fun EdgeGlow(state: State) {
             .fillMaxSize()
             .drawBehind {
                 val strokeWidth = 4.dp.toPx()
-                val color = state.edgeGlowColor.copy(alpha = alpha.value)
+                val color = appearanceState.edgeGlowColor.copy(alpha = alpha.value)
 
-                when (state.edgeGlowStyle) {
+                when (appearanceState.edgeGlowStyle) {
                     P.EDGE_GLOW_STYLE_VERTICAL -> {
                         drawLine(
                             color = color,

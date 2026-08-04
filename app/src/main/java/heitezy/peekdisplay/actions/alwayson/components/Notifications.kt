@@ -61,47 +61,51 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.drawable.toBitmap
 import heitezy.peekdisplay.R
-import heitezy.peekdisplay.actions.alwayson.data.State
+import heitezy.peekdisplay.actions.alwayson.data.NotificationState
+import heitezy.peekdisplay.actions.alwayson.data.AppearanceState
+import heitezy.peekdisplay.actions.alwayson.data.FingerprintState
 import heitezy.peekdisplay.actions.alwayson.styles.toAlignment
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Notifications(
-    state: State,
+    notificationState: NotificationState,
+    appearanceState: AppearanceState,
+    fingerprintState: FingerprintState,
     onPositioned: (Int, Rect) -> Unit
 ) {
-    if (!state.showNotificationIcons || state.notifications.isEmpty()) return
+    if (!appearanceState.showNotificationIcons || notificationState.entries.isEmpty()) return
 
     val configuration = LocalConfiguration.current
     val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
     val context = LocalContext.current
     val density = LocalDensity.current
 
-    val iconSize = when (state.notificationIconSize) {
+    val iconSize = when (appearanceState.notificationIconSize) {
         "small" -> 38.dp
         "enlarged" -> 60.dp
         else -> 52.dp
     }
     val iconPadding =
-        if (!state.interactiveNotifications && !state.swipeNotificationOpen && !state.invertInteractionHighlight) {
+        if (!appearanceState.interactiveNotifications && !appearanceState.swipeNotificationOpen && !appearanceState.invertInteractionHighlight) {
             0.dp
         } else {
             4.dp
         }
 
     val notificationIcons = @Composable {
-        state.notifications.forEach { entry ->
-            val shouldHighlight = if (!state.invertInteractionHighlight) {
-                if (state.isFingerprintTouched && state.swipeNotificationOpen) {
-                    state.hoveredNotificationIndex == entry.detailedIndex
+        notificationState.entries.forEach { entry ->
+            val shouldHighlight = if (!appearanceState.invertInteractionHighlight) {
+                if (fingerprintState.isTouched && appearanceState.swipeNotificationOpen) {
+                    notificationState.hoveredIndex == entry.detailedIndex
                 } else {
-                    state.touchedNotificationIndex == entry.detailedIndex
+                    notificationState.touchedIndex == entry.detailedIndex
                 }
             } else {
-                if (state.isFingerprintTouched && state.swipeNotificationOpen) {
-                    state.hoveredNotificationIndex != entry.detailedIndex
+                if (fingerprintState.isTouched && appearanceState.swipeNotificationOpen) {
+                    notificationState.hoveredIndex != entry.detailedIndex
                 } else {
-                    state.touchedNotificationIndex != entry.detailedIndex
+                    notificationState.touchedIndex != entry.detailedIndex
                 }
             }
 
@@ -124,10 +128,10 @@ fun Notifications(
                     .then(
                         if (shouldHighlight) {
                             Modifier.border(
-                                2.dp, if (state.tintNotifications) Color(
+                                2.dp, if (appearanceState.tintNotifications) Color(
                                     entry.color
                                 )
-                                else state.notificationColor, CircleShape
+                                else appearanceState.notificationColor, CircleShape
                             )
                         } else {
                             Modifier
@@ -141,11 +145,11 @@ fun Notifications(
                         bitmap = drawable.toBitmap(64, 64).asImageBitmap(),
                         contentDescription = null,
                         modifier = Modifier.size(iconSize * 0.6f),
-                        colorFilter = if (state.tintNotifications) ColorFilter.tint(
+                        colorFilter = if (appearanceState.tintNotifications) ColorFilter.tint(
                             Color(
                                 entry.color
                             )
-                        ) else ColorFilter.tint(state.notificationColor)
+                        ) else ColorFilter.tint(appearanceState.notificationColor)
                     )
                 }
             }
@@ -153,7 +157,7 @@ fun Notifications(
     }
 
     Column(
-        horizontalAlignment = state.textAlign.toAlignment(),
+        horizontalAlignment = appearanceState.textAlign.toAlignment(),
         verticalArrangement = if (isLandscape) Arrangement.Center else Arrangement.Top,
         modifier = Modifier
             .then(
@@ -161,10 +165,10 @@ fun Notifications(
                 .fillMaxHeight()
                 .fillMaxWidth()
                 .padding(
-                    start = with(density) { state.notificationTopPadding.toDp() })
+                    start = with(density) { appearanceState.notificationTopPadding.toDp() })
             else Modifier
                 .padding(
-                    top = with(density) { state.notificationTopPadding.toDp() })
+                    top = with(density) { appearanceState.notificationTopPadding.toDp() })
         )
     ) {
         if (isLandscape) {
@@ -182,7 +186,7 @@ fun Notifications(
 @SuppressLint("RememberInComposition")
 @Composable
 fun NotificationPreview(
-    state: State,
+    notificationState: NotificationState,
     onActionClick: (Int, Int) -> Unit,
     onReplyActionClick: (Int, Int) -> Unit,
     onDismissNotification: (Int) -> Unit,
@@ -191,10 +195,10 @@ fun NotificationPreview(
     onPositioned: (Rect) -> Unit,
     onActionPositioned: (Int, Rect) -> Unit
 ) {
-    val index = state.touchedNotificationIndex ?: return
-    if (index >= state.detailedNotifications.size) return
+    val index = notificationState.touchedIndex ?: return
+    if (index >= notificationState.detailed.size) return
 
-    val sbn = state.detailedNotifications[index]
+    val sbn = notificationState.detailed[index]
     val notification = sbn.notification
     val extras = notification.extras
 
@@ -228,8 +232,8 @@ fun NotificationPreview(
     val focusRequester = FocusRequester()
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    LaunchedEffect(state.isReplyMode) {
-        if (state.isReplyMode) {
+    LaunchedEffect(notificationState.isReplyMode) {
+        if (notificationState.isReplyMode) {
             focusRequester.requestFocus()
             keyboardController?.show()
         } else {
@@ -247,7 +251,7 @@ fun NotificationPreview(
     ) {
         Column {
             FlowRow(itemVerticalAlignment = Alignment.CenterVertically) {
-                val entry = state.notifications.find { it.detailedIndex == index }
+                val entry = notificationState.entries.find { it.detailedIndex == index }
                 val icon = entry?.icon?.loadDrawable(context)
                 val color = entry?.color
                 if (icon != null && color != null) {
@@ -335,9 +339,9 @@ fun NotificationPreview(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            if (state.isReplyMode) {
+            if (notificationState.isReplyMode) {
                 TextField(
-                    value = state.replyText,
+                    value = notificationState.replyText,
                     onValueChange = onReplyTextChange,
                     modifier = Modifier
                         .fillMaxWidth()
