@@ -293,6 +293,7 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
                 Log.e(Global.LOG_TAG, "Weather fetch failed: $error")
             }
         )
+        stringRequest.tag = WEATHER_REQUEST_TAG
         Application.requestQueue.add(stringRequest)
         
         val interval = prefs.get(P.WEATHER_REFRESH_INTERVAL, P.WEATHER_REFRESH_INTERVAL_DEFAULT)
@@ -401,7 +402,7 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
         }
 
         // Show on lock screen
-        Handler(Looper.getMainLooper()).postDelayed({
+        mainHandler.postDelayed({
             window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
             turnOnScreen()
         }, SMALL_DELAY)
@@ -1139,6 +1140,8 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
         CombinedServiceReceiver.isAlwaysOnRunning = false
         
         timeoutRunnable = null
+
+        Application.requestQueue.cancelAll(WEATHER_REQUEST_TAG)
         
         if (
             prefs.get(P.SHOW_NOTIFICATION_COUNT, P.SHOW_NOTIFICATION_COUNT_DEFAULT) ||
@@ -1165,7 +1168,11 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
                 onModeChangedListener ?: error("onModeChangedListener is null."),
             )
         }
-        unregisterReceiver(systemReceiver)
+        try {
+            unregisterReceiver(systemReceiver)
+        } catch (e: IllegalArgumentException) {
+            Log.w(Global.LOG_TAG, e.toString())
+        }
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
@@ -1223,7 +1230,14 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
         private const val SMALL_DELAY: Long = 300
         private const val MILLISECONDS_PER_SECOND: Long = 1_000
         private const val SENSOR_DELAY_SLOW: Int = 1_000_000
-        private var instance: AlwaysOn? = null
+        private const val WEATHER_REQUEST_TAG: String = "PeekDisplay.weather"
+
+        private var instanceRef: java.lang.ref.WeakReference<AlwaysOn>? = null
+        private var instance: AlwaysOn?
+            get() = instanceRef?.get()
+            set(value) {
+                instanceRef = value?.let { java.lang.ref.WeakReference(it) }
+            }
 
         fun finish() {
             instance?.finish()
