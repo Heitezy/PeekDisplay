@@ -247,8 +247,9 @@ fun NotificationPreview(
     ) {
         Column {
             FlowRow(itemVerticalAlignment = Alignment.CenterVertically) {
-                val icon = state.notifications.getOrNull(index)?.icon?.loadDrawable(context)
-                val color = state.notifications.getOrNull(index)?.color
+                val entry = state.notifications.find { it.detailedIndex == index }
+                val icon = entry?.icon?.loadDrawable(context)
+                val color = entry?.color
                 if (icon != null && color != null) {
                     Image(
                         bitmap = icon.toBitmap(64, 64).asImageBitmap(),
