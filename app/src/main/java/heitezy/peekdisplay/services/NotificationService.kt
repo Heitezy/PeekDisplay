@@ -20,6 +20,7 @@ import org.json.JSONArray
 
 class NotificationService : NotificationListenerService() {
     private var sentRecently: Boolean = false
+    private var pendingUpdate: Boolean = false
     private var previousCount: Int = -1
 
     data class NotificationEntry(
@@ -113,13 +114,18 @@ class NotificationService : NotificationListenerService() {
     fun refreshNotifications() {
         // Reset sentRecently flag to allow immediate update
         sentRecently = false
+        pendingUpdate = false
         updateValues()
     }
 
     private fun updateValues() {
-        if (sentRecently) return
+        if (sentRecently) {
+            pendingUpdate = true
+            return
+        }
 
         sentRecently = true
+        pendingUpdate = false
         try {
             val apps = ArrayList<String>(detailed.size)
             detailed = activeNotifications
@@ -160,7 +166,12 @@ class NotificationService : NotificationListenerService() {
             previousCount = count
             listeners.forEach { it.onNotificationsChanged() }
         }
-        Handler(Looper.getMainLooper()).postDelayed({ sentRecently = false }, MINIMUM_UPDATE_DELAY)
+        Handler(Looper.getMainLooper()).postDelayed({
+            sentRecently = false
+            if (pendingUpdate) {
+                updateValues()
+            }
+        }, MINIMUM_UPDATE_DELAY)
     }
 
     private fun isValidNotification(notification: StatusBarNotification): Boolean =
