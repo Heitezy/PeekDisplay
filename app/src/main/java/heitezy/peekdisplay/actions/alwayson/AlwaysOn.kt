@@ -216,9 +216,14 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
             message = prefs.get(P.MESSAGE, P.MESSAGE_DEFAULT)
         )
 
-        calendarState = CalendarState(
-            events = Data.getCalendar(this, prefs).toImmutableList()
-        )
+        activityScope.launch {
+            val events = withContext(Dispatchers.IO) {
+                Data.getCalendar(this@AlwaysOn, prefs)
+            }
+            calendarState = CalendarState(
+                events = events.toImmutableList()
+            )
+        }
 
         appearanceState = AppearanceState(
             theme = theme,

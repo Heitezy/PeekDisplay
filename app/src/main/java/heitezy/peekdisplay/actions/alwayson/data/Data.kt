@@ -22,37 +22,47 @@ object Data {
                 prefs.getSingleLineTimeFormat(),
                 Locale.getDefault(),
             )
+
+        val millis = System.currentTimeMillis()
+        val selection = "${CalendarContract.Events.DTEND} > ? AND ${CalendarContract.Events.DTSTART} < ?"
+        val selectionArgs = arrayOf(millis.toString(), (millis + MILLISECONDS_PER_DAY).toString())
+
         val cursor =
             context.contentResolver.query(
                 CalendarContract.Events.CONTENT_URI,
-                arrayOf("title", "dtstart", "dtend"),
-                null,
-                null,
-                null,
+                arrayOf(
+                    CalendarContract.Events.TITLE,
+                    CalendarContract.Events.DTSTART,
+                    CalendarContract.Events.DTEND
+                ),
+                selection,
+                selectionArgs,
+                "${CalendarContract.Events.DTSTART} ASC",
             )
 
-        if (cursor?.count == 0) return emptyList()
+        if (cursor == null || cursor.count == 0) {
+            cursor?.close()
+            return emptyList()
+        }
 
-        cursor?.moveToFirst()
-        val millis = System.currentTimeMillis()
-        val eventArray = arrayListOf<Pair<Long, String>>()
-        var startTime: Long
-        var endTime: Long
-        do {
-            startTime = (cursor?.getString(1) ?: "0").toLong()
-            endTime = (cursor?.getString(2) ?: "0").toLong()
-            if (endTime > millis && startTime < millis + MILLISECONDS_PER_DAY) {
-                val time =
-                    if (startTime + MILLISECONDS_PER_DAY - endTime != 0L) {
-                        singleLineClock.format(startTime) + " - " + singleLineClock.format(endTime) + " | "
-                    } else {
-                        ""
-                    }
-                eventArray.add(Pair(startTime, time + cursor?.getString(0)))
+        val eventArray = arrayListOf<String>()
+        val titleIdx = cursor.getColumnIndexOrThrow(CalendarContract.Events.TITLE)
+        val startIdx = cursor.getColumnIndexOrThrow(CalendarContract.Events.DTSTART)
+        val endIdx = cursor.getColumnIndexOrThrow(CalendarContract.Events.DTEND)
+
+        while (cursor.moveToNext()) {
+            val title = cursor.getString(titleIdx)
+            val startTime = cursor.getLong(startIdx)
+            val endTime = cursor.getLong(endIdx)
+
+            val time = if (startTime + MILLISECONDS_PER_DAY - endTime != 0L) {
+                singleLineClock.format(startTime) + " - " + singleLineClock.format(endTime) + " | "
+            } else {
+                ""
             }
-        } while (cursor?.moveToNext() == true)
-        cursor?.close()
-        eventArray.sortBy { it.first }
-        return eventArray.map { it.second }
+            eventArray.add(time + title)
+        }
+        cursor.close()
+        return eventArray
     }
 }
