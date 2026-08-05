@@ -78,8 +78,15 @@ import heitezy.peekdisplay.helpers.Rules
 import heitezy.peekdisplay.receivers.CombinedServiceReceiver
 import heitezy.peekdisplay.services.NotificationService
 import kotlinx.collections.immutable.toImmutableList
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Locale
 import kotlin.math.sqrt
@@ -89,6 +96,8 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
     internal var servicesRunning: Boolean = false
 
     internal lateinit var prefs: P
+
+    private val activityScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
     private var clockState by mutableStateOf(ClockState())
     private var batteryState by mutableStateOf(BatteryState())
@@ -179,16 +188,6 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
         val timeFormat = getTimeFormat(timeFormatString)
         val dateFormat = getDateFormat(prefs.get(P.DATE_FORMAT, P.DATE_FORMAT_DEFAULT))
         
-        val customBgEncoded = prefs.get(P.CUSTOM_BACKGROUND, "")
-        val customBgBitmap = if (customBgEncoded.isNotEmpty()) {
-            try {
-                val bytes = Base64.decode(customBgEncoded, Base64.DEFAULT)
-                BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-            } catch (_: Exception) {
-                null
-            }
-        } else null
-
         val batteryIntent = registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
         val level = batteryIntent?.getIntExtra(BatteryManager.EXTRA_LEVEL, 0) ?: 0
         val status = batteryIntent?.getIntExtra(BatteryManager.EXTRA_STATUS, -1) ?: -1
@@ -261,7 +260,6 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
             disableDoubleTap = prefs.get(P.DISABLE_DOUBLE_TAP, P.DISABLE_DOUBLE_TAP_DEFAULT),
             doubleTapSpeed = prefs.get(P.DOUBLE_TAP_SPEED, P.DOUBLE_TAP_SPEED_DEFAULT).toLong(),
             backgroundImageRes = prefs.backgroundImage(),
-            customBackground = customBgBitmap,
             notificationIconSize = prefs.get(P.NOTIFICATION_ICON_SIZE, P.NOTIFICATION_ICON_SIZE_DEFAULT),
             notificationPreviewPosition = prefs.get(P.NOTIFICATION_PREVIEW_POSITION, P.NOTIFICATION_PREVIEW_POSITION_DEFAULT),
             tintNotifications = prefs.get(P.TINT_NOTIFICATIONS, P.TINT_NOTIFICATIONS_DEFAULT),
@@ -277,6 +275,30 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
         fingerprintState = FingerprintState(
             iconRes = if (appearanceState.useLockIcon) R.drawable.ic_lock else R.drawable.ic_fingerprint_white
         )
+
+        // Load custom background asynchronously
+        activityScope.launch {
+            val customBgPathOrEncoded = prefs.get(P.CUSTOM_BACKGROUND, "")
+            val customBgBitmap = if (customBgPathOrEncoded.isNotEmpty()) {
+                withContext(Dispatchers.IO) {
+                    try {
+                        val file = File(customBgPathOrEncoded)
+                        if (file.exists() && file.isFile) {
+                            // It's a file path
+                            BitmapFactory.decodeFile(customBgPathOrEncoded)
+                        } else {
+                            // Legacy Base64
+                            val bytes = Base64.decode(customBgPathOrEncoded, Base64.DEFAULT)
+                            BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                        }
+                    } catch (_: Exception) {
+                        null
+                    }
+                }
+            } else null
+
+            appearanceState = appearanceState.copy(customBackground = customBgBitmap)
+        }
     }
 
     private fun fetchWeather() {
@@ -1136,6 +1158,7 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
 
     override fun onDestroy() {
         super.onDestroy()
+        activityScope.cancel()
         instance = null
         CombinedServiceReceiver.isAlwaysOnRunning = false
         

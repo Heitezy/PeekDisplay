@@ -26,7 +26,8 @@ import androidx.core.graphics.scale
 import heitezy.peekdisplay.R
 import heitezy.peekdisplay.actions.alwayson.AlwaysOn
 import heitezy.peekdisplay.helpers.P
-import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 import java.lang.Integer.min
 import heitezy.peekdisplay.ui.HorizontalLayoutPicker
 import heitezy.peekdisplay.ui.PeekScaffold
@@ -94,10 +95,18 @@ private fun BackgroundImageScreen(onBack: () -> Unit) {
     var customBitmap by remember { mutableStateOf<ImageBitmap?>(null) }
 
     LaunchedEffect(Unit) {
-        val encoded = prefs.getString(P.CUSTOM_BACKGROUND, "")
-        if (encoded.isNotEmpty()) {
-            val bytes = Base64.decode(encoded, 0)
-            customBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)?.asImageBitmap()
+        val pathOrEncoded = prefs.getString(P.CUSTOM_BACKGROUND, "")
+        if (pathOrEncoded.isNotEmpty()) {
+            val file = File(pathOrEncoded)
+            if (file.exists() && file.isFile) {
+                customBitmap = BitmapFactory.decodeFile(pathOrEncoded)?.asImageBitmap()
+            } else {
+                try {
+                    val bytes = Base64.decode(pathOrEncoded, 0)
+                    customBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)?.asImageBitmap()
+                } catch (_: Exception) {
+                }
+            }
         }
     }
 
@@ -119,14 +128,23 @@ private fun BackgroundImageScreen(onBack: () -> Unit) {
                 if (bitmap.width > MAXIMUM_BACKGROUND_RESOLUTION) {
                     bitmap = bitmap.scale(MAXIMUM_BACKGROUND_RESOLUTION, MAXIMUM_BACKGROUND_RESOLUTION)
                 }
-                val os = ByteArrayOutputStream()
-                bitmap.compress(Bitmap.CompressFormat.JPEG, BACKGROUND_QUALITY, os)
-                val encoded = Base64.encodeToString(os.toByteArray(), Base64.DEFAULT)
-                prefs.edit { putString(P.CUSTOM_BACKGROUND, encoded) }
 
-                val ib = bitmap.asImageBitmap()
-                Handler(Looper.getMainLooper()).post {
-                    customBitmap = ib
+                val file = File(context.filesDir, "custom_background.jpg")
+                try {
+                    val out = FileOutputStream(file)
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, BACKGROUND_QUALITY, out)
+                    out.flush()
+                    out.close()
+                    
+                    val path = file.absolutePath
+                    prefs.edit { putString(P.CUSTOM_BACKGROUND, path) }
+
+                    val ib = bitmap.asImageBitmap()
+                    Handler(Looper.getMainLooper()).post {
+                        customBitmap = ib
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 }
             }
             thread.start()
