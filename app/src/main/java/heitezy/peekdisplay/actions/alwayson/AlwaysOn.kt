@@ -384,15 +384,15 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
                     }
 
                     Intent.ACTION_POWER_CONNECTED -> {
-                        if (!Rules.matchesChargingState(this@AlwaysOn)) finishAndOff()
+                        if (!Rules(this@AlwaysOn, prefs).canShow(this@AlwaysOn)) finishAndOff()
                     }
 
                     Intent.ACTION_POWER_DISCONNECTED -> {
-                        if (!Rules.matchesChargingState(this@AlwaysOn)) finishAndOff()
+                        if (!Rules(this@AlwaysOn, prefs).canShow(this@AlwaysOn)) finishAndOff()
                     }
 
                     NotificationManager.ACTION_INTERRUPTION_FILTER_CHANGED -> {
-                        if (!Rules.matchesDoNotDisturbState(this@AlwaysOn)) finishAndOff()
+                        if (!Rules(this@AlwaysOn, prefs).canShow(this@AlwaysOn)) finishAndOff()
                     }
                 }
             }
@@ -1025,7 +1025,7 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
         startAODUpdateLoop()
         fetchWeather()
         
-        val millisTillEnd: Long = Rules(this).millisTillEnd()
+        val millisTillEnd: Long = Rules(this, prefs).millisTillEnd()
         if (millisTillEnd > -1L) mainHandler.postDelayed({ finishAndOff() }, millisTillEnd)
 
         val timeoutSetting = prefs.get(P.RULES_TIMEOUT, P.RULES_TIMEOUT_DEFAULT)

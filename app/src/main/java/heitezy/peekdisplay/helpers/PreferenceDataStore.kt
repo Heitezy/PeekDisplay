@@ -19,7 +19,7 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
     },
 )
 
-internal class PreferenceDataStore(context: Context) {
+internal class PreferenceDataStore private constructor(context: Context) {
     private val dataStore = context.dataStore
     private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
@@ -34,11 +34,22 @@ internal class PreferenceDataStore(context: Context) {
         }
     }
 
-    private fun getPreferencesSnapshot(): Preferences {
+    fun getPreferencesSnapshot(): Preferences {
         val current = _preferenceFlow.value
         if (current != null) return current
 
         return runBlocking { dataStore.data.first() }
+    }
+
+    companion object {
+        @Volatile
+        private var INSTANCE: PreferenceDataStore? = null
+
+        fun getInstance(context: Context): PreferenceDataStore {
+            return INSTANCE ?: synchronized(this) {
+                INSTANCE ?: PreferenceDataStore(context.applicationContext).also { INSTANCE = it }
+            }
+        }
     }
 
     fun getString(key: String, default: String): String =

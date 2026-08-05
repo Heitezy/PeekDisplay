@@ -34,9 +34,10 @@ class PhoneStateReceiver : BroadcastReceiver() {
                 if (previousPhoneState == TelephonyManager.EXTRA_STATE_RINGING) {
                     if (!isAlwaysOnRunning) {
                         Handler(Looper.getMainLooper()).postDelayed({
+                            val prefs = heitezy.peekdisplay.helpers.P.getP(context)
                             NotificationService.activeService?.refreshNotifications()
-                            if (Rules.isAmbientMode(context) && count > 0) {
-                                if (Rules(context).canShow(context)) {
+                            if (prefs.getBoolean("rules_ambient_mode", false) && count > 0) {
+                                if (Rules(context, prefs).canShow(context)) {
                                     context.startActivity(
                                         Intent(context, AlwaysOn::class.java)
                                             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

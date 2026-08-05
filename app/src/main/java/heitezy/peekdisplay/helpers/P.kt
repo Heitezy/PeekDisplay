@@ -9,6 +9,8 @@ import kotlinx.coroutines.flow.Flow
 import java.net.URLEncoder
 
 internal class P(private val dataStore: PreferenceDataStore) {
+    fun snapshot() = dataStore.getPreferencesSnapshot()
+
     fun get(
         key: String,
         default: Boolean,
@@ -292,6 +294,6 @@ internal class P(private val dataStore: PreferenceDataStore) {
         private const val NUMBER_TO_PERCENT = 100f
 
         @Suppress("NOTHING_TO_INLINE")
-        inline fun getP(context: Context): P = P(PreferenceDataStore(context))
+        inline fun getP(context: Context): P = P(PreferenceDataStore.getInstance(context))
     }
 }

@@ -53,20 +53,21 @@ class NotificationService : NotificationListenerService() {
     }
 
     override fun onNotificationPosted(notification: StatusBarNotification) {
-        updateValues()
+        val prefs = P.getP(this)
+        updateValues(prefs)
 
         if (notification.notification.category == Notification.CATEGORY_CALL) {
             AlwaysOn.finish()
             return
         }
 
-        val rules = Rules(this)
+        val rules = Rules(this, prefs)
         @Suppress("ComplexCondition")
         if (
-            isValidNotification(notification) &&
+            isValidNotification(notification, prefs) &&
             !CombinedServiceReceiver.isScreenOn &&
             !CombinedServiceReceiver.isAlwaysOnRunning &&
-            Rules.isAmbientMode(this) &&
+            prefs.getBoolean("rules_ambient_mode", false) &&
             rules.canShow(this) &&
             count >= 1
         ) {
@@ -80,17 +81,18 @@ class NotificationService : NotificationListenerService() {
     }
 
     override fun onNotificationRemoved(notification: StatusBarNotification) {
-        updateValues()
+        val prefs = P.getP(this)
+        updateValues(prefs)
 
         if (notification.notification.category == Notification.CATEGORY_CALL) {
             Handler(Looper.getMainLooper()).postDelayed({
                 refreshNotifications()
                 if (
-                    Rules.isAmbientMode(this) &&
+                    prefs.getBoolean("rules_ambient_mode", false) &&
                     !CombinedServiceReceiver.isAlwaysOnRunning &&
                     count > 0
                 ) {
-                    if (Rules(this).canShow(this)) {
+                    if (Rules(this, prefs).canShow(this)) {
                         startActivity(
                             Intent(this, AlwaysOn::class.java)
                                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -103,7 +105,7 @@ class NotificationService : NotificationListenerService() {
 
         if (
             CombinedServiceReceiver.isAlwaysOnRunning &&
-            Rules.isAmbientMode(this) &&
+            prefs.getBoolean("rules_ambient_mode", false) &&
             count < 1
         ) {
             AlwaysOn.finishAndOff()
@@ -115,10 +117,10 @@ class NotificationService : NotificationListenerService() {
         // Reset sentRecently flag to allow immediate update
         sentRecently = false
         pendingUpdate = false
-        updateValues()
+        updateValues(P.getP(this))
     }
 
-    private fun updateValues() {
+    private fun updateValues(prefs: P = P.getP(this)) {
         if (sentRecently) {
             pendingUpdate = true
             return
@@ -131,8 +133,9 @@ class NotificationService : NotificationListenerService() {
             detailed = activeNotifications
             notifications = ArrayList(detailed.size)
             count = 0
+            val blockedList = JSONArray(prefs.getString("blocked_notifications", "[]"))
             for ((detailedIndex, notification) in detailed.withIndex()) {
-                if (!isValidNotification(notification)) continue
+                if (!isValidNotification(notification, blockedList)) continue
                 if (
                     notification.notification.flags and Notification.FLAG_GROUP_SUMMARY == 0
                 ) {
@@ -169,18 +172,18 @@ class NotificationService : NotificationListenerService() {
         Handler(Looper.getMainLooper()).postDelayed({
             sentRecently = false
             if (pendingUpdate) {
-                updateValues()
+                updateValues(P.getP(this))
             }
         }, MINIMUM_UPDATE_DELAY)
     }
 
-    private fun isValidNotification(notification: StatusBarNotification): Boolean =
+    private fun isValidNotification(notification: StatusBarNotification, prefs: P): Boolean =
+        isValidNotification(notification, JSONArray(prefs.getString("blocked_notifications", "[]")))
+
+    private fun isValidNotification(notification: StatusBarNotification, blockedList: JSONArray): Boolean =
         !notification.isOngoing &&
             !JSON.contains(
-                JSONArray(
-                    P.getP(this)
-                        .getString("blocked_notifications", "[]"),
-                ),
+                blockedList,
                 notification.packageName,
             )
 

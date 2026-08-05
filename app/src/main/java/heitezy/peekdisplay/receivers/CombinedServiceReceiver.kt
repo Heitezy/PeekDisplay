@@ -17,9 +17,9 @@ class CombinedServiceReceiver : BroadcastReceiver() {
     private val handler = Handler(Looper.getMainLooper())
     private var stopServiceRunnable: Runnable? = null
 
-    private fun getChargingActivity(context: Context) =
+    private fun getChargingActivity(context: Context, prefs: P = P.getP(context)) =
         when (
-            P.getP(context).getString(P.CHARGING_STYLE, P.CHARGING_STYLE_DEFAULT)
+            prefs.getString(P.CHARGING_STYLE, P.CHARGING_STYLE_DEFAULT)
         ) {
             P.CHARGING_STYLE_CIRCLE -> ChargingCircleActivity::class.java
             P.CHARGING_STYLE_FLASH -> ChargingFlashActivity::class.java
@@ -28,10 +28,11 @@ class CombinedServiceReceiver : BroadcastReceiver() {
         }
 
     private fun onPowerConnected(context: Context) {
-        val rules = Rules(context)
+        val prefs = P.getP(context)
+        val rules = Rules(context, prefs)
         isCharging = true
 
-        if (P.getP(context).getBoolean(
+        if (prefs.getBoolean(
                 "charging_animation",
                 false,
             ) && (!isScreenOn || isAlwaysOnRunning)
@@ -40,14 +41,14 @@ class CombinedServiceReceiver : BroadcastReceiver() {
             context.startActivity(
                 Intent(
                     context,
-                    getChargingActivity(context),
+                    getChargingActivity(context, prefs),
                 ).apply {
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 },
             )
         } else if (
             !isScreenOn &&
-            !Rules.isAmbientMode(context) &&
+            !rules.ambientMode &&
             rules.canShow(context)
         ) {
             context.startActivity(
@@ -60,12 +61,13 @@ class CombinedServiceReceiver : BroadcastReceiver() {
     }
 
     private fun onPowerDisconnected(context: Context) {
-        val rules = Rules(context)
+        val prefs = P.getP(context)
+        val rules = Rules(context, prefs)
         isCharging = false
 
         if (
             !isScreenOn &&
-            !Rules.isAmbientMode(context) &&
+            !rules.ambientMode &&
             rules.canShow(context)
         ) {
             context.startActivity(
@@ -78,7 +80,8 @@ class CombinedServiceReceiver : BroadcastReceiver() {
     }
 
     private fun onScreenOff(context: Context) {
-        val rules = Rules(context)
+        val prefs = P.getP(context)
+        val rules = Rules(context, prefs)
         isScreenOn = false
 
         stopServiceRunnable?.let {
@@ -86,7 +89,7 @@ class CombinedServiceReceiver : BroadcastReceiver() {
             stopServiceRunnable = null
         }
 
-        if (Rules.isPickUpMode(context) && Rules.isAlwaysOnDisplayEnabled(context)) {
+        if (rules.pickUpMode && rules.alwaysOnEnabled) {
             if (isAlwaysOnRunning) {
                 AlwaysOn.finish()
                 isAlwaysOnRunning = false
@@ -94,9 +97,9 @@ class CombinedServiceReceiver : BroadcastReceiver() {
             } else {
                 heitezy.peekdisplay.services.PickUpService.startService(context)
             }
-        } else if (Rules.isAlwaysOnDisplayEnabled(context) && !hasRequestedStop) {
+        } else if (rules.alwaysOnEnabled && !hasRequestedStop) {
             if (isAlwaysOnRunning) {
-                if (!Rules.isAmbientMode(context)) {
+                if (!rules.ambientMode) {
                     context.startActivity(
                         Intent(
                             context,
@@ -108,7 +111,7 @@ class CombinedServiceReceiver : BroadcastReceiver() {
                 }
                 isAlwaysOnRunning = false
             } else if (
-                !Rules.isAmbientMode(context) &&
+                !rules.ambientMode &&
                 rules.canShow(context)
             ) {
                 context.startActivity(
@@ -118,17 +121,19 @@ class CombinedServiceReceiver : BroadcastReceiver() {
                     ).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
                 )
             }
-        } else if (Rules.isAlwaysOnDisplayEnabled(context) && hasRequestedStop) {
+        } else if (rules.alwaysOnEnabled && hasRequestedStop) {
             hasRequestedStop = false
             isAlwaysOnRunning = false
         }
     }
 
     private fun onScreenOn(context: Context) {
+        val prefs = P.getP(context)
+        val rules = Rules(context, prefs)
         isScreenOn = true
 
-        if (Rules.isPickUpMode(context)) {
-            val timeout = P.getP(context).getInt(P.RULES_TIMEOUT, P.RULES_TIMEOUT_DEFAULT)
+        if (rules.pickUpMode) {
+            val timeout = prefs.getInt(P.RULES_TIMEOUT, P.RULES_TIMEOUT_DEFAULT)
             stopServiceRunnable?.let {
                 handler.removeCallbacks(it)
             }
