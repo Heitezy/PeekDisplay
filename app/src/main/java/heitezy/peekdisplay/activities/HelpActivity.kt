@@ -60,8 +60,11 @@ private fun HelpScreen(onBack: () -> Unit) {
                 body = stringResource(R.string.help_center_uninstall_text),
                 rightButtonText = stringResource(R.string.help_center_uninstall_button),
                 onClickRight = {
-                    (context.getSystemService(DEVICE_POLICY_SERVICE) as DevicePolicyManager)
-                        .removeActiveAdmin(ComponentName(context, AdminReceiver::class.java))
+                    val dpm = context.getSystemService(DEVICE_POLICY_SERVICE) as DevicePolicyManager
+                    val adminComponent = ComponentName(context, AdminReceiver::class.java)
+                    if (dpm.isAdminActive(adminComponent)) {
+                        dpm.removeActiveAdmin(adminComponent)
+                    }
                     context.startActivity(
                         Intent(Intent.ACTION_DELETE)
                             .setData("package:${context.packageName}".toUri()),
