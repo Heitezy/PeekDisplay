@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="pref_look_and_feel_rules_timeout_summary">
+        <item quantity="one">עצור לאחר שנייה %d</item>
+        <item quantity="two">עצור לאחר שתי שניות</item>
+        <item quantity="other">עצור לאחר %d שניות</item>
+    </plurals>
+    <plurals name="pref_look_and_feel_weather_refresh_interval_summary">
+        <item quantity="one">כל דקה %d</item>
+        <item quantity="two">כל שתי דקות</item>
+        <item quantity="other">כל %d דקות</item>
+    </plurals>
+</resources>
