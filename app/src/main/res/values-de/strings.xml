@@ -114,6 +114,8 @@
     <string name="pref_look_and_feel_charging_summary">Ändert das Aussehen der Ladeanimation</string>
     <string name="pref_ao_background_image">Hintergrundbild</string>
     <string name="pref_ao_background_image_summary">Ändert das Hintergrundbild des Peek Displays</string>
+    <string name="pref_ao_full_screen_background">Vollbild-Hintergrundbild</string>
+    <string name="pref_ao_full_screen_background_summary">Hintergrundbild skalieren, um den Bildschirm auszufüllen</string>
     <string name="pref_look_and_feel_hide_display_cutouts">Bildschirmausschnitte ausblenden</string>
     <string name="pref_look_and_feel_hide_display_cutouts_summary">Bildschirmausschnitte im Vollbildmodus verbergen</string>
     <string name="pref_look_and_feel_orientation">Ausrichtung</string>

@@ -114,6 +114,8 @@
     <string name="pref_look_and_feel_charging_summary">Tolduruv animatsiyasınıñ körünüşini deñiştire.</string>
     <string name="pref_ao_background_image">Arqa fon resmi.</string>
     <string name="pref_ao_background_image_summary">Pik Displeyniñ arqa fon resmini deñiştiriñiz.</string>
+    <string name="pref_ao_full_screen_background">Ekran tolu arqa fon resmi</string>
+    <string name="pref_ao_full_screen_background_summary">Arqa fon resmini ekrandan doldurmaq için ölçtiriñiz</string>
     <string name="pref_look_and_feel_hide_display_cutouts">Ekran kesiklerini gizleñiz.</string>
     <string name="pref_look_and_feel_hide_display_cutouts_summary">Tam ekranlı münderice üstünde ekran kesiklerini gizleñiz</string>
     <string name="pref_look_and_feel_orientation">Yöneliş</string>

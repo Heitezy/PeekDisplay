@@ -289,7 +289,8 @@ fun Content(
                 Box(
                     modifier = Modifier
                         .then(
-                            if (isLandscape) Modifier
+                            if (appearanceState.fullScreenBackground) Modifier.fillMaxSize()
+                            else if (isLandscape) Modifier
                                 .fillMaxHeight()
                                 .fillMaxWidth(0.5f)
                                 .align(Alignment.CenterStart)
@@ -298,7 +299,7 @@ fun Content(
                                 .fillMaxSize()
                                 .padding(top = appearanceState.topPadding.dp, start = 16.dp, end = 16.dp)
                         ),
-                    contentAlignment = if (isLandscape) Alignment.Center else Alignment.TopCenter
+                    contentAlignment = if (isLandscape && !appearanceState.fullScreenBackground) Alignment.Center else Alignment.TopCenter
                 ) {
                     if (appearanceState.backgroundImageRes == -1) {
                         appearanceState.customBackground?.let { bitmap ->
@@ -306,8 +307,9 @@ fun Content(
                                 bitmap = bitmap.asImageBitmap(),
                                 contentDescription = null,
                                 modifier = Modifier
+                                    .then(if (appearanceState.fullScreenBackground) Modifier.fillMaxSize() else Modifier)
                                     .alpha(0.5f),
-                                contentScale = ContentScale.None
+                                contentScale = if (appearanceState.fullScreenBackground) ContentScale.Crop else ContentScale.None
                             )
                         }
                     } else {
@@ -315,8 +317,9 @@ fun Content(
                             painter = painterResource(id = appearanceState.backgroundImageRes),
                             contentDescription = null,
                             modifier = Modifier
+                                .then(if (appearanceState.fullScreenBackground) Modifier.fillMaxSize() else Modifier)
                                 .alpha(0.5f),
-                            contentScale = ContentScale.None
+                            contentScale = if (appearanceState.fullScreenBackground) ContentScale.Crop else ContentScale.None
                         )
                     }
                 }

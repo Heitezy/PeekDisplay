@@ -135,6 +135,7 @@ internal class P(private val dataStore: PreferenceDataStore) {
         const val LOCK_ICON = "ao_lock_icon"
         const val BACKGROUND_IMAGE = "ao_background_image"
         const val CUSTOM_BACKGROUND = "custom_background"
+        const val FULL_SCREEN_BACKGROUND = "ao_full_screen_background"
         const val EDGE_GLOW = "ao_edgeGlow"
         const val POCKET_MODE = "ao_pocket_mode"
         const val DO_NOT_DISTURB = "ao_dnd"
@@ -245,6 +246,7 @@ internal class P(private val dataStore: PreferenceDataStore) {
         const val SWIPE_NOTIFICATION_OPEN_DEFAULT = false
         const val LOCK_ICON_DEFAULT = false
         const val BACKGROUND_IMAGE_DEFAULT = BACKGROUND_IMAGE_NONE
+        const val FULL_SCREEN_BACKGROUND_DEFAULT = false
         const val EDGE_GLOW_DEFAULT = false
         const val POCKET_MODE_DEFAULT = false
         const val DO_NOT_DISTURB_DEFAULT = false

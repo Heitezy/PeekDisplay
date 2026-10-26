@@ -143,6 +143,8 @@
     <string name="pref_look_and_feel_charging_summary">Past de stijl van de oplaadanimatie aan</string>
     <string name="pref_ao_background_image">Achtergrondafbeelding</string>
     <string name="pref_ao_background_image_summary">Wijzig de achtergrondafbeelding van Peek Display</string>
+    <string name="pref_ao_full_screen_background">Volledig scherm achtergrondafbeelding</string>
+    <string name="pref_ao_full_screen_background_summary">Schaal achtergrondafbeelding om het scherm te vullen</string>
     <string-array name="pref_ao_background_image_array_display">
         <item>Geen</item>
         <item>Daniel Olah</item>

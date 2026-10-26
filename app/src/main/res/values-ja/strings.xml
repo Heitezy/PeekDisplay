@@ -114,6 +114,8 @@
     <string name="pref_look_and_feel_charging_summary">充電アニメーションの外観を変更します</string>
     <string name="pref_ao_background_image">背景画像</string>
     <string name="pref_ao_background_image_summary">Peek Displayの背景画像を変更します</string>
+    <string name="pref_ao_full_screen_background">フルスクリーン背景画像</string>
+    <string name="pref_ao_full_screen_background_summary">画面いっぱいに表示するように背景画像を拡大・縮小する</string>
     <string name="pref_look_and_feel_hide_display_cutouts">ディスプレイの切り欠きを隠す</string>
     <string name="pref_look_and_feel_hide_display_cutouts_summary">フルスクリーン表示時にディスプレイの切り欠きを隠します</string>
     <string name="pref_look_and_feel_orientation">画面の向き</string>

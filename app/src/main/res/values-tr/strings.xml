@@ -143,6 +143,8 @@
     <string name="pref_look_and_feel_charging_summary">Şarj animasyonunun görünümünü değiştirir</string>
     <string name="pref_ao_background_image">Arka plan görseli</string>
     <string name="pref_ao_background_image_summary">Peek Display\'in arka plan görselini değiştir</string>
+    <string name="pref_ao_full_screen_background">Tam ekran arka plan resmi</string>
+    <string name="pref_ao_full_screen_background_summary">Arka plan resmini ekranı dolduracak şekilde ölçeklendir</string>
     <string-array name="pref_ao_background_image_array_display">
         <item>Hiçbiri</item>
         <item>Daniel Olah</item>

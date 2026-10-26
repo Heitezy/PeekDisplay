@@ -114,6 +114,8 @@
     <string name="pref_look_and_feel_charging_summary">يغير مظهر الرسوم المتحركة للشحن</string>
     <string name="pref_ao_background_image">صورة الخلفية</string>
     <string name="pref_ao_background_image_summary">تغيير صورة الخلفية لـ Peek Display</string>
+    <string name="pref_ao_full_screen_background">صورة خلفية بملء الشاشة</string>
+    <string name="pref_ao_full_screen_background_summary">مقياس صورة الخلفية لملء الشاشة</string>
     <string name="pref_look_and_feel_hide_display_cutouts">إخفاء نتوءات الشاشة (Notch)</string>
     <string name="pref_look_and_feel_hide_display_cutouts_summary">إخفاء نتوءات الشاشة في محتوى ملء الشاشة</string>
     <string name="pref_look_and_feel_orientation">الاتجاه</string>

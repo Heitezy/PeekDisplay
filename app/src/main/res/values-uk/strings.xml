@@ -129,6 +129,7 @@
     <string name="pref_look_and_feel_weather_show_summary">Відображати інформацію про погоду на екрані Peek Display</string>
     <string name="pref_look_and_feel_weather_provider">Peek Display використовує wttr.in для отримання даних. Отримання погоди може передбачати передачу ідентифікаційних даних.</string>
     <string name="pref_ao_background_image">Фонове зображення</string>
+    <string name="pref_ao_full_screen_background">Фонове зображення на весь екран</string>
     <string name="pref_ao_dnd">Вмикати режим «Не турбувати»</string>
     <string name="pref_ao_dnd_summary">Вмикати режим «Не турбувати» під час роботи Peek Display</string>
     <string name="pref_ao_disable_on_dnd">Вимкнути в режимі «Не турбувати»</string>
@@ -195,6 +196,7 @@
     <string name="pref_ao_animation_delay">Затримка руху (у хвилинах)</string>
     <string name="pref_look_and_feel_ao_summary">Налаштувати зовнішній вигляд Peek Display</string>
     <string name="pref_ao_background_image_summary">Змінити фонове зображення Peek Display</string>
+    <string name="pref_ao_full_screen_background_summary">Масштабувати фонове зображення на весь екран</string>
     <string name="pref_look_and_feel_charging_summary">Виберіть стиль анімації заряджання</string>
     <string name="pref_ao_pocket_mode_summary">Вимикає Peek Display у кишені.\nУвага: використання датчика може підвищити розряджання батареї!</string>
     <string name="pref_ao_animation_delay_summary">Час між змінами положення вмісту.\nУвага: занадто великі значення можуть спричинити вигорання екрана!</string>

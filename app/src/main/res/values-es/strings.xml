@@ -114,6 +114,8 @@
     <string name="pref_look_and_feel_charging_summary">Cambia el aspecto de la animación de carga</string>
     <string name="pref_ao_background_image">Imagen de fondo</string>
     <string name="pref_ao_background_image_summary">Cambia la imagen de fondo de Peek Display</string>
+    <string name="pref_ao_full_screen_background">Imagen de fondo en pantalla completa</string>
+    <string name="pref_ao_full_screen_background_summary">Escalar la imagen de fondo para llenar la pantalla</string>
     <string name="pref_look_and_feel_hide_display_cutouts">Ocultar recortes de pantalla</string>
     <string name="pref_look_and_feel_hide_display_cutouts_summary">Ocultar recortes de pantalla en contenido a pantalla completa</string>
     <string name="pref_look_and_feel_orientation">Orientación</string>

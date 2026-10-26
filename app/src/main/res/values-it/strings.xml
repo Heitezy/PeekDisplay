@@ -114,6 +114,8 @@
     <string name="pref_look_and_feel_charging_summary">Cambia l\'aspetto dell\'animazione di ricarica</string>
     <string name="pref_ao_background_image">Immagine di sfondo</string>
     <string name="pref_ao_background_image_summary">Cambia l\'immagine di sfondo di Peek Display</string>
+    <string name="pref_ao_full_screen_background">Immagine di sfondo a schermo intero</string>
+    <string name="pref_ao_full_screen_background_summary">Scala l\'immagine di sfondo per riempire lo schermo</string>
     <string name="pref_look_and_feel_hide_display_cutouts">Nascondi ritagli del display</string>
     <string name="pref_look_and_feel_hide_display_cutouts_summary">Nascondi i ritagli del display sui contenuti a schermo intero</string>
     <string name="pref_look_and_feel_orientation">Orientamento</string>

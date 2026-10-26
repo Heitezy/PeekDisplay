@@ -114,6 +114,8 @@
     <string name="pref_look_and_feel_charging_summary">เปลี่ยนรูปลักษณ์ของแอนิเมชันการชาร์จ</string>
     <string name="pref_ao_background_image">ภาพพื้นหลัง</string>
     <string name="pref_ao_background_image_summary">เปลี่ยนภาพพื้นหลังของ Peek Display</string>
+    <string name="pref_ao_full_screen_background">ภาพพื้นหลังเต็มหน้าจอ</string>
+    <string name="pref_ao_full_screen_background_summary">ปรับขนาดภาพพื้นหลังให้เต็มหน้าจอ</string>
     <string name="pref_look_and_feel_hide_display_cutouts">ซ่อนส่วนเว้าหน้าจอ</string>
     <string name="pref_look_and_feel_hide_display_cutouts_summary">ซ่อนส่วนเว้าหน้าจอในโหมดเต็มหน้าจอ</string>
     <string name="pref_look_and_feel_orientation">การวางแนว</string>

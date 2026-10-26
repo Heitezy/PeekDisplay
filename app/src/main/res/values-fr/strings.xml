@@ -114,6 +114,8 @@
     <string name="pref_look_and_feel_charging_summary">Modifie l\'aspect de l\'animation jouée pendant le rechargement</string>
     <string name="pref_ao_background_image">Image de fond d’écran</string>
     <string name="pref_ao_background_image_summary">Modifie l\'image sur le fond d\'écran de l\'affichage permanent</string>
+    <string name="pref_ao_full_screen_background">Image de fond en plein écran</string>
+    <string name="pref_ao_full_screen_background_summary">Redimensionner l\'image de fond pour remplir l\'écran</string>
     <string name="pref_look_and_feel_hide_display_cutouts">Cacher les découpes d\'affichage</string>
     <string name="pref_look_and_feel_hide_display_cutouts_summary">Masque les découpes d\'affichage sur les contenus en plein écran</string>
     <string name="pref_look_and_feel_orientation">Orientation</string>

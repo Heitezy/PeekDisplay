@@ -3,7 +3,6 @@ package heitezy.peekdisplay.actions.alwayson
 import android.app.Application
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.BitmapFactory
 import android.os.BatteryManager
 import android.util.Base64
 import android.util.Log
@@ -179,6 +178,7 @@ class AlwaysOnViewModel(application: Application) : AndroidViewModel(application
             disableDoubleTap = prefs.get(P.DISABLE_DOUBLE_TAP, P.DISABLE_DOUBLE_TAP_DEFAULT),
             doubleTapSpeed = prefs.get(P.DOUBLE_TAP_SPEED, P.DOUBLE_TAP_SPEED_DEFAULT).toLong(),
             backgroundImageRes = prefs.backgroundImage(),
+            fullScreenBackground = prefs.get(P.FULL_SCREEN_BACKGROUND, P.FULL_SCREEN_BACKGROUND_DEFAULT),
             notificationIconSize = prefs.get(P.NOTIFICATION_ICON_SIZE, P.NOTIFICATION_ICON_SIZE_DEFAULT),
             notificationPreviewPosition = prefs.get(P.NOTIFICATION_PREVIEW_POSITION, P.NOTIFICATION_PREVIEW_POSITION_DEFAULT),
             tintNotifications = prefs.get(P.TINT_NOTIFICATIONS, P.TINT_NOTIFICATIONS_DEFAULT),
@@ -198,15 +198,18 @@ class AlwaysOnViewModel(application: Application) : AndroidViewModel(application
         // Load custom background asynchronously
         viewModelScope.launch {
             val customBgPathOrEncoded = prefs.get(P.CUSTOM_BACKGROUND, "")
+            val isFullScreen = prefs.get(P.FULL_SCREEN_BACKGROUND, P.FULL_SCREEN_BACKGROUND_DEFAULT)
+            val reqDim = if (isFullScreen) 2340 else 1080
+
             val customBgBitmap = if (customBgPathOrEncoded.isNotEmpty()) {
                 withContext(Dispatchers.IO) {
                     try {
                         val file = File(customBgPathOrEncoded)
                         if (file.exists() && file.isFile) {
-                            BitmapFactory.decodeFile(customBgPathOrEncoded)
+                            Global.decodeSampledBitmapFromFile(customBgPathOrEncoded, 1080, reqDim)
                         } else {
                             val bytes = Base64.decode(customBgPathOrEncoded, Base64.DEFAULT)
-                            BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                            Global.decodeSampledBitmapFromByteArray(bytes, 0, bytes.size, 1080, reqDim)
                         }
                     } catch (_: Exception) {
                         null

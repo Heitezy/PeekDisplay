@@ -114,6 +114,8 @@
     <string name="pref_look_and_feel_charging_summary">更改充電動畫的外觀</string>
     <string name="pref_ao_background_image">背景圖片</string>
     <string name="pref_ao_background_image_summary">更改 Peek Display 的背景圖片</string>
+    <string name="pref_ao_full_screen_background">全螢幕背景圖片</string>
+    <string name="pref_ao_full_screen_background_summary">縮放背景圖片以填滿螢幕</string>
     <string name="pref_look_and_feel_hide_display_cutouts">隱藏顯示遮蔽區域</string>
     <string name="pref_look_and_feel_hide_display_cutouts_summary">在全螢幕內容上隱藏顯示遮蔽區域（如瀏海、挖孔）</string>
     <string name="pref_look_and_feel_orientation">方向</string>

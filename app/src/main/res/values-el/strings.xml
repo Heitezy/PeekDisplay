@@ -114,6 +114,8 @@
     <string name="pref_look_and_feel_charging_summary">Αλλάζει την εμφάνιση της κίνησης φόρτισης</string>
     <string name="pref_ao_background_image">Εικόνα φόντου</string>
     <string name="pref_ao_background_image_summary">Αλλάξτε την εικόνα φόντου του Peek Display</string>
+    <string name="pref_ao_full_screen_background">Εικόνα φόντου πλήρους οθόνης</string>
+    <string name="pref_ao_full_screen_background_summary">Κλίμακα εικόνας φόντου για γέμισμα της οθόνης</string>
     <string name="pref_look_and_feel_hide_display_cutouts">Απόκρυψη εγκοπών οθόνης</string>
     <string name="pref_look_and_feel_hide_display_cutouts_summary">Απόκρυψη εγκοπών οθόνης σε περιεχόμενο πλήρους οθόνης</string>
     <string name="pref_look_and_feel_orientation">Προσανατολισμός</string>

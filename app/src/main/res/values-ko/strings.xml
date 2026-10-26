@@ -114,6 +114,8 @@
     <string name="pref_look_and_feel_charging_summary">충전 애니메이션의 모양을 변경합니다</string>
     <string name="pref_ao_background_image">배경 이미지</string>
     <string name="pref_ao_background_image_summary">Peek Display의 배경 이미지를 변경합니다</string>
+    <string name="pref_ao_full_screen_background">전체 화면 배경 이미지</string>
+    <string name="pref_ao_full_screen_background_summary">화면을 채우도록 배경 이미지 크기 조절</string>
     <string name="pref_look_and_feel_hide_display_cutouts">디스플레이 컷아웃 숨기기</string>
     <string name="pref_look_and_feel_hide_display_cutouts_summary">전체 화면 콘텐츠에서 노치/컷아웃 영역을 숨깁니다</string>
     <string name="pref_look_and_feel_orientation">화면 방향</string>

@@ -114,6 +114,8 @@
     <string name="pref_look_and_feel_charging_summary">更改充电动画的外观</string>
     <string name="pref_ao_background_image">背景图片</string>
     <string name="pref_ao_background_image_summary">更改 Peek Display 的背景图片</string>
+    <string name="pref_ao_full_screen_background">全屏背景图片</string>
+    <string name="pref_ao_full_screen_background_summary">缩放背景图片以填满屏幕</string>
     <string name="pref_look_and_feel_hide_display_cutouts">隐藏显示屏缺口</string>
     <string name="pref_look_and_feel_hide_display_cutouts_summary">在全屏内容上隐藏显示屏缺口（如刘海或挖孔）</string>
     <string name="pref_look_and_feel_orientation">屏幕方向</string>

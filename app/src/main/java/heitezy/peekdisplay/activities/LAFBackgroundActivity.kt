@@ -60,6 +60,9 @@ private fun BackgroundSettingsScreen(
     val hideDisplayCutouts by prefs.getBooleanFlow("hide_display_cutouts", false)
         .collectAsState(initial = prefs.getBoolean("hide_display_cutouts", false))
     
+    val fullScreenBackground by prefs.getBooleanFlow(P.FULL_SCREEN_BACKGROUND, P.FULL_SCREEN_BACKGROUND_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.FULL_SCREEN_BACKGROUND, P.FULL_SCREEN_BACKGROUND_DEFAULT))
+    
     val edgeGlowEnabled by prefs.getBooleanFlow(P.EDGE_GLOW, false)
         .collectAsState(initial = prefs.getBoolean(P.EDGE_GLOW, false))
     
@@ -157,6 +160,16 @@ private fun BackgroundSettingsScreen(
                 title = stringResource(R.string.pref_ao_background_image),
                 summary = stringResource(R.string.pref_ao_background_image_summary),
                 onClick = onNavigateToImagePicker,
+            )
+
+            SwitchPreferenceItem(
+                iconRes = R.drawable.ic_scale,
+                title = stringResource(R.string.pref_ao_full_screen_background),
+                summary = stringResource(R.string.pref_ao_full_screen_background_summary),
+                checked = fullScreenBackground,
+                onCheckedChange = { checked ->
+                    prefs.edit { putBoolean(P.FULL_SCREEN_BACKGROUND, checked) }
+                },
             )
 
             // Only available on API 28+

@@ -1,7 +1,6 @@
 package heitezy.peekdisplay.activities
 
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -18,6 +17,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.graphics.scale
 import heitezy.peekdisplay.R
 import heitezy.peekdisplay.actions.alwayson.AlwaysOn
+import heitezy.peekdisplay.helpers.Global
 import heitezy.peekdisplay.helpers.P
 import java.io.File
 import java.io.FileOutputStream
@@ -85,6 +86,8 @@ private fun BackgroundImageScreen(onBack: () -> Unit) {
     val prefs = remember { P.getP(context) }
     val savedKey by prefs.getStringFlow(P.BACKGROUND_IMAGE, P.BACKGROUND_IMAGE_DEFAULT)
         .collectAsState(initial = prefs.getString(P.BACKGROUND_IMAGE, P.BACKGROUND_IMAGE_DEFAULT))
+    val fullScreenBackground by prefs.getBooleanFlow(P.FULL_SCREEN_BACKGROUND, P.FULL_SCREEN_BACKGROUND_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.FULL_SCREEN_BACKGROUND, P.FULL_SCREEN_BACKGROUND_DEFAULT))
     
     var selectedIndex by remember { mutableIntStateOf(keyToIndex(savedKey)) }
 
@@ -96,14 +99,17 @@ private fun BackgroundImageScreen(onBack: () -> Unit) {
 
     LaunchedEffect(Unit) {
         val pathOrEncoded = prefs.getString(P.CUSTOM_BACKGROUND, "")
+        val isFullScreen = prefs.getBoolean(P.FULL_SCREEN_BACKGROUND, P.FULL_SCREEN_BACKGROUND_DEFAULT)
+        val reqDim = if (isFullScreen) 2340 else 1080
+
         if (pathOrEncoded.isNotEmpty()) {
             val file = File(pathOrEncoded)
             if (file.exists() && file.isFile) {
-                customBitmap = BitmapFactory.decodeFile(pathOrEncoded)?.asImageBitmap()
+                customBitmap = Global.decodeSampledBitmapFromFile(pathOrEncoded, 1080, reqDim)?.asImageBitmap()
             } else {
                 try {
                     val bytes = Base64.decode(pathOrEncoded, 0)
-                    customBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)?.asImageBitmap()
+                    customBitmap = Global.decodeSampledBitmapFromByteArray(bytes, 0, bytes.size, 1080, reqDim)?.asImageBitmap()
                 } catch (_: Exception) {
                 }
             }
@@ -117,16 +123,31 @@ private fun BackgroundImageScreen(onBack: () -> Unit) {
         if (uri != null) {
             val thread = Thread {
                 val inputStream = context.contentResolver.openInputStream(uri) ?: return@Thread
-                var bitmap = BitmapFactory.decodeStream(inputStream) ?: return@Thread
-                val size = min(bitmap.width, bitmap.height)
-                bitmap = Bitmap.createBitmap(
-                    bitmap,
-                    (bitmap.width - size) / 2,
-                    (bitmap.height - size) / 2,
-                    size, size,
-                )
-                if (bitmap.width > MAXIMUM_BACKGROUND_RESOLUTION) {
-                    bitmap = bitmap.scale(MAXIMUM_BACKGROUND_RESOLUTION, MAXIMUM_BACKGROUND_RESOLUTION)
+                val isFullScreen = prefs.getBoolean(P.FULL_SCREEN_BACKGROUND, P.FULL_SCREEN_BACKGROUND_DEFAULT)
+                val targetWidth = 1080
+                val targetHeight = if (isFullScreen) 2340 else 1080
+
+                var bitmap = Global.decodeSampledBitmapFromStream(inputStream, targetWidth, targetHeight) ?: return@Thread
+
+                if (!isFullScreen) {
+                    val size = min(bitmap.width, bitmap.height)
+                    bitmap = Bitmap.createBitmap(
+                        bitmap,
+                        (bitmap.width - size) / 2,
+                        (bitmap.height - size) / 2,
+                        size, size,
+                    )
+                    if (bitmap.width > MAXIMUM_BACKGROUND_RESOLUTION) {
+                        bitmap = bitmap.scale(MAXIMUM_BACKGROUND_RESOLUTION, MAXIMUM_BACKGROUND_RESOLUTION)
+                    }
+                } else {
+                    val maxDim = 2340
+                    if (bitmap.width > targetWidth || bitmap.height > maxDim) {
+                        val scale = minOf(targetWidth.toFloat() / bitmap.width, maxDim.toFloat() / bitmap.height)
+                        val newWidth = (bitmap.width * scale).toInt()
+                        val newHeight = (bitmap.height * scale).toInt()
+                        bitmap = bitmap.scale(newWidth, newHeight)
+                    }
                 }
 
                 val file = File(context.filesDir, "custom_background.jpg")
@@ -180,6 +201,7 @@ private fun BackgroundImageScreen(onBack: () -> Unit) {
                         .fillMaxWidth()
                         .weight(1f)
                         .padding(horizontal = 32.dp, vertical = 16.dp),
+                    contentScale = if (fullScreenBackground) ContentScale.Crop else ContentScale.Fit,
                 )
             } else if (selectedIndex != CUSTOM_INDEX) {
                 Image(
@@ -191,6 +213,7 @@ private fun BackgroundImageScreen(onBack: () -> Unit) {
                         .fillMaxWidth()
                         .weight(1f)
                         .padding(horizontal = 32.dp, vertical = 16.dp),
+                    contentScale = if (fullScreenBackground) ContentScale.Crop else ContentScale.Fit,
                 )
             } else {
                 Box(

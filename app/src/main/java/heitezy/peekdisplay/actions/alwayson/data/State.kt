@@ -121,6 +121,7 @@ data class AppearanceState(
     val doubleTapSpeed: Long = 300L,
     val backgroundImageRes: Int? = null,
     val customBackground: Bitmap? = null,
+    val fullScreenBackground: Boolean = false,
     val notificationIconSize: String = "standart",
     val notificationPreviewPosition: String = "above",
     val tintNotifications: Boolean = false,
