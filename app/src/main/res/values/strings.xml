@@ -152,6 +152,10 @@
     <string name="pref_ao_animation_delay_summary">Time between the different positions of the content\nWarning: Too high values can cause screen burn-in!</string>
     <string name="pref_ao_smooth_animation">Animate motion</string>
     <string name="pref_ao_smooth_animation_summary">Animate the position changes</string>
+    <string name="pref_ao_blinds_effect">Jalousie touch effect</string>
+    <string name="pref_ao_blinds_effect_summary">Touching the screen tilts it like venetian blinds around your finger</string>
+    <string name="pref_ao_blinds_background_only">Blinds on background only</string>
+    <string name="pref_ao_blinds_background_only_summary">Keep the clock, icons and notifications flat; only the background image tilts</string>
     <string name="pref_ao_refresh_rate_optimization">Refresh rate optimization</string>
     <string name="pref_ao_refresh_rate_optimization_summary">Uses the lowest available refresh rate when the display is static to save battery</string>
     <string name="pref_ao_force_brightness">Force a certain brightness on Peek Display</string>

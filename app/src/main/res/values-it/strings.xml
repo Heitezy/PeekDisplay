@@ -83,6 +83,10 @@
     <string name="pref_ao_animation_delay_summary">Tempo tra i cambi di posizione del contenuto\nATTENZIONE: Valori troppo alti possono causare il burn-in dello schermo!</string>
     <string name="pref_ao_smooth_animation">Anima movimento</string>
     <string name="pref_ao_smooth_animation_summary">Anima i cambi di posizione</string>
+    <string name="pref_ao_blinds_effect">Effetto tocco veneziana</string>
+    <string name="pref_ao_blinds_effect_summary">Toccando lo schermo lo si inclina come una veneziana attorno al dito</string>
+    <string name="pref_ao_blinds_background_only">Effetto veneziana solo sullo sfondo</string>
+    <string name="pref_ao_blinds_background_only_summary">Mantieni orologio, icone e notifiche piatti; solo l\'immagine di sfondo si inclina</string>
     <string name="pref_ao_refresh_rate_optimization">Ottimizzazione frequenza di aggiornamento</string>
     <string name="pref_ao_refresh_rate_optimization_summary">Usa la frequenza di aggiornamento più bassa disponibile quando il display è statico per risparmiare batteria</string>
     <string name="pref_ao_force_brightness">Forza una luminosità specifica su Peek Display</string>

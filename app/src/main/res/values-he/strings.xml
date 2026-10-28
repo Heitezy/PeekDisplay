@@ -140,6 +140,10 @@
     <string name="pref_ao_animation_delay_summary">הזמן בין המיקומים השונים של התוכן\nאזהרה: ערכים גבוהים מדי עלולים לגרום לצריבת מסך!</string>
     <string name="pref_ao_smooth_animation">הנפשת תנועה</string>
     <string name="pref_ao_smooth_animation_summary">הנפשת שינויי המיקום</string>
+    <string name="pref_ao_blinds_effect">אפקט נגיעה של שלבים</string>
+    <string name="pref_ao_blinds_effect_summary">נגיעה במסך מטה אותו כמו תריס רפפה סביב האצבע שלך</string>
+    <string name="pref_ao_blinds_background_only">אפקט תריס ברקע בלבד</string>
+    <string name="pref_ao_blinds_background_only_summary">להשאיר את השעון, הסמלים וההתראות שטוחים; רק תמונת הרקע נוטה</string>
     <string name="pref_ao_refresh_rate_optimization">אופטימיזציית קצב רענון</string>
     <string name="pref_ao_refresh_rate_optimization_summary">שימוש בקצב הרענון הנמוך ביותר הזמין כאשר התצוגה סטטית כדי לחסוך בסוללה</string>
     <string name="pref_ao_force_brightness">כפיית בהירות מסוימת ב-Peek Display</string>

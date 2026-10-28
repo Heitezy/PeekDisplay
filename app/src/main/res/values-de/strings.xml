@@ -83,6 +83,10 @@
     <string name="pref_ao_animation_delay_summary">Zeit zwischen Positionsänderungen des Inhalts\nWarnung: Zu hohe Werte können zum Einbrennen des Bildschirms führen!</string>
     <string name="pref_ao_smooth_animation">Bewegung animieren</string>
     <string name="pref_ao_smooth_animation_summary">Animiert die Positionsänderungen</string>
+    <string name="pref_ao_blinds_effect">Jalousie-Touch-Effekt</string>
+    <string name="pref_ao_blinds_effect_summary">Beim Berühren des Bildschirms neigt er sich wie eine Jalousie um Ihren Finger</string>
+    <string name="pref_ao_blinds_background_only">Jalousie-Effekt nur auf dem Hintergrund</string>
+    <string name="pref_ao_blinds_background_only_summary">Uhr, Symbole und Benachrichtigungen flach halten; nur das Hintergrundbild neigt sich</string>
     <string name="pref_ao_refresh_rate_optimization">Optimierung der Bildwiederholrate</string>
     <string name="pref_ao_refresh_rate_optimization_summary">Verwendet die niedrigste verfügbare Bildwiederholfrequenz bei statischem Display, um Akku zu sparen</string>
     <string name="pref_ao_force_brightness">Helligkeit auf dem Peek Display erzwingen</string>

@@ -186,6 +186,8 @@ class AlwaysOnViewModel(application: Application) : AndroidViewModel(application
             invertInteractionHighlight = prefs.get(P.INVERT_INTERACTION_HIGHLIGHT, P.INVERT_INTERACTION_HIGHLIGHT_DEFAULT),
             swipeNotificationOpen = prefs.get(P.SWIPE_NOTIFICATION_OPEN, P.SWIPE_NOTIFICATION_OPEN_DEFAULT),
             animateMotion = prefs.get(P.ANIMATE_MOTION, P.ANIMATE_MOTION_DEFAULT),
+            blindsEffect = prefs.get(P.BLINDS_EFFECT, P.BLINDS_EFFECT_DEFAULT),
+            blindsBackgroundOnly = prefs.get(P.BLINDS_BACKGROUND_ONLY, P.BLINDS_BACKGROUND_ONLY_DEFAULT),
             topPadding = prefs.get(P.TOP_PADDING, P.TOP_PADDING_DEFAULT),
             notificationTopPadding = prefs.get(P.NOTIFICATION_ICON_TOP_PADDING, P.NOTIFICATION_ICON_TOP_PADDING_DEFAULT),
             scale = prefs.displayScale()

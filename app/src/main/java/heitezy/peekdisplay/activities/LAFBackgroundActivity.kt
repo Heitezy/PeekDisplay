@@ -63,6 +63,12 @@ private fun BackgroundSettingsScreen(
     val fullScreenBackground by prefs.getBooleanFlow(P.FULL_SCREEN_BACKGROUND, P.FULL_SCREEN_BACKGROUND_DEFAULT)
         .collectAsState(initial = prefs.getBoolean(P.FULL_SCREEN_BACKGROUND, P.FULL_SCREEN_BACKGROUND_DEFAULT))
     
+    val blindsEffect by prefs.getBooleanFlow(P.BLINDS_EFFECT, P.BLINDS_EFFECT_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.BLINDS_EFFECT, P.BLINDS_EFFECT_DEFAULT))
+
+    val blindsBackgroundOnly by prefs.getBooleanFlow(P.BLINDS_BACKGROUND_ONLY, P.BLINDS_BACKGROUND_ONLY_DEFAULT)
+        .collectAsState(initial = prefs.getBoolean(P.BLINDS_BACKGROUND_ONLY, P.BLINDS_BACKGROUND_ONLY_DEFAULT))
+
     val edgeGlowEnabled by prefs.getBooleanFlow(P.EDGE_GLOW, false)
         .collectAsState(initial = prefs.getBoolean(P.EDGE_GLOW, false))
     
@@ -169,6 +175,27 @@ private fun BackgroundSettingsScreen(
                 checked = fullScreenBackground,
                 onCheckedChange = { checked ->
                     prefs.edit { putBoolean(P.FULL_SCREEN_BACKGROUND, checked) }
+                },
+            )
+
+            SwitchPreferenceItem(
+                iconRes = R.drawable.ic_blinds,
+                title = stringResource(R.string.pref_ao_blinds_effect),
+                summary = stringResource(R.string.pref_ao_blinds_effect_summary),
+                checked = blindsEffect,
+                onCheckedChange = { checked ->
+                    prefs.edit { putBoolean(P.BLINDS_EFFECT, checked) }
+                },
+            )
+
+            SwitchPreferenceItem(
+                iconRes = R.drawable.ic_image,
+                title = stringResource(R.string.pref_ao_blinds_background_only),
+                summary = stringResource(R.string.pref_ao_blinds_background_only_summary),
+                checked = blindsBackgroundOnly,
+                enabled = blindsEffect,
+                onCheckedChange = { checked ->
+                    prefs.edit { putBoolean(P.BLINDS_BACKGROUND_ONLY, checked) }
                 },
             )
 

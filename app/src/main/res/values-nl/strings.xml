@@ -111,6 +111,10 @@
     <string name="pref_ao_animation_delay_summary">Tijd tussen de verschillende posities van de inhoud\nWaarschuwing: te hoge waarden kunnen inbranden veroorzaken!</string>
     <string name="pref_ao_smooth_animation">Beweging animeren</string>
     <string name="pref_ao_smooth_animation_summary">Animeren van positieveranderingen</string>
+    <string name="pref_ao_blinds_effect">Jaloezie-touch-effect</string>
+    <string name="pref_ao_blinds_effect_summary">Het scherm aanraken kantelt het als een jaloezie rond je vinger</string>
+    <string name="pref_ao_blinds_background_only">Jaloezieën alleen op achtergrond</string>
+    <string name="pref_ao_blinds_background_only_summary">Houd klok, pictogrammen en meldingen plat; alleen de achtergrondafbeelding kantelt</string>
     <string name="pref_ao_refresh_rate_optimization">Optimalisatie van vernieuwingsfrequentie</string>
     <string name="pref_ao_refresh_rate_optimization_summary">Gebruikt de laagst beschikbare vernieuwingsfrequentie bij een statisch scherm om batterij te sparen</string>
     <string name="pref_ao_force_brightness">Specifieke helderheid afdwingen op Peek Display</string>

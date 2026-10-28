@@ -111,6 +111,10 @@
     <string name="pref_ao_animation_delay_summary">İçeriğin konumları arasındaki süre\nUyarı: Çok yüksek değerler ekran yanmalarına neden olabilir!</string>
     <string name="pref_ao_smooth_animation">Hareketi canlandır</string>
     <string name="pref_ao_smooth_animation_summary">Konum değişikliklerini canlandırın</string>
+    <string name="pref_ao_blinds_effect">Jaluzi dokunma efekti</string>
+    <string name="pref_ao_blinds_effect_summary">Ekrana dokunulduğunda parmağınızın etrafında jaluzi gibi eğilir</string>
+    <string name="pref_ao_blinds_background_only">Jaluzi yalnızca arka planda</string>
+    <string name="pref_ao_blinds_background_only_summary">Saat, simgeler ve bildirimleri düz tutun; yalnızca arka plan resmi eğilir</string>
     <string name="pref_ao_refresh_rate_optimization">Yenileme hızı optimizasyonu</string>
     <string name="pref_ao_refresh_rate_optimization_summary">Pil tasarrufu sağlamak için ekran sabitken en düşük yenileme hızını kullanır</string>
     <string name="pref_ao_force_brightness">Peek Display\'de belirli bir parlaklığı zorla</string>

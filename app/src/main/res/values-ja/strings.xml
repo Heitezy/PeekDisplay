@@ -83,6 +83,10 @@
     <string name="pref_ao_animation_delay_summary">コンテンツが表示位置を変更する間隔\n警告：値が大きすぎると、画面の焼き付きの原因になる可能性があります。</string>
     <string name="pref_ao_smooth_animation">スムーズなアニメーション</string>
     <string name="pref_ao_smooth_animation_summary">表示位置の変更をアニメーション化します</string>
+    <string name="pref_ao_blinds_effect">ブラインドタッチエフェクト</string>
+    <string name="pref_ao_blinds_effect_summary">画面に触れると指のまわりでブラインドのように傾きます</string>
+    <string name="pref_ao_blinds_background_only">背景のみブラインド効果</string>
+    <string name="pref_ao_blinds_background_only_summary">時計やアイコン、通知は平面のまま背景画像のみを傾けます</string>
     <string name="pref_ao_refresh_rate_optimization">リフレッシュレートの最適化</string>
     <string name="pref_ao_refresh_rate_optimization_summary">バッテリー節約のため、画面が静止しているときは可能な限り低いリフレッシュレートを使用します</string>
     <string name="pref_ao_force_brightness">Peek Displayの明るさを固定</string>

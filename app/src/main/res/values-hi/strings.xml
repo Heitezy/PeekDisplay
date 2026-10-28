@@ -83,6 +83,10 @@
     <string name="pref_ao_animation_delay_summary">सामग्री की विभिन्न स्थितियों के बीच का समय\nचेतावनी: बहुत अधिक मान स्क्रीन बर्न-इन का कारण बन सकते हैं!</string>
     <string name="pref_ao_smooth_animation">स्मूथ एनीमेशन</string>
     <string name="pref_ao_smooth_animation_summary">स्थिति परिवर्तन को एनिमेट करें</string>
+    <string name="pref_ao_blinds_effect">जलौसी स्पर्श प्रभाव</string>
+    <string name="pref_ao_blinds_effect_summary">स्क्रीन को छूने पर यह आपकी उंगली के चारों ओर वेनेटियन ब्लाइंड्स की तरह झुकती है</string>
+    <string name="pref_ao_blinds_background_only">केवल बैकग्राउंड पर ब्लाइंड्स</string>
+    <string name="pref_ao_blinds_background_only_summary">घड़ी, आइकन और सूचनाओं को समतल रखें; केवल बैकग्राउंड इमेज झुकती है</string>
     <string name="pref_ao_refresh_rate_optimization">रिफ्रेश रेट ऑप्टिमाइजेशन</string>
     <string name="pref_ao_refresh_rate_optimization_summary">बैटरी बचाने के लिए डिस्प्ले के स्थिर होने पर उपलब्ध सबसे कम रिफ्रेश रेट का उपयोग करता है</string>
     <string name="pref_ao_force_brightness">पीक डिस्प्ले पर एक निश्चित ब्राइटनेस सेट करें</string>

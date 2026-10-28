@@ -83,6 +83,10 @@
     <string name="pref_ao_animation_delay_summary">Timpul între schimbările de poziție ale conținutului\nAVERTIZARE: Valorile prea mari pot cauza remanență (screen burn-in)!</string>
     <string name="pref_ao_smooth_animation">Animație fluidă</string>
     <string name="pref_ao_smooth_animation_summary">Animați schimbările de poziție</string>
+    <string name="pref_ao_blinds_effect">Efect tactil de jaluzele</string>
+    <string name="pref_ao_blinds_effect_summary">Atingerea ecranului îl înclină ca niște jaluzele în jurul degetului</string>
+    <string name="pref_ao_blinds_background_only">Jaluzele doar pe fundal</string>
+    <string name="pref_ao_blinds_background_only_summary">Păstrați ceasul, pictogramele și notificările plate; doar imaginea de fundal se înclină</string>
     <string name="pref_ao_refresh_rate_optimization">Optimizare rată de reîmprospătare</string>
     <string name="pref_ao_refresh_rate_optimization_summary">Utilizează cea mai mică rată de reîmprospătare disponibilă când afișajul este static pentru a economisi bateria</string>
     <string name="pref_ao_force_brightness">Forțează luminozitatea pe Afișajul Peek</string>

@@ -83,6 +83,10 @@
     <string name="pref_ao_animation_delay_summary">內容在不同位置之間移動的時間隔\n警告：過高的數值可能導致螢幕烙印！</string>
     <string name="pref_ao_smooth_animation">動畫移動</string>
     <string name="pref_ao_smooth_animation_summary">使用動畫呈現位置變更</string>
+    <string name="pref_ao_blinds_effect">百葉窗觸控效果</string>
+    <string name="pref_ao_blinds_effect_summary">觸控螢幕時，螢幕會像百葉窗一樣圍繞手指傾斜</string>
+    <string name="pref_ao_blinds_background_only">僅在背景應用百葉窗效果</string>
+    <string name="pref_ao_blinds_background_only_summary">保持時鐘、圖示和通知為平面，僅傾斜背景圖片</string>
     <string name="pref_ao_refresh_rate_optimization">更新率最佳化</string>
     <string name="pref_ao_refresh_rate_optimization_summary">螢幕靜止時使用最低可用更新率，以節省電力</string>
     <string name="pref_ao_force_brightness">強制 Peek Display 使用特定亮度</string>

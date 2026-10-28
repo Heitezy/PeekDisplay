@@ -83,6 +83,10 @@
     <string name="pref_ao_animation_delay_summary">Temps entre les différentes positions du contenu.\nAttention: des valeurs trop hautes peuvent causer des marquages d\'écran !</string>
     <string name="pref_ao_smooth_animation">Mouvement de l\'animation</string>
     <string name="pref_ao_smooth_animation_summary">Animer le changement de position</string>
+    <string name="pref_ao_blinds_effect">Effet tactile jalousie</string>
+    <string name="pref_ao_blinds_effect_summary">Toucher l\'écran l\'incline comme des stores vénitiens autour de votre doigt</string>
+    <string name="pref_ao_blinds_background_only">Stores sur l\'arrière-plan uniquement</string>
+    <string name="pref_ao_blinds_background_only_summary">Garder l\'horloge, les icônes et les notifications plates ; seule l\'image de fond s\'incline</string>
     <string name="pref_ao_refresh_rate_optimization">Optimisation du taux de rafraîchissement</string>
     <string name="pref_ao_refresh_rate_optimization_summary">Utilise le taux de rafraîchissement le plus bas disponible lorsque l\'affichage est statique pour économiser la batterie</string>
     <string name="pref_ao_force_brightness">Force une certaine luminosité sur l\'affichage permanent</string>

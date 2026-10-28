@@ -83,6 +83,10 @@
     <string name="pref_ao_animation_delay_summary">内容在不同位置之间移动的时间间隔\n警告：过高的值可能会导致屏幕烧屏！</string>
     <string name="pref_ao_smooth_animation">平滑动画</string>
     <string name="pref_ao_smooth_animation_summary">位置更改时的动画效果</string>
+    <string name="pref_ao_blinds_effect">百叶窗触摸效果</string>
+    <string name="pref_ao_blinds_effect_summary">触摸屏幕时，屏幕会像百叶窗一样围绕手指倾斜</string>
+    <string name="pref_ao_blinds_background_only">仅在背景应用百叶窗效果</string>
+    <string name="pref_ao_blinds_background_only_summary">保持时钟、图标和通知为平面，仅倾斜背景图像</string>
     <string name="pref_ao_refresh_rate_optimization">刷新率优化</string>
     <string name="pref_ao_refresh_rate_optimization_summary">屏幕静止时使用最低可用刷新率以节省电量</string>
     <string name="pref_ao_force_brightness">在 Peek Display 上强制指定亮度</string>

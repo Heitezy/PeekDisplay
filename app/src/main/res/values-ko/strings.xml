@@ -83,6 +83,10 @@
     <string name="pref_ao_animation_delay_summary">콘텐츠가 다른 위치로 이동하는 주기\n주의: 값이 너무 크면 화면 번인(Burn-in) 현상이 발생할 수 있습니다!</string>
     <string name="pref_ao_smooth_animation">부드러운 애니메이션</string>
     <string name="pref_ao_smooth_animation_summary">위치 변경 시 애니메이션 효과 사용</string>
+    <string name="pref_ao_blinds_effect">블라인드 터치 효과</string>
+    <string name="pref_ao_blinds_effect_summary">화면을 터치하면 손가락 주변이 블라인드처럼 기울어집니다</string>
+    <string name="pref_ao_blinds_background_only">배경에만 블라인드 적용</string>
+    <string name="pref_ao_blinds_background_only_summary">시계, 아이콘, 알림은 평면으로 유지하고 배경 이미지만 기울입니다</string>
     <string name="pref_ao_refresh_rate_optimization">새로고침 빈도 최적화</string>
     <string name="pref_ao_refresh_rate_optimization_summary">배터리를 절약하기 위해 화면이 정지된 상태일 때 사용 가능한 가장 낮은 새로고침 빈도를 사용합니다</string>
     <string name="pref_ao_force_brightness">Peek Display 밝기 고정</string>

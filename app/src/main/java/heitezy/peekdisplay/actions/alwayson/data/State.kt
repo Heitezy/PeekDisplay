@@ -129,6 +129,8 @@ data class AppearanceState(
     val invertInteractionHighlight: Boolean = true,
     val swipeNotificationOpen: Boolean = false,
     val animateMotion: Boolean = false,
+    val blindsEffect: Boolean = false,
+    val blindsBackgroundOnly: Boolean = false,
     val topPadding: Int = 0,
     val notificationTopPadding: Int = 680,
     val scale: Float = 1f

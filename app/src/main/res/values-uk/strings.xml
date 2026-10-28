@@ -152,6 +152,10 @@
     <string name="pref_look_and_feel_charging">Вигляд анімації заряджання</string>
     <string name="pref_ao_smooth_animation">Плавна анімація</string>
     <string name="pref_ao_smooth_animation_summary">Анімувати зміну положення елементів</string>
+    <string name="pref_ao_blinds_effect">Ефект жалюзі при дотику</string>
+    <string name="pref_ao_blinds_effect_summary">Дотик нахиляє екран, як жалюзі навколо пальця</string>
+    <string name="pref_ao_blinds_background_only">Жалюзі лише на фоні</string>
+    <string name="pref_ao_blinds_background_only_summary">Годинник, значки та сповіщення залишаються рівними; нахиляється лише фонове зображення</string>
     <string name="pref_ao_refresh_rate_optimization">Оптимізація частоти оновлення</string>
     <string name="pref_ao_refresh_rate_optimization_summary">Використовувати мінімальну частоту оновлення для статичного екрана для заощадження заряду</string>
     <string name="pref_ao_force_brightness">Примусова яскравість</string>

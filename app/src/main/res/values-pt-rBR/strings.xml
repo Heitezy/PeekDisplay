@@ -83,6 +83,10 @@
     <string name="pref_ao_animation_delay_summary">Tempo entre as diferentes posições do conteúdo\nAviso: valores muito altos podem causar burn-in na tela!</string>
     <string name="pref_ao_smooth_animation">Movimento animado</string>
     <string name="pref_ao_smooth_animation_summary">Animar mudanças de posição</string>
+    <string name="pref_ao_blinds_effect">Efeito de toque persiana</string>
+    <string name="pref_ao_blinds_effect_summary">Toque na tela para incliná-la como uma persiana ao redor do seu dedo</string>
+    <string name="pref_ao_blinds_background_only">Persianas apenas no plano de fundo</string>
+    <string name="pref_ao_blinds_background_only_summary">Mantenha o relógio, ícones e notificações planos; apenas a imagem de fundo se inclina</string>
     <string name="pref_ao_refresh_rate_optimization">Otimização da taxa de atualização</string>
     <string name="pref_ao_refresh_rate_optimization_summary">Usa a menor taxa de atualização disponível quando a tela está estática para economizar bateria</string>
     <string name="pref_ao_force_brightness">Forçar brilho no Peek Display</string>

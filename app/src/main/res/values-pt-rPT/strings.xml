@@ -83,6 +83,10 @@
     <string name="pref_ao_animation_delay_summary">Tempo entre as diferentes posições do conteúdo\nAviso: valores muito altos podem causar burn-in no ecrã!</string>
     <string name="pref_ao_smooth_animation">Movimento animado</string>
     <string name="pref_ao_smooth_animation_summary">Animar as mudanças de posição</string>
+    <string name="pref_ao_blinds_effect">Efeito de toque estore</string>
+    <string name="pref_ao_blinds_effect_summary">Tocar no ecrã inclina-o como um estore ao redor do seu dedo</string>
+    <string name="pref_ao_blinds_background_only">Estores apenas no fundo</string>
+    <string name="pref_ao_blinds_background_only_summary">Mantenha o relógio, ícones e notificações planos; apenas a imagem de fundo se inclina</string>
     <string name="pref_ao_refresh_rate_optimization">Otimização da taxa de atualização</string>
     <string name="pref_ao_refresh_rate_optimization_summary">Utiliza a taxa de atualização mais baixa disponível quando o ecrã está estático para poupar bateria</string>
     <string name="pref_ao_force_brightness">Forçar brilho no Peek Display</string>

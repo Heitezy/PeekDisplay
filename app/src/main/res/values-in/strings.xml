@@ -83,6 +83,10 @@
     <string name="pref_ao_animation_delay_summary">Waktu antara berbagai posisi konten\nPeringatan: Nilai yang terlalu tinggi dapat menyebabkan layar terbakar (burn-in)!</string>
     <string name="pref_ao_smooth_animation">Gerakan hidup</string>
     <string name="pref_ao_smooth_animation_summary">Menghidupkan perubahan posisi</string>
+    <string name="pref_ao_blinds_effect">Efek sentuh tirai</string>
+    <string name="pref_ao_blinds_effect_summary">Menyentuh layar akan memiringkannya seperti tirai di sekitar jari Anda</string>
+    <string name="pref_ao_blinds_background_only">Efek tirai hanya pada latar belakang</string>
+    <string name="pref_ao_blinds_background_only_summary">Jaga agar jam, ikon, dan notifikasi tetap datar; hanya gambar latar belakang yang miring</string>
     <string name="pref_ao_refresh_rate_optimization">Optimalisasi kecepatan refresh</string>
     <string name="pref_ao_refresh_rate_optimization_summary">Menggunakan laju penyegaran terendah yang tersedia saat layar statis untuk menghemat baterai</string>
     <string name="pref_ao_force_brightness">Memaksa kecerahan tertentu pada tampilan mengintip</string>

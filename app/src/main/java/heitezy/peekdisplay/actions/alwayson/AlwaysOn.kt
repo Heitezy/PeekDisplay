@@ -25,7 +25,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -36,6 +35,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import heitezy.peekdisplay.R
 import heitezy.peekdisplay.actions.OffActivity
+import heitezy.peekdisplay.actions.alwayson.blinds.BlindsEffect
 import heitezy.peekdisplay.actions.alwayson.controllers.*
 import heitezy.peekdisplay.helpers.Global
 import heitezy.peekdisplay.helpers.IconHelper
@@ -258,9 +258,17 @@ class AlwaysOn : OffActivity(), NotificationService.OnNotificationsChangedListen
             label = "fpDriftY"
         )
 
-        Box(modifier = Modifier
-            .fillMaxSize()
-            .alpha(alpha)) {
+        BlindsEffect(
+            enabled = viewModel.appearanceState.blindsEffect,
+            backgroundOnly = viewModel.appearanceState.blindsBackgroundOnly,
+            onActiveChanged = { active ->
+                // Keep the refresh rate high while the blinds animate.
+                if (active) onInteractionStarted() else onInteractionEnded()
+            },
+            modifier = Modifier
+                .fillMaxSize()
+                .alpha(alpha),
+        ) {
             Content(
                 clockState = viewModel.clockState,
                 batteryState = viewModel.batteryState,

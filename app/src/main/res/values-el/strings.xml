@@ -83,6 +83,10 @@
     <string name="pref_ao_animation_delay_summary">Χρόνος μεταξύ των αλλαγών θέσης του περιεχομένου\nΠΡΟΕΙΔΟΠΟΙΗΣΗ: Πολύ υψηλές τιμές μπορεί να προκαλέσουν κάψιμο της οθόνης!</string>
     <string name="pref_ao_smooth_animation">Ομαλή κίνηση</string>
     <string name="pref_ao_smooth_animation_summary">Εφέ κίνησης κατά τις αλλαγές θέσης</string>
+    <string name="pref_ao_blinds_effect">Εφέ αγγίγματος περσίδων</string>
+    <string name="pref_ao_blinds_effect_summary">Το άγγιγμα της οθόνης την γέρνει σαν περσίδες γύρω από το δάχτυλό σας</string>
+    <string name="pref_ao_blinds_background_only">Περσίδες μόνο στο φόντο</string>
+    <string name="pref_ao_blinds_background_only_summary">Διατήρηση ρολογιού, εικονιδίων και ειδοποιήσεων επιπέδων· γέρνει μόνο η εικόνα φόντου</string>
     <string name="pref_ao_refresh_rate_optimization">Βελτιστοποίηση ρυθμού ανανέωσης</string>
     <string name="pref_ao_refresh_rate_optimization_summary">Χρήση του χαμηλότερου διαθέσιμου ρυθμού ανανέωσης όταν η οθόνη είναι στατική για εξοικονόμηση μπαταρίας</string>
     <string name="pref_ao_force_brightness">Επιβολή συγκεκριμένης φωτεινότητας στο Peek Display</string>

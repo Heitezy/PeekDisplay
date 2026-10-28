@@ -156,6 +156,8 @@ internal class P(private val dataStore: PreferenceDataStore) {
         const val WEATHER_REFRESH_INTERVAL = "ao_weather_refresh_interval"
         const val TINT_NOTIFICATIONS = "ao_tint_notifications"
         const val ANIMATE_MOTION = "ao_smooth_animation"
+        const val BLINDS_EFFECT = "ao_blinds_effect"
+        const val BLINDS_BACKGROUND_ONLY = "ao_blinds_background_only"
         const val REFRESH_RATE_OPTIMIZATION = "ao_refresh_rate_optimization"
         const val DISPLAY_COLOR_CLOCK = "display_color_clock"
         const val DISPLAY_COLOR_DATE = "display_color_date"
@@ -266,6 +268,8 @@ internal class P(private val dataStore: PreferenceDataStore) {
         const val WEATHER_REFRESH_INTERVAL_DEFAULT = 60
         const val TINT_NOTIFICATIONS_DEFAULT = false
         const val ANIMATE_MOTION_DEFAULT = false
+        const val BLINDS_EFFECT_DEFAULT = false
+        const val BLINDS_BACKGROUND_ONLY_DEFAULT = false
         const val REFRESH_RATE_OPTIMIZATION_DEFAULT = true
         const val DISPLAY_COLOR_CLOCK_DEFAULT = -1
         const val DISPLAY_COLOR_DATE_DEFAULT = -1

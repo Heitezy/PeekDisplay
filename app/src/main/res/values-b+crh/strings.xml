@@ -83,6 +83,10 @@
     <string name="pref_ao_animation_delay_summary">Mündericeniñ çeşit pozitsiyaları arasında vaqıt.\nDiqqat: Pek yüksek qıymetler ekrannıñ yañmasına ketire bile!</string>
     <string name="pref_ao_smooth_animation">Canlı areket.</string>
     <string name="pref_ao_smooth_animation_summary">Vaziyet deñişmelerini canlandıırıñız.</string>
+    <string name="pref_ao_blinds_effect">Jalüz dokunuv effekti</string>
+    <string name="pref_ao_blinds_effect_summary">Ekranga dokunğanda, parmağıñız etrafında jalüz kibi eyile</string>
+    <string name="pref_ao_blinds_background_only">Yalnız arqa alanda jalüz</string>
+    <string name="pref_ao_blinds_background_only_summary">Saatnı, simgallerni ve bildirimlerni düz tutıñız; yalnız arqa alan resmi eyile</string>
     <string name="pref_ao_refresh_rate_optimization">Yañartuv nisbetini optimizatsiya etüv</string>
     <string name="pref_ao_refresh_rate_optimization_summary">Batareyanı saqlamaq içün ekran statik olğanda eñ tüşük yañartuv nisbetini qullana</string>
     <string name="pref_ao_force_brightness">Pik Displeyde belli bir parlaqlıqnı mecbur etiñiz.</string>

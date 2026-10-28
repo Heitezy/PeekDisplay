@@ -57,6 +57,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import heitezy.peekdisplay.R
+import heitezy.peekdisplay.actions.alwayson.blinds.BlindsBackground
 import heitezy.peekdisplay.actions.alwayson.components.Battery
 import heitezy.peekdisplay.actions.alwayson.components.Calendar
 import heitezy.peekdisplay.actions.alwayson.components.Clock
@@ -286,25 +287,36 @@ fun Content(
                 }
         ) {
             if ((musicState.albumArt == null || !appearanceState.showAlbumArt || (!musicState.isPlaying && !musicState.wasPlaying)) && appearanceState.backgroundImageRes != null) {
-                Box(
-                    modifier = Modifier
-                        .then(
-                            if (appearanceState.fullScreenBackground) Modifier.fillMaxSize()
-                            else if (isLandscape) Modifier
-                                .fillMaxHeight()
-                                .fillMaxWidth(0.5f)
-                                .align(Alignment.CenterStart)
-                                .padding(start = 16.dp, end = 16.dp)
-                            else Modifier
-                                .fillMaxSize()
-                                .padding(top = appearanceState.topPadding.dp, start = 16.dp, end = 16.dp)
-                        ),
-                    contentAlignment = if (isLandscape && !appearanceState.fullScreenBackground) Alignment.Center else Alignment.TopCenter
-                ) {
-                    if (appearanceState.backgroundImageRes == -1) {
-                        appearanceState.customBackground?.let { bitmap ->
+                BlindsBackground {
+                    Box(
+                        modifier = Modifier
+                            .then(
+                                if (appearanceState.fullScreenBackground) Modifier.fillMaxSize()
+                                else if (isLandscape) Modifier
+                                    .fillMaxHeight()
+                                    .fillMaxWidth(0.5f)
+                                    .align(Alignment.CenterStart)
+                                    .padding(start = 16.dp, end = 16.dp)
+                                else Modifier
+                                    .fillMaxSize()
+                                    .padding(top = appearanceState.topPadding.dp, start = 16.dp, end = 16.dp)
+                            ),
+                        contentAlignment = if (isLandscape && !appearanceState.fullScreenBackground) Alignment.Center else Alignment.TopCenter
+                    ) {
+                        if (appearanceState.backgroundImageRes == -1) {
+                            appearanceState.customBackground?.let { bitmap ->
+                                Image(
+                                    bitmap = bitmap.asImageBitmap(),
+                                    contentDescription = null,
+                                    modifier = Modifier
+                                        .then(if (appearanceState.fullScreenBackground) Modifier.fillMaxSize() else Modifier)
+                                        .alpha(0.5f),
+                                    contentScale = if (appearanceState.fullScreenBackground) ContentScale.Crop else ContentScale.None
+                                )
+                            }
+                        } else {
                             Image(
-                                bitmap = bitmap.asImageBitmap(),
+                                painter = painterResource(id = appearanceState.backgroundImageRes),
                                 contentDescription = null,
                                 modifier = Modifier
                                     .then(if (appearanceState.fullScreenBackground) Modifier.fillMaxSize() else Modifier)
@@ -312,15 +324,6 @@ fun Content(
                                 contentScale = if (appearanceState.fullScreenBackground) ContentScale.Crop else ContentScale.None
                             )
                         }
-                    } else {
-                        Image(
-                            painter = painterResource(id = appearanceState.backgroundImageRes),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .then(if (appearanceState.fullScreenBackground) Modifier.fillMaxSize() else Modifier)
-                                .alpha(0.5f),
-                            contentScale = if (appearanceState.fullScreenBackground) ContentScale.Crop else ContentScale.None
-                        )
                     }
                 }
             }
