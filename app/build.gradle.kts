@@ -24,8 +24,8 @@ android {
         minSdk = 24
         //noinspection OldTargetApi
         targetSdk = 36
-        versionCode = 21
-        versionName = "1.1.8"
+        versionCode = 22
+        versionName = "1.1.9"
     }
 
     buildFeatures {
